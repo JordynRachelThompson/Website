@@ -1,0 +1,46 @@
+@using Microsoft.AspNetCore.Identity
+@using MyWebsite.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<link rel="stylesheet" href="~/css/materialize.css" />
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="container">
+        <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
+            <ul id="buttonInLine">
+                <li>
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="blue-grey-lighten-4-text userName">Hello @UserManager.GetUserName(User)!</a>
+                </li>
+                <li>
+                    <button type="submit" class="waves-effect waves-light btn red accent-4 redButton">Log out</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+}
+else
+{
+    <div class="container">
+        <ul id="buttonInLine">
+            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn red accent-4 redButton">Register</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Login" class="waves-effect waves-light btn red accent-4 redButton">Log in</a></li>
+        </ul>
+    </div>
+}
+
+<style>
+
+    .userName {
+        color: #cfd8dc;
+        letter-spacing: 1.5px;
+        font-size: 25px;
+        padding-right: 13px;
+    }
+
+    .redButton {
+        border-radius: 0px !important;
+    }
+</style>
+

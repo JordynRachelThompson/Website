@@ -1,0 +1,61 @@
+﻿body {
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+.redButton {
+    border-radius: 0px !important;
+}
+
+#buttonInLine li {
+    display: inline;
+}
+
+a {
+    color:#cfd8dc !important;
+}
+
+.textGrey {
+    color: #cfd8dc;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    font-size: 25px;
+}
+
+input[type=email]:not(.browser-default) {
+    border-bottom: 1px solid #d50000 !important;
+    box-shadow: 0 1px 0 0 black !important;
+    background-color: black !important;
+}
+
+input[type=email]:not(.browser-default) {
+    border-bottom: 1px solid #d50000 !important;
+    box-shadow: 0 1px 0 0 black !important;
+    background-color: black !important;
+}
+
+input[type=password]:not(.browser-default) {
+    border-bottom: 1px solid #d50000 !important;
+    box-shadow: 0 1px 0 0 black !important;
+    background-color: black !important;
+}
+
+input.valid[type=password]:not(.browser-default) {
+    border-bottom: 1px solid #d50000 !important;
+    box-shadow: 0 1px 0 0 black !important;
+    background-color: black !important;
+}
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    color: red !important;
+}
+
+
+
