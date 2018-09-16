@@ -1,4 +1,4 @@
-﻿@model MyWebsite.Models.BudgetLimit
+﻿@model MyWebsite.Models.BudgetEntries
 
 @{
     ViewData["Title"] = "Create";
@@ -6,7 +6,7 @@
 
 <h2>Create</h2>
 
-<h4>BudgetLimit</h4>
+<h4>BudgetEntries</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -28,6 +28,11 @@
                 <span asp-validation-for="RentLimit" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="EntertainmentLimit" class="control-label"></label>
+                <input asp-for="EntertainmentLimit" class="form-control" />
+                <span asp-validation-for="EntertainmentLimit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="BillsLimit" class="control-label"></label>
                 <input asp-for="BillsLimit" class="form-control" />
                 <span asp-validation-for="BillsLimit" class="text-danger"></span>
@@ -38,14 +43,24 @@
                 <span asp-validation-for="GasLimit" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EntertainmentLimit" class="control-label"></label>
-                <input asp-for="EntertainmentLimit" class="form-control" />
-                <span asp-validation-for="EntertainmentLimit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="MiscLimit" class="control-label"></label>
                 <input asp-for="MiscLimit" class="form-control" />
                 <span asp-validation-for="MiscLimit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Type" class="control-label"></label>
+                <input asp-for="Type" class="form-control" />
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cost" class="control-label"></label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />

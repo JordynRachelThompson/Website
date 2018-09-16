@@ -11,9 +11,10 @@ using System;
 namespace MyWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180916173633_Added to budgetItems")]
+    partial class AddedtobudgetItems
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,6 +180,80 @@ namespace MyWebsite.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("MyWebsite.Models.BudgetItems", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Email");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BudgetItems");
+                });
+
+            modelBuilder.Entity("MyWebsite.Models.BudgetLimit", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BillsLimit");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("EntertainmentLimit");
+
+                    b.Property<int>("GasLimit");
+
+                    b.Property<int>("GroceryLimit");
+
+                    b.Property<int>("MiscLimit");
+
+                    b.Property<int>("RentLimit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BudgetLimit");
+                });
+
+            modelBuilder.Entity("MyWebsite.Models.Entries", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("BudgetItemsId");
+
+                    b.Property<int?>("BudgetItemsId1");
+
+                    b.Property<int?>("BudgetItemsId2");
+
+                    b.Property<int?>("BudgetItemsId3");
+
+                    b.Property<int?>("BudgetItemsId4");
+
+                    b.Property<int?>("BudgetItemsId5");
+
+                    b.Property<int>("Cost");
+
+                    b.Property<string>("Description");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BudgetItemsId");
+
+                    b.HasIndex("BudgetItemsId1");
+
+                    b.HasIndex("BudgetItemsId2");
+
+                    b.HasIndex("BudgetItemsId3");
+
+                    b.HasIndex("BudgetItemsId4");
+
+                    b.HasIndex("BudgetItemsId5");
+
+                    b.ToTable("Entries");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
@@ -222,6 +297,33 @@ namespace MyWebsite.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("MyWebsite.Models.Entries", b =>
+                {
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("BillItem")
+                        .HasForeignKey("BudgetItemsId");
+
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("EntertainmentItem")
+                        .HasForeignKey("BudgetItemsId1");
+
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("GasItem")
+                        .HasForeignKey("BudgetItemsId2");
+
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("GroceryItems")
+                        .HasForeignKey("BudgetItemsId3");
+
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("MiscItem")
+                        .HasForeignKey("BudgetItemsId4");
+
+                    b.HasOne("MyWebsite.Models.BudgetItems")
+                        .WithMany("RentItem")
+                        .HasForeignKey("BudgetItemsId5");
                 });
 #pragma warning restore 612, 618
         }

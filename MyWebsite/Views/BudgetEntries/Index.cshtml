@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyWebsite.Models.BudgetLimit>
+﻿@model IEnumerable<MyWebsite.Models.BudgetEntries>
 
 @{
     ViewData["Title"] = "Index";
@@ -22,16 +22,25 @@
                     @Html.DisplayNameFor(model => model.RentLimit)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.EntertainmentLimit)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.BillsLimit)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.GasLimit)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.EntertainmentLimit)
+                    @Html.DisplayNameFor(model => model.MiscLimit)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.MiscLimit)
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cost)
                 </th>
             <th></th>
         </tr>
@@ -49,16 +58,25 @@
                 @Html.DisplayFor(modelItem => item.RentLimit)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.EntertainmentLimit)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.BillsLimit)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.GasLimit)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EntertainmentLimit)
+                @Html.DisplayFor(modelItem => item.MiscLimit)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MiscLimit)
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cost)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

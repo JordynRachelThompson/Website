@@ -5,14 +5,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using MyWebsite.Data;
 using System;
 
 namespace MyWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180916022621_Added classes budgetlimit and budgetitems")]
-    partial class Addedclassesbudgetlimitandbudgetitems
+    [Migration("20180916180405_BudgetItems inheriting from Entries")]
+    partial class BudgetItemsinheritingfromEntries
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -180,18 +181,6 @@ namespace MyWebsite.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BudgetItems");
-                });
-
             modelBuilder.Entity("MyWebsite.Models.BudgetLimit", b =>
                 {
                     b.Property<int>("Id")
@@ -233,11 +222,12 @@ namespace MyWebsite.Data.Migrations
 
                     b.Property<int?>("BudgetItemsId5");
 
-                    b.Property<int?>("BudgetItemsId6");
-
                     b.Property<int>("Cost");
 
                     b.Property<string>("Description");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -253,9 +243,20 @@ namespace MyWebsite.Data.Migrations
 
                     b.HasIndex("BudgetItemsId5");
 
-                    b.HasIndex("BudgetItemsId6");
-
                     b.ToTable("Entries");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Entries");
+                });
+
+            modelBuilder.Entity("MyWebsite.Models.BudgetItems", b =>
+                {
+                    b.HasBaseType("MyWebsite.Models.Entries");
+
+                    b.Property<string>("Email");
+
+                    b.ToTable("BudgetItems");
+
+                    b.HasDiscriminator().HasValue("BudgetItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -318,20 +319,16 @@ namespace MyWebsite.Data.Migrations
                         .HasForeignKey("BudgetItemsId2");
 
                     b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("GroceryItem")
+                        .WithMany("GroceryItems")
                         .HasForeignKey("BudgetItemsId3");
 
                     b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("GroceryItems")
+                        .WithMany("MiscItem")
                         .HasForeignKey("BudgetItemsId4");
 
                     b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("MiscItem")
-                        .HasForeignKey("BudgetItemsId5");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
                         .WithMany("RentItem")
-                        .HasForeignKey("BudgetItemsId6");
+                        .HasForeignKey("BudgetItemsId5");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using MyWebsite.Models
+@model MyWebsite.Models.BudgetEntries
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @{ string stringSet = "SET";}
@@ -18,32 +19,39 @@ else
 
     <div class="container">
         <div class="row">
-            <form class="col m4">
-                <h5 style="margin-top:25px;">Set Grocery Budget</h5>
+            <form class="col m4" style="margin-right:100px;">
+                <h5 style="margin-top:77px; font-weight:bold;">Set Grocery Budget</h5>
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
+                    <div id="grocery-graph" style="display:none;"><p>Display grocery graph - Limit: </p></div>
                 </div>
+
             </form>
             <form class="col m4">
+                <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
                 <div class="input-field">
-                    <input placeholder="Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink("ADD", "Budget", "Projects", null, new { @class = "yellow-button" })</div>
+                    <input name ="groceryDescription" placeholder="Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
                 </div>
-            </form>
-            <form class="col m4">
                 <h5 style="margin-top:25px;">Price</h5>
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink("ADD", "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                </div>
+                    <input name="groceryCost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+
+
+                    @*@Html.HiddenFor(x => x.Email == User.Identity.Name)
+                    @Html.HiddenFor(x => x.Description == "groceryDescription")
+                    @Html.HiddenFor(x => x.Cost == Int32.Parse("groceryCost"))*@
+
+
+                    <div style="margin-top:23px;">@Html.ActionLink("ADD", "Grocery", "BudgetItems", null, new { @class = "yellow-button" })</div>
+                </div>                
             </form>
         </div>
 
-        @Html.ActionLink("budgetItems", "Create", "BudgetItems", null, new { @class = "yellow-button" })
+        <div style="margin:120px;">@Html.ActionLink("budgetItems", "Edit", "BudgetItems", null, new { @class = "yellow-button" })</div>
 
 
         <p style="margin-top:50px;">Housing: Set Budget Limit</p>

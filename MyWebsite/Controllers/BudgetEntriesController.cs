@@ -10,22 +10,22 @@ using MyWebsite.Models;
 
 namespace MyWebsite.Controllers
 {
-    public class BudgetItemsController : Controller
+    public class BudgetEntriesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public BudgetItemsController(ApplicationDbContext context)
+        public BudgetEntriesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: BudgetItems
+        // GET: BudgetEntries
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BudgetItems.ToListAsync());
+            return View(await _context.BudgetEntries.ToListAsync());
         }
 
-        // GET: BudgetItems/Details/5
+        // GET: BudgetEntries/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace MyWebsite.Controllers
                 return NotFound();
             }
 
-            var budgetItems = await _context.BudgetItems
+            var budgetEntries = await _context.BudgetEntries
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (budgetItems == null)
+            if (budgetEntries == null)
             {
                 return NotFound();
             }
 
-            return View(budgetItems);
+            return View(budgetEntries);
         }
 
-        // GET: BudgetItems/Create
+        // GET: BudgetEntries/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: BudgetItems/Create
+        // POST: BudgetEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email")] BudgetItems budgetItems)
+        public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,Type,Description,Cost")] BudgetEntries budgetEntries)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(budgetItems);
+                _context.Add(budgetEntries);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(budgetItems);
+            return View(budgetEntries);
         }
 
-        // GET: BudgetItems/Edit/5
+        // GET: BudgetEntries/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace MyWebsite.Controllers
                 return NotFound();
             }
 
-            var budgetItems = await _context.BudgetItems.SingleOrDefaultAsync(m => m.Id == id);
-            if (budgetItems == null)
+            var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync(m => m.Id == id);
+            if (budgetEntries == null)
             {
                 return NotFound();
             }
-            return View(budgetItems);
+            return View(budgetEntries);
         }
 
-        // POST: BudgetItems/Edit/5
+        // POST: BudgetEntries/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email")] BudgetItems budgetItems)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,Type,Description,Cost")] BudgetEntries budgetEntries)
         {
-            if (id != budgetItems.Id)
+            if (id != budgetEntries.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace MyWebsite.Controllers
             {
                 try
                 {
-                    _context.Update(budgetItems);
+                    _context.Update(budgetEntries);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BudgetItemsExists(budgetItems.Id))
+                    if (!BudgetEntriesExists(budgetEntries.Id))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace MyWebsite.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(budgetItems);
+            return View(budgetEntries);
         }
 
-        // GET: BudgetItems/Delete/5
+        // GET: BudgetEntries/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace MyWebsite.Controllers
                 return NotFound();
             }
 
-            var budgetItems = await _context.BudgetItems
+            var budgetEntries = await _context.BudgetEntries
                 .SingleOrDefaultAsync(m => m.Id == id);
-            if (budgetItems == null)
+            if (budgetEntries == null)
             {
                 return NotFound();
             }
 
-            return View(budgetItems);
+            return View(budgetEntries);
         }
 
-        // POST: BudgetItems/Delete/5
+        // POST: BudgetEntries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var budgetItems = await _context.BudgetItems.SingleOrDefaultAsync(m => m.Id == id);
-            _context.BudgetItems.Remove(budgetItems);
+            var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync(m => m.Id == id);
+            _context.BudgetEntries.Remove(budgetEntries);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BudgetItemsExists(int id)
+        private bool BudgetEntriesExists(int id)
         {
-            return _context.BudgetItems.Any(e => e.Id == id);
+            return _context.BudgetEntries.Any(e => e.Id == id);
         }
     }
 }

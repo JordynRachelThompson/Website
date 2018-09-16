@@ -23,8 +23,6 @@ namespace MyWebsite.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<MyWebsite.Models.BudgetLimit> BudgetLimit { get; set; }
-
-        public DbSet<MyWebsite.Models.BudgetItems> BudgetItems { get; set; }
+        public DbSet<MyWebsite.Models.BudgetEntries> BudgetEntries { get; set; }
     }
 }
