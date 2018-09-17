@@ -5,17 +5,16 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using Microsoft.EntityFrameworkCore.ValueGeneration;
 using MyWebsite.Data;
+using MyWebsite.Models;
 using System;
 
-namespace MyWebsite.Data.Migrations
+namespace MyWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180916180405_BudgetItems inheriting from Entries")]
-    partial class BudgetItemsinheritingfromEntries
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,82 +180,34 @@ namespace MyWebsite.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetLimit", b =>
+            modelBuilder.Entity("MyWebsite.Models.BudgetEntries", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("BillsLimit");
+                    b.Property<float>("BillsLimit");
 
-                    b.Property<string>("Email");
-
-                    b.Property<int>("EntertainmentLimit");
-
-                    b.Property<int>("GasLimit");
-
-                    b.Property<int>("GroceryLimit");
-
-                    b.Property<int>("MiscLimit");
-
-                    b.Property<int>("RentLimit");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("BudgetLimit");
-                });
-
-            modelBuilder.Entity("MyWebsite.Models.Entries", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("BudgetItemsId");
-
-                    b.Property<int?>("BudgetItemsId1");
-
-                    b.Property<int?>("BudgetItemsId2");
-
-                    b.Property<int?>("BudgetItemsId3");
-
-                    b.Property<int?>("BudgetItemsId4");
-
-                    b.Property<int?>("BudgetItemsId5");
-
-                    b.Property<int>("Cost");
+                    b.Property<float>("Cost");
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired();
+                    b.Property<string>("Email");
+
+                    b.Property<float>("EntertainmentLimit");
+
+                    b.Property<float>("GasLimit");
+
+                    b.Property<float>("GroceryLimit");
+
+                    b.Property<float>("MiscLimit");
+
+                    b.Property<float>("RentLimit");
+
+                    b.Property<int>("TypeOfBudget");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BudgetItemsId");
-
-                    b.HasIndex("BudgetItemsId1");
-
-                    b.HasIndex("BudgetItemsId2");
-
-                    b.HasIndex("BudgetItemsId3");
-
-                    b.HasIndex("BudgetItemsId4");
-
-                    b.HasIndex("BudgetItemsId5");
-
-                    b.ToTable("Entries");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Entries");
-                });
-
-            modelBuilder.Entity("MyWebsite.Models.BudgetItems", b =>
-                {
-                    b.HasBaseType("MyWebsite.Models.Entries");
-
-                    b.Property<string>("Email");
-
-                    b.ToTable("BudgetItems");
-
-                    b.HasDiscriminator().HasValue("BudgetItems");
+                    b.ToTable("BudgetEntries");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -302,33 +253,6 @@ namespace MyWebsite.Data.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MyWebsite.Models.Entries", b =>
-                {
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("BillItem")
-                        .HasForeignKey("BudgetItemsId");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("EntertainmentItem")
-                        .HasForeignKey("BudgetItemsId1");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("GasItem")
-                        .HasForeignKey("BudgetItemsId2");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("GroceryItems")
-                        .HasForeignKey("BudgetItemsId3");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("MiscItem")
-                        .HasForeignKey("BudgetItemsId4");
-
-                    b.HasOne("MyWebsite.Models.BudgetItems")
-                        .WithMany("RentItem")
-                        .HasForeignKey("BudgetItemsId5");
                 });
 #pragma warning restore 612, 618
         }

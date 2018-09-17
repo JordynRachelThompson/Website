@@ -19,10 +19,22 @@ namespace MyWebsite.Controllers
             _context = context;
         }
 
-        // GET: BudgetEntries
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public IActionResult Add(BudgetEntries budget)
         {
-            return View(await _context.BudgetEntries.ToListAsync());
+            if (ModelState.IsValid)
+            {
+                _context.Add(budget);
+                _context.SaveChanges();
+                return RedirectToAction("Index", "BudgetEntries");
+            }
+            return RedirectToAction("Index", "BudgetEntries");
+        }
+
+        // GET: BudgetEntries
+        public IActionResult Index()
+        {
+            return View();
         }
 
         // GET: BudgetEntries/Details/5
@@ -54,7 +66,7 @@ namespace MyWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,Type,Description,Cost")] BudgetEntries budgetEntries)
+        public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,TypeOfBudget,Description,Cost")] BudgetEntries budgetEntries)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +98,7 @@ namespace MyWebsite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,Type,Description,Cost")] BudgetEntries budgetEntries)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,TypeOfBudget,Description,Cost")] BudgetEntries budgetEntries)
         {
             if (id != budgetEntries.Id)
             {

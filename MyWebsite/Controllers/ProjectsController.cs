@@ -13,7 +13,7 @@ namespace MyWebsite.Controllers
             return View();
         }
 
-        public IActionResult Budget()
+        public IActionResult BudgetEntries()
         {
             return View();
         }

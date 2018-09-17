@@ -14,25 +14,28 @@ namespace MyWebsite.Models
         public int Id { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-        public int GroceryLimit { get; set; }
-        public int RentLimit { get; set; }
-        public int EntertainmentLimit { get; set; }
-        public int BillsLimit { get; set; }
-        public int GasLimit { get; set; }
-        public int MiscLimit { get; set; }
-        public int Type { get; set; }
+        public float GroceryLimit { get; set; }
+        public float RentLimit { get; set; }
+        public float EntertainmentLimit { get; set; }
+        public float BillsLimit { get; set; }
+        public float GasLimit { get; set; }
+        public float MiscLimit { get; set; }
+        public Type TypeOfBudget { get; set; }
         public string Description { get; set; }
-        public int Cost { get; set; }
+        public float Cost { get; set; }
 
+    }
+
+    public enum Type
+    {
+        None = 0,
+        Grocery = 1,
+        Rent = 2,
+        Entertainment = 3,
+        Bills = 4,
+        Gas = 5,
+        Misc = 6
     }
 }
 
-//Types
-//0 - nothing
-//1 - grocery
-//2 - rent
-//3 - entertainment
-//4 - bills
-//5 - gas
-//6 - misc
 

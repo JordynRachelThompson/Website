@@ -6,14 +6,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using MyWebsite.Data;
+using MyWebsite.Models;
 using System;
 
-namespace MyWebsite.Data.Migrations
+namespace MyWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180916234056_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,6 +179,36 @@ namespace MyWebsite.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("MyWebsite.Models.BudgetEntries", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BillsLimit");
+
+                    b.Property<int>("Cost");
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Email");
+
+                    b.Property<int>("EntertainmentLimit");
+
+                    b.Property<int>("GasLimit");
+
+                    b.Property<int>("GroceryLimit");
+
+                    b.Property<int>("MiscLimit");
+
+                    b.Property<int>("RentLimit");
+
+                    b.Property<int>("TypeOfBudget");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("BudgetEntries");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
