@@ -23,4 +23,11 @@
     <Folder Include="Data\Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\BudgetTransactions\Index.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -12,9 +12,10 @@ using System;
 namespace MyWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180917223803_Changed enum class")]
+    partial class Changedenumclass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,6 +210,8 @@ namespace MyWebsite.Migrations
                     b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("BudgetEntriesBudgetId");
+
                     b.Property<int>("BudgetRefId");
 
                     b.Property<float>("Cost");
@@ -219,7 +222,7 @@ namespace MyWebsite.Migrations
 
                     b.HasKey("TransactionId");
 
-                    b.HasIndex("BudgetRefId");
+                    b.HasIndex("BudgetEntriesBudgetId");
 
                     b.ToTable("BudgetTransactions");
                 });
@@ -273,8 +276,7 @@ namespace MyWebsite.Migrations
                 {
                     b.HasOne("MyWebsite.Models.BudgetEntries", "BudgetEntries")
                         .WithMany("BudgetTransactions")
-                        .HasForeignKey("BudgetRefId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("BudgetEntriesBudgetId");
                 });
 #pragma warning restore 612, 618
         }

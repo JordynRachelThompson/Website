@@ -24,5 +24,6 @@ namespace MyWebsite.Data
         }
 
         public DbSet<MyWebsite.Models.BudgetEntries> BudgetEntries { get; set; }
+        public DbSet<MyWebsite.Models.BudgetTransactions> BudgetTransactions { get; set; }
     }
 }

@@ -1,10 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using MyWebsite.Models
-@model MyWebsite.Models.BudgetEntries
+@model MyWebsite.Models.BudgetTransactions
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@{ string stringSet = "SET";
-    string user = User.Identity.Name;}
 
 <h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
 
@@ -17,19 +15,11 @@
 else
 {
     <div style="border-bottom: 1px dotted #76ff03;"></div>
-
+    
+    <div style="text-align:center; margin-top:70px;">@{ Html.RenderPartial("_BudgetLimitPartial"); }</div>
     <div class="container">
         @*GROCERY*@
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Grocery Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display grocery graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -40,10 +30,10 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 1)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
@@ -51,15 +41,6 @@ else
         @*RENT*@
         <div style="border-bottom: 1px dotted #76ff03;"></div>
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Rent Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display Rent graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -70,10 +51,10 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 2)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
@@ -81,15 +62,6 @@ else
         @*ENTERTAINMENT*@
         <div style="border-bottom: 1px dotted #76ff03;"></div>
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Entertainment Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display Entertainment graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -100,10 +72,10 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 3)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
@@ -111,15 +83,6 @@ else
         @*BILLS*@
         <div style="border-bottom: 1px dotted #76ff03;"></div>
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Bills Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display bills graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -130,10 +93,10 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 4)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
@@ -141,15 +104,6 @@ else
         @*GAS*@
         <div style="border-bottom: 1px dotted #76ff03;"></div>
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Gas Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display Gas graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -160,10 +114,10 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 5)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
@@ -171,15 +125,6 @@ else
         @*MISC*@
         <div style="border-bottom: 1px dotted #76ff03;"></div>
         <div class="row">
-            <form class="col m4" style="margin-right:100px;">
-                <h5 style="margin-top:77px; font-weight:bold;">Set Miscellaneous Budget</h5>
-                <div class="input-field">
-                    <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                    <input placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    <div style="margin-top:23px;">@Html.ActionLink(@stringSet, "Budget", "Projects", null, new { @class = "yellow-button" })</div>
-                    <div id="grocery-graph" style="display:none;"><p>Display miscellaneous graph - Limit: </p></div>
-                </div>
-            </form>
             <form asp-action="Add" class="col m4">
                 <h5 style="margin-top:25px; font-weight:bold;">Add Transaction</h5>
                 <h5 style="margin-top:25px">Item</h5>
@@ -190,16 +135,18 @@ else
                 <div class="input-field">
                     <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                     <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                    @Html.Hidden("Email", user)
                     @Html.HiddenFor(x => x.Description)
                     @Html.HiddenFor(x => x.Cost)
                     @Html.Hidden("TypeOfBudget", 6)
+                    @Html.HiddenFor(x => x.BudgetRefId)
                     <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
                 </div>
             </form>
         </div>
     </div>
 }
+
+
 
 <style>
 
@@ -222,7 +169,7 @@ else
     }
 
     input[type=search]:not(.browser-default):focus:not([readonly]) {
-        color: rgba(255, 255, 255, 0.2)   !important;
+        color: rgba(255, 255, 255, 0.2) !important;
         /*default white zero and white underline*/
     }
 
@@ -236,10 +183,10 @@ else
         font-size: 20px;
     }
 
-    .yellow-button:hover {
-        color: black !important;
-        background-color: #76ff03;
-        border: none;
-    }
+        .yellow-button:hover {
+            color: black !important;
+            background-color: #76ff03;
+            border: none;
+        }
 </style>
 

@@ -19,22 +19,22 @@ namespace MyWebsite.Controllers
             _context = context;
         }
 
+        
+        public IActionResult Set()
+        {
+            return RedirectToAction("Index", "BudgetTransactions");
+        }
+
         [HttpPost]
-        public IActionResult Add(BudgetEntries budget)
+        public IActionResult Set(BudgetEntries budgetEntry)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(budget);
+                _context.Add(budgetEntry);
                 _context.SaveChanges();
-                return RedirectToAction("Index", "BudgetEntries");
+                return RedirectToAction("Index", "BudgetTransactions");
             }
-            return RedirectToAction("Index", "BudgetEntries");
-        }
-
-        // GET: BudgetEntries
-        public IActionResult Index()
-        {
-            return View();
+            return RedirectToAction("Index", "Projects");
         }
 
         // GET: BudgetEntries/Details/5
@@ -46,7 +46,7 @@ namespace MyWebsite.Controllers
             }
 
             var budgetEntries = await _context.BudgetEntries
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync((System.Linq.Expressions.Expression<Func<BudgetEntries, bool>>)(m => m.BudgetId == id));
             if (budgetEntries == null)
             {
                 return NotFound();
@@ -64,18 +64,18 @@ namespace MyWebsite.Controllers
         // POST: BudgetEntries/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,TypeOfBudget,Description,Cost")] BudgetEntries budgetEntries)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(budgetEntries);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(budgetEntries);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,TypeOfBudget,Description,Cost")] BudgetEntries budgetEntries)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        _context.Add(budgetEntries);
+        //        await _context.SaveChangesAsync();
+        //        return RedirectToAction(nameof(Index));
+        //    }
+        //    return View(budgetEntries);
+        //}
 
         // GET: BudgetEntries/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -85,7 +85,7 @@ namespace MyWebsite.Controllers
                 return NotFound();
             }
 
-            var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync(m => m.Id == id);
+            var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync((System.Linq.Expressions.Expression<Func<BudgetEntries, bool>>)(m => m.BudgetId == id));
             if (budgetEntries == null)
             {
                 return NotFound();
@@ -100,7 +100,7 @@ namespace MyWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,RentLimit,EntertainmentLimit,BillsLimit,GasLimit,MiscLimit,TypeOfBudget,Description,Cost")] BudgetEntries budgetEntries)
         {
-            if (id != budgetEntries.Id)
+            if (id != budgetEntries.BudgetId)
             {
                 return NotFound();
             }
@@ -114,7 +114,7 @@ namespace MyWebsite.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!BudgetEntriesExists(budgetEntries.Id))
+                    if (!BudgetEntriesExists(budgetEntries.BudgetId))
                     {
                         return NotFound();
                     }
@@ -123,7 +123,7 @@ namespace MyWebsite.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return View(budgetEntries);
             }
             return View(budgetEntries);
         }
@@ -137,7 +137,7 @@ namespace MyWebsite.Controllers
             }
 
             var budgetEntries = await _context.BudgetEntries
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .SingleOrDefaultAsync((System.Linq.Expressions.Expression<Func<BudgetEntries, bool>>)(m => m.BudgetId == id));
             if (budgetEntries == null)
             {
                 return NotFound();
@@ -147,19 +147,19 @@ namespace MyWebsite.Controllers
         }
 
         // POST: BudgetEntries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync(m => m.Id == id);
-            _context.BudgetEntries.Remove(budgetEntries);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var budgetEntries = await _context.BudgetEntries.SingleOrDefaultAsync((System.Linq.Expressions.Expression<Func<BudgetEntries, bool>>)(m => m.BudgetId == id));
+        //    _context.BudgetEntries.Remove(budgetEntries);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool BudgetEntriesExists(int id)
         {
-            return _context.BudgetEntries.Any(e => e.Id == id);
+            return _context.BudgetEntries.Any((System.Linq.Expressions.Expression<Func<BudgetEntries, bool>>)(e => e.BudgetId == id));
         }
     }
 }

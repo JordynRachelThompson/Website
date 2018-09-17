@@ -10,8 +10,7 @@ namespace MyWebsite.Models
     public class BudgetEntries
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int BudgetId { get; set; }
         [EmailAddress]
         public string Email { get; set; }
         public float GroceryLimit { get; set; }
@@ -20,22 +19,10 @@ namespace MyWebsite.Models
         public float BillsLimit { get; set; }
         public float GasLimit { get; set; }
         public float MiscLimit { get; set; }
-        public Type TypeOfBudget { get; set; }
-        public string Description { get; set; }
-        public float Cost { get; set; }
+        public ICollection<BudgetTransactions> BudgetTransactions { get; set; }
 
     }
 
-    public enum Type
-    {
-        None = 0,
-        Grocery = 1,
-        Rent = 2,
-        Entertainment = 3,
-        Bills = 4,
-        Gas = 5,
-        Misc = 6
-    }
 }
 
 
