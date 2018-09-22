@@ -4,19 +4,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - JordynThompson</title>
-        
+
+    <link href="~/css/site.css" rel="stylesheet" />
+
     <environment>
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link href="~/css/site.css" rel="stylesheet" />
         <link rel="stylesheet" href="~/css/materialize.css" />
     </environment>
-    
 </head>
 
-<body style="color:#cfd8dc; background-color:black;">
+<body style="color:#cfd8dc !important; background-color:black;">
     @*NAVBAR*@
-    @Html.Partial("_NavBarPartial");
+    <div class="navbar-fixed">
+        <nav class="black">
+            <div class="nav-wrapper" style="margin-left:100px; margin-right: 100px;">
+                <a href="#!" class="brand-logo" style="letter-spacing:2.5px; color:#cfd8dc;">JT</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">ABOUT</a></li>
+                    <li><a asp-area="" asp-controller="Projects" asp-action="Index">PROJECTS</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
     @RenderBody()
     @RenderSection("Scripts", required: false)
@@ -33,24 +44,3 @@
 </body>
 </html>
 
-<style>
-    nav ul li:hover {
-        background-color: black;
-    }
-
-    nav ul a:hover {
-        color: #cfd8dc;
-        border: 1px solid #cfd8dc;
-    }
-
-    nav ul a {
-        font-size: 23px;
-        margin: 10px;
-        letter-spacing: 2.5px;
-        color: #cfd8dc;
-    }
-
-    nav{
-        height:90px;
-    }
-</style>

@@ -66,7 +66,7 @@ namespace MyWebsite.Controllers
                 {
                     _logger.LogInformation("User logged in.");
                     //return RedirectToLocal(returnUrl); 
-                    return RedirectToAction("Index", "BudgetEntries");
+                    return RedirectToAction("Index", "Budgets");
                 }
                 if (result.RequiresTwoFactor)
                 {

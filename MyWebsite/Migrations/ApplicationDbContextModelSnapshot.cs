@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using MyWebsite.Data;
-using MyWebsite.Models;
+using MyWebsite.Models.BudgetProject;
 using System;
 
 namespace MyWebsite.Migrations
@@ -180,48 +180,46 @@ namespace MyWebsite.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetEntries", b =>
+            modelBuilder.Entity("MyWebsite.Models.BudgetProject.Budget", b =>
                 {
-                    b.Property<int>("BudgetId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<float>("BillsLimit");
 
                     b.Property<string>("Email");
 
-                    b.Property<float>("EntertainmentLimit");
+                    b.Property<float>("EntLimit");
 
                     b.Property<float>("GasLimit");
 
                     b.Property<float>("GroceryLimit");
 
+                    b.Property<float>("HousingLimit");
+
                     b.Property<float>("MiscLimit");
 
-                    b.Property<float>("RentLimit");
+                    b.HasKey("Id");
 
-                    b.HasKey("BudgetId");
-
-                    b.ToTable("BudgetEntries");
+                    b.ToTable("Budget");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetTransactions", b =>
+            modelBuilder.Entity("MyWebsite.Models.BudgetProject.BudgetItems", b =>
                 {
                     b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("BudgetRefId");
 
                     b.Property<float>("Cost");
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Email");
+
                     b.Property<int>("TypeOfBudget");
 
                     b.HasKey("TransactionId");
 
-                    b.HasIndex("BudgetRefId");
-
-                    b.ToTable("BudgetTransactions");
+                    b.ToTable("BudgetItems");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -266,14 +264,6 @@ namespace MyWebsite.Migrations
                     b.HasOne("MyWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MyWebsite.Models.BudgetTransactions", b =>
-                {
-                    b.HasOne("MyWebsite.Models.BudgetEntries", "BudgetEntries")
-                        .WithMany("BudgetTransactions")
-                        .HasForeignKey("BudgetRefId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

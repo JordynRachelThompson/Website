@@ -14,16 +14,13 @@ namespace MyWebsite.Data
             : base(options)
         {
         }
+        
+        public DbSet<MyWebsite.Models.BudgetProject.Budget> Budget { get; set; }
+        public DbSet<MyWebsite.Models.BudgetProject.BudgetItems> BudgetItems { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
         }
-
-        public DbSet<MyWebsite.Models.BudgetEntries> BudgetEntries { get; set; }
-        public DbSet<MyWebsite.Models.BudgetTransactions> BudgetTransactions { get; set; }
     }
 }

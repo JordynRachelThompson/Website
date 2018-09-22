@@ -2,11 +2,30 @@
     padding-bottom: 20px;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+nav ul li:hover {
+    background-color: black !important;
+}
+
+nav ul a:hover {
+    color: #cfd8dc !important;
+    border: 1px solid #cfd8dc !important;
+}
+
+nav ul a {
+    font-size: 23px !important;
+    margin: 10px !important;
+    letter-spacing: 2.5px !important;
+    color: #cfd8dc !important;
+}
+
+nav {
+    height: 90px !important;
+    padding-top:40px;
 }
 
 
@@ -28,6 +47,33 @@ a {
     letter-spacing: 1.5px;
     font-size: 25px;
 }
+
+.parallax img {
+    width: 100%;
+    opacity: 5;
+}
+
+.parallax {
+    height: 80%;
+}
+
+.collapsible {
+    width: 40%;
+    border: none !important;
+}
+
+.collapsible-header {
+    border-bottom: none !important;
+    font-size: 25px;
+    color: #cfd8dc;
+}
+
+.collapsible-body {
+    border-bottom: 1px dotted #cfd8dc;
+    font-size: 18px;
+    color: #cfd8dc;
+}
+
 
 input[type=email]:not(.browser-default) {
     border-bottom: 1px solid #d50000 !important;
@@ -55,6 +101,45 @@ input.valid[type=password]:not(.browser-default) {
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     color: red !important;
+}
+
+
+input[type=text]:not(.browser-default) {
+    background-color: black !important;
+    color: #76ff03 !important;
+    font-size: 30px;
+}
+
+input.valid[type=number]:not(.browser-default),
+input.valid[type=number]:not(.browser-default):focus,
+input.valid[type=text]:not(.browser-default),
+input.valid[type=text]:not(.browser-default):focus,
+#budget-limit-amount,
+#purchase-item {
+    border-bottom: 2px solid #cfd8dc !important;
+    color: #76ff03;
+    font-size: 30px;
+}
+
+input[type=search]:not(.browser-default):focus:not([readonly]) {
+    color: rgba(255, 255, 255, 0.2) !important;
+    /*default white zero and white underline*/
+}
+
+.yellow-button {
+    border-radius: 0px;
+    border: 1px solid #cfd8dc;
+    color: #cfd8dc;
+    padding: 15px;
+    background-color: black;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.yellow-button:hover {
+    color: black !important;
+    background-color: #76ff03;
+    border: none;
 }
 
 
