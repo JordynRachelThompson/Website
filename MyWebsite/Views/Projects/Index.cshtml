@@ -1,5 +1,6 @@
 ﻿@*Project Directory*@
 
+@{ string user = User.Identity.Name;}
 
 <div style="margin: 50px;">
     <h3 style="margin-top:100px; text-align:center;font-weight:200; padding-bottom:10px; letter-spacing:1.5px; border-bottom: 1px dotted #cfd8dc;">PROJECTS</h3>
@@ -22,7 +23,7 @@
                 <div class="card-image">
                     <img src="~/images/darkStars.jpg" />
                     <span class="card-title" style="font-size:30px;">Budget App</span>
-                    <a href="@Url.Action("Index", "Budgets", new { userName = User })" class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="material-icons black-text">arrow_right</i></a>
+                    <a href='@Url.Action("Index", "Budgets", new { userName = user })'class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="material-icons black-text">arrow_right</i></a>
                 </div>
                 <div class="card-content black-text">
                     <p>Some text explaining what it is will go here... Some text explaining what it is will go here...</p>

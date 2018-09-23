@@ -19,19 +19,29 @@ namespace MyWebsite.Controllers
             _context = context;
         }
 
-        // GET: Budgets
         public ActionResult Index(string userName)
-        {
-
-            var budget = _context.Budget.Where(x => x.Email == userName);
-            int budgetId = budget.Select(x => x.Id).FirstOrDefault();
-            
-            if (budgetId == 0)
+        {                                
+            if (userName == null)
             {
+                TempData["isBudgetEmpty"] = true;
                 return View();
             }
+            else
+            {
+                var budget = _context.Budget.Where(x => x.Email == userName);
+                int budgetId = budget.Select(x => x.Id).FirstOrDefault();
 
-            return View(budget);
+                if(budgetId == 0)
+                {
+                    TempData["isBudgetEmpty"] = true; 
+                    return View();
+                }
+                else
+                {
+                    TempData["isBudgetEmpty"] = false;
+                }
+             return View(budget);
+            }         
         }
 
 
