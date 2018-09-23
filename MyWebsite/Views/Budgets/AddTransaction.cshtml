@@ -1,0 +1,101 @@
+﻿@model MyWebsite.Models.BudgetProject.BudgetItems
+
+@{ string user = User.Identity.Name;}
+
+
+<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
+<h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
+<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+
+
+<div class="container">
+    <div class="row">
+        <form asp-action="Add" class="col m4">
+            <h5 style="margin-top:25px; font-weight:bold; color:#D50000;">Add Transaction</h5>
+
+            <h5 style="margin-top:25px">Category</h5>
+            <div class="input-field"></div>
+
+            <h5 style="margin-top:25px">Item</h5>
+            <div class="input-field">
+                <input name="Description" placeholder="Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
+            </div>
+            <h5 style="margin-top:25px;">Price</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                @Html.Hidden("Email", User)
+                @Html.Hidden("Description", "Description")
+                @Html.Hidden("Cost", "Cost")
+                @Html.Hidden("TypeOfBudget", 1)
+                <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>AddTransaction</h2>
+
+    <h4>BudgetItems</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddTransaction">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Cost" class="control-label"></label>
+                    <input asp-for="Cost" class="form-control" />
+                    <span asp-validation-for="Cost" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TypeOfBudget" class="control-label"></label>
+                    <select asp-for="TypeOfBudget" class="form-control"></select>
+                    <span asp-validation-for="TypeOfBudget" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>*@
+

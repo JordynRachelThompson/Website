@@ -4,6 +4,8 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+
 @{ var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);}
 
 @{ string user = User.Identity.Name;}
@@ -30,21 +32,21 @@ else
                     <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Housing/Rent</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
             </div>
@@ -53,21 +55,21 @@ else
                     <h5 style="margin-top:77px; font-weight:bold;">Bills</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Car/Gas</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
                     <div class="input-field">
                         <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
-                        <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
+                        <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
             </div>
@@ -85,88 +87,64 @@ else
     }
     else
     {
+        <div style="margin-top:35px; text-align:center;">@Html.ActionLink("ADD TRANSACTION", "AddTransaction", "Budgets", null, new { @class = "yellow-button", style= "padding-left:150px; padding-right:150px; font-weight:bold; letter-spacing:2px;" })</div>
+
         @foreach (var item in Model)
         {
-            <div style="text-align:center; margin-top:80px;">
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <div style="text-align:center; margin-top:50px;">
+                <a asp-action="Edit" asp-route-id="@item.Id" style="font-size:30px;">Edit |</a> 
+                <a asp-action="Details" asp-route-id="@item.Id" style="font-size:30px;">Details |</a> 
+                <a asp-action="Delete" asp-route-id="@item.Id" style="font-size:30px;">Delete</a>
             </div>
         }
 
-            <div>
-                <table style=" margin-top:80px;">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.GroceryLimit)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.HousingLimit)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.EntLimit)
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.GroceryLimit)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.HousingLimit)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EntLimit)
-                                </td>
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.BillsLimit)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.GasLimit)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.MiscLimit)
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.BillsLimit)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.GasLimit)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MiscLimit)
-                            </td>
-
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+        @foreach (var item in Model)
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#FF5733">Groceries/Food</h4>
+                        <h5>$@item.GroceryLimit</h5>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#FF9C33">Housing/Rent</h4>
+                        <h5>$@item.HousingLimit</h5>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#E0FF33">Entertainment</h4>
+                        <h5>$@item.EntLimit</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#33FF96">Bills</h4>
+                        <h5>$@item.BillsLimit</h5>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#1ABD1A">Gas/Car</h4>
+                        <h5>$@item.GasLimit</h5>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h4 style="color:#F54555">Miscellaneous</h4>
+                        <h5>$@item.MiscLimit</h5>
+                    </div>
+                </div>
             </div>
+        }
+        <div style="width:20%;" class="ct-chart ct-perfect-fourth"></div>
     }
 }
 
+<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
-
-
-
-
-
-
+<script>
+    new Chartist.Pie('.ct-chart', {
+        series: [20, 10, 30, 40]
+    }, {
+            donut: true,
+            donutWidth: 60,
+            donutSolid: true,
+            startAngle: 270,
+            showLabel: true
+        });
+</script>

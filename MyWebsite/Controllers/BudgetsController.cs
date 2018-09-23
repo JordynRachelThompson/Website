@@ -61,7 +61,7 @@ namespace MyWebsite.Controllers
         //Add Transaction
         public ActionResult AddTransaction()
         {
-            return View(_context.BudgetItems.ToList());
+            return View();
         }
 
         [HttpPost]
