@@ -25,9 +25,9 @@ else
     <div class="container">
         <ul id="buttonInLine">
             <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn red accent-4 redButton">Register</a></li>
-            @*Html.ActionLink("Index", "Budgets", new { @class = "btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"*@
+            @*<li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-userName="@User.Identity.Name" class="waves-effect waves-light btn red accent-4 redButton">Log in</a></li>*@
+            <li><a href='@Url.Action("Login", "Account")' class="waves-effect waves-light btn red accent-4 redButton">Log in</a></li>
 
-            <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-userName="@User.Identity.Name" class="waves-effect waves-light btn red accent-4 redButton">Log in</a></li>
         </ul>
     </div>
 }

@@ -21,7 +21,7 @@ else
     @if (emptyBudget)
     {
         <div style="border-bottom: 1px dotted #76ff03;"></div>
-               
+
         @*Set Budget Limit*@
         <form method="post" action="@Url.Action("Index", "Budgets")">
             <div style="margin-top:35px; text-align:center;"><input type="submit" value="SET" class="yellow-button" style="padding-left:200px; padding-right:200px; font-weight:bold; letter-spacing:2px;" /></div>
@@ -85,10 +85,86 @@ else
     }
     else
     {
-        <p>Your budget is not empty...</p>
-    }
+        @foreach (var item in Model)
+        {
+            <div style="text-align:center; margin-top:80px;">
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        }
 
+            <div>
+                <table style=" margin-top:80px;">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.GroceryLimit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.HousingLimit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.EntLimit)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.GroceryLimit)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.HousingLimit)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EntLimit)
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BillsLimit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.GasLimit)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.MiscLimit)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BillsLimit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GasLimit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiscLimit)
+                            </td>
+
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+    }
 }
+
+
+
 
 
 

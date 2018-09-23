@@ -66,7 +66,7 @@ namespace MyWebsite.Controllers
                 {
                     _logger.LogInformation("User logged in.");
                     //return RedirectToLocal(returnUrl); 
-                    return RedirectToAction("Index", "Budgets");
+                    return RedirectToAction("Index", "Budgets", new { userName = model.Email });
                 }
                 if (result.RequiresTwoFactor)
                 {
