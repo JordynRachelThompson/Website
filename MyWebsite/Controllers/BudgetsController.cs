@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using MyWebsite.Data;
 using MyWebsite.Models.BudgetProject;
 
+
 namespace MyWebsite.Controllers
 {
     public class BudgetsController : Controller
@@ -61,19 +62,23 @@ namespace MyWebsite.Controllers
         //Add Transaction
         public ActionResult AddTransaction()
         {
-            return View();
+            string username = User.Identity.Name;
+            var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
+            return View(budget);
         }
 
         [HttpPost]
         public ActionResult AddTransaction(BudgetItems budgetItems)
         {
+            string username = User.Identity.Name;
+            var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
             if (ModelState.IsValid)
             {
                 _context.Add(budgetItems);
-                _context.SaveChanges();
-                return View(budgetItems);
+                _context.SaveChanges();                
+                return View(budget);
             }
-            return View(budgetItems);
+            return View(budget);
         }
 
         // GET: Budgets/Details/5

@@ -1,7 +1,10 @@
-﻿@model MyWebsite.Models.BudgetProject.BudgetItems
+﻿@*@model MyWebsite.Models.BudgetProject.BudgetItems*@
+@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
+@using MyWebsite.Models.BudgetProject
 
 @{ string user = User.Identity.Name;}
 
+@*@{var budgetList = Enum.GetValues(typeof(BudgetCategory)).OfType<BudgetCategory>().Select(m => new { Text = m.ToString(), Value = (int)m }).ToList();}*@
 
 <div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
 <h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
@@ -9,12 +12,33 @@
 
 
 <div class="container">
+    <h5 style="margin-top:25px; font-weight:bold; color:#D50000; text-align:center">Add Transaction</h5>
     <div class="row">
-        <form asp-action="Add" class="col m4">
-            <h5 style="margin-top:25px; font-weight:bold; color:#D50000;">Add Transaction</h5>
+        <form asp-action="AddTransaction" class="col m4">
 
-            <h5 style="margin-top:25px">Category</h5>
-            <div class="input-field"></div>
+            <div class="input-field col s12">
+                <select id="budgetTypeSelection" name="TypeOfBudget">
+                    <option value="" disabled selected>Select a Category</option>
+                    <option value="1">Grocery</option>
+                    <option value="2">Housing</option>
+                    <option value="3">Bills</option>
+                    <option value="3">Entertainment</option>
+                    <option value="3">Gas</option>
+                    <option value="3">Miscellaneous</option>            
+                </select>
+            </div>
+
+            @*<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select a Category</a>*@
+            <!-- Dropdown Structure -->
+            @*<ul id='dropdown1' class='dropdown-content'>
+                <li><a href="#!" value="1" id="grocery">@BudgetCategory.Grocery</a></li>
+                <li><a href="#!" value="2" id="housing">@BudgetCategory.Housing</a></li>
+                <li><a href="#!" value="3" id="entertainment">@BudgetCategory.Entertainment</a></li>
+                <li><a href="#!" value="4" id="bills">@BudgetCategory.Bills</a></li>
+                <li><a href="#!" value="5" id="gas">@BudgetCategory.Gas</a></li>
+                <li><a href="#!" value="6" id="misc">@BudgetCategory.Misc</a></li>
+            </ul>*@
+
 
             <h5 style="margin-top:25px">Item</h5>
             <div class="input-field">
@@ -24,10 +48,10 @@
             <div class="input-field">
                 <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
                 <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                @Html.Hidden("Email", User)
+                @Html.Hidden("Email", user)
                 @Html.Hidden("Description", "Description")
                 @Html.Hidden("Cost", "Cost")
-                @Html.Hidden("TypeOfBudget", 1)
+                @Html.Hidden("TypeOfBudget", "TypeOfBudget")
                 <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
             </div>
         </form>
@@ -37,9 +61,17 @@
 
 
 
+<script>
+    $(document).ready(function () {
+        //$('.dropdown-trigger').dropdown();
+        $('select').formSelect();
+        //var instance = M.FormSelect.getInstance(elem);
+    });
 
-
-
+    //$(function () {
+    //    $("#grocery").on('change', function () {
+    //        $('#dropdown1').val("1");
+</script>
 
 
 
