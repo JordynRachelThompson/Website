@@ -105,7 +105,7 @@ input.valid[type=password]:not(.browser-default) {
 
 
 input[type=text]:not(.browser-default) {
-    background-color: black !important;
+    background-color: #48575E !important;
     color: #76ff03 !important;
     font-size: 30px;
 }

@@ -12,11 +12,11 @@
 
 
 <div class="container">
-    <h5 style="margin-top:25px; font-weight:bold; color:#D50000; text-align:center">Add Transaction</h5>
+    <h5 style="margin-top:35px; margin-bottom:25px; font-weight:bold; color:#D50000; text-align:center">Add Transaction</h5>
     <div class="row">
-        <form asp-action="AddTransaction" class="col m4">
-
-            <div class="input-field col s12">
+        <div class="col s12 m12 l4"></div>
+        <form asp-action="AddTransaction" class="col s12 m12 l4 center" style="border: 1px solid #cfd8dc; background-color:#48575E;">
+            <div class="input-field col s12" style="background-color:#48575E; color:#D50000 !important; margin-bottom:35px; margin-top:35px;">
                 <select id="budgetTypeSelection" name="TypeOfBudget">
                     <option value="" disabled selected>Select a Category</option>
                     <option value="1">Grocery</option>
@@ -24,25 +24,12 @@
                     <option value="3">Bills</option>
                     <option value="3">Entertainment</option>
                     <option value="3">Gas</option>
-                    <option value="3">Miscellaneous</option>            
+                    <option value="3">Miscellaneous</option>
                 </select>
             </div>
-
-            @*<a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select a Category</a>*@
-            <!-- Dropdown Structure -->
-            @*<ul id='dropdown1' class='dropdown-content'>
-                <li><a href="#!" value="1" id="grocery">@BudgetCategory.Grocery</a></li>
-                <li><a href="#!" value="2" id="housing">@BudgetCategory.Housing</a></li>
-                <li><a href="#!" value="3" id="entertainment">@BudgetCategory.Entertainment</a></li>
-                <li><a href="#!" value="4" id="bills">@BudgetCategory.Bills</a></li>
-                <li><a href="#!" value="5" id="gas">@BudgetCategory.Gas</a></li>
-                <li><a href="#!" value="6" id="misc">@BudgetCategory.Misc</a></li>
-            </ul>*@
-
-
-            <h5 style="margin-top:25px">Item</h5>
+            <h5>Description</h5>
             <div class="input-field">
-                <input name="Description" placeholder="Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
+                <input name="Description" placeholder="      Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
             </div>
             <h5 style="margin-top:25px;">Price</h5>
             <div class="input-field">
@@ -52,14 +39,72 @@
                 @Html.Hidden("Description", "Description")
                 @Html.Hidden("Cost", "Cost")
                 @Html.Hidden("TypeOfBudget", "TypeOfBudget")
-                <div style="margin-top:23px;"><input type="submit" value="ADD" class="yellow-button" /></div>
+                <div style="margin-top:23px;"><input type="submit" style="cursor:pointer" value="ADD" class="grey-button"/></div>
             </div>
         </form>
+        <div class="col s12 m12 l4"></div>
     </div>
 </div>
 
+<p>Transactions</p>
+@foreach(var item in Model.Where(x => x.Email == user))
+{
+    <p>Transaction Description: @item.Description</p>
+    <p>Item Cost: @item.Description</p>
+    <p>Budget Category: @item.TypeOfBudget</p>
+}
+
+<style>
+
+    .dropdown-content li > a, .dropdown-content li > span {
+        color: #5C717B !important;
+        font-weight: bold;
+        text-align: center;
+    }
+    
+    .select-dropdown li.disabled, .select-dropdown li.disabled > span, .select-dropdown li.optgroup {
+        color: black !important;
+        font-weight: bold;
+        text-align: center;
+    }
 
 
+
+    .select-wrapper input.select-dropdown {
+        color: #76ff03 !important;
+        font-weight: bold !important;
+        font-size: 25px;
+        text-align: center;
+        border: 1px solid #cfd8dc !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .select-wrapper input.select-dropdown:hover{
+        background-color: #5C717B !important;
+        border:none !important;
+    }
+
+    .grey-button {
+        border-radius: 0px;
+        border: 1px solid #cfd8dc;
+        color: #76ff03;
+        padding: 15px;
+        background-color: #48575E;
+        font-weight: 400;
+        font-size: 20px;
+        font-weight:bold;
+    }
+
+    .grey-button:hover {
+        color: black !important;
+        background-color: #5C717B;
+        border: none;
+        color: #76ff03 !important;
+    }
+
+    
+</style>
 
 <script>
     $(document).ready(function () {

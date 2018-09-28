@@ -76,7 +76,7 @@ namespace MyWebsite.Controllers
             {
                 _context.Add(budgetItems);
                 _context.SaveChanges();                
-                return View(budget);
+                return RedirectToAction("Index", new { userName = username });
             }
             return View(budget);
         }
