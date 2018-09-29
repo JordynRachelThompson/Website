@@ -2,7 +2,7 @@
 @model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
 @using MyWebsite.Models.BudgetProject
 
-@{ string user = User.Identity.Name; int count = 0;}
+@{ string user = User.Identity.Name;}
 
 
 
@@ -12,6 +12,7 @@
 
 
 <div class="container">
+    <div style="margin-top:35px; text-align:center;">@Html.ActionLink("Return to Budget", "Index", "Budgets", new { userName = user }, new {@class="grey-button"})</div>
     <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Add Transaction</h5>
     @*Validation Errors*@
     <div class="container" style="margin-top:20px;">
@@ -34,7 +35,7 @@
             </div>
             <h5>Description</h5>
             <div class="input-field">
-                <input name="Description" placeholder="      Apples" id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
+                <input name="Description" placeholder="      ..." id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
             </div>
             <h5 style="margin-top:25px;">Price</h5>
             <div class="input-field">
@@ -44,6 +45,7 @@
                 @Html.Hidden("Description", "Description")
                 @Html.Hidden("Cost", "Cost")
                 @Html.Hidden("TypeOfBudget", "TypeOfBudget")
+                @Html.Hidden("Date", DateTime.Now)
                 <div style="margin-top:23px;"><input type="submit" style="cursor:pointer" value="ADD" class="grey-button" /></div>
             </div>
         </form>
@@ -52,6 +54,7 @@
 </div>
 
 <div class="container center" style="margin-top:35px; margin-bottom:150px;">
+    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -59,16 +62,25 @@
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int count = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
             if (Convert.ToInt32(item.TypeOfBudget) == 1)
             {
+                count += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
                 </tr>
             }
+        }
+
+        @if(count == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
         }
     </table>
 
@@ -79,10 +91,12 @@
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int countH = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
             if (Convert.ToInt32(item.TypeOfBudget) == 2)
             {
+                countH += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
@@ -90,26 +104,40 @@
                 </tr>
             }
         }
+        @if (countH == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
+        }
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB"align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int countB = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
 
             if (Convert.ToInt32(item.TypeOfBudget) == 3)
             {
+                countB += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
                 </tr>
             }
+        }
+        @if (countB == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
         }
     </table>
 
@@ -120,16 +148,24 @@
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int countE = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
             if (Convert.ToInt32(item.TypeOfBudget) == 4)
             {
+                countE += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
                 </tr>
             }
+        }
+        @if (countE == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
         }
     </table>
 
@@ -140,16 +176,24 @@
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int countGas = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
             if (Convert.ToInt32(item.TypeOfBudget) == 5)
             {
+                countGas += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
                 </tr>
             }
+        }
+        @if (countGas == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
         }
     </table>
 
@@ -160,17 +204,24 @@
             <th>Description</th>
             <th>Price</th>
         </tr>
+        @{ int countM = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).OrderBy(x => x.Date))
         {
             if (Convert.ToInt32(item.TypeOfBudget) == 6)
             {
-                count +=1;
+                countM += 1;
                 <tr style="border-bottom: 1px dotted #cfd8dc">
                     <td>@item.Date.ToString("dd/MM/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
                 </tr>
             }
+        }
+        @if (countM == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
         }
     </table>
 </div>

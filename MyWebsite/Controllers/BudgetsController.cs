@@ -75,7 +75,7 @@ namespace MyWebsite.Controllers
             var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
 
             //Validation
-            if (budgetItems.TypeOfBudget == 0)
+            if (Convert.ToInt32(budgetItems.TypeOfBudget) == 0)
             {
                 ViewBag.typeError = "Please select a budget type from the dropdown.";
                 errors = true;
