@@ -87,46 +87,65 @@ else
     }
     else
     {
-        <div style="margin-top:35px; text-align:center;">@Html.ActionLink("ADD TRANSACTION", "AddTransaction", "Budgets", null, new { @class = "yellow-button", style= "padding-left:150px; padding-right:150px; font-weight:bold; letter-spacing:2px;" })</div>
+        <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">add_box</i>Add Transaction</a>
+            @foreach (var item in Model)
+            {
+                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
+            }
+        </div>
 
-        @foreach (var item in Model)
+        @*@foreach (var item in Model)
         {
-            <div style="text-align:center; margin-top:50px;">
-                <a asp-action="Edit" asp-route-id="@item.Id" style="font-size:30px;">Edit |</a> 
-                <a asp-action="Details" asp-route-id="@item.Id" style="font-size:30px;">Details |</a> 
-                <a asp-action="Delete" asp-route-id="@item.Id" style="font-size:30px;">Delete</a>
+            <div style="text-align:center; margin-top:50px; margin-bottom: 50px">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
             </div>
-        }
+        }*@
 
         @foreach (var item in Model)
         {
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 l4">
+                        @{float left = item.GroceryLimit - Convert.ToInt32(TempData["groceryTotal"]);}
+
                         <h4 style="color:#FF5733">Groceries/Food</h4>
-                        <h5>$@item.GroceryLimit</h5>
+                        @if (Convert.ToInt32(TempData["groceryTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["groceryTotal"]</span></h5>
+                        }
+                        @if (left != item.GroceryLimit && left >0)
+                        {
+                            <h5>Remaining: <span style="color:#00695c ">$@left</span></h5>
+                        }
+                        @if (left != item.GroceryLimit && left <= 0)
+                            {
+                            <h5 class="text-red accent-1">Remaining: $@left</h5>
+                            }
+
+                        <h5>Limit: $@item.GroceryLimit</h5>
                     </div>
                     <div class="col s12 m6 l4">
                         <h4 style="color:#FF9C33">Housing/Rent</h4>
-                        <h5>$@item.HousingLimit</h5>
+                        <h5>$@TempData["housingTotal"] / $@item.HousingLimit</h5>
                     </div>
                     <div class="col s12 m6 l4">
                         <h4 style="color:#E0FF33">Entertainment</h4>
-                        <h5>$@item.EntLimit</h5>
+                        <h5>$@TempData["entTotal"] / $@item.EntLimit</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col s12 m6 l4">
                         <h4 style="color:#33FF96">Bills</h4>
-                        <h5>$@item.BillsLimit</h5>
+                        <h5>$@TempData["billsTotal"] / $@item.BillsLimit</h5>
                     </div>
                     <div class="col s12 m6 l4">
                         <h4 style="color:#1ABD1A">Gas/Car</h4>
-                        <h5>$@item.GasLimit</h5>
+                        <h5>$@TempData["gasTotal"] / $@item.GasLimit</h5>
                     </div>
                     <div class="col s12 m6 l4">
                         <h4 style="color:#F54555">Miscellaneous</h4>
-                        <h5>$@item.MiscLimit</h5>
+                        <h5>$@TempData["miscTotal"] / $@item.MiscLimit</h5>
                     </div>
                 </div>
             </div>

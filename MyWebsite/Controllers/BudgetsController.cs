@@ -21,7 +21,14 @@ namespace MyWebsite.Controllers
         }
 
         public ActionResult Index(string userName)
-        {                                
+        {
+            float totalGrocery = 0;
+            float totalHousing = 0;
+            float totalBills = 0;
+            float totalEntertainment = 0;
+            float totalGas = 0;
+            float totalMisc = 0;
+
             if (userName == null)
             {
                 TempData["isBudgetEmpty"] = true;
@@ -40,8 +47,58 @@ namespace MyWebsite.Controllers
                 else
                 {
                     TempData["isBudgetEmpty"] = false;
+
+                    foreach(var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
+                    {
+                        float cost = item.Cost;
+                        totalGrocery += cost;
+                         
+                    }
+
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2))
+                    {
+                        float cost = item.Cost;
+                        totalHousing += cost;
+
+                    }
+
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3))
+                    {
+                        float cost = item.Cost;
+                        totalBills += cost;
+
+                    }
+
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4))
+                    {
+                        float cost = item.Cost;
+                        totalEntertainment += cost;
+
+                    }
+
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5))
+                    {
+                        float cost = item.Cost;
+                        totalGas += cost;
+
+                    }
+
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6))
+                    {
+                        float cost = item.Cost;
+                        totalMisc += cost;
+
+                    }
+                                                       
+                    TempData["groceryTotal"] = totalGrocery;
+                    TempData["housingTotal"] = totalHousing;
+                    TempData["billsTotal"] = totalBills;
+                    TempData["entTotal"] = totalEntertainment;
+                    TempData["gasTotal"] = totalGas;
+                    TempData["miscTotal"] = totalMisc;
+
+                    return View(budget);
                 }
-             return View(budget);
             }         
         }
 
