@@ -211,6 +211,8 @@ namespace MyWebsite.Migrations
 
                     b.Property<float>("Cost");
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Email");

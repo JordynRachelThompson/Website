@@ -70,13 +70,32 @@ namespace MyWebsite.Controllers
         [HttpPost]
         public ActionResult AddTransaction(BudgetItems budgetItems)
         {
+            bool errors = false;
             string username = User.Identity.Name;
             var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
-            if (ModelState.IsValid)
+
+            //Validation
+            if (budgetItems.TypeOfBudget == 0)
             {
-                _context.Add(budgetItems);
-                _context.SaveChanges();                
-                return RedirectToAction("Index", new { userName = username });
+                ViewBag.typeError = "Please select a budget type from the dropdown.";
+                errors = true;
+            }
+                        
+            if (budgetItems.Cost <= 0)
+            {
+                ViewBag.costError = "Please enter a description and price for your transaction.";
+                errors = true;
+            }
+
+            if (!errors)
+            {
+                if (ModelState.IsValid)
+                {
+                    _context.Add(budgetItems);
+                    _context.SaveChanges();
+                    var budgetList = _context.BudgetItems.Where(x => x.Email == username).ToList();
+                    return View(budgetList);
+                }
             }
             return View(budget);
         }

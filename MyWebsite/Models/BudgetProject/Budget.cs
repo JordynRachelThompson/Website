@@ -43,17 +43,9 @@ namespace MyWebsite.Models.BudgetProject
         public string Email { get; set; }
         public string Description { get; set; }
         public float Cost { get; set; }
+        public DateTime Date { get; set; }
         public BudgetCategory TypeOfBudget { get; set; }
 
-        //public static IEnumerable<SelectListItem> GetTypeOfBudgetSelectItems()
-        //{
-        //    yield return new SelectListItem { Text = "Grocery", Value = "Grocery" };
-        //    yield return new SelectListItem { Text = "Housing", Value = "Housing" };
-        //    yield return new SelectListItem { Text = "Entertainment", Value = "Entertainment" };
-        //    yield return new SelectListItem { Text = "Bills", Value = "Bills" };
-        //    yield return new SelectListItem { Text = "Gas", Value = "Gas" };
-        //    yield return new SelectListItem { Text = "Misc", Value = "Misc" };
-        //}
     }
 }
 

@@ -29,7 +29,7 @@ nav {
 }
 
 
-.redButton {
+.sharpCorners {
     border-radius: 0px !important;
 }
 
@@ -105,7 +105,7 @@ input.valid[type=password]:not(.browser-default) {
 
 
 input[type=text]:not(.browser-default) {
-    background-color: #48575E !important;
+    background-color: #212121 !important;
     color: #76ff03 !important;
     font-size: 30px;
 }
@@ -116,13 +116,13 @@ input.valid[type=text]:not(.browser-default),
 input.valid[type=text]:not(.browser-default):focus,
 #budget-limit-amount,
 #purchase-item {
-    border-bottom: 2px solid #cfd8dc !important;
+    border-bottom: 1px solid #cfd8dc !important;
     color: #76ff03;
     font-size: 30px;
 }
 
 input[type=search]:not(.browser-default):focus:not([readonly]) {
-    color: rgba(255, 255, 255, 0.2) !important;
+    color: #212121 !important;
     /*default white zero and white underline*/
 }
 
