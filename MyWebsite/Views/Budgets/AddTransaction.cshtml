@@ -267,71 +267,71 @@
         });
     }
 
-    
+    var clickedG = true;
+    var clickedH = true;
+    var clickedB = true;
+    var clickedE = true;
+    var clickedGas = true;
+    var clickedM = true;
 
-    $('#transaction-btnG').click(function () {
-        var clicked = true;
-        if (clicked) {
+
+   $('#transaction-btnG').click(function () {
+        if (clickedG) {
             $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
+            clickedG = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
+            clickedG = true;
         }
     });
-
+   
     $('#transaction-btnH').click(function () {
-        var clicked = true;
-        if (clicked) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
-        } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
-        }
-    });
+            if (clickedH) {
+                $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
+                clickedH = false;
+            } else {
+                $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
+                clickedH = true;
+            }
+        });
 
     $('#transaction-btnB').click(function () {
-        var clicked = true;
-        if (clicked) {
+        if (clickedB) {
             $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
+            clickedB = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
+            clickedB = true;
         }
     });
 
     $('#transaction-btnE').click(function () {
-        var clicked = true;
-        if (clicked) {
+        if (clickedE) {
             $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
+            clickedE = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
+            clickedE = true;
         }
     });
 
     $('#transaction-btnGas').click(function () {
-        var clicked = true;
-        if (clicked) {
+        if (clickedGas) {
             $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
+            clickedGas = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
+            clickedGas = true;
         }
     });
 
     $('#transaction-btnM').click(function () {
-        var clicked = true;
-        if (clicked) {
+        if (clickedM) {
             $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clicked = false;
+            clickedM = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clicked = true;
+            clickedM = true;
         }
     });
 
