@@ -15,6 +15,57 @@ namespace MyWebsite.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+        public int SumLimits { get; set; }
+
+        public int GetLimit(string limitType)
+        {
+            if(limitType == "Grocery")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.GroceryLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);
+                return limitInt;
+            }
+
+            if (limitType == "Housing")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.HousingLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);
+                return limitInt;
+            }
+
+            if (limitType == "Bills")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.BillsLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);
+                return limitInt;
+            }
+
+            if (limitType == "Entertainment")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.EntLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);
+                return limitInt;
+            }
+
+            if (limitType == "Gas")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.GasLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);
+                return limitInt;
+            }
+
+            if (limitType == "Misc")
+            {
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.MiscLimit).FirstOrDefault();
+                int limitInt = Convert.ToInt32(limit);                
+                return limitInt;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public BudgetsController(ApplicationDbContext context)
         {
             _context = context;
@@ -22,13 +73,14 @@ namespace MyWebsite.Controllers
 
         public ActionResult Index(string userName)
         {
+            int totalBudget = 0;
             float totalGrocery = 0;
             float totalHousing = 0;
             float totalBills = 0;
             float totalEntertainment = 0;
             float totalGas = 0;
-            float totalMisc = 0;
-
+            float totalMisc = 0;          
+          
             if (userName == null)
             {
                 TempData["isBudgetEmpty"] = true;
@@ -87,9 +139,20 @@ namespace MyWebsite.Controllers
                     {
                         float cost = item.Cost;
                         totalMisc += cost;
-
                     }
-                                                       
+
+                    int groceryLimit = GetLimit("Grocery");
+                    int housingLimit = GetLimit("Housing");
+                    int billsLimit = GetLimit("Bills");
+                    int entLimit = GetLimit("Entertainment");
+                    int gasLimit = GetLimit("Gas");
+                    int miscLimit = GetLimit("Misc");
+                    totalBudget = (groceryLimit + housingLimit + billsLimit + entLimit + gasLimit + miscLimit);
+
+                    float totalSpent = totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
+
+                    TempData["totalSpent"] = totalSpent;
+                    TempData["TotalLimit"] = totalBudget;                               
                     TempData["groceryTotal"] = totalGrocery;
                     TempData["housingTotal"] = totalHousing;
                     TempData["billsTotal"] = totalBills;

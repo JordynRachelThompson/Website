@@ -4,15 +4,20 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
 
 @{ var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);}
 
-@{ string user = User.Identity.Name;}
-
+@{ string user = User.Identity.Name;
+    var limit = Convert.ToInt32(TempData["totalLimit"]);
+    var spent = Convert.ToInt32(TempData["totalSpent"]);
+    int difference = limit - spent;}
 
 <div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
 <h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
+<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+
+<div id="totalSpent"><h2>@spent</h2></div>
+<div id="totalBudget"><h2>@limit</h2><h2>Difference: @difference</h2></div>
 
 @if (!SignInManager.IsSignedIn(User))
 {
@@ -95,75 +100,199 @@ else
             }
         </div>
 
-        @*@foreach (var item in Model)
-        {
-            <div style="text-align:center; margin-top:50px; margin-bottom: 50px">
-                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
-            </div>
-        }*@
-
         @foreach (var item in Model)
         {
             <div class="container">
                 <div class="row">
                     <div class="col s12 m6 l4">
-                        @{float left = item.GroceryLimit - Convert.ToInt32(TempData["groceryTotal"]);}
-
-                        <h4 style="color:#FF5733">Groceries/Food</h4>
+                        @{float leftG = item.GroceryLimit - Convert.ToInt32(TempData["groceryTotal"]);}
+                        <h4 style="color:#607d8b">Groceries/Food</h4>
                         @if (Convert.ToInt32(TempData["groceryTotal"]) > 0)
                         {
                             <h5>Spent: <span style="color:#c62828">$@TempData["groceryTotal"]</span></h5>
                         }
-                        @if (left != item.GroceryLimit && left >0)
+                        @if (Convert.ToInt32(TempData["groceryTotal"]) == 0)
                         {
-                            <h5>Remaining: <span style="color:#00695c ">$@left</span></h5>
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.GroceryLimit</span></h5>
                         }
-                        @if (left != item.GroceryLimit && left <= 0)
-                            {
-                            <h5 class="text-red accent-1">Remaining: $@left</h5>
-                            }
-
+                        @if (leftG != item.GroceryLimit && leftG > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftG</span></h5>
+                        }
+                        @if (leftG != item.GroceryLimit && leftG <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftG</h5>
+                        }
                         <h5>Limit: $@item.GroceryLimit</h5>
                     </div>
+
                     <div class="col s12 m6 l4">
-                        <h4 style="color:#FF9C33">Housing/Rent</h4>
-                        <h5>$@TempData["housingTotal"] / $@item.HousingLimit</h5>
+                        @{float leftH = item.HousingLimit - Convert.ToInt32(TempData["housingTotal"]);}
+                        <h4 style="color:#607d8b">Housing/Rent</h4>
+                        @if (Convert.ToInt32(TempData["housingTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["housingTotal"]</span></h5>
+                        }
+                        @if (Convert.ToInt32(TempData["housingTotal"]) == 0)
+                        {
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.HousingLimit</span></h5>
+                        }
+                        @if (leftH != item.HousingLimit && leftH > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftH</span></h5>
+                        }
+                        @if (leftH != item.HousingLimit && leftH <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftH</h5>
+                        }
+                        <h5>Limit: $@item.HousingLimit</h5>
                     </div>
+
                     <div class="col s12 m6 l4">
-                        <h4 style="color:#E0FF33">Entertainment</h4>
-                        <h5>$@TempData["entTotal"] / $@item.EntLimit</h5>
+                        @{float leftE = item.EntLimit - Convert.ToInt32(TempData["entTotal"]);}
+                        <h4 style="color:#607d8b">Entertainment</h4>
+                        @if (Convert.ToInt32(TempData["entTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["entTotal"]</span></h5>
+                        }
+                        @if (Convert.ToInt32(TempData["entTotal"]) == 0)
+                        {
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.EntLimit</span></h5>
+                        }
+                        @if (leftE != item.EntLimit && leftE > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftE</span></h5>
+                        }
+                        @if (leftE != item.EntLimit && leftE <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftE</h5>
+                        }
+                        <h5>Limit: $@item.EntLimit</h5>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col s12 m6 l4">
-                        <h4 style="color:#33FF96">Bills</h4>
-                        <h5>$@TempData["billsTotal"] / $@item.BillsLimit</h5>
+                        @{float leftB = item.BillsLimit - Convert.ToInt32(TempData["billsTotal"]);}
+                        <h4 style="color:#607d8b">Bills</h4>
+                        @if (Convert.ToInt32(TempData["billsTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["billsTotal"]</span></h5>
+                        }
+                        @if (Convert.ToInt32(TempData["billsTotal"]) == 0)
+                        {
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.BillsLimit</span></h5>
+                        }
+                        @if (leftB != item.BillsLimit && leftB > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftB</span></h5>
+                        }
+                        @if (leftB != item.BillsLimit && leftB <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftB</h5>
+                        }
+                        <h5>Limit: $@item.BillsLimit</h5>
                     </div>
+
                     <div class="col s12 m6 l4">
-                        <h4 style="color:#1ABD1A">Gas/Car</h4>
-                        <h5>$@TempData["gasTotal"] / $@item.GasLimit</h5>
+                        @{float leftGas = item.GasLimit - Convert.ToInt32(TempData["gasTotal"]);}
+                        <h4 style="color:#607d8b">Gas/Car</h4>
+                        @if (Convert.ToInt32(TempData["gasTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["gasTotal"]</span></h5>
+                        }
+                        @if (Convert.ToInt32(TempData["gasTotal"]) == 0)
+                        {
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.GasLimit</span></h5>
+                        }
+                        @if (leftGas != item.GasLimit && leftGas > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftGas</span></h5>
+                        }
+                        @if (leftGas != item.GasLimit && leftGas <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftGas</h5>
+                        }
+                        <h5>Limit: $@item.GasLimit</h5>
                     </div>
+
                     <div class="col s12 m6 l4">
-                        <h4 style="color:#F54555">Miscellaneous</h4>
-                        <h5>$@TempData["miscTotal"] / $@item.MiscLimit</h5>
+                        @{float leftM = item.GasLimit - Convert.ToInt32(TempData["miscTotal"]);}
+                        <h4 style="color:#607d8b">Miscellaneous</h4>
+
+                        @if (Convert.ToInt32(TempData["miscTotal"]) > 0)
+                        {
+                            <h5>Spent: <span style="color:#c62828">$@TempData["miscTotal"]</span></h5>
+                        }
+                        @if (Convert.ToInt32(TempData["miscTotal"]) == 0)
+                        {
+                            <h5>Spent: $0</h5>
+                            <h5>Remaining: <span style="color:#388e3c">$@item.MiscLimit</span></h5>
+                        }
+                        @if (leftM != item.MiscLimit && leftM > 0)
+                        {
+                            <h5>Remaining: <span style="color:#388e3c">$@leftM</span></h5>
+                        }
+                        @if (leftM != item.MiscLimit && leftM <= 0)
+                        {
+                            <h5 class="text-red accent-1">Remaining: $@leftM</h5>
+                        }
+                        <h5>Limit: $@item.MiscLimit</h5>
                     </div>
                 </div>
             </div>
         }
-        <div style="width:20%;" class="ct-chart ct-perfect-fourth"></div>
+
+        <div class="center-div" id="donutchart" style="width: 900px; height: 500px;"></div>
     }
 }
 
-<script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
 
-<script>
-    new Chartist.Pie('.ct-chart', {
-        series: [20, 10, 30, 40]
-    }, {
-            donut: true,
-            donutWidth: 60,
-            donutSolid: true,
-            startAngle: 270,
-            showLabel: true
-        });
+<style>
+    .center-div {
+        margin: 0 auto;
+        width: 100px;
+    }
+</style>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
+            ]);
+            
+            var options = {
+                titleTextStyle: {
+                    color: '#FF9C33',    
+                    fontSize: 28,
+                    bold: true,
+                    fontName: 'arial',
+                        }
+                ,title: 'Total Spent / Budget Total',
+                pieHole: 0.5,
+                backgroundColor: 'black',
+                is3D: true
+            };
+        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+             chart.draw(data, options);
+        }
+    });
 </script>
+
