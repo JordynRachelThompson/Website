@@ -24,8 +24,9 @@ nav ul a {
 }
 
 nav {
-    height: 90px !important;
+    height: 140px !important;
     padding-top:40px;
+    padding-bottom:40px;
 }
 
 
