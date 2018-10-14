@@ -201,13 +201,13 @@ else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
             <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@TempData["successLimitsUpdated"]</h5>
-            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">September@*@DateTime.Now.ToString("MMMM")*@</h3>
+            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
             {
                 <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
             }
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>

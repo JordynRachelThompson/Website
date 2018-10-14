@@ -192,16 +192,15 @@ namespace MyWebsite.Controllers
                 if (usePastBudgetLimit)
                 {
                     var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x).FirstOrDefault();
-                    pastBudget.Month = DateTime.Now.Month;
-                    pastBudget.Id = 0;
-                    _context.Add(pastBudget);
-                    _context.SaveChanges();
+                    budget.GroceryLimit = pastBudget.GroceryLimit;
+                    budget.HousingLimit = pastBudget.HousingLimit;
+                    budget.BillsLimit = pastBudget.BillsLimit;
+                    budget.EntLimit = pastBudget.EntLimit;
+                    budget.GasLimit = pastBudget.GasLimit;
+                    budget.MiscLimit = pastBudget.MiscLimit;
                 }
-                else
-                {
-                    _context.Add(budget);
-                    _context.SaveChanges();
-                }
+                _context.Add(budget);
+                _context.SaveChanges();     
                 return RedirectToAction("Index", new { userName = User.Identity.Name });
             }
             else
@@ -215,7 +214,7 @@ namespace MyWebsite.Controllers
         public ActionResult AddTransaction()
         {
             string username = User.Identity.Name;
-            int budgetMonth = 9; //DateTime.Now.Month
+            int budgetMonth = DateTime.Now.Month;
             var budget = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
             return View(budget);
         }
@@ -225,7 +224,7 @@ namespace MyWebsite.Controllers
         {
             bool errors = false;
             string username = User.Identity.Name;
-            int budgetMonth = 9; //DateTime.Now.Month
+            int budgetMonth = DateTime.Now.Month;
 
             //Validation
             if (Convert.ToInt32(budgetItems.TypeOfBudget) == 0)
@@ -253,6 +252,11 @@ namespace MyWebsite.Controllers
             }
             var budget = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
             return View(budget);
+        }
+
+        public ActionResult PastBudgets()
+        {
+            return View();
         }
 
         // GET: Budgets/Details/
