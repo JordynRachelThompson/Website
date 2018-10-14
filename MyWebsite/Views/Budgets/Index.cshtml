@@ -15,8 +15,10 @@
     var limit = Convert.ToInt32(TempData["totalLimit"]);
     var spent = Convert.ToInt32(TempData["totalSpent"]);
     int difference = limit - spent;
-    int budgetMonth = 9/*DateTime.Now.Month*/;
+    int budgetMonth = DateTime.Now.Month;
     var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);
+    string hasPastBudget = Convert.ToString(TempData["hasPastBudget"]);
+    TempData.Keep("hasPastBudget");
 }
 
 <div style="text-align:center; margin-top:180px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
@@ -31,98 +33,170 @@ else
 {
     @if (emptyBudget)
     {
-        <div style="border-bottom: 1px dotted #b2dfdb;"></div>
+        if (hasPastBudget == "True")
+        {
+            <div style="border-bottom: 1px dotted #b2dfdb;"></div>
 
-        @*Set Budget Limit*@
-        <form method="post" action="@Url.Action("Index", "Budgets")">
-            <div style="margin-top:35px; text-align:center;">
-                @if (Model != null)
-                {
-                    foreach (var item in Model)
-                    {
-                        if (item.Email == User.Identity.Name) //Returning user with previous budget limit
-                        {
-                            <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
-                                <i class="material-icons left">local_atm</i>Set New Budget Limits
+            <div style="margin-top:35px;">
+                <div class="row">
+                    <div class="col l3 m3 s12"></div>
+                    <div class="col l3 m3 s12">
+                        @*Wants to use past budget limit*@
+                        <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = hasPastBudget })">
+                            @*Use last month's set budget limits*@
+                            <button class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; display:inline-block; !important;" type="submit" name="Save">
+                                <i class="material-icons left">local_atm</i>Use Last Month's Budget Limits
                             </button>
-                            //Use last month's set budget limits
-                            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">date_range</i>Use Last Month's Budget Limits</a>
-                        }
-                        else //New user without past budget limit
-                        {
-                            <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
-                                <i class="material-icons left">local_atm</i>Set Budget Limits
-                            </button>
-                        }
-                    }
-                }
-                else
-                {
+                            @Html.Hidden("Email", user)
+                            @Html.Hidden("Month", DateTime.Now.Month)
+                        </form>
+                    </div>
+                    <div class="col l3 m3 s12">
+                        <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; display:inline-block; !important">
+                            <i class="material-icons left">local_atm</i>Set New Budget Limits
+                        </button>
+                    </div>
+                    <div class="col l3 m3 s12"></div>
+                </div>
+            </div>
+
+
+            <div id="hidden-set-budget-form" style="display:none;">
+                @*Set Budget Limit*@
+                <form method="post" action="@Url.Action("Index", "Budgets")">
+                    <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Housing/Rent</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Bills</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Car/Gas</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l4">
+                            <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
+                            <div class="input-field">
+                                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                                <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            </div>
+                        </div>
+                    </div>
+                    @Html.Hidden("Email", user)
+                    @Html.Hidden("GroceryLimit", "GroceryLimit")
+                    @Html.Hidden("HousingLimit", "HousingLimit")
+                    @Html.Hidden("EntLimit", "EntLimit")
+                    @Html.Hidden("BillsLimit", "BillsLimit")
+                    @Html.Hidden("GasLimit", "GasLimit")
+                    @Html.Hidden("MiscLimit", "MiscLimit")
+                    @Html.Hidden("Month", DateTime.Now.Month)
+                </form>
+                @*End of Set Budget Limit*@
+            </div>
+        }
+
+
+        //Has never had budget
+        else
+        {
+            <div style="border-bottom: 1px dotted #b2dfdb;"></div>
+
+            @*Set Budget Limit*@
+            <form method="post" action="@Url.Action("Index", "Budgets")">
+                <div style="margin-top:35px; text-align:center;">
                     <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
                         <i class="material-icons left">local_atm</i>Set Budget Limits
                     </button>
-                }
-                @*<input type="submit" value="SET" style="padding-left:200px; padding-right:200px; font-weight:bold; letter-spacing:2px;" />*@
-            </div>
-            <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                </div>
+                <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Housing/Rent</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
                     </div>
                 </div>
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Housing/Rent</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Bills</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Car/Gas</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l4">
+                        <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
+                        <div class="input-field">
+                            <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+                            <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                        </div>
                     </div>
                 </div>
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Bills</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Car/Gas</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    </div>
-                </div>
-                <div class="col s12 m6 l4">
-                    <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
-                    <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
-                        <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                    </div>
-                </div>
-            </div>
-            @Html.Hidden("Email", user)
-            @Html.Hidden("GroceryLimit", "GroceryLimit")
-            @Html.Hidden("HousingLimit", "HousingLimit")
-            @Html.Hidden("EntLimit", "EntLimit")
-            @Html.Hidden("BillsLimit", "BillsLimit")
-            @Html.Hidden("GasLimit", "GasLimit")
-            @Html.Hidden("MiscLimit", "MiscLimit")
-            @Html.Hidden("Month", 9)
-        </form>
+                @Html.Hidden("Email", user)
+                @Html.Hidden("GroceryLimit", "GroceryLimit")
+                @Html.Hidden("HousingLimit", "HousingLimit")
+                @Html.Hidden("EntLimit", "EntLimit")
+                @Html.Hidden("BillsLimit", "BillsLimit")
+                @Html.Hidden("GasLimit", "GasLimit")
+                @Html.Hidden("MiscLimit", "MiscLimit")
+                @Html.Hidden("Month", DateTime.Now.Month)
+            </form>
 
-        //End of Set Budget Limit
+            //End of Set Budget Limit
+        }
 
     }
+
     else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
@@ -313,9 +387,7 @@ else
 
     $(document).ready(function () {
         $('.tooltipped').tooltip();
-    });
 
-    $(document).ready(function () {
         donutChartGrocery()
         donutChartHousing()
         donutChartEntertainment()
@@ -323,6 +395,10 @@ else
         donutChartGas()
         donutChartMisc()
         //donutChartTotal();
+    });
+
+    $('#unhide-set-budget-form').on('click', function () {
+        $('#hidden-set-budget-form').toggle();
     });
 
     function donutChartGrocery() {
@@ -499,33 +575,33 @@ else
         }
     }
 
-    //function donutChartTotal() {
-    //    var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
-    //    var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
+                                    //function donutChartTotal() {
+                                    //    var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
+                                    //    var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
 
-    //    var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
+                                    //    var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
 
-    //    google.charts.load("current", { packages: ["corechart"] });
-    //    google.charts.setOnLoadCallback(drawChart);
-    //    function drawChart() {
-    //        var data = google.visualization.arrayToDataTable(budgetData);
-    //        var options = {
-    //            titleTextStyle: {
-    //                color: '#cfd8dc',
-    //                fontSize: 28,
-    //                bold: true,
-    //                fontName: 'arial',
-    //            }
-    //            , title: 'Total Budget',
-    //            colors: ['#e6c5c4', '#6cb7b1'],
-    //            pieHole: 0.5,
-    //            backgroundColor: '#212121',
-    //            color: '#cfd8dc',
-    //            is3D: true,
-    //        };
-    //        var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal'));
-    //        chart.draw(data, options);
-    //    }
-    //};
+                                    //    google.charts.load("current", { packages: ["corechart"] });
+                                    //    google.charts.setOnLoadCallback(drawChart);
+                                    //    function drawChart() {
+                                    //        var data = google.visualization.arrayToDataTable(budgetData);
+                                    //        var options = {
+                                    //            titleTextStyle: {
+                                    //                color: '#cfd8dc',
+                                    //                fontSize: 28,
+                                    //                bold: true,
+                                    //                fontName: 'arial',
+                                    //            }
+                                    //            , title: 'Total Budget',
+                                    //            colors: ['#e6c5c4', '#6cb7b1'],
+                                    //            pieHole: 0.5,
+                                    //            backgroundColor: '#212121',
+                                    //            color: '#cfd8dc',
+                                    //            is3D: true,
+                                    //        };
+                                    //        var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal'));
+                                    //        chart.draw(data, options);
+                                    //    }
+                                    //};
 </script>
 

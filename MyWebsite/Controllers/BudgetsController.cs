@@ -74,7 +74,7 @@ namespace MyWebsite.Controllers
         //Index
         public ActionResult Index(string userName, bool success)
         {
-            int month = 9 /*DateTime.Now.Month*/;
+            int month = DateTime.Now.Month;
 
             if (success)
             {
@@ -96,12 +96,21 @@ namespace MyWebsite.Controllers
             }
             else
             {
-                var budget = _context.Budget.Where(x => x.Email == userName);
+                var budget = _context.Budget.Where(x => x.Email == userName).Where(x => x.Month == month);
                 int budgetId = budget.Select(x => x.Id).FirstOrDefault();
 
                 if(budgetId == 0)
                 {
-                    TempData["isBudgetEmpty"] = true; 
+                    TempData["isBudgetEmpty"] = true;
+                    var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name);
+                    if (pastBudget != null)
+                    {
+                        TempData["hasPastBudget"] = true;
+                    }
+                    else
+                    {
+                        TempData["hasPastBudget"] = false;
+                    }
                     return View();
                 }
                 else
@@ -176,12 +185,23 @@ namespace MyWebsite.Controllers
 
         //Set Budget Limits
         [HttpPost]
-        public ActionResult Index(Budget budget)
+        public ActionResult Index(Budget budget, bool usePastBudgetLimit)
         {
             if (ModelState.IsValid)
-            {                
-                _context.Add(budget);
-                _context.SaveChanges();
+            {
+                if (usePastBudgetLimit)
+                {
+                    var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x).FirstOrDefault();
+                    pastBudget.Month = DateTime.Now.Month;
+                    pastBudget.Id = 0;
+                    _context.Add(pastBudget);
+                    _context.SaveChanges();
+                }
+                else
+                {
+                    _context.Add(budget);
+                    _context.SaveChanges();
+                }
                 return RedirectToAction("Index", new { userName = User.Identity.Name });
             }
             else
@@ -292,7 +312,7 @@ namespace MyWebsite.Controllers
         // POST: Budgets/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit")] Budget budget)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit, Month")] Budget budget)
         {
             if (id != budget.Id)
             {
