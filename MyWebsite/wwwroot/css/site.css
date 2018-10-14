@@ -132,21 +132,6 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     /*default white zero and white underline*/
 }
 
-.yellow-button {
-    border-radius: 0px;
-    border: 1px solid #cfd8dc;
-    color: #cfd8dc;
-    padding: 15px;
-    background-color: black;
-    font-weight: 400;
-    font-size: 20px;
-}
-
-.yellow-button:hover {
-    color: black !important;
-    background-color: #b2dfdb;
-    border: none;
-}
 
 
 

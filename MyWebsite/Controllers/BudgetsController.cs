@@ -17,46 +17,46 @@ namespace MyWebsite.Controllers
 
         public int SumLimits { get; set; }
 
-        public int GetLimit(string limitType)
+        public int GetLimit(string limitType, int budgetMonth)
         {
             if(limitType == "Grocery")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.GroceryLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GroceryLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
 
             if (limitType == "Housing")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.HousingLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.HousingLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
 
             if (limitType == "Bills")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.BillsLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.BillsLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
 
             if (limitType == "Entertainment")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.EntLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.EntLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
 
             if (limitType == "Gas")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.GasLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GasLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
 
             if (limitType == "Misc")
             {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Select(x => x.MiscLimit).FirstOrDefault();
+                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.MiscLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);                
                 return limitInt;
             }
@@ -71,8 +71,11 @@ namespace MyWebsite.Controllers
             _context = context;
         }
 
+        //Index
         public ActionResult Index(string userName, bool success)
         {
+            int month = 9 /*DateTime.Now.Month*/;
+
             if (success)
             {
                 TempData["successLimitsUpdated"] = "Budget Limits successfully updated!";
@@ -105,53 +108,53 @@ namespace MyWebsite.Controllers
                 {
                     TempData["isBudgetEmpty"] = false;
 
-                    foreach(var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
+                    foreach(var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
                     {
                         float cost = item.Cost;
                         totalGrocery += cost;
                          
                     }
 
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2))
                     {
                         float cost = item.Cost;
                         totalHousing += cost;
 
                     }
 
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3))
                     {
                         float cost = item.Cost;
                         totalBills += cost;
 
                     }
 
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4))
                     {
                         float cost = item.Cost;
                         totalEntertainment += cost;
 
                     }
 
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5))
                     {
                         float cost = item.Cost;
                         totalGas += cost;
 
                     }
 
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6))
                     {
                         float cost = item.Cost;
                         totalMisc += cost;
                     }
 
-                    int groceryLimit = GetLimit("Grocery");
-                    int housingLimit = GetLimit("Housing");
-                    int billsLimit = GetLimit("Bills");
-                    int entLimit = GetLimit("Entertainment");
-                    int gasLimit = GetLimit("Gas");
-                    int miscLimit = GetLimit("Misc");
+                    int groceryLimit = GetLimit("Grocery", month);
+                    int housingLimit = GetLimit("Housing", month);
+                    int billsLimit = GetLimit("Bills", month);
+                    int entLimit = GetLimit("Entertainment", month);
+                    int gasLimit = GetLimit("Gas", month);
+                    int miscLimit = GetLimit("Misc", month);
                     totalBudget = (groceryLimit + housingLimit + billsLimit + entLimit + gasLimit + miscLimit);
 
                     float totalSpent = totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
@@ -179,16 +182,21 @@ namespace MyWebsite.Controllers
             {                
                 _context.Add(budget);
                 _context.SaveChanges();
-                return View(budget);
+                return RedirectToAction("Index", new { userName = User.Identity.Name });
             }
-            return View(budget);           
+            else
+            {
+                return View();
+            }
+                     
         }
 
         //Add Transaction
         public ActionResult AddTransaction()
         {
             string username = User.Identity.Name;
-            var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
+            int budgetMonth = 9; //DateTime.Now.Month
+            var budget = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
             return View(budget);
         }
 
@@ -197,7 +205,7 @@ namespace MyWebsite.Controllers
         {
             bool errors = false;
             string username = User.Identity.Name;
-            var budget = _context.BudgetItems.Where(x => x.Email == username).ToList();
+            int budgetMonth = 9; //DateTime.Now.Month
 
             //Validation
             if (Convert.ToInt32(budgetItems.TypeOfBudget) == 0)
@@ -219,10 +227,11 @@ namespace MyWebsite.Controllers
                     _context.Add(budgetItems);
                     _context.SaveChanges();
                     TempData["successTransactionAdded"] = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
-                    var budgetList = _context.BudgetItems.Where(x => x.Email == username).ToList();
+                    var budgetList = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
                     return View(budgetList);
                 }
             }
+            var budget = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
             return View(budget);
         }
 

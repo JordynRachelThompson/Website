@@ -10,12 +10,14 @@
     }
 </style>
 
-@{ var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);}
 
 @{ string user = User.Identity.Name;
     var limit = Convert.ToInt32(TempData["totalLimit"]);
     var spent = Convert.ToInt32(TempData["totalSpent"]);
-    int difference = limit - spent;}
+    int difference = limit - spent;
+    int budgetMonth = 9/*DateTime.Now.Month*/;
+    var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);
+}
 
 <div style="text-align:center; margin-top:180px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
 <h3 style="text-align:center; color:black; margin-top:100px;">Budget App</h3>
@@ -33,7 +35,35 @@ else
 
         @*Set Budget Limit*@
         <form method="post" action="@Url.Action("Index", "Budgets")">
-            <div style="margin-top:35px; text-align:center;"><input type="submit" value="SET" class="yellow-button" style="padding-left:200px; padding-right:200px; font-weight:bold; letter-spacing:2px;" /></div>
+            <div style="margin-top:35px; text-align:center;">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        if (item.Email == User.Identity.Name) //Returning user with previous budget limit
+                        {
+                            <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
+                                <i class="material-icons left">local_atm</i>Set New Budget Limits
+                            </button>
+                            //Use last month's set budget limits
+                            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">date_range</i>Use Last Month's Budget Limits</a>
+                        }
+                        else //New user without past budget limit
+                        {
+                            <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
+                                <i class="material-icons left">local_atm</i>Set Budget Limits
+                            </button>
+                        }
+                    }
+                }
+                else
+                {
+                    <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
+                        <i class="material-icons left">local_atm</i>Set Budget Limits
+                    </button>
+                }
+                @*<input type="submit" value="SET" style="padding-left:200px; padding-right:200px; font-weight:bold; letter-spacing:2px;" />*@
+            </div>
             <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
@@ -87,6 +117,7 @@ else
             @Html.Hidden("BillsLimit", "BillsLimit")
             @Html.Hidden("GasLimit", "GasLimit")
             @Html.Hidden("MiscLimit", "MiscLimit")
+            @Html.Hidden("Month", 9)
         </form>
 
         //End of Set Budget Limit
@@ -96,16 +127,18 @@ else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
             <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@TempData["successLimitsUpdated"]</h5>
-            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">add_box</i>Add Transaction</a>
+            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">September@*@DateTime.Now.ToString("MMMM")*@</h3>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
             {
-                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
             }
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>
 
-        @foreach (var item in Model)
+        @foreach (var item in Model.Where(x => x.Month == budgetMonth))
         {
             <div class="container">
                 <div class="row">
@@ -254,7 +287,7 @@ else
             </div>
         }
 
-        <div class="center-div" id="donutchartTotal" style="width: 900px; height: 500px;"></div>
+        @*<div class="center-div" id="donutchartTotal" style="width: 900px; height: 500px;"></div>*@
     }
 }
 
@@ -263,7 +296,7 @@ else
 
 
 
-<style>  
+<style>
     #Total Spent {
         color: #cfd8dc !important;
     }
@@ -289,7 +322,7 @@ else
         donutChartBills()
         donutChartGas()
         donutChartMisc()
-        donutChartTotal();
+        //donutChartTotal();
     });
 
     function donutChartGrocery() {
@@ -310,7 +343,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Groceries/Food',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#cfd8dc',
@@ -339,7 +372,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Housing/Rent',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#ffffff',
@@ -368,7 +401,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Entertainment',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#cfd8dc',
@@ -397,7 +430,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Bills',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#cfd8dc',
@@ -426,7 +459,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Gas/Car',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#cfd8dc',
@@ -455,7 +488,7 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Miscellaneous',
-                colors: ['#e6c5c4', '#b2dfdb'],
+                colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: '#212121',
                 color: '#cfd8dc',
@@ -466,33 +499,33 @@ else
         }
     }
 
-    function donutChartTotal() {
-        var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
-        var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
+    //function donutChartTotal() {
+    //    var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
+    //    var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
+    //    var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
 
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(budgetData);
-            var options = {
-                titleTextStyle: {
-                    color: '#cfd8dc',
-                    fontSize: 28,
-                    bold: true,
-                    fontName: 'arial',
-                }
-                , title: 'Total Budget',
-                colors: ['#e6c5c4', '#b2dfdb'],
-                pieHole: 0.5,
-                backgroundColor: '#212121',
-                color: '#cfd8dc',
-                is3D: true,
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal'));
-            chart.draw(data, options);
-        }
-    };
+    //    google.charts.load("current", { packages: ["corechart"] });
+    //    google.charts.setOnLoadCallback(drawChart);
+    //    function drawChart() {
+    //        var data = google.visualization.arrayToDataTable(budgetData);
+    //        var options = {
+    //            titleTextStyle: {
+    //                color: '#cfd8dc',
+    //                fontSize: 28,
+    //                bold: true,
+    //                fontName: 'arial',
+    //            }
+    //            , title: 'Total Budget',
+    //            colors: ['#e6c5c4', '#6cb7b1'],
+    //            pieHole: 0.5,
+    //            backgroundColor: '#212121',
+    //            color: '#cfd8dc',
+    //            is3D: true,
+    //        };
+    //        var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal'));
+    //        chart.draw(data, options);
+    //    }
+    //};
 </script>
 
