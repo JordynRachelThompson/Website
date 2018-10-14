@@ -6,7 +6,7 @@
 
 <style>
     body {
-        background-color: #3a3a3a !important;
+        background-color: #212121 !important;
     }
 </style>
 
@@ -95,6 +95,7 @@ else
     else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
+            <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@TempData["successLimitsUpdated"]</h5>
             <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
@@ -311,7 +312,7 @@ else
                 , title: 'Groceries/Food',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -340,7 +341,7 @@ else
                 , title: 'Housing/Rent',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#ffffff',
                 is3D: true,
             };
@@ -369,7 +370,7 @@ else
                 , title: 'Entertainment',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -398,7 +399,7 @@ else
                 , title: 'Bills',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -427,7 +428,7 @@ else
                 , title: 'Gas/Car',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -456,7 +457,7 @@ else
                 , title: 'Miscellaneous',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -485,7 +486,7 @@ else
                 , title: 'Total Budget',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
-                backgroundColor: '#3a3a3a',
+                backgroundColor: '#212121',
                 color: '#cfd8dc',
                 is3D: true,
             };

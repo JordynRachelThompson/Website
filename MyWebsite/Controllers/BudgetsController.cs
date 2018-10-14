@@ -71,8 +71,13 @@ namespace MyWebsite.Controllers
             _context = context;
         }
 
-        public ActionResult Index(string userName)
+        public ActionResult Index(string userName, bool success)
         {
+            if (success)
+            {
+                TempData["successLimitsUpdated"] = "Budget Limits successfully updated!";
+            }
+
             int totalBudget = 0;
             float totalGrocery = 0;
             float totalHousing = 0;
@@ -213,6 +218,7 @@ namespace MyWebsite.Controllers
                 {
                     _context.Add(budgetItems);
                     _context.SaveChanges();
+                    TempData["successTransactionAdded"] = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
                     var budgetList = _context.BudgetItems.Where(x => x.Email == username).ToList();
                     return View(budgetList);
                 }
@@ -220,7 +226,7 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
-        // GET: Budgets/Details/5
+        // GET: Budgets/Details/
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -245,8 +251,6 @@ namespace MyWebsite.Controllers
         }
 
         // POST: Budgets/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit")] Budget budget)
@@ -276,9 +280,7 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
-        // POST: Budgets/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Budgets/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit")] Budget budget)
@@ -294,6 +296,9 @@ namespace MyWebsite.Controllers
                 {
                     _context.Update(budget);
                     await _context.SaveChangesAsync();
+                    bool editSucess = true;
+                    string username = User.Identity.Name;
+                    return RedirectToAction("Index", new { userName = username, success = editSucess });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -305,13 +310,12 @@ namespace MyWebsite.Controllers
                     {
                         throw;
                     }
-                }
-                return RedirectToAction(nameof(Index));
+                }                 
             }
             return View(budget);
         }
 
-        // GET: Budgets/Delete/5
+        // GET: Budgets/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -329,7 +333,7 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
-        // POST: Budgets/Delete/5
+        // POST: Budgets/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
