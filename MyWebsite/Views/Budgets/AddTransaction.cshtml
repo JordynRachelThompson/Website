@@ -15,8 +15,6 @@
 
     <div style="margin-top:55px; text-align:center;">
         <a href='@Url.Action("Index", "Budgets", new { userName = user })'; class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
-
-
         @*@Html.ActionLink("Return to Budget", "Index", "Budgets", new { userName = user }, new { @class = "grey-button" })*@
     </div>
     <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Add Transaction</h5>
@@ -45,7 +43,7 @@
             </div>
             <h5 style="margin-top:25px;">Price</h5>
             <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                 <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
                 @Html.Hidden("Email", user)
                 @Html.Hidden("Description", "Description")
@@ -249,13 +247,13 @@
     }
 
     .select-dropdown li.disabled, .select-dropdown li.disabled > span, .select-dropdown li.optgroup {
-        color: #76ff03 !important;
+        color: #b2dfdb !important;
         font-weight: bold;
         text-align: center;
     }
 
     .select-wrapper input.select-dropdown {
-        color: #76ff03 !important;
+        color: #b2dfdb !important;
         font-weight: bold !important;
         font-size: 25px;
         text-align: center;
@@ -271,10 +269,10 @@
             color: #212121 !important;
     }
 
-      .grey-button {
+    .grey-button {
         border-radius: 0px;
         border: 1px solid #cfd8dc;
-        color: #76ff03;
+        color: #b2dfdb;
         padding: 15px;
         background-color: #212121;
         font-weight: 400;

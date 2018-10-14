@@ -29,7 +29,7 @@ else
 {
     @if (emptyBudget)
     {
-        <div style="border-bottom: 1px dotted #76ff03;"></div>
+        <div style="border-bottom: 1px dotted #b2dfdb;"></div>
 
         @*Set Budget Limit*@
         <form method="post" action="@Url.Action("Index", "Budgets")">
@@ -38,21 +38,21 @@ else
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Housing/Rent</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
@@ -61,21 +61,21 @@ else
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Bills</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Car/Gas</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
                 <div class="col s12 m6 l4">
                     <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
                     <div class="input-field">
-                        <i class="material-icons prefix" style="margin-top:30px; color:#76ff03;">attach_money</i>
+                        <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
                         <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
                     </div>
                 </div>
@@ -95,11 +95,13 @@ else
     else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
+            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
             {
                 <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">edit</i>Edit Budget Limit</a>
             }
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
         </div>
 
         @foreach (var item in Model)
@@ -108,8 +110,6 @@ else
                 <div class="row">
                     <div class="col s12 m12 l6">
                         @{double remainingG = item.GroceryLimit - Convert.ToInt32(TempData["groceryTotal"]);}
-                        <h2 id="totalSpentG" style="display:none">@Convert.ToDouble(TempData["groceryTotal"])</h2>
-                        <h2 id="totalBudgetG" style="display:none">@item.GroceryLimit</h2>
                         @*More than the total has been spent*@
                         @if (remainingG <= 0)
                         {
@@ -119,16 +119,20 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingG.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.GroceryLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingG.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.GroceryLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartGrocery" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
+                        @if (remainingG < 0)
+                        {
+                            remainingG = 0;
+                        }
+                        <h2 id="totalBudgetG" style="display:none">@remainingG</h2>
+                        <h2 id="totalSpentG" style="display:none">@Convert.ToDouble(TempData["groceryTotal"])</h2>
                     </div>
 
                     <div class="col s12 m12 l6">
                         @{double remainingH = item.HousingLimit - Convert.ToInt32(TempData["housingTotal"]);}
-                        <h2 id="totalSpentH" style="display:none">@Convert.ToDouble(TempData["housingTotal"])</h2>
-                        <h2 id="totalBudgetH" style="display:none">@item.HousingLimit</h2>
-
                         @*More than the total has been spent*@
                         @if (remainingH <= 0)
                         {
@@ -138,18 +142,22 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingH.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.HousingLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingH.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.HousingLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartHousing" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
+                        @if (remainingH < 0)
+                        {
+                            remainingH = 0;
+                        }
+                        <h2 id="totalBudgetH" style="display:none">@remainingH</h2>
+                        <h2 id="totalSpentH" style="display:none">@Convert.ToDouble(TempData["housingTotal"])</h2>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col s12 m12 l6">
                         @{double remainingE = item.EntLimit - Convert.ToInt32(TempData["entTotal"]);}
-                        <h2 id="totalSpentE" style="display:none">@Convert.ToDouble(TempData["entTotal"])</h2>
-                        <h2 id="totalBudgetE" style="display:none">@item.EntLimit</h2>
-
                         @*More than the total has been spent*@
                         @if (remainingE <= 0)
                         {
@@ -159,16 +167,20 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingE.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.EntLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingE.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.EntLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartEntertainment" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
+                        @if (remainingE < 0)
+                        {
+                            remainingE = 0;
+                        }
+                        <h2 id="totalBudgetE" style="display:none">@remainingE</h2>
+                        <h2 id="totalSpentE" style="display:none">@Convert.ToDouble(TempData["entTotal"])</h2>
                     </div>
 
                     <div class="col s12 m12 l6">
                         @{double remainingB = item.BillsLimit - Convert.ToInt32(TempData["billsTotal"]);}
-                        <h2 id="totalSpentB" style="display:none">@Convert.ToDouble(TempData["billsTotal"])</h2>
-                        <h2 id="totalBudgetB" style="display:none">@item.BillsLimit</h2>
-
                         @*More than the total has been spent*@
                         @if (remainingB <= 0)
                         {
@@ -178,18 +190,22 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingB.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.BillsLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingB.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.BillsLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartBills" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
+                        @if (remainingB < 0)
+                        {
+                            remainingB = 0;
+                        }
+                        <h2 id="totalBudgetB" style="display:none">@remainingB</h2>
+                        <h2 id="totalSpentB" style="display:none">@Convert.ToDouble(TempData["billsTotal"])</h2>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col s12 m12 l6">
                         @{double remainingGas = item.GasLimit - Convert.ToInt32(TempData["gasTotal"]);}
-                        <h2 id="totalSpentGas" style="display:none">@Convert.ToDouble(TempData["gasTotal"])</h2>
-                        <h2 id="totalBudgetGas" style="display:none">@item.GasLimit</h2>
-
                         @*More than the total has been spent*@
                         @if (remainingGas <= 0)
                         {
@@ -199,16 +215,20 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingGas.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.GasLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingGas.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.GasLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartGas" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
+                        @if (remainingGas < 0)
+                        {
+                            remainingGas = 0;
+                        }
+                        <h2 id="totalBudgetGas" style="display:none">@remainingGas</h2>
+                        <h2 id="totalSpentGas" style="display:none">@Convert.ToDouble(TempData["gasTotal"])</h2>
                     </div>
 
                     <div class="col s12 m12 l6">
                         @{double remainingM = item.MiscLimit - Convert.ToDouble(TempData["miscTotal"]);}
-                        <h2 id="totalSpent" style="display:none">@Convert.ToInt32(TempData["miscTotal"])</h2>
-                        <h2 id="totalBudget" style="display:none">@item.MiscLimit</h2>
-
                         @*More than the total has been spent*@
                         @if (remainingM <= 0)
                         {
@@ -218,9 +238,16 @@ else
                         @*Still some of the budget left*@
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingM.ToString("#,##0.00")</span><span style="color:#cfd8dc "> / $@item.MiscLimit.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingM.ToString("#,##0.00")</span></h5>
                         }
+                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.MiscLimit.ToString("#,##0.00")">Budget Limit</a>
                         <div id="donutchartMisc" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
+                        @if (remainingM < 0)
+                        {
+                            remainingM = 0;
+                        }
+                        <h2 id="totalBudgetM" style="display:none">@remainingM</h2>
+                        <h2 id="totalSpentM" style="display:none">@Convert.ToInt32(TempData["miscTotal"])</h2>
                     </div>
                 </div>
             </div>
@@ -235,12 +262,7 @@ else
 
 
 
-<style>
-    .center-div {
-        margin: 0 auto;
-        width: 100px;
-    }
-
+<style>  
     #Total Spent {
         color: #cfd8dc !important;
     }
@@ -254,6 +276,11 @@ else
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
+
+    $(document).ready(function () {
+        $('.tooltipped').tooltip();
+    });
+
     $(document).ready(function () {
         donutChartGrocery()
         donutChartHousing()
@@ -268,7 +295,7 @@ else
         var totalSpentG = parseInt(document.getElementById('totalSpentG').innerHTML);
         var totalBudgetG = parseInt(document.getElementById('totalBudgetG').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentG], ['Total Budget', totalBudgetG]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentG], ['Remaining', totalBudgetG]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -297,7 +324,7 @@ else
         var totalSpentH = parseInt(document.getElementById('totalSpentH').innerHTML);
         var totalBudgetH = parseInt(document.getElementById('totalBudgetH').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentH], ['Total Budget', totalBudgetH]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentH], ['Remaining', totalBudgetH]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -326,7 +353,7 @@ else
         var totalSpentE = parseInt(document.getElementById('totalSpentE').innerHTML);
         var totalBudgetE = parseInt(document.getElementById('totalBudgetE').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentE], ['Total Budget', totalBudgetE]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentE], ['Remaining', totalBudgetE]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -355,7 +382,7 @@ else
         var totalSpentB = parseInt(document.getElementById('totalSpentB').innerHTML);
         var totalBudgetB = parseInt(document.getElementById('totalBudgetB').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentB], ['Total Budget', totalBudgetB]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentB], ['Remaining', totalBudgetB]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -384,7 +411,7 @@ else
         var totalSpentGas = parseInt(document.getElementById('totalSpentGas').innerHTML);
         var totalBudgetGas = parseInt(document.getElementById('totalBudgetGas').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentGas], ['Total Budget', totalBudgetGas]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentGas], ['Remaining', totalBudgetGas]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -413,7 +440,7 @@ else
         var totalSpentM = parseInt(document.getElementById('totalSpentM').innerHTML);
         var totalBudgetM = parseInt(document.getElementById('totalBudgetM').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpentM], ['Total Budget', totalBudgetM]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentM], ['Remaining', totalBudgetM]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -442,7 +469,7 @@ else
         var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
         var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
 
-        var budgetData = [['Spent', 'Total Budget'], ['Spent', totalSpent], ['Total Budget', totalBudget]];
+        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -455,7 +482,7 @@ else
                     bold: true,
                     fontName: 'arial',
                 }
-                , title: 'Total Spent / Budget Total',
+                , title: 'Total Budget',
                 colors: ['#e6c5c4', '#b2dfdb'],
                 pieHole: 0.5,
                 backgroundColor: '#3a3a3a',

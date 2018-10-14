@@ -7,6 +7,11 @@
     padding-right: 25px;
 }
 
+.center-div {
+    margin: 0 auto;
+    width: 100px;
+}
+
 nav ul li:hover {
     background-color: black !important;
 }
@@ -107,7 +112,7 @@ input.valid[type=password]:not(.browser-default) {
 
 input[type=text]:not(.browser-default) {
     background-color: #212121 !important;
-    color: #76ff03 !important;
+    color: #b2dfdb !important;
     font-size: 30px;
 }
 
@@ -118,7 +123,7 @@ input.valid[type=text]:not(.browser-default):focus,
 #budget-limit-amount,
 #purchase-item {
     border-bottom: 1px solid #cfd8dc !important;
-    color: #76ff03;
+    color: #b2dfdb;
     font-size: 30px;
 }
 
@@ -139,7 +144,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 
 .yellow-button:hover {
     color: black !important;
-    background-color: #76ff03;
+    background-color: #b2dfdb;
     border: none;
 }
 

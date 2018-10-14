@@ -21,6 +21,7 @@ namespace MyWebsite.Models.BudgetProject
         public float BillsLimit { get; set; }
         public float GasLimit {get; set;}
         public float MiscLimit { get; set; }
+        public int Month { get; set; }
         public List<BudgetItems> BudgetTransactions = new List<BudgetItems>();
 
     }
@@ -44,6 +45,7 @@ namespace MyWebsite.Models.BudgetProject
         public string Description { get; set; }
         public float Cost { get; set; }
         public DateTime Date { get; set; }
+        public int Month {get; set;}
         public BudgetCategory TypeOfBudget { get; set; }
 
     }

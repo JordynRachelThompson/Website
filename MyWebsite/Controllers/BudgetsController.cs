@@ -267,12 +267,12 @@ namespace MyWebsite.Controllers
             {
                 return NotFound();
             }
-
             var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
             if (budget == null)
             {
                 return NotFound();
             }
+            TempData["userId"] = id;
             return View(budget);
         }
 

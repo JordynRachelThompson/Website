@@ -1,61 +1,84 @@
 ﻿@model MyWebsite.Models.BudgetProject.Budget
+@using System.Linq;
 
 @{
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
 
-<h4>Budget</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+@{
+    string user = User.Identity.Name;
+    int userId = Convert.ToInt32(TempData["userId"]);
+    TempData.Keep("userId");
+}
+
+
+
+<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
+<h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
+<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+
+<div class="container">
+    <div style="margin-top:55px; text-align:center;">
+        <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+    </div>
+    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Edit Budget Limit(<i class="material-icons prefix" style="vertical-align:middle; color:#b2dfdb;">attach_money</i>)</h5>
+
+    <form asp-action="Edit">
+
+        <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="GroceryLimit" class="control-label"></label>
+            <input type="hidden" asp-for="Email" />
+            <div class="form-group col s12 m4 l4">
+                <label for="GroceryLimit" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Grocery Budget</label>
                 <input asp-for="GroceryLimit" class="form-control" />
                 <span asp-validation-for="GroceryLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="HousingLimit" class="control-label"></label>
+            <div class="form-group class=" col s12 m4 l4"">
+                <label for="HousingLimit" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Housing/Rent Budget</label>
+                @*<label asp-for="HousingLimit" class="control-label"></label>*@
                 <input asp-for="HousingLimit" class="form-control" />
                 <span asp-validation-for="HousingLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EntLimit" class="control-label"></label>
+        </div>
+
+        <div class="row">
+            <div class="form-group col s12 m4 l4">
+                <label for="EntLimit" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Entertainment Budget</label>
+                @*<label asp-for="EntLimit" class="control-label"></label>*@
                 <input asp-for="EntLimit" class="form-control" />
                 <span asp-validation-for="EntLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BillsLimit" class="control-label"></label>
+            <div class="form-group class=" col s12 m4 l4"">
+                <label for="BillsLimit" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Bills Budget</label>
+                @*<label asp-for="BillsLimit" class="control-label"></label>*@
                 <input asp-for="BillsLimit" class="form-control" />
                 <span asp-validation-for="BillsLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="GasLimit" class="control-label"></label>
+        </div>
+
+        <div class="row">
+            <div class="form-group col s12 m4 l4">
+                <label for="Gas" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Gas/Car Budget</label>
+                @*<label asp-for="GasLimit" class="control-label"></label>*@
                 <input asp-for="GasLimit" class="form-control" />
                 <span asp-validation-for="GasLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="MiscLimit" class="control-label"></label>
+            <div class="form-group col s12 m4 l4">
+                <label for="MiscLimit" style="color:#b2dfdb; font-weight:bold; font-size:25px;">Miscellaneous Budget</label>
+                @*<label asp-for="MiscLimit" class="control-label"></label>*@
                 <input asp-for="MiscLimit" class="form-control" />
                 <span asp-validation-for="MiscLimit" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </form>
-    </div>
+        </div>
+
+        <div style="margin-top:10px;">
+            <button class="aves-effect waves-light btn-large black-text sharpCorners" style="font-weight:bold; font-size:20px; background-color:#b2dfdb;" type="submit" name="Save">
+                <i class="material-icons left">save</i>Save
+            </button>
+        </div>
+    </form>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
