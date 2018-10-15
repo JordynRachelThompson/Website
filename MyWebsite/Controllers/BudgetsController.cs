@@ -17,6 +17,11 @@ namespace MyWebsite.Controllers
 
         public int SumLimits { get; set; }
 
+        private bool BudgetExists(int id)
+        {
+            return _context.Budget.Any(e => e.Id == id);
+        }
+
         public int GetLimit(string limitType, int budgetMonth)
         {
             if(limitType == "Grocery")
@@ -348,6 +353,18 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
+        //Delete Specific Transaction
+        public IActionResult DeleteTransaction(int? id)
+        {
+            var budgetTransaction = _context.BudgetItems.SingleOrDefault(x => x.TransactionId == id);
+            if (budgetTransaction != null)
+            {
+                _context.BudgetItems.Remove(budgetTransaction);
+                _context.SaveChanges();               
+            }
+            return RedirectToAction("AddTransaction");
+        }
+
         // GET: Budgets/Delete
         public async Task<IActionResult> Delete(int? id)
         {
@@ -374,12 +391,8 @@ namespace MyWebsite.Controllers
             var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
             _context.Budget.Remove(budget);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("AddTransaction");
         }
 
-        private bool BudgetExists(int id)
-        {
-            return _context.Budget.Any(e => e.Id == id);
-        }
     }
 }

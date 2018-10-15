@@ -59,43 +59,49 @@
     </div>
 </div>
 
+@*<form asp-action="Delete">*@  
 <div class="container center" style="margin-top:35px; margin-bottom:250px;">
     <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-        </tr>
-        @{ int count = 0;}
-        @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
-        {
-            if (Convert.ToInt32(item.TypeOfBudget) == 1)
+        <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
+            <tr style="border-bottom: 1px dotted #cfd8dc">
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+            @{ int count = 0;}
+            @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
             {
-                count += 1;
-                <tr style="border-bottom: 1px dotted #cfd8dc">
-                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                    <td>@item.Description</td>
-                    <td>@item.Cost</td>
+
+                if (Convert.ToInt32(item.TypeOfBudget) == 1)
+                {
+                    count += 1;
+            <tr style="border-bottom: 1px dotted #cfd8dc">
+                <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                <td>@item.Description</td>
+                <td>@item.Cost</td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+            </tr>
+                }
+
+
+            }
+
+            @if (count == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
                 </tr>
             }
-        }
-
-        @if(count == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-
+        </table>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
     <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
+            <th></th>
         </tr>
         @{ int countH = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
@@ -107,6 +113,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
                 </tr>
             }
         }
@@ -124,6 +131,7 @@
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
+            <th></th>
         </tr>
         @{ int countB = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
@@ -136,6 +144,8 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+
                 </tr>
             }
         }
@@ -153,6 +163,7 @@
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
+            <th></th>
         </tr>
         @{ int countE = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
@@ -164,6 +175,8 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+
                 </tr>
             }
         }
@@ -181,6 +194,7 @@
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
+            <th></th>
         </tr>
         @{ int countGas = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
@@ -192,6 +206,8 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+
                 </tr>
             }
         }
@@ -209,6 +225,7 @@
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
+            <th></th>
         </tr>
         @{ int countM = 0;}
         @foreach (var item in Model.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).OrderBy(x => x.Date))
@@ -220,6 +237,8 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+
                 </tr>
             }
         }
