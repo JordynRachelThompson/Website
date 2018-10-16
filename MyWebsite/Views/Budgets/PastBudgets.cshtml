@@ -1,7 +1,90 @@
-﻿
+﻿@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
 @{
     ViewData["Title"] = "PastBudgets";
 }
 
-<h2>PastBudgets</h2>
+@{
+    string user = User.Identity.Name;
+    int budgetMonth = DateTime.Now.Month;
+}
 
+@*Does user have a budget for a particular month*@
+
+<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
+<h3 style="text-align:center; color:#cfd8dc; margin-top:100px;">Budget App</h3>
+<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+
+<div class="container">
+    <div style="margin-top:55px; text-align:center;">
+        <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+    </div>
+    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#b2dfdb; text-align:center">Past Budgets</h5>
+
+    @*Display month buttons only for months with budgets*@
+    <div style="text-align:center">
+        @if (Convert.ToBoolean(TempData["jan"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">January</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["feb"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">February</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["march"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">March</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["apr"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">April</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["may"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">May</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["june"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">June</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["july"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">July</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["aug"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">August</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["sept"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">September</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["oct"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">October</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["nov"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">November</button>
+
+        }
+        @if (Convert.ToBoolean(TempData["dec"]))
+        {
+            <button class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;">December</button>
+
+        }
+    </div>
+
+
+
+
+</div>

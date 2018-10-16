@@ -36,31 +36,39 @@ else
         if (hasPastBudget == "True")
         {
             <div style="border-bottom: 1px dotted #b2dfdb;"></div>
-
+            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <div style="margin-top:35px;">
                 <div class="row">
-                    <div class="col l3 m3 s12"></div>
-                    <div class="col l3 m3 s12">
+                    <div class="col l1 m12 s12"></div>
+                    <div class="col l2 m12 s12">
                         @*Wants to use past budget limit*@
                         <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = hasPastBudget })">
                             @*Use last month's set budget limits*@
-                            <button class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; display:inline-block; !important;" type="submit" name="Save">
+                            <button class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
                                 <i class="material-icons left">local_atm</i>Use Last Month's Budget Limits
                             </button>
                             @Html.Hidden("Email", user)
                             @Html.Hidden("Month", DateTime.Now.Month)
                         </form>
                     </div>
-                    <div class="col l3 m3 s12">
-                        <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; display:inline-block; !important">
+                    <div class="col l2 m12 s12">
+                        <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;">
                             <i class="material-icons left">local_atm</i>Set New Budget Limits
                         </button>
                     </div>
-                    <div class="col l3 m3 s12"></div>
+                    <div class="col l2 m12 s12">
+                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+                    </div>
+                    <div class="col l2 m12 s12">
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
+                    </div>
+                    <div class="col l2 m12 s12">
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+                    </div>
                 </div>
             </div>
 
-
+            //Set Budget Form
             <div id="hidden-set-budget-form" style="display:none;">
                 @*Set Budget Limit*@
                 <form method="post" action="@Url.Action("Index", "Budgets")">

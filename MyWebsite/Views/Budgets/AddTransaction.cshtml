@@ -81,7 +81,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
                 }
 
@@ -113,7 +113,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
                 </tr>
             }
         }
@@ -144,7 +144,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
 
                 </tr>
             }
@@ -175,7 +175,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
 
                 </tr>
             }
@@ -206,7 +206,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
 
                 </tr>
             }
@@ -237,7 +237,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
 
                 </tr>
             }
@@ -290,7 +290,15 @@
             color: #212121 !important;
     }
 
-    .grey-button {
+    .trashcan-icon {
+        color: #cfd8dc !important;
+    }
+
+    .trashcan-icon:hover {
+        color: #76ff03 !important;
+    }
+
+    /*.grey-button {
         border-radius: 0px;
         border: 1px solid #cfd8dc;
         color: #b2dfdb;
@@ -305,7 +313,7 @@
         background-color: #cfd8dc;
         border: none;
         color: #212121 !important;
-    }
+    }*/
 </style>
 
 <script>

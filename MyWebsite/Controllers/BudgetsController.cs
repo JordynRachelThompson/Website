@@ -261,7 +261,74 @@ namespace MyWebsite.Controllers
 
         public ActionResult PastBudgets()
         {
-            return View();
+            TempData["jan"] = false;
+            TempData["feb"] = false;
+            TempData["march"] = false;
+            TempData["apr"] = false;
+            TempData["may"] = false;
+            TempData["june"] = false;
+            TempData["july"] = false;
+            TempData["aug"] = false;
+            TempData["sept"] = false;
+            TempData["oct"] = false;
+            TempData["nov"] = false;
+            TempData["dec"] = false;
+
+            var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name);
+            //Seeting month to true if budget for that month exists
+            foreach (var transaction in pastBudgetTransactions)
+            {
+                if (transaction.Month == 1)
+                {
+                    TempData["jan"] = true;
+                }
+                if (transaction.Month == 2)
+                {
+                    TempData["feb "] = true;
+                }
+                if (transaction.Month == 3)
+                {
+                    TempData["march"] = true;
+                }
+                if (transaction.Month == 4)
+                {
+                    TempData["apr"] = true;
+                }
+                if (transaction.Month == 5)
+                {
+                    TempData["may"] = true;
+                }
+                if (transaction.Month == 6)
+                {
+                    TempData["june"] = true;
+                }
+                if (transaction.Month == 7)
+                {
+                    TempData["july"] = true;
+                }
+                if (transaction.Month == 8)
+                {
+                    TempData["aug"] = true;
+                }
+                if (transaction.Month == 9)
+                {
+                    TempData["sept"] = true;
+                }
+                if (transaction.Month == 10)
+                {
+                    TempData["oct"] = true;
+                }
+                if (transaction.Month == 11)
+                {
+                    TempData["nov"] = true;
+                }
+                if (transaction.Month == 12)
+                {
+                    TempData["dec"] = true;
+                }
+            }
+
+            return View(pastBudgetTransactions);
         }
 
         // GET: Budgets/Details/
