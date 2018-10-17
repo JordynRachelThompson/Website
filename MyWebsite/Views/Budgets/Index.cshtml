@@ -39,8 +39,7 @@ else
             <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <div style="margin-top:35px;">
                 <div class="row">
-                    <div class="col l1 m12 s12"></div>
-                    <div class="col l2 m12 s12">
+                    <div class="col l12 m12 s12" align="center">
                         @*Wants to use past budget limit*@
                         <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = hasPastBudget })">
                             @*Use last month's set budget limits*@
@@ -50,19 +49,11 @@ else
                             @Html.Hidden("Email", user)
                             @Html.Hidden("Month", DateTime.Now.Month)
                         </form>
-                    </div>
-                    <div class="col l2 m12 s12">
                         <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;">
                             <i class="material-icons left">local_atm</i>Set New Budget Limits
                         </button>
-                    </div>
-                    <div class="col l2 m12 s12">
                         <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-                    </div>
-                    <div class="col l2 m12 s12">
                         <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
-                    </div>
-                    <div class="col l2 m12 s12">
                         <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
@@ -70,8 +61,16 @@ else
 
             //Set Budget Form
             <div id="hidden-set-budget-form" style="display:none;">
-                @*Set Budget Limit*@
-                <form method="post" action="@Url.Action("Index", "Budgets")">
+                @*Set Budget Limit - Has had past budgets but wants to choose new limits*@
+                @{
+                    bool pastBudgetLimits = false;
+                }
+                <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = pastBudgetLimits })">
+                    <div style="margin-top:35px; text-align:center;">
+                        <button class="aves-effect waves-light btn-large sharpCorners black-text" style="background-color:#b2dfdb; font-weight:bold; font-size:20px;" type="submit" name="Save">
+                            <i class="material-icons left">local_atm</i>Save Budget Limits
+                        </button>
+                    </div>
                     <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
                         <div class="col s12 m6 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Groceries/Food</h5>
@@ -136,11 +135,11 @@ else
         else
         {
             <div style="border-bottom: 1px dotted #b2dfdb;"></div>
-
-            @*Set Budget Limit*@
-            <form method="post" action="@Url.Action("Index", "Budgets")">
+            @*Set Budget Limit - Has never had budget*@
+            bool pastBudgetLimits = false;
+            <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = pastBudgetLimits })">
                 <div style="margin-top:35px; text-align:center;">
-                    <button class="aves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px;" type="submit" name="Save">
+                    <button class="aves-effect waves-light btn-large black-text sharpCorners" style="background-color:#b2dfdb; font-weight:bold; font-size:20px;" type="submit" name="Save">
                         <i class="material-icons left">local_atm</i>Set Budget Limits
                     </button>
                 </div>
@@ -393,9 +392,9 @@ else
 
 <script type="text/javascript">
 
+
     $(document).ready(function () {
         $('.tooltipped').tooltip();
-
         donutChartGrocery()
         donutChartHousing()
         donutChartEntertainment()
