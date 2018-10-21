@@ -86,1340 +86,1338 @@
 </div>
 
 @*ONE - JAN*@
-<div class="container center" id="itemizedBudgetContainer1" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count1 += 1;
+<div class="container center" id="itemizedBudgetContainer1" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">January Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG1" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH1 += 1;
+            @if (count1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH1" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB1 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB1" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE1 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE1" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas1 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas1" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM1 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM1 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM1" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM1" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM1 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM1 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM1 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM1 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
-
-
-@*TWO - FEB*@
-<div class="container center" id="itemizedBudgetContainer2" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count2 += 1;
+@*@*TWO - FEB*@
+<div class="container center" id="itemizedBudgetContainer2" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">February Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG2" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH2 += 1;
+            @if (count2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH2" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB2 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB2" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE2 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE2" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas2 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas2" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM2 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM2 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM2" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM2" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM2 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM2 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM2 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM2 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*THREE - MAR*@
-<div class="container center" id="itemizedBudgetContainer3" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count3 += 1;
+<div class="container center" id="itemizedBudgetContainer3" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">March Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG3" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH3 += 1;
+            @if (count3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH3" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB3 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB3" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE3 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE3" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas3 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas3" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM3 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM3 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM3" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM3" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM3 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM3 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM3 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM3 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*FOUR - APR*@
-<div class="container center" id="itemizedBudgetContainer4" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count4 += 1;
+<div class="container center" id="itemizedBudgetContainer4" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">April Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG4" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH4 += 1;
+            @if (count4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH4" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB4 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB4" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE4 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE4" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas4 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas4" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM4 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM4 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM4" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM4 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM4 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM4 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM4 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*FIVE - MAY*@
-<div class="container center" id="itemizedBudgetContainer5" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count5 += 1;
+<div class="container center" id="itemizedBudgetContainer5" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">May Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG5" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG5" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH5 += 1;
+            @if (count5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH5" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH5" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB5 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB5" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB5" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE5 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE5" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE5" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas5 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas5" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM5 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM5 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM5" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM5" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM5 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM5 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM5 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM5 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*SIX - JUNE*@
-<div class="container center" id="itemizedBudgetContainer6" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count6 += 1;
+<div class="container center" id="itemizedBudgetContainer6" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">June Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG6" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH6 += 1;
+            @if (count6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH6" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB6 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB6" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE6 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE6" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas6 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas6" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM6 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM6 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM6" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM6" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM6 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM6 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM6 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM6 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*SEVEN - JULY*@
-<div class="container center" id="itemizedBudgetContainer7" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count7 += 1;
+<div class="container center" id="itemizedBudgetContainer7" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">July Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG7" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH7 += 1;
+            @if (count7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH7" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB7 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB7" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE7 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE7" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas7 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas7" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM7 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM7 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM7" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM7" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM7 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM7 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM7 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM7 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*EIGHT - AUG>*@
-<div class="container center" id="itemizedBudgetContainer8" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count8 += 1;
+<div class="container center" id="itemizedBudgetContainer8" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">August Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG8" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH8 += 1;
+            @if (count8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH8" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB8 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB8" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE8 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE8" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas8 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas8" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM8 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM8 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM8" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM8" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM8 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM8 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM8 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM8 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 @*NINE - SEPT*@
-<div class="container center" id="itemizedBudgetContainer9" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
+<div class="container center" id="itemizedBudgetContainer9" style="margin-top:35px; margin-bottom:50px; display:none;">
+    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">September Transactions</h5>
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+    <table class="table" id="transactionsG9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1445,8 +1443,8 @@
             </tr>
         }
     </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+    <table class="table" id="transactionsH9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1472,8 +1470,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+    <table class="table" id="transactionsB9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1499,8 +1497,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+    <table class="table" id="transactionsE9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1526,8 +1524,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+    <table class="table" id="transactionsGas9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1553,8 +1551,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM9" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+    <table class="table" id="transactionsM9" align="center" style="display:none; width:25%; margin-bottom:15px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1582,10 +1580,10 @@
 </div>
 
 @*TEN - OCT*@
-<div class="container center" id="itemizedBudgetContainer10" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
+<div class="container center" id="itemizedBudgetContainer10" style="margin-top:35px; margin-bottom:50px; display:none;">
+    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">October Transactions</h5>
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+    <table class="table" id="transactionsG10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1611,8 +1609,8 @@
             </tr>
         }
     </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+    <table class="table" id="transactionsH10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1638,8 +1636,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+    <table class="table" id="transactionsB10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1665,8 +1663,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+    <table class="table" id="transactionsE10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1692,8 +1690,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+    <table class="table" id="transactionsGas10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1719,8 +1717,8 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM10" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+    <table class="table" id="transactionsM10" align="center" style="display:none; width:25%; margin-bottom:15px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1748,337 +1746,337 @@
 </div>
 
 @*ELEVEN - NOV*@
-<div class="container center" id="itemizedBudgetContainer11" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count11 += 1;
+<div class="container center" id="itemizedBudgetContainer11" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">November Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG11" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH11 += 1;
+            @if (count11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH11" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB11 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB11" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE11 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE11" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas11 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas11" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM11 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM11" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM11" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM11 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM11 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM11 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM11 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 
 @*TWELVE - DEC*@
-<div class="container center" id="itemizedBudgetContainer12" style="margin-top:35px; margin-bottom:250px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">View Past Transaction</h5>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
-    <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int count12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
-        {
-            count12 += 1;
+<div class="container center" id="itemizedBudgetContainer12" style="margin-top:35px; margin-bottom:50px; display:none;">
+        <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">December Transactions</h5>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_dining</i>Grocery</a>
+        <table class="table" id="transactionsG12" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
+            @{ int count12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+            {
+                count12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
 
-        @if (count12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
-    <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countH12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {
-            countH12 += 1;
+            @if (count12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnH12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">home</i>Housing</a>
+        <table class="table" id="transactionsH12" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countH12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countH12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+            {
+                countH12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countH12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB12 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnB12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">monetization_on</i>Bills</a>
+        <table class="table" id="transactionsB12" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countB12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countB12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+            {
+                countB12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countB12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
-    <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countE12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
-        {
-            countE12 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnE12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+        <table class="table" id="transactionsE12" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countE12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countE12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+            {
+                countE12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countE12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
-    <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countGas12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
-        {
-            countGas12 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnGas12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">drive_eta</i>Gas</a>
+        <table class="table" id="transactionsGas12" align="center" style="display:none; width:25%; margin-bottom:25px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countGas12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
+            @{ int countGas12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+            {
+                countGas12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countGas12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
 
-    <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countM12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {
-            countM12 += 1;
+        <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM12" style="font-weight:bold; font-size:20px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+        <table class="table" id="transactionsM12" align="center" style="display:none; width:25%; margin-bottom:15px;">
             <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>@item.Cost</td>
-                <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
             </tr>
-        }
-        @if (countM12 == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-</div>
+            @{ int countM12 = 0;}
+            @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+            {
+                countM12 += 1;
+                <tr style="border-bottom: 1px dotted #cfd8dc">
+                    <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                    <td>@item.Description</td>
+                    <td>@item.Cost</td>
+                    <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                </tr>
+            }
+            @if (countM12 == 0)
+            {
+                <tr>
+                    <th>No Transactions...</th>
+                </tr>
+            }
+        </table>
+    </div>
 
 
 <style>
@@ -2101,28 +2099,305 @@
 
     //Show/Hide transactions based on category
     function Transactions() {
-        $('#transaction-btnG').on('click', function () {
-            $('#transactionsG').toggle();
+
+        //Jan
+        $('#transaction-btnG1').on('click', function () {
+            $('#transactionsG1').toggle();
         });
 
-        $('#transaction-btnH').on('click', function () {
-            $('#transactionsH').toggle();
+        $('#transaction-btnH1').on('click', function () {
+            $('#transactionsH1').toggle();
         });
 
-        $('#transaction-btnB').on('click', function () {
-            $('#transactionsB').toggle();
+        $('#transaction-btnB1').on('click', function () {
+            $('#transactionsB1').toggle();
         });
 
-        $('#transaction-btnE').on('click', function () {
-            $('#transactionsE').toggle();
+        $('#transaction-btnE1').on('click', function () {
+            $('#transactionsE1').toggle();
         });
 
-        $('#transaction-btnGas').on('click', function () {
-            $('#transactionsGas').toggle();
+        $('#transaction-btnGas1').on('click', function () {
+            $('#transactionsGas1').toggle();
         });
 
-        $('#transaction-btnM').on('click', function () {
-            $('#transactionsM').toggle();
+        $('#transaction-btnM1').on('click', function () {
+            $('#transactionsM1').toggle();
+        });
+
+        //Feb
+        $('#transaction-btnG2').on('click', function () {
+            $('#transactionsG2').toggle();
+        });
+
+        $('#transaction-btnH2').on('click', function () {
+            $('#transactionsH2').toggle();
+        });
+
+        $('#transaction-btnB2').on('click', function () {
+            $('#transactionsB2').toggle();
+        });
+
+        $('#transaction-btnE2').on('click', function () {
+            $('#transactionsE2').toggle();
+        });
+
+        $('#transaction-btnGas2').on('click', function () {
+            $('#transactionsGas2').toggle();
+        });
+
+        $('#transaction-btnM2').on('click', function () {
+            $('#transactionsM2').toggle();
+        });
+
+        //March
+        $('#transaction-btnG3').on('click', function () {
+            $('#transactionsG3').toggle();
+        });
+
+        $('#transaction-btnH3').on('click', function () {
+            $('#transactionsH3').toggle();
+        });
+
+        $('#transaction-btnB3').on('click', function () {
+            $('#transactionsB3').toggle();
+        });
+
+        $('#transaction-btnE3').on('click', function () {
+            $('#transactionsE3').toggle();
+        });
+
+        $('#transaction-btnGas3').on('click', function () {
+            $('#transactionsGas3').toggle();
+        });
+
+        $('#transaction-btnM3').on('click', function () {
+            $('#transactionsM3').toggle();
+        });
+
+        //Apr
+        $('#transaction-btnG4').on('click', function () {
+            $('#transactionsG4').toggle();
+        });
+
+        $('#transaction-btnH4').on('click', function () {
+            $('#transactionsH4').toggle();
+        });
+
+        $('#transaction-btnB4').on('click', function () {
+            $('#transactionsB4').toggle();
+        });
+
+        $('#transaction-btnE4').on('click', function () {
+            $('#transactionsE4').toggle();
+        });
+
+        $('#transaction-btnGas4').on('click', function () {
+            $('#transactionsGas4').toggle();
+        });
+
+        $('#transaction-btnM4').on('click', function () {
+            $('#transactionsM4').toggle();
+        });
+
+        //May
+        $('#transaction-btnG5').on('click', function () {
+            $('#transactionsG5').toggle();
+        });
+
+        $('#transaction-btnH5').on('click', function () {
+            $('#transactionsH5').toggle();
+        });
+
+        $('#transaction-btnB5').on('click', function () {
+            $('#transactionsB5').toggle();
+        });
+
+        $('#transaction-btnE5').on('click', function () {
+            $('#transactionsE5').toggle();
+        });
+
+        $('#transaction-btnGas5').on('click', function () {
+            $('#transactionsGas5').toggle();
+        });
+
+        $('#transaction-btnM5').on('click', function () {
+            $('#transactionsM5').toggle();
+        });
+
+        //June
+        $('#transaction-btnG6').on('click', function () {
+            $('#transactionsG6').toggle();
+        });
+
+        $('#transaction-btnH6').on('click', function () {
+            $('#transactionsH6').toggle();
+        });
+
+        $('#transaction-btnB6').on('click', function () {
+            $('#transactionsB6').toggle();
+        });
+
+        $('#transaction-btnE6').on('click', function () {
+            $('#transactionsE6').toggle();
+        });
+
+        $('#transaction-btnGas6').on('click', function () {
+            $('#transactionsGas6').toggle();
+        });
+
+        $('#transaction-btnM6').on('click', function () {
+            $('#transactionsM6').toggle();
+        });
+
+        //July
+        $('#transaction-btnG7').on('click', function () {
+            $('#transactionsG7').toggle();
+        });
+
+        $('#transaction-btnH7').on('click', function () {
+            $('#transactionsH7').toggle();
+        });
+
+        $('#transaction-btnB7').on('click', function () {
+            $('#transactionsB7').toggle();
+        });
+
+        $('#transaction-btnE7').on('click', function () {
+            $('#transactionsE7').toggle();
+        });
+
+        $('#transaction-btnGas7').on('click', function () {
+            $('#transactionsGas8').toggle();
+        });
+
+        $('#transaction-btnM7').on('click', function () {
+            $('#transactionsM7').toggle();
+        });
+
+        //Aug
+        $('#transaction-btnG8').on('click', function () {
+            $('#transactionsG8').toggle();
+        });
+
+        $('#transaction-btnH8').on('click', function () {
+            $('#transactionsH8').toggle();
+        });
+
+        $('#transaction-btnB8').on('click', function () {
+            $('#transactionsB8').toggle();
+        });
+
+        $('#transaction-btnE8').on('click', function () {
+            $('#transactionsE8').toggle();
+        });
+
+        $('#transaction-btnGas8').on('click', function () {
+            $('#transactionsGas8').toggle();
+        });
+
+        $('#transaction-btnM8').on('click', function () {
+            $('#transactionsM8').toggle();
+        });
+
+        //Sept
+        $('#transaction-btnG9').on('click', function () {
+            $('#transactionsG9').toggle();
+        });
+
+        $('#transaction-btnH9').on('click', function () {
+            $('#transactionsH9').toggle();
+        });
+
+        $('#transaction-btnB9').on('click', function () {
+            $('#transactionsB9').toggle();
+        });
+
+        $('#transaction-btnE9').on('click', function () {
+            $('#transactionsE9').toggle();
+        });
+
+        $('#transaction-btnGas9').on('click', function () {
+            $('#transactionsGas9').toggle();
+        });
+
+        $('#transaction-btnM9').on('click', function () {
+            $('#transactionsM9').toggle();
+        });
+
+        //Oct
+        $('#transaction-btnG10').on('click', function () {
+            $('#transactionsG10').toggle();
+        });
+
+        $('#transaction-btnH10').on('click', function () {
+            $('#transactionsH10').toggle();
+        });
+
+        $('#transaction-btnB10').on('click', function () {
+            $('#transactionsB10').toggle();
+        });
+
+        $('#transaction-btnE10').on('click', function () {
+            $('#transactionsE10').toggle();
+        });
+
+        $('#transaction-btnGas10').on('click', function () {
+            $('#transactionsGas10').toggle();
+        });
+
+        $('#transaction-btnM10').on('click', function () {
+            $('#transactionsM10').toggle();
+        });
+
+        //Nov
+        $('#transaction-btnG11').on('click', function () {
+            $('#transactionsG11').toggle();
+        });
+
+        $('#transaction-btnH11').on('click', function () {
+            $('#transactionsH11').toggle();
+        });
+
+        $('#transaction-btnB11').on('click', function () {
+            $('#transactionsB11').toggle();
+        });
+
+        $('#transaction-btnE11').on('click', function () {
+            $('#transactionsE11').toggle();
+        });
+
+        $('#transaction-btnGas11').on('click', function () {
+            $('#transactionsGas11').toggle();
+        });
+
+        $('#transaction-btnM11').on('click', function () {
+            $('#transactionsM11').toggle();
+        });
+
+        //Dec
+        $('#transaction-btnG12').on('click', function () {
+            $('#transactionsG12').toggle();
+        });
+
+        $('#transaction-btnH12').on('click', function () {
+            $('#transactionsH12').toggle();
+        });
+
+        $('#transaction-btnB12').on('click', function () {
+            $('#transactionsB12').toggle();
+        });
+
+        $('#transaction-btnE12').on('click', function () {
+            $('#transactionsE12').toggle();
+        });
+
+        $('#transaction-btnGas12').on('click', function () {
+            $('#transactionsGas12').toggle();
+        });
+
+        $('#transaction-btnM12').on('click', function () {
+            $('#transactionsM12').toggle();
         });
 
 
@@ -2175,73 +2450,139 @@
         });
     }
 
-    var clickedG = true;
-    var clickedH = true;
-    var clickedB = true;
-    var clickedE = true;
-    var clickedGas = true;
-    var clickedM = true;
+    var clickedJan = true;
+    var clickedFeb = true;
+    var clickedMarch = true;
+    var clickedApr = true;
+    var clickedMay = true;
+    var clickedJune = true;
+    var clickedJuly = true;
+    var clickedAug = true;
+    var clickedSept = true;
+    var clickedOct = true;
+    var clickedNov = true;
+    var clickedDec = true;
 
-
-    $('#transaction-btnG').click(function () {
-        if (clickedG) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedG = false;
+    //Add green to clicked month buttons
+    $('#jan').click(function () {
+        if (clickedJan) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJan = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedG = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJan = true;
         }
     });
 
-    $('#transaction-btnH').click(function () {
-        if (clickedH) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedH = false;
+    $('#feb').click(function () {
+        if (clickedFeb) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedFeb = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedH = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedFeb = true;
         }
     });
 
-    $('#transaction-btnB').click(function () {
-        if (clickedB) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedB = false;
+    $('#march').click(function () {
+        if (clickedMarch) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedMarch = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedB = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedMarch = true;
         }
     });
 
-    $('#transaction-btnE').click(function () {
-        if (clickedE) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedE = false;
+    $('#apr').click(function () {
+        if (clickedApr) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedApr = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedE = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedApr = true;
         }
     });
 
-    $('#transaction-btnGas').click(function () {
-        if (clickedGas) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedGas = false;
+    $('#may').click(function () {
+        if (clickedMay) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedMay = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedGas = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedMay = true;
         }
     });
 
-    $('#transaction-btnM').click(function () {
-        if (clickedM) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;");
-            clickedM = false;
+    $('#june').click(function () {
+        if (clickedJune) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJune = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold;");
-            clickedM = true;
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJune = true;
         }
     });
 
+    $('#july').click(function () {
+        if (clickedJuly) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJuly = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedJuly = true;
+        }
+    });
+
+    $('#aug').click(function () {
+        if (clickedAug) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedAug = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedAug = true;
+        }
+    });
+
+    $('#sept').click(function () {
+        if (clickedSept) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;font-size:20px; margin-top:10px;");
+            clickedSept = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedSept = true;
+        }
+    });
+
+    $('#oct').click(function () {
+        if (clickedOct) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedOct = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedOct = true;
+        }
+    });
+
+    $('#nov').click(function () {
+        if (clickedNov) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedNov = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedNov = true;
+        }
+    });
+
+    $('#dec').click(function () {
+        if (clickedDec) {
+            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedDec = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            clickedDec = true;
+        }
+    });
 
 </script>
+
