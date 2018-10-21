@@ -24,7 +24,7 @@ namespace MyWebsite.Controllers
 
         public int GetLimit(string limitType, int budgetMonth)
         {
-            if(limitType == "Grocery")
+            if (limitType == "Grocery")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GroceryLimit).FirstOrDefault();
                 int limitInt = Convert.ToInt32(limit);
@@ -62,7 +62,7 @@ namespace MyWebsite.Controllers
             if (limitType == "Misc")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.MiscLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);                
+                int limitInt = Convert.ToInt32(limit);
                 return limitInt;
             }
             else
@@ -92,8 +92,8 @@ namespace MyWebsite.Controllers
             float totalBills = 0;
             float totalEntertainment = 0;
             float totalGas = 0;
-            float totalMisc = 0;          
-          
+            float totalMisc = 0;
+
             if (userName == null)
             {
                 TempData["isBudgetEmpty"] = true;
@@ -104,7 +104,7 @@ namespace MyWebsite.Controllers
                 var budget = _context.Budget.Where(x => x.Email == userName).Where(x => x.Month == month);
                 int budgetId = budget.Select(x => x.Id).FirstOrDefault();
 
-                if(budgetId == 0)
+                if (budgetId == 0)
                 {
                     TempData["isBudgetEmpty"] = true;
                     var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name);
@@ -122,11 +122,11 @@ namespace MyWebsite.Controllers
                 {
                     TempData["isBudgetEmpty"] = false;
 
-                    foreach(var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
+                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
                     {
                         float cost = item.Cost;
                         totalGrocery += cost;
-                         
+
                     }
 
                     foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2))
@@ -174,7 +174,7 @@ namespace MyWebsite.Controllers
                     float totalSpent = totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
 
                     TempData["totalSpent"] = totalSpent;
-                    TempData["TotalLimit"] = totalBudget;                               
+                    TempData["TotalLimit"] = totalBudget;
                     TempData["groceryTotal"] = totalGrocery;
                     TempData["housingTotal"] = totalHousing;
                     TempData["billsTotal"] = totalBills;
@@ -184,9 +184,8 @@ namespace MyWebsite.Controllers
 
                     return View(budget);
                 }
-            }         
+            }
         }
-
 
         //Set Budget Limits
         [HttpPost]
@@ -205,14 +204,14 @@ namespace MyWebsite.Controllers
                     budget.MiscLimit = pastBudget.MiscLimit;
                 }
                 _context.Add(budget);
-                _context.SaveChanges();     
+                _context.SaveChanges();
                 return RedirectToAction("Index", new { userName = User.Identity.Name });
             }
             else
             {
                 return View();
             }
-                     
+
         }
 
         //Add Transaction
@@ -237,7 +236,7 @@ namespace MyWebsite.Controllers
                 ViewBag.typeError = "Please select a budget type from the dropdown.";
                 errors = true;
             }
-                        
+
             if (budgetItems.Cost <= 0)
             {
                 ViewBag.costError = "Please enter a description and price for your transaction.";
@@ -259,7 +258,7 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
-        public ActionResult PastBudgets()
+        public ActionResult PastBudgets(bool deleted, string description)
         {
             TempData["jan"] = false;
             TempData["feb"] = false;
@@ -273,6 +272,12 @@ namespace MyWebsite.Controllers
             TempData["oct"] = false;
             TempData["nov"] = false;
             TempData["dec"] = false;
+
+            if (deleted)
+            {
+                description = description.ToUpper();
+                ViewBag.Deleted = ($"Transaction: {description} was successfully deleted!");
+            }
 
             var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name);
             //Seeting month to true if budget for that month exists
@@ -394,9 +399,7 @@ namespace MyWebsite.Controllers
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
                     _context.Update(budget);
@@ -415,9 +418,7 @@ namespace MyWebsite.Controllers
                     {
                         throw;
                     }
-                }                 
-            }
-            return View(budget);
+                }                       
         }
 
         //Delete Specific Transaction
@@ -432,23 +433,26 @@ namespace MyWebsite.Controllers
             return RedirectToAction("AddTransaction");
         }
 
-        // GET: Budgets/Delete
-        public async Task<IActionResult> Delete(int? id)
+        //Delete Past Specific Transaction
+        public IActionResult DeletePastTransaction(int? id)
         {
-            if (id == null)
+            var budgetTransaction = _context.BudgetItems.SingleOrDefault(x => x.TransactionId == id);
+            if (budgetTransaction != null)
             {
-                return NotFound();
+                _context.BudgetItems.Remove(budgetTransaction);
+                _context.SaveChanges();
+
+                bool itemDeleted = true;
+                string itemDeletedDescr = budgetTransaction.Description;
+                return RedirectToAction("PastBudgets", new { deleted = itemDeleted, description = itemDeletedDescr });
+
             }
 
-            var budget = await _context.Budget
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (budget == null)
-            {
-                return NotFound();
-            }
+            return RedirectToAction("PastBudgets");
 
-            return View(budget);
         }
+
+
 
         // POST: Budgets/Delete
         [HttpPost, ActionName("Delete")]

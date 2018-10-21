@@ -15,12 +15,12 @@ namespace MyWebsite.Models.BudgetProject
         public int Id { get; set; }
         [EmailAddress]
         public string Email { get; set; }
-        public float GroceryLimit { get; set; }
-        public float HousingLimit { get; set; }
-        public float EntLimit { get; set; }
-        public float BillsLimit { get; set; }
-        public float GasLimit {get; set;}
-        public float MiscLimit { get; set; }
+        public float GroceryLimit { get; set; } = 0;
+        public float HousingLimit { get; set; } = 0;
+        public float EntLimit { get; set; } = 0;
+        public float BillsLimit { get; set; } = 0;
+        public float GasLimit { get; set; } = 0;
+        public float MiscLimit { get; set; } = 0;
         public int Month { get; set; }
         public List<BudgetItems> BudgetTransactions = new List<BudgetItems>();
 
