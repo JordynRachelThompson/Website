@@ -27,43 +27,37 @@ namespace MyWebsite.Controllers
             if (limitType == "Grocery")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GroceryLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
 
             if (limitType == "Housing")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.HousingLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
 
             if (limitType == "Bills")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.BillsLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
 
             if (limitType == "Entertainment")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.EntLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
 
             if (limitType == "Gas")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GasLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
 
             if (limitType == "Misc")
             {
                 var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.MiscLimit).FirstOrDefault();
-                int limitInt = Convert.ToInt32(limit);
-                return limitInt;
+                return Convert.ToInt32(limit);
             }
             else
             {
@@ -71,7 +65,31 @@ namespace MyWebsite.Controllers
             }
         }
 
-        public BudgetsController(ApplicationDbContext context)
+        public int GetTotalLimitByMonth(int month)
+        {
+            int grocery = GetLimit("Grocery", month);
+            int housing = GetLimit("Housing", month);
+            int bills = GetLimit("Bills", month);
+            int ent = GetLimit("Ent", month);
+            int gas = GetLimit("Gas", month);
+            int misc = GetLimit("Misc", month);
+
+            int sum = grocery + housing + bills + ent + gas + misc;
+            return sum;
+        }
+
+        public int TotalSpentByMonth(int month)
+        {
+            var budgetItemsTotal = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == month).Select(x => x.Cost).Sum();
+
+            return Convert.ToInt32(budgetItemsTotal); 
+        }
+
+
+    //      .Select(x => new { x.ServerName, x.ProcessID, x.Username
+    //}).ToList();
+
+    public BudgetsController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -273,6 +291,36 @@ namespace MyWebsite.Controllers
             TempData["nov"] = false;
             TempData["dec"] = false;
 
+
+            //Budget totals for pie charts
+
+            TempData["janTotal"] = GetTotalLimitByMonth(1);
+            TempData["febTotal"] = GetTotalLimitByMonth(2);
+            TempData["marchTotal"] = GetTotalLimitByMonth(3);
+            TempData["aprTotal"] = GetTotalLimitByMonth(4);
+            TempData["mayTotal"] = GetTotalLimitByMonth(5);
+            TempData["juneTotal"] = GetTotalLimitByMonth(6);
+            TempData["julyTotal"] = GetTotalLimitByMonth(7);
+            TempData["augTotal"] = GetTotalLimitByMonth(8);
+            TempData["septTotal"] = GetTotalLimitByMonth(9);
+            TempData["octTotal"] = GetTotalLimitByMonth(10);
+            TempData["novTotal"] = GetTotalLimitByMonth(11);
+            TempData["decTotal"] = GetTotalLimitByMonth(12);
+
+            TempData["spentInJan"] = TotalSpentByMonth(1);
+            TempData["spentInFeb"] = TotalSpentByMonth(2);
+            TempData["spentInMarch"] = TotalSpentByMonth(3);
+            TempData["spentInApr"] = TotalSpentByMonth(4);
+            TempData["spentInMay"] = TotalSpentByMonth(5);
+            TempData["spentInJune"] = TotalSpentByMonth(6);
+            TempData["spentInJuly"] = TotalSpentByMonth(7);
+            TempData["spentInAug"] = TotalSpentByMonth(8);
+            TempData["spentInSept"] = TotalSpentByMonth(9);
+            TempData["spentInOct"] = TotalSpentByMonth(10);
+            TempData["spentInNov"] = TotalSpentByMonth(11);
+            TempData["spentInDec"] = TotalSpentByMonth(12);
+
+
             if (deleted)
             {
                 description = description.ToUpper();
@@ -280,6 +328,7 @@ namespace MyWebsite.Controllers
             }
 
             var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name);
+
             //Seeting month to true if budget for that month exists
             foreach (var transaction in pastBudgetTransactions)
             {
@@ -451,8 +500,6 @@ namespace MyWebsite.Controllers
             return RedirectToAction("PastBudgets");
 
         }
-
-
 
         // POST: Budgets/Delete
         [HttpPost, ActionName("Delete")]

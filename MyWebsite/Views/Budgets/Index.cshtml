@@ -367,13 +367,8 @@ else
                 </div>
             </div>
         }
-
-        @*<div class="center-div" id="donutchartTotal" style="width: 900px; height: 500px;"></div>*@
     }
 }
-
-<h2 id="totalSpent" style="display:none">@spent</h2>
-<h2 id="totalBudget" style="display:none">@limit</h2>
 
 
 
@@ -581,34 +576,6 @@ else
             chart.draw(data, options);
         }
     }
-
-                                    //function donutChartTotal() {
-                                    //    var totalSpent = parseInt(document.getElementById('totalSpent').innerHTML);
-                                    //    var totalBudget = parseInt(document.getElementById('totalBudget').innerHTML);
-
-                                    //    var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
-
-                                    //    google.charts.load("current", { packages: ["corechart"] });
-                                    //    google.charts.setOnLoadCallback(drawChart);
-                                    //    function drawChart() {
-                                    //        var data = google.visualization.arrayToDataTable(budgetData);
-                                    //        var options = {
-                                    //            titleTextStyle: {
-                                    //                color: '#cfd8dc',
-                                    //                fontSize: 28,
-                                    //                bold: true,
-                                    //                fontName: 'arial',
-                                    //            }
-                                    //            , title: 'Total Budget',
-                                    //            colors: ['#e6c5c4', '#6cb7b1'],
-                                    //            pieHole: 0.5,
-                                    //            backgroundColor: '#212121',
-                                    //            color: '#cfd8dc',
-                                    //            is3D: true,
-                                    //        };
-                                    //        var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal'));
-                                    //        chart.draw(data, options);
-                                    //    }
-                                    //};
+                                      
 </script>
 
