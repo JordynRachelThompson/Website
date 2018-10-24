@@ -87,7 +87,7 @@
 
 @*ONE - JAN*@
 <div class="container center" id="itemizedBudgetContainer1" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">January Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">January Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG1" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG1" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -249,11 +249,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent11" style="display:none">@TempData["spentInJan"]</h2>
+    <h2 id="totalBudget11" style="display:none">@TempData["janTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal11"></div>
 </div>
 
 @*@*TWO - FEB*@
 <div class="container center" id="itemizedBudgetContainer2" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">February Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">February Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG2" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG2" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -415,11 +420,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent2" style="display:none">@TempData["spentInFeb"]</h2>
+    <h2 id="totalBudget2" style="display:none">@TempData["febTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal2"></div>
 </div>
 
 @*THREE - MAR*@
 <div class="container center" id="itemizedBudgetContainer3" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">March Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">March Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG3" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG3" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -581,11 +591,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent3" style="display:none">@TempData["spentInMarch"]</h2>
+    <h2 id="totalBudget3" style="display:none">@TempData["marchTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal3"></div>
 </div>
 
 @*FOUR - APR*@
 <div class="container center" id="itemizedBudgetContainer4" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">April Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">April Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG4" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -747,11 +762,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent4" style="display:none">@TempData["spentInApr"]</h2>
+    <h2 id="totalBudget4" style="display:none">@TempData["aprTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal4"></div>
 </div>
 
 @*FIVE - MAY*@
 <div class="container center" id="itemizedBudgetContainer5" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">May Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">May Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG5" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG5" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -913,11 +933,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent5" style="display:none">@TempData["spentInMay"]</h2>
+    <h2 id="totalBudget5" style="display:none">@TempData["mayTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal5"></div>
 </div>
 
 @*SIX - JUNE*@
 <div class="container center" id="itemizedBudgetContainer6" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">June Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">June Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG6" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG6" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1079,11 +1104,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent6" style="display:none">@TempData["spentInJune"]</h2>
+    <h2 id="totalBudget6" style="display:none">@TempData["juneTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal6"></div>
 </div>
 
 @*SEVEN - JULY*@
 <div class="container center" id="itemizedBudgetContainer7" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">July Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">July Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG7" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG7" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1245,11 +1275,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent7" style="display:none">@TempData["spentInJuly"]</h2>
+    <h2 id="totalBudget7" style="display:none">@TempData["julyTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal7"></div>
 </div>
 
 @*EIGHT - AUG>*@
 <div class="container center" id="itemizedBudgetContainer8" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">August Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">August Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG8" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG8" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1411,11 +1446,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent8" style="display:none">@TempData["spentInAug"]</h2>
+    <h2 id="totalBudget8" style="display:none">@TempData["augTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal8"></div>
 </div>
 
 @*NINE - SEPT*@
 <div class="container center" id="itemizedBudgetContainer9" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">September Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">September Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG9" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG9" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1577,11 +1617,16 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent9" style="display:none">@TempData["spentInSept"]</h2>
+    <h2 id="totalBudget9" style="display:none">@TempData["septTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal9"></div>
 </div>
 
 @*TEN - OCT*@
 <div class="container center" id="itemizedBudgetContainer10" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">October Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">October Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG10" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG10" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1745,14 +1790,15 @@
     </table>
 
     <h2 id="totalSpent10" style="display:none">@TempData["spentInOct"]</h2>
-    <h2 id="totalBudget10" style="display:none">@TempData["octToal"]</h2>
-    <div class="center-div" id="donutchartTotal10" style="width: 900px; height: 500px;"></div>
+    <h2 id="totalBudget10" style="display:none">@TempData["octTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal10"></div>
 
 </div>
 
 @*ELEVEN - NOV*@
 <div class="container center" id="itemizedBudgetContainer11" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">November Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">November Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG11" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG11" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -1914,12 +1960,17 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent11" style="display:none">@TempData["spentInNov"]</h2>
+    <h2 id="totalBudget11" style="display:none">@TempData["novTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal11"></div>
 </div>
 
 
 @*TWELVE - DEC*@
 <div class="container center" id="itemizedBudgetContainer12" style="margin-top:35px; margin-bottom:50px; display:none;">
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">December Transactions</h5>
+    <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">December Transactions</h5>
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnG12" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG12" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -2081,6 +2132,11 @@
             </tr>
         }
     </table>
+
+    <h2 id="totalSpent12" style="display:none">@TempData["spentInDec"]</h2>
+    <h2 id="totalBudget12" style="display:none">@TempData["decTotal"]</h2>
+    <div style="margin-bottom:-100px;"></div>
+    <div align="center" id="donutchartTotal12"></div>
 </div>
 
 
@@ -2094,12 +2150,18 @@
         }
 </style>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 <script>
     $(document).ready(function () {
         //$('.dropdown-trigger').dropdown();
         $('select').formSelect();
         //var instance = M.FormSelect.getInstance(elem);
         Transactions();
+
+        donutChartTotal10()
+        donutChartTotal11()
+        donutChartTotal12()
     });
 
     //Show/Hide transactions based on category
@@ -2594,7 +2656,7 @@
         var totalSpent = parseInt(document.getElementById('totalSpent10').innerHTML);
         var totalBudget = parseInt(document.getElementById('totalBudget10').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpent], ['Remaining', totalBudget]];
+        var budgetData = [['Total Spent', 'Remaining'], ['Total Spent', totalSpent], ['Remaining', totalBudget]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -2603,18 +2665,88 @@
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
-                    fontSize: 28,
+                    fontSize: 35,
                     bold: true,
-                    fontName: 'arial',
+                    fontName: 'arial'                    
                 }
-                , title: 'Total Budget',
+                , 
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
+                width: 900,
+                height: 900,
+                fontSize: 30,
+                bold: true
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal10'));
+            chart.draw(data, options);
+        }
+    };
+
+    function donutChartTotal11() {
+        var totalSpent = parseInt(document.getElementById('totalSpent11').innerHTML);
+        var totalBudget = parseInt(document.getElementById('totalBudget11').innerHTML);
+
+        var budgetData = [['Total Spent', 'Remaining'], ['Total Spent', totalSpent], ['Remaining', totalBudget]];
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(budgetData);
+            var options = {
+                titleTextStyle: {
+                    color: '#cfd8dc',
+                    fontSize: 35,
+                    bold: true,
+                    fontName: 'arial'
+                }
+                ,
+                colors: ['#e6c5c4', '#6cb7b1'],
+                pieHole: 0.5,
+                backgroundColor: 'black',
+                color: '#cfd8dc',
+                is3D: true,
+                width: 900,
+                height: 900,
+                fontSize: 30,
+                bold: true
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal11'));
+            chart.draw(data, options);
+        }
+    };
+
+    function donutChartTotal12() {
+        var totalSpent = parseInt(document.getElementById('totalSpent12').innerHTML);
+        var totalBudget = parseInt(document.getElementById('totalBudget12').innerHTML);
+
+        var budgetData = [['Total Spent', 'Remaining'], ['Total Spent', totalSpent], ['Remaining', totalBudget]];
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(budgetData);
+            var options = {
+                titleTextStyle: {
+                    color: '#cfd8dc',
+                    fontSize: 35,
+                    bold: true,
+                    fontName: 'arial'
+                }
+                ,
+                colors: ['#e6c5c4', '#6cb7b1'],
+                pieHole: 0.5,
+                backgroundColor: 'black',
+                color: '#cfd8dc',
+                is3D: true,
+                width: 900,
+                height: 900,
+                fontSize: 30,
+                bold: true
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal12'));
             chart.draw(data, options);
         }
     };
