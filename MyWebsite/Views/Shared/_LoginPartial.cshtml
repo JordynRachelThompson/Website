@@ -14,7 +14,7 @@
                     <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="blue-grey-lighten-4-text userName" style="font-size:20px;">Hello @UserManager.GetUserName(User)!</a>
                 </li>
                 <li>
-                    <button type="submit" class="waves-effect waves-light btn red accent-4 sharpCorners">Log out</button>
+                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log out</button>
                 </li>
             </ul>
         </form>
@@ -24,9 +24,8 @@ else
 {
     <div class="container">
         <ul id="buttonInLine">
-            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn red accent-4 sharpCorners">Register</a></li>
-            @*<li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-userName="@User.Identity.Name" class="waves-effect waves-light btn red accent-4 sharpCorners">Log in</a></li>*@
-            <li><a href='@Url.Action("Login", "Account")' class="waves-effect waves-light btn red accent-4 sharpCorners">Log in</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Register</a></li>
+            <li><a href='@Url.Action("Login", "Account")' class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</a></li>
 
         </ul>
     </div>

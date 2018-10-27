@@ -1,26 +1,21 @@
 ﻿@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
-@{
-    ViewData["Title"] = "PastBudgets";
-}
 
-@{
-    string user = User.Identity.Name;
-}
+@{string user = User.Identity.Name;}
 
-@*Does user have a budget for a particular month*@
 
 <div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
-<h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-top:100px;">The Painless Budget</h3>
+<h3 style="text-align:center; color:#81cac4; font-weight:bold; margin-top:100px;">The Painless Budget</h3>
 <div style="border-bottom: 1px dotted #cfd8dc;"></div>
 
 <div class="container">
     <div style="margin-top:55px; text-align:center;">
-        <p style="text-align:center; font-weight:bold; color:#76ff03; margin-top:10px;">@ViewBag.Deleted</p>
+        <p style="text-align:center; font-weight:bold; color:#81cac4; margin-top:10px;">@ViewBag.Deleted</p>
         <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
     </div>
-    <h5 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#b2dfdb; text-align:center">Past Budgets</h5>
 
-    @*Display month buttons only for months with budgets*@
+    <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Past Budgets</h4>
+
+    @*Displays month buttons only for months with budgets*@
     <div style="text-align:center">
         @if (Convert.ToBoolean(TempData["jan"]))
         {
@@ -103,7 +98,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -130,7 +125,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -157,7 +152,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -184,7 +179,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -211,7 +206,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -224,7 +219,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM1" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM1" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM1" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -238,7 +233,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -250,10 +245,10 @@
         }
     </table>
 
-    <h2 id="totalSpent11" style="display:none">@TempData["spentInJan"]</h2>
-    <h2 id="totalBudget11" style="display:none">@TempData["janTotal"]</h2>
+    <h2 id="totalSpent1" style="display:none">@TempData["spentInJan"]</h2>
+    <h2 id="totalBudget1" style="display:none">@TempData["janTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal11"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal1"></div>
 </div>
 
 @*@*TWO - FEB*@
@@ -274,7 +269,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -301,7 +296,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -328,7 +323,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -355,7 +350,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -382,7 +377,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -395,7 +390,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM2" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM2" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM2" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -409,7 +404,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -424,7 +419,7 @@
     <h2 id="totalSpent2" style="display:none">@TempData["spentInFeb"]</h2>
     <h2 id="totalBudget2" style="display:none">@TempData["febTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal2"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal2"></div>
 </div>
 
 @*THREE - MAR*@
@@ -445,7 +440,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -472,7 +467,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -499,7 +494,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -526,7 +521,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -553,7 +548,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -566,7 +561,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM3" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM3" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM3" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -580,7 +575,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -595,7 +590,7 @@
     <h2 id="totalSpent3" style="display:none">@TempData["spentInMarch"]</h2>
     <h2 id="totalBudget3" style="display:none">@TempData["marchTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal3"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal3"></div>
 </div>
 
 @*FOUR - APR*@
@@ -616,7 +611,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -643,7 +638,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -670,7 +665,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -697,7 +692,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -724,7 +719,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -737,7 +732,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM4" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM4" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -751,7 +746,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -766,7 +761,7 @@
     <h2 id="totalSpent4" style="display:none">@TempData["spentInApr"]</h2>
     <h2 id="totalBudget4" style="display:none">@TempData["aprTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal4"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal4"></div>
 </div>
 
 @*FIVE - MAY*@
@@ -787,7 +782,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -814,7 +809,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -841,7 +836,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -868,7 +863,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -895,7 +890,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -908,7 +903,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM5" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM5" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM5" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -922,7 +917,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -937,7 +932,7 @@
     <h2 id="totalSpent5" style="display:none">@TempData["spentInMay"]</h2>
     <h2 id="totalBudget5" style="display:none">@TempData["mayTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal5"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal5"></div>
 </div>
 
 @*SIX - JUNE*@
@@ -958,7 +953,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -985,7 +980,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1012,7 +1007,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1039,7 +1034,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1066,7 +1061,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1079,7 +1074,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM6" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM6" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM6" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1093,7 +1088,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1108,7 +1103,7 @@
     <h2 id="totalSpent6" style="display:none">@TempData["spentInJune"]</h2>
     <h2 id="totalBudget6" style="display:none">@TempData["juneTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal6"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal6"></div>
 </div>
 
 @*SEVEN - JULY*@
@@ -1129,7 +1124,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1156,7 +1151,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1183,7 +1178,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1210,7 +1205,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1237,7 +1232,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1250,7 +1245,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM7" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM7" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM7" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1264,7 +1259,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1279,7 +1274,7 @@
     <h2 id="totalSpent7" style="display:none">@TempData["spentInJuly"]</h2>
     <h2 id="totalBudget7" style="display:none">@TempData["julyTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal7"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal7"></div>
 </div>
 
 @*EIGHT - AUG>*@
@@ -1300,7 +1295,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1327,7 +1322,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1354,7 +1349,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1381,7 +1376,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1408,7 +1403,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1421,7 +1416,7 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM8" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM8" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM8" align="center" style="display:none; width:25%; margin-bottom:50px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
@@ -1435,7 +1430,7 @@
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1450,7 +1445,7 @@
     <h2 id="totalSpent8" style="display:none">@TempData["spentInAug"]</h2>
     <h2 id="totalBudget8" style="display:none">@TempData["augTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal8"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal8"></div>
 </div>
 
 @*NINE - SEPT*@
@@ -1464,19 +1459,19 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int count = 0;}
+        @{ int count9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
         {
-            count += 1;
+            count9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
 
-        @if (count == 0)
+        @if (count9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1491,18 +1486,18 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countH = 0;}
+        @{ int countH9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
         {
-            countH += 1;
+            countH9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countH == 0)
+        @if (countH9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1518,18 +1513,18 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countB = 0;}
+        @{ int countB9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
         {
-            countB += 1;
+            countB9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countB == 0)
+        @if (countB9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1545,18 +1540,18 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countE = 0;}
+        @{ int countE9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
         {
-            countE += 1;
+            countE9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countE == 0)
+        @if (countE9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1572,18 +1567,18 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countGas = 0;}
+        @{ int countGas9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
         {
-            countGas += 1;
+            countGas9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countGas == 0)
+        @if (countGas9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1592,25 +1587,25 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM9" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM9" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM9" align="center" style="display:none; width:25%; margin-bottom:100px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countM = 0;}
+        @{ int countM9 = 0;}
         @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
         {
-            countM += 1;
+            countM9 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countM == 0)
+        @if (countM9 == 0)
         {
             <tr>
                 <th>No Transactions...</th>
@@ -1621,7 +1616,7 @@
     <h2 id="totalSpent9" style="display:none">@TempData["spentInSept"]</h2>
     <h2 id="totalBudget9" style="display:none">@TempData["septTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal9"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal9"></div>
 </div>
 
 @*TEN - OCT*@
@@ -1636,13 +1631,13 @@
             <th></th>
         </tr>
         @{ int count10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
         {
             count10 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1663,13 +1658,13 @@
             <th></th>
         </tr>
         @{ int countH10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
         {
             countH10 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1690,13 +1685,13 @@
             <th></th>
         </tr>
         @{ int countB10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
         {
             countB10 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1717,13 +1712,13 @@
             <th></th>
         </tr>
         @{ int countE10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
         {
             countE10 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1744,13 +1739,13 @@
             <th></th>
         </tr>
         @{ int countGas10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
         {
             countGas10 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1763,23 +1758,29 @@
     </table>
 
     <a class="waves-effect waves-light btn-large sharpCorners grey darken-4" id="transaction-btnM10" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
-    <table class="table" id="transactionsM10" align="center" style="display:none; width:25%; margin-bottom:15px;">
+    <table class="table" id="transactionsM10" align="center" style="display:none; width:25%; margin-bottom:50px;">
+        @{ int countM10 = 0;}
+
+
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
             <th>Description</th>
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countM10 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+
+
+        @foreach (var item in Model.Where(x => x.Month == 10).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
         {
             countM10 += 1;
+
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
+
         }
         @if (countM10 == 0)
         {
@@ -1792,7 +1793,7 @@
     <h2 id="totalSpent10" style="display:none">@TempData["spentInOct"]</h2>
     <h2 id="totalBudget10" style="display:none">@TempData["octTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal10"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal10"></div>
 
 </div>
 
@@ -1808,13 +1809,13 @@
             <th></th>
         </tr>
         @{ int count11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
         {
             count11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1835,13 +1836,13 @@
             <th></th>
         </tr>
         @{ int countH11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
         {
             countH11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1862,13 +1863,13 @@
             <th></th>
         </tr>
         @{ int countB11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
         {
             countB11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1889,13 +1890,13 @@
             <th></th>
         </tr>
         @{ int countE11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
         {
             countE11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1916,13 +1917,13 @@
             <th></th>
         </tr>
         @{ int countGas11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
         {
             countGas11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1943,13 +1944,13 @@
             <th></th>
         </tr>
         @{ int countM11 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 11).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
         {
             countM11 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -1964,7 +1965,7 @@
     <h2 id="totalSpent11" style="display:none">@TempData["spentInNov"]</h2>
     <h2 id="totalBudget11" style="display:none">@TempData["novTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal11"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal11"></div>
 </div>
 
 
@@ -1980,13 +1981,13 @@
             <th></th>
         </tr>
         @{ int count12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
         {
             count12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2007,13 +2008,13 @@
             <th></th>
         </tr>
         @{ int countH12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
         {
             countH12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2034,13 +2035,13 @@
             <th></th>
         </tr>
         @{ int countB12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
         {
             countB12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2061,13 +2062,13 @@
             <th></th>
         </tr>
         @{ int countE12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
         {
             countE12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2088,13 +2089,13 @@
             <th></th>
         </tr>
         @{ int countGas12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
         {
             countGas12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2115,13 +2116,13 @@
             <th></th>
         </tr>
         @{ int countM12 = 0;}
-        @foreach (var item in Model.Where(x => x.Month == 9).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => x.Month == 12).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
         {
             countM12 += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
-                <td>@item.Cost</td>
+                <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
@@ -2136,7 +2137,7 @@
     <h2 id="totalSpent12" style="display:none">@TempData["spentInDec"]</h2>
     <h2 id="totalBudget12" style="display:none">@TempData["decTotal"]</h2>
     <div style="margin-bottom:-100px;"></div>
-    <div align="center" id="donutchartTotal12"></div>
+    <div align="center" style="margin-top:50px;" id="donutchartTotal12"></div>
 </div>
 
 
@@ -2146,7 +2147,7 @@
     }
 
         .trashcan-icon:hover {
-            color: #76ff03 !important;
+            color: #81cac4 !important;
         }
 </style>
 
@@ -2154,11 +2155,11 @@
 
 <script>
     $(document).ready(function () {
-        //$('.dropdown-trigger').dropdown();
         $('select').formSelect();
-        //var instance = M.FormSelect.getInstance(elem);
         Transactions();
 
+        donutChartTotal8()
+        donutChartTotal9()
         donutChartTotal10()
         donutChartTotal11()
         donutChartTotal12()
@@ -2533,7 +2534,7 @@
     //Add green to clicked month buttons
     $('#jan').click(function () {
         if (clickedJan) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedJan = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2543,7 +2544,7 @@
 
     $('#feb').click(function () {
         if (clickedFeb) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedFeb = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2553,7 +2554,7 @@
 
     $('#march').click(function () {
         if (clickedMarch) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedMarch = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2563,7 +2564,7 @@
 
     $('#apr').click(function () {
         if (clickedApr) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedApr = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2573,7 +2574,7 @@
 
     $('#may').click(function () {
         if (clickedMay) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedMay = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2583,7 +2584,7 @@
 
     $('#june').click(function () {
         if (clickedJune) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedJune = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2593,7 +2594,7 @@
 
     $('#july').click(function () {
         if (clickedJuly) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedJuly = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2603,7 +2604,7 @@
 
     $('#aug').click(function () {
         if (clickedAug) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedAug = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2613,7 +2614,7 @@
 
     $('#sept').click(function () {
         if (clickedSept) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold;font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold;font-size:20px; margin-top:10px;");
             clickedSept = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2623,7 +2624,7 @@
 
     $('#oct').click(function () {
         if (clickedOct) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedOct = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2633,7 +2634,7 @@
 
     $('#nov').click(function () {
         if (clickedNov) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedNov = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -2643,13 +2644,77 @@
 
     $('#dec').click(function () {
         if (clickedDec) {
-            $(this).css("cssText", "color: #76ff03 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedDec = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedDec = true;
         }
     });
+
+    function donutChartTotal8() {
+        var totalSpent = parseInt(document.getElementById('totalSpent8').innerHTML);
+        var totalBudget = parseInt(document.getElementById('totalBudget8').innerHTML);
+
+        var budgetData = [['Total Spent', 'Remaining'], ['Total Spent', totalSpent], ['Remaining', totalBudget]];
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(budgetData);
+            var options = {
+                titleTextStyle: {
+                    color: '#cfd8dc',
+                    bold: true,
+                    fontName: 'arial'
+                }
+                ,
+                colors: ['#e6c5c4', '#6cb7b1'],
+                pieHole: 0.5,
+                backgroundColor: 'black',
+                color: '#cfd8dc',
+                is3D: true,
+                width: 600,
+                height: 600,
+                fontSize: 25,
+                bold: true
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal8'));
+            chart.draw(data, options);
+        }
+    };
+
+    function donutChartTotal9() {
+        var totalSpent = parseInt(document.getElementById('totalSpent9').innerHTML);
+        var totalBudget = parseInt(document.getElementById('totalBudget9').innerHTML);
+
+        var budgetData = [['Total Spent', 'Remaining'], ['Total Spent', totalSpent], ['Remaining', totalBudget]];
+
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable(budgetData);
+            var options = {
+                titleTextStyle: {
+                    color: '#cfd8dc',
+                    bold: true,
+                    fontName: 'arial'
+                }
+                ,
+                colors: ['#e6c5c4', '#6cb7b1'],
+                pieHole: 0.5,
+                backgroundColor: 'black',
+                color: '#cfd8dc',
+                is3D: true,
+                width: 600,
+                height: 600,
+                fontSize: 25,
+                bold: true
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal9'));
+            chart.draw(data, options);
+        }
+    };
 
 
     function donutChartTotal10() {
@@ -2665,19 +2730,18 @@
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
-                    fontSize: 35,
                     bold: true,
-                    fontName: 'arial'                    
+                    fontName: 'arial'
                 }
-                , 
+                ,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
                 backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
-                width: 900,
-                height: 900,
-                fontSize: 30,
+                width: 600,
+                height: 600,
+                fontSize: 25,
                 bold: true
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal10'));
@@ -2698,7 +2762,6 @@
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
-                    fontSize: 35,
                     bold: true,
                     fontName: 'arial'
                 }
@@ -2708,9 +2771,9 @@
                 backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
-                width: 900,
-                height: 900,
-                fontSize: 30,
+                width: 600,
+                height: 600,
+                fontSize: 25,
                 bold: true
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal11'));
@@ -2731,7 +2794,6 @@
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
-                    fontSize: 35,
                     bold: true,
                     fontName: 'arial'
                 }
@@ -2741,18 +2803,15 @@
                 backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
-                width: 900,
-                height: 900,
-                fontSize: 30,
+                width: 600,
+                height: 600,
+                fontSize: 25,
                 bold: true
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal12'));
             chart.draw(data, options);
         }
     };
-
-
-
 
 </script>
 

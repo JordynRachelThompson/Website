@@ -324,7 +324,7 @@ namespace MyWebsite.Controllers
             if (deleted)
             {
                 description = description.ToUpper();
-                ViewBag.Deleted = ($"Transaction: {description} was successfully deleted!");
+                ViewBag.Deleted = ($"Transaction titled {description} was successfully deleted!");
             }
 
             var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name);

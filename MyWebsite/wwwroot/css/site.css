@@ -82,37 +82,37 @@ a {
 
 
 input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #d50000 !important;
+    border-bottom: 1px solid #81cac4 !important;
     box-shadow: 0 1px 0 0 black !important;
     background-color: black !important;
 }
 
 input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #d50000 !important;
+    border-bottom: 1px solid #81cac4 !important;
     box-shadow: 0 1px 0 0 black !important;
     background-color: black !important;
 }
 
 input[type=password]:not(.browser-default) {
-    border-bottom: 1px solid #d50000 !important;
+    border-bottom: 1px solid #81cac4 !important;
     box-shadow: 0 1px 0 0 black !important;
     background-color: black !important;
 }
 
 input.valid[type=password]:not(.browser-default) {
-    border-bottom: 1px solid #d50000 !important;
+    border-bottom: 1px solid #81cac4 !important;
     box-shadow: 0 1px 0 0 black !important;
     background-color: black !important;
 }
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-    color: red !important;
+    color: #81cac4 !important;
 }
 
 
 input[type=text]:not(.browser-default) {
     background-color: #212121 !important;
-    color: #b2dfdb !important;
+    color: #81cac4 !important;
     font-size: 30px;
 }
 
@@ -123,13 +123,12 @@ input.valid[type=text]:not(.browser-default):focus,
 #budget-limit-amount,
 #purchase-item {
     border-bottom: 1px solid #cfd8dc !important;
-    color: #b2dfdb;
+    color: #81cac4;
     font-size: 30px;
 }
 
 input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #212121 !important;
-    /*default white zero and white underline*/
 }
 
 

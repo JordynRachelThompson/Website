@@ -14,13 +14,13 @@
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control textGrey" />
-                    <span asp-validation-for="Email" class="textGrey"></span>
+                    <input asp-for="Email" class="form-control" style="color:#cfd8dc;" />
+                    <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control textGrey" />
-                    <span asp-validation-for="Password" class="textGrey"></span>
+                    <input asp-for="Password" class="form-control" style="color:#cfd8dc;" />
+                    <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-group">
                     <div input type="checkbox">
@@ -31,11 +31,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="waves-effect waves-light btn red accent-4 sharpCorners">Log in</button>
+                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</button>
                 </div>
                 <div class="form-group">
-                    <p style="font-size:20px;"><a asp-action="ForgotPassword">Forgot your password?</a></p>
-                    <p style="font-size:20px;"><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a></p>
+                    <p><a asp-action="ForgotPassword">Forgot your password?</a></p>
+                    <p><a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a></p>
                 </div>
             </form>
         </section>
@@ -82,11 +82,5 @@
         border-radius: 0px !important;
     }
 
-    .textGrey {
-        color: #cfd8dc;
-        font-weight: 400;
-        letter-spacing: 1.5px;
-        font-size: 20px;
-    }
 
 </style>

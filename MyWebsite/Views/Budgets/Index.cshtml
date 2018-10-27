@@ -4,11 +4,6 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
-<style>
-    body {
-        background-color: #212121 !important;
-    }
-</style>
 
 
 @{ string user = User.Identity.Name;
@@ -21,9 +16,9 @@
     TempData.Keep("hasPastBudget");
 }
 
-<div style="text-align:center; margin-top:180px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
-<h3 style="text-align:center; color:#cfd8dc; font-weight: bold; margin-top:100px;">The Painless Budget</h3>
-<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
+<h3 style="text-align:center; color:#81cac4; font-weight: bold; margin-top:100px;">The Painless Budget</h3>
+<div style="border-bottom: 1px solid #cfd8dc;"></div>
 
 @if (!SignInManager.IsSignedIn(User))
 {
@@ -35,26 +30,26 @@ else
     {
         if (hasPastBudget == "True")
         {
-            <div style="border-bottom: 1px dotted #b2dfdb;"></div>
-            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
+            <div style="border-bottom: 1px solid #b2dfdb;"></div>
+            <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
             <div style="margin-top:35px;">
                 <div class="row">
                     <div class="col l12 m12 s12" align="center">
                         @*Wants to use past budget limit*@
                         <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = hasPastBudget })">
                             @*Use last month's set budget limits*@
-                            <button class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
+                            <button class="waves-effect waves-light btn-large #cfd8dc sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
                                 <i class="material-icons left">local_atm</i>Use Last Month's Budget Limits
                             </button>
                             @Html.Hidden("Email", user)
                             @Html.Hidden("Month", DateTime.Now.Month)
                         </form>
-                        <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large black sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;">
+                        <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;">
                             <i class="material-icons left">local_atm</i>Set New Budget Limits
                         </button>
-                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
             </div>
@@ -208,15 +203,15 @@ else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
             <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@TempData["successLimitsUpdated"]</h5>
-            <h3 style="text-align:center; color:black; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
+            <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@DateTime.Now.ToString("MMMM")</h3>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
             {
-                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
             }
-            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>
 
         @foreach (var item in Model.Where(x => x.Month == budgetMonth))
@@ -236,7 +231,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingG.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.GroceryLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GroceryLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartGrocery" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
                         @if (remainingG < 0)
                         {
@@ -259,7 +254,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingH.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.HousingLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.HousingLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartHousing" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
                         @if (remainingH < 0)
                         {
@@ -284,7 +279,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingE.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.EntLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.EntLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartEntertainment" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
                         @if (remainingE < 0)
                         {
@@ -307,7 +302,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingB.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.BillsLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.BillsLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartBills" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
                         @if (remainingB < 0)
                         {
@@ -332,7 +327,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingGas.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.GasLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GasLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartGas" class="center-div" style="width: 500px; height: 300px; margin-top:10px;"></div>
                         @if (remainingGas < 0)
                         {
@@ -355,7 +350,7 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#b2dfdb">$@remainingM.ToString("#,##0.00")</span></h5>
                         }
-                        <a class="btn tooltipped black" style="margin-bottom:12px; margin-left:150px;" data-position="right" data-tooltip="$@item.MiscLimit.ToString("#,##0.00")">Budget Limit</a>
+                        <a class="btn tooltipped" style="margin-bottom:12px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.MiscLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartMisc" class="center-div" style="width: 500px; height: 300px; margin-top:-10px;"></div>
                         @if (remainingM < 0)
                         {
@@ -407,7 +402,7 @@ else
         var totalSpentG = parseInt(document.getElementById('totalSpentG').innerHTML);
         var totalBudgetG = parseInt(document.getElementById('totalBudgetG').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentG], ['Remaining', totalBudgetG]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentG], ['Remaining Budget', totalBudgetG]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -421,9 +416,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Food/Groceries',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -436,7 +432,7 @@ else
         var totalSpentH = parseInt(document.getElementById('totalSpentH').innerHTML);
         var totalBudgetH = parseInt(document.getElementById('totalBudgetH').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentH], ['Remaining', totalBudgetH]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentH], ['Remaining Budget', totalBudgetH]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -450,9 +446,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Housing/Rent',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#ffffff',
                 is3D: true,
             };
@@ -465,7 +462,7 @@ else
         var totalSpentE = parseInt(document.getElementById('totalSpentE').innerHTML);
         var totalBudgetE = parseInt(document.getElementById('totalBudgetE').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentE], ['Remaining', totalBudgetE]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentE], ['Remaining Budget', totalBudgetE]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -479,9 +476,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Entertainment',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -494,7 +492,7 @@ else
         var totalSpentB = parseInt(document.getElementById('totalSpentB').innerHTML);
         var totalBudgetB = parseInt(document.getElementById('totalBudgetB').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentB], ['Remaining', totalBudgetB]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentB], ['Remaining Budget', totalBudgetB]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -508,9 +506,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Bills',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -523,7 +522,7 @@ else
         var totalSpentGas = parseInt(document.getElementById('totalSpentGas').innerHTML);
         var totalBudgetGas = parseInt(document.getElementById('totalBudgetGas').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentGas], ['Remaining', totalBudgetGas]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentGas], ['Remaining Budget', totalBudgetGas]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -537,9 +536,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Gas/Car',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
             };
@@ -552,7 +552,7 @@ else
         var totalSpentM = parseInt(document.getElementById('totalSpentM').innerHTML);
         var totalBudgetM = parseInt(document.getElementById('totalBudgetM').innerHTML);
 
-        var budgetData = [['Spent', 'Remaining'], ['Spent', totalSpentM], ['Remaining', totalBudgetM]];
+        var budgetData = [['SPENT', 'LEFT'], ['Total Spent', totalSpentM], ['Remaining Budget', totalBudgetM]];
 
         google.charts.load("current", { packages: ["corechart"] });
         google.charts.setOnLoadCallback(drawChart);
@@ -566,9 +566,10 @@ else
                     fontName: 'arial',
                 }
                 , title: 'Miscellaneous',
+                fontSize: 17,
                 colors: ['#e6c5c4', '#6cb7b1'],
                 pieHole: 0.5,
-                backgroundColor: '#212121',
+                backgroundColor: 'black',
                 color: '#cfd8dc',
                 is3D: true,
             };
