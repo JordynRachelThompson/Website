@@ -332,53 +332,56 @@ namespace MyWebsite.Controllers
             //Seeting month to true if budget for that month exists
             foreach (var transaction in pastBudgetTransactions)
             {
-                if (transaction.Month == 1)
+                switch (transaction.Month)
                 {
-                    TempData["jan"] = true;
-                }
-                if (transaction.Month == 2)
-                {
-                    TempData["feb"] = true;
-                }
-                if (transaction.Month == 3)
-                {
-                    TempData["march"] = true;
-                }
-                if (transaction.Month == 4)
-                {
-                    TempData["apr"] = true;
-                }
-                if (transaction.Month == 5)
-                {
-                    TempData["may"] = true;
-                }
-                if (transaction.Month == 6)
-                {
-                    TempData["june"] = true;
-                }
-                if (transaction.Month == 7)
-                {
-                    TempData["july"] = true;
-                }
-                if (transaction.Month == 8)
-                {
-                    TempData["aug"] = true;
-                }
-                if (transaction.Month == 9)
-                {
-                    TempData["sept"] = true;
-                }
-                if (transaction.Month == 10)
-                {
-                    TempData["oct"] = true;
-                }
-                if (transaction.Month == 11)
-                {
-                    TempData["nov"] = true;
-                }
-                if (transaction.Month == 12)
-                {
-                    TempData["dec"] = true;
+                    case 1:
+                        TempData["jan"] = true;
+                        break;
+
+                    case 2:
+                        TempData["feb"] = true;
+                        break;
+
+                    case 3:
+                        TempData["march"] = true;
+                        break;
+
+                    case 4:
+                        TempData["apr"] = true;
+                        break;
+
+                    case 5:
+                        TempData["may"] = true;
+                        break;
+
+                    case 6:
+                        TempData["june"] = true;
+                        break;
+
+                    case 7:
+                        TempData["july"] = true;
+                        break;
+
+                    case 8:
+                        TempData["aug"] = true;
+                        break;
+
+                    case 9:
+                        TempData["sept"] = true;
+                        break;
+
+                    case 10:
+                        TempData["oct"] = true;
+                        break;
+
+                    case 11:
+                        TempData["nov"] = true;
+                        break;
+
+                    case 12:
+                        TempData["dec"] = true;
+                        break;
+
                 }
             }
 
