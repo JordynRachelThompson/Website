@@ -33,7 +33,7 @@
     @RenderBody()
     @RenderSection("Scripts", required: false)
 
-    <footer class="page-footer black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
+    @*<footer class="page-footer black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -48,16 +48,32 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div>*@
+    <footer >
         <div class="footer-copyright black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
             <div class="container" style="color:#cfd8dc;">
-                © 2018 Jordyn Thompson
-                <a class="right" style="color:#cfd8dc;" href="mailto:"jordyn@virtualzero.net">jordyn@virtualzero.net</a>
+                <ul id="horizontal-list" class="center">
+                    <li style="margin-right:20px;"> © 2018 Jordyn Thompson</li>
+                    <li><a style="color:#cfd8dc;" a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin" style="font-size:35px;"></i></a></li>
+                    <li><a style="color:#cfd8dc;" a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square" style="font-size:35px;"></i></a></li>
+                    <li style="margin-left:20px;"><a style="color:#cfd8dc;" href="mailto:" jordyn@virtualzero.net">jordyn@virtualzero.net</a></li>
+                </ul>
             </div>
         </div>
     </footer>
 
+    <style>
+        ul#horizontal-list {
+            min-width: 700px;
+            list-style: none;
+            vertical-align: middle;
+        }
 
+            ul#horizontal-list li {
+                display: inline;
+                padding: 10px;
+            }
+    </style>
 
     <environment>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
