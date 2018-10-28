@@ -6,6 +6,8 @@
 @inject SignInManager<ApplicationUser> SignInManager
 <link href="~/css/site.css" rel="stylesheet" />
 
+@{ int appType = Convert.ToInt32(ViewData["AppType"]);}
+
 <h3 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
 <div style="width:30%; margin-left: 150px; margin-top:150px;">
     <div>
@@ -31,6 +33,7 @@
                         </label>
                     </div>
                 </div>
+                @Html.Hidden("AppType", appType)
                 <div class="form-group">
                     <button type="submit" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</button>
                 </div>

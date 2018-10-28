@@ -2,8 +2,11 @@
 @using MyWebsite.Models
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@model int
 
 <link rel="stylesheet" href="~/css/materialize.css" />
+
+
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -25,7 +28,7 @@ else
     <div class="container">
         <ul id="buttonInLine">
             <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Register</a></li>
-            <li><a href='@Url.Action("Login", "Account")' class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</a></li>
+            <li><a href='@Url.Action("Login", "Account", new { AppType = Model}, null)' class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</a></li>
 
         </ul>
     </div>

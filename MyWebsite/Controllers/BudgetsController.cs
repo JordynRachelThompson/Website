@@ -86,17 +86,15 @@ namespace MyWebsite.Controllers
         }
 
 
-    //      .Select(x => new { x.ServerName, x.ProcessID, x.Username
-    //}).ToList();
-
     public BudgetsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
         //Index
-        public ActionResult Index(string userName, bool success)
+        public ActionResult Index(bool success)
         {
+            string userName = User.Identity.Name;
             int month = DateTime.Now.Month;
 
             if (success)

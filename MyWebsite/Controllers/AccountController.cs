@@ -42,8 +42,9 @@ namespace MyWebsite.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(string returnUrl = null)
+        public async Task<IActionResult> Login(int? appType, string returnUrl = null)
         {
+            ViewData["AppType"] = appType;
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -54,7 +55,7 @@ namespace MyWebsite.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
+        public async Task<IActionResult> Login(LoginViewModel model, int? appType, string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
@@ -65,8 +66,17 @@ namespace MyWebsite.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
+
+                    switch (appType)
+                    {
+                        case 1:
+                            return RedirectToAction("Index", "Budgets", new { userName = model.Email });
+                        case 2:
+                            return RedirectToAction("Index", "Weather");
+                    }
+
+
                     //return RedirectToLocal(returnUrl); 
-                    return RedirectToAction("Index", "Budgets", new { userName = model.Email });
                 }
                 if (result.RequiresTwoFactor)
                 {

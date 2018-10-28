@@ -14,9 +14,10 @@
     var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);
     string hasPastBudget = Convert.ToString(TempData["hasPastBudget"]);
     TempData.Keep("hasPastBudget");
+    int appType = Convert.ToInt32(TempData["AppType"]);
 }
 
-<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
+<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 style="text-align:center; color:#81cac4; font-weight: bold; margin-top:100px;">The Painless Budget</h3>
 <div style="border-bottom: 1px solid #cfd8dc;"></div>
 
@@ -62,7 +63,7 @@ else
                 }
                 <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = pastBudgetLimits })">
                     <div style="margin-top:35px; text-align:center;">
-                        <button class="aves-effect waves-light btn-large sharpCorners black-text" style="background-color:#b2dfdb; font-weight:bold; font-size:20px;" type="submit" name="Save">
+                        <button class="aves-effect waves-light btn-large sharpCorners black-text" style="background-color:#212121; font-weight:bold; font-size:20px;" type="submit" name="Save">
                             <i class="material-icons left">local_atm</i>Save Budget Limits
                         </button>
                     </div>
@@ -376,6 +377,7 @@ else
     }
 
     footer {
+        position:fixed;
         width: 100%;
         bottom: 0px;
     }

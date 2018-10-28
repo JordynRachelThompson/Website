@@ -18,5 +18,7 @@ namespace MyWebsite.Models.AccountViewModels
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
+        public int AppType { get; set; } //1:Budget, 2:Weather
     }
 }

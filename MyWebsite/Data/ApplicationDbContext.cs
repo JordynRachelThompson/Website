@@ -15,8 +15,9 @@ namespace MyWebsite.Data
         {
         }
         
-        public DbSet<MyWebsite.Models.BudgetProject.Budget> Budget { get; set; }
-        public DbSet<MyWebsite.Models.BudgetProject.BudgetItems> BudgetItems { get; set; }
+        public DbSet<Models.BudgetProject.Budget> Budget { get; set; }
+        public DbSet<Models.BudgetProject.BudgetItems> BudgetItems { get; set; }
+        public DbSet<Models.WeatherProject.Weather> Weather { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
