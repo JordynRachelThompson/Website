@@ -6,6 +6,7 @@
     <title>@ViewData["Title"] - JordynThompson</title>
 
     <link href="~/css/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
     <environment>
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -19,7 +20,7 @@
     <div class="navbar-fixed">
         <nav class="black">
             <div class="nav-wrapper" style="margin-left:100px; margin-right: 100px;">
-                <a href="#!" class="brand-logo" style="letter-spacing:2.5px; color:#cfd8dc;">JT</a>
+                <a href="@Url.Action("Index", "Home")" class="brand-logo" style="letter-spacing:2.5px; color:#cfd8dc;">JT</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">ABOUT</a></li>
                     <li><a asp-area="" asp-controller="Projects" asp-action="Index">PROJECTS</a></li>
@@ -32,15 +33,37 @@
     @RenderBody()
     @RenderSection("Scripts", required: false)
 
-    @*<footer>
-            <p>&copy; 2018 - JordynThompson</p>
-        </footer>*@
+    <footer class="page-footer black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 style="color:#cfd8dc;">Footer Content</h5>
+                    <p style="color:#cfd8dc;">You can use rows and columns here to organize your footer content.</p>
+                </div>
+                <div class="col l4 offset-l2 s12">
+                    <h5 style="color:#cfd8dc;">Links</h5>
+                    <ul>
+                        <li><i class="fab fa-linkedin" style="font-size:35px;"></i><a style="color:#cfd8dc;" href="#!"></a></li>
+                        <li><i class="fab fa-github-square" style="font-size:35px;"></i><a style="color:#cfd8dc;" href="#!"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
+            <div class="container" style="color:#cfd8dc;">
+                © 2018 Jordyn Thompson
+                <a class="right" style="color:#cfd8dc;" href="mailto:"jordyn@virtualzero.net">jordyn@virtualzero.net</a>
+            </div>
+        </div>
+    </footer>
+
+
 
     <environment>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/materialize.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
-</body>
-</html>
 
+    </body>
+</html>

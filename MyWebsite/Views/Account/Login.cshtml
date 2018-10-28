@@ -6,11 +6,12 @@
 @inject SignInManager<ApplicationUser> SignInManager
 <link href="~/css/site.css" rel="stylesheet" />
 
+<h3 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
 <div style="width:30%; margin-left: 150px; margin-top:150px;">
     <div>
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">Log in</h4>
+                <h4 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">Enter Your Account Information</h4>
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Email"></label>
@@ -41,36 +42,8 @@
         </section>
     </div>
 </div>
-@*<div class="col-md-6 col-md-offset-2">
-    <section>
-        <h4>Use another service to log in.</h4>
-        <hr />
-        @{
-            var loginProviders = (await SignInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            if (loginProviders.Count == 0)
-            {
-                <div>
-                    <p>
-                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                        for details on setting up this ASP.NET application to support logging in via external services.
-                    </p>
-                </div>
-            }
-            else
-            {
-                <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                    <div>
-                        <p>
-                            @foreach (var provider in loginProviders)
-                            {
-                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
-                            }
-                        </p>
-                    </div>
-                </form>
-            }
-        }
-    </section>*@
+
+<div style="height:300px;"></div>
 
 
 @section Scripts {
@@ -78,9 +51,8 @@
 }
 
 <style>
-    .sharpCorners{
+    .sharpCorners {
         border-radius: 0px !important;
     }
-
 
 </style>

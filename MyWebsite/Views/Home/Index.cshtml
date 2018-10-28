@@ -1,12 +1,12 @@
 ﻿@{ string lagoonNebulaText = "The Lagoon Nebula is a giant interstellar cloud in the constellation Sagittarius and is estimated to be between 4,000-6,000 light-years from the Earth. Credits: NASA, ESA, and STScI";}
 
-<h3 style="margin:100px;">Homepage...</h3>
-<h4>Some text will be here</h4>
+<div id="particles-js" style="height:500px;"></div>
+
 
 <div>
     <ul class="collapsible">
         <li>
-            <div class="collapsible-header black"><i class="material-icons" style="font-size:30px; padding-top:5px;">queue</i>Lagoon Nebula</div>
+            <div class="collapsible-header black"><i class="fas fa-arrow-alt-circle-down" style="color: #ff7733; font-size:30px; padding-top:5px;"></i>Lagoon Nebula</div>
             <div class="collapsible-body"><span>@lagoonNebulaText</span></div>
         </li>
     </ul>
@@ -18,10 +18,126 @@
     <div class="parallax"><img src="~/images/nebula.png" /></div>
 </div>
 
-<p style="margin-bottom:500px;">Some text will be here...</p>
+<div style="height:500px;"></div>
 
 
-<script>
+<script src="~/js/particles.js"></script>
+
+<script type="text/javascript">
+    particlesJS("particles-js",
+        {
+            "particles": {
+                "number": {
+                    "value": 73,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#ff7733"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 12
+                    },
+                    "image": {
+                        "src": "img/github.svg",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.7696377892154509,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 389.7970619046457,
+                        "size": 101.50965153766813,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        }
+
+    );
+
     $(document).ready(function () {
         $('.parallax').parallax();
         $('.collapsible').collapsible();
