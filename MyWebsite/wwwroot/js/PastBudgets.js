@@ -502,7 +502,7 @@ function donutChartTotal1() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -534,7 +534,7 @@ function donutChartTotal2() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -566,7 +566,7 @@ function donutChartTotal3() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -598,7 +598,7 @@ function donutChartTotal4() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -630,7 +630,7 @@ function donutChartTotal5() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -662,7 +662,7 @@ function donutChartTotal6() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -694,7 +694,7 @@ function donutChartTotal7() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -726,7 +726,7 @@ function donutChartTotal8() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -758,7 +758,7 @@ function donutChartTotal9() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -791,7 +791,7 @@ function donutChartTotal10() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -823,7 +823,7 @@ function donutChartTotal11() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',
@@ -855,7 +855,7 @@ function donutChartTotal12() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#6cb7b1'],
+            colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: 'black',
             color: '#cfd8dc',

@@ -1,5 +1,6 @@
 ﻿body {
     padding-bottom: 20px;
+    color: #cfd8dc;
 }
 
 .body-content {
@@ -131,3 +132,33 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #212121 !important;
 }
 
+.field-validation-error {
+    color: #D50000 !important;
+}
+
+.lightBrown-hover:hover {
+    background-color: #424242 !important;
+}
+
+.lighterBrown-hover:hover {
+    background-color: #5b5a5a !important;
+}
+
+.lightTeal-hover:hover {
+    background-color: #a7f2ec !important;
+}
+
+.userName {
+    color: #cfd8dc;
+    letter-spacing: 1.5px;
+    font-size: 25px;
+    padding-right: 13px;
+}
+
+#tech-used {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    color: #cfd8dc;
+    font-size: 18px;
+}

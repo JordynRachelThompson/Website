@@ -2,10 +2,6 @@
 @using System.Linq;
 @using System.ComponentModel.DataAnnotations.Schema;
 
-@{
-    ViewData["Title"] = "Edit";
-}
-
 
 @{
     string user = User.Identity.Name;
@@ -13,69 +9,98 @@
     TempData.Keep("userId");
 }
 
-
-
-<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial")</p></div>
-<h3 style="text-align:center; color:#cfd8dc; font-weight: bold; margin-top:100px;">The Painless Budget</h3>
+<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
+<h3 style="text-align:center; margin-top:100px;">The Painless Budget</h3>
 <div style="border-bottom: 1px dotted #cfd8dc;"></div>
 
-<div class="container" style="margin-bottom:100px;">
+<div class="container center-div" style="margin-bottom:100px;">
     <form asp-action="Edit">
         <div class="row">
-            <div class="col l12 m12 s12" align="center" style="margin-top:55px;">
-                <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+            <div class="col l12 m12 s12" align="center" style="margin-top:25px;">
+                <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
 
-                <button class="aves-effect waves-light btn-large grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
+                <button class="waves-effect waves-light btn-large lightBrown-hover grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
                     <i class="material-icons left">save</i>Save
                 </button>
             </div>
         </div>
 
-        <h4 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#b2dfdb; text-align:center">Edit Budget Limits</h4>
+        <h4 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#b2dfdb; text-align: center;">Edit Your Budget's Limits</h4>
 
         <div class="row" align="center">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
-            <input type="hidden" asp-for="Email" />
-            <input type="hidden" asp-for="Month" />
-
             <div class="col s12">
-                <label for="GroceryLimit" style="color:#cfd8dc;; font-weight:bold; font-size:25px;">Food/Grocery Budget $</label>
-                <input asp-for="GroceryLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
-            </div>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="Month" />
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class="col l6 m5 s12">
+                        <label for="GroceryLimit" style="color: #cfd8dc; font-size: 25px; float: left">Food/Grocery </label>
+                        <input asp-for="GroceryLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
 
-            <div class=" col s12">
-                <label for="HousingLimit" style="color:#cfd8dc; font-weight:bold; font-size:25px;">Housing/Rent Budget $</label>
-                <input asp-for="HousingLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
-            </div>
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class=" col l6 m5 s12">
+                        <label for="HousingLimit" style="color: #cfd8dc; font-size: 25px; float: left">Housing/Rent </label>
+                        <input asp-for="HousingLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
 
-            <div class="col s12 ">
-                <label for="EntLimit" style="color:#cfd8dc; font-weight:bold; font-size:25px;">Entertainment Budget $</label>
-                <input asp-for="EntLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
-            </div>
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class="col l6 m5 s12">
+                        <label for="EntLimit" style="color: #cfd8dc; font-size: 25px; float: left">Entertainment </label>
+                        <input asp-for="EntLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
 
-            <div class="col s12">
-                <label for="BillsLimit" style="color:#cfd8dc; font-weight:bold; font-size:25px;">Bills Budget $</label>
-                <input asp-for="BillsLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
-            </div>
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class="col l6 m5 s12">
+                        <label for="BillsLimit" style="color: #cfd8dc; font-size: 25px; float: left">Bills </label>
+                        <input asp-for="BillsLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
 
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class="col l6 m5 s12">
+                        <label for="Gas" style="color: #cfd8dc; font-size: 25px; float: left">Gas/Car </label>
+                        <input asp-for="GasLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
 
-            <div class="col s12">
-                <label for="Gas" style="color:#cfd8dc; font-weight:bold; font-size:25px;">Gas/Car Budget $</label>
-                <input asp-for="GasLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
+                <div class="row">
+                    <div class="col l5 m4"></div>
+                    <div class="col l6 m5 s12">
+                        <label for="MiscLimit" style="color: #cfd8dc; font-size: 25px; float: left">Miscellaneous </label>
+                        <input asp-for="MiscLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                    </div>
+                    <div class="col l5 m4"></div>
+                </div>
+                </div>
             </div>
-
-            <div class="col s12">
-                <label for="MiscLimit" style="color:#cfd8dc; font-weight:bold; font-size:25px;">Miscellaneous Budget $</label>
-                <input asp-for="MiscLimit" style="margin-left:2px; margin-top:15px; width:75px; text-align:center;" />
-            </div>
-        </div>
     </form>
 </div>
-
 
 <style>
     .field-validation-error {
         display: none !important;
+    }
+
+    .lightBrown-hover:hover {
+        background-color: #424242 !important;
+    }
+
+    input[type=text]:not(.browser-default) {
+        background-color: black !important;
     }
 </style>

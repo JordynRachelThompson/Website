@@ -14,9 +14,7 @@ namespace MyWebsite.Controllers
     public class BudgetsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public int SumLimits { get; set; }
-
+        
         private bool BudgetExists(int id)
         {
             return _context.Budget.Any(e => e.Id == id);
@@ -325,9 +323,9 @@ namespace MyWebsite.Controllers
                 ViewBag.Deleted = ($"Transaction titled {description} was successfully deleted!");
             }
 
-            var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name);
+            var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList();
 
-            //Seeting month to true if budget for that month exists
+            //Setting month to true if budget for that month exists
             foreach (var transaction in pastBudgetTransactions)
             {
                 switch (transaction.Month)

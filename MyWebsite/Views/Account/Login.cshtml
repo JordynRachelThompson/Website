@@ -6,7 +6,14 @@
 @inject SignInManager<ApplicationUser> SignInManager
 <link href="~/css/site.css" rel="stylesheet" />
 
-@{ int appType = Convert.ToInt32(ViewData["AppType"]);}
+@{
+    int appType = Convert.ToInt32(ViewData["AppType"]);
+    var error = "";
+    if (ViewBag.Error != null)
+    {
+        error = ViewBag.Error;
+    }
+}
 
 <h3 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
 <div style="width:30%; margin-left: 150px; margin-top:150px;">
@@ -14,28 +21,28 @@
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
                 <h4 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">Enter Your Account Information</h4>
-                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" style="color:#cfd8dc;" />
+                    <input asp-for="Email" style="color: #cfd8dc" />
                     <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" style="color:#cfd8dc;" />
+                    <input asp-for="Password" style="color: #cfd8dc" />
                     <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-group">
                     <div input type="checkbox">
                         <label class="textGrey" asp-for="RememberMe">
-                            <input class="textGrey" asp-for="RememberMe" />
+                            <input  asp-for="RememberMe" style="color: #cfd8dc" />
                             @Html.DisplayNameFor(m => m.RememberMe)
                         </label>
                     </div>
                 </div>
                 @Html.Hidden("AppType", appType)
                 <div class="form-group">
-                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</button>
+                    <div><p style="color: #D50000;">@error</p></div>
+                    <button type="submit" class="waves-effect waves-light btn lightTeal-hover sharpCorners black-text" style="background-color: #81cac4; font-weight: bold;">Log in</button>
                 </div>
                 <div class="form-group">
                     <p><a asp-action="ForgotPassword">Forgot your password?</a></p>
@@ -48,14 +55,14 @@
 
 <div style="height:300px;"></div>
 
+<style>
+    .field-validation-error {
+        color: #D50000 !important;
+    }
+</style>
+
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
 
-<style>
-    .sharpCorners {
-        border-radius: 0px !important;
-    }
-
-</style>

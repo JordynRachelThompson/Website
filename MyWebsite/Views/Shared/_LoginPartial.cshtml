@@ -5,7 +5,7 @@
 @model int
 
 <link rel="stylesheet" href="~/css/materialize.css" />
-
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
 
 @if (SignInManager.IsSignedIn(User))
@@ -14,10 +14,10 @@
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
             <ul id="buttonInLine">
                 <li>
-                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="blue-grey-lighten-4-text userName" style="font-size:20px;">Hello @UserManager.GetUserName(User)!</a>
+                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="userName" style="font-size:20px;">Hello @UserManager.GetUserName(User)!</a>
                 </li>
                 <li>
-                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log out</button>
+                    <button type="submit" class="waves-effect waves-light black btn sharpCorners lightTeal-icon-hover fas fa-sign-out-alt " style="color:#81cac4; font-size: 23px; font-weight:bold;"></button>
                 </li>
             </ul>
         </form>
@@ -27,8 +27,8 @@ else
 {
     <div class="container">
         <ul id="buttonInLine">
-            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Register</a></li>
-            <li><a href='@Url.Action("Login", "Account", new { AppType = Model}, null)' class="waves-effect waves-light btn sharpCorners black-text" style="background-color:#81cac4; font-weight:bold;">Log in</a></li>
+            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light lightTeal-hover btn sharpCorners" style="background-color:#81cac4; color: black !important; font-size: 19px; font-weight: bold; color:#81cac4">Register</a></li>
+            <li><a href='@Url.Action("Login", "Account", new { AppType = Model}, null)' class="waves-effect waves-light lightTeal-hover btn sharpCorners" style="background-color:#81cac4; color: black !important; font-weight: bold; font-size: 19px;">Log in</a></li>
 
         </ul>
     </div>
@@ -36,15 +36,8 @@ else
 
 <style>
 
-    .userName {
-        color: #cfd8dc;
-        letter-spacing: 1.5px;
-        font-size: 25px;
-        padding-right: 13px;
-    }
-
-    .sharpCorners {
-        border-radius: 0px !important;
+    .lightTeal-icon-hover:hover {
+        color: #a7f2ec !important;
     }
 </style>
 

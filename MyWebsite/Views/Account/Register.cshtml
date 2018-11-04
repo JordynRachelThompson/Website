@@ -10,36 +10,28 @@
         <div class="col s6">
             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
                 <h4 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">Create a New Account</h4>
-                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" style="color:#cfd8dc;" />
+                    <input asp-for="Email" style="color: #cfd8dc"/>
                     <span asp-validation-for="Email"></span>
                 </div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" style="color:#cfd8dc;" />
+                    <input asp-for="Password"  style="color: #cfd8dc"/>
                     <span asp-validation-for="Password"></span>
                 </div>
                 <div class="form-group">
                     <label class="textGrey" asp-for="ConfirmPassword"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" style="color:#cfd8dc;" />
-                    <span asp-validation-for="ConfirmPassword" ></span>
+                    <input asp-for="ConfirmPassword" style="color: #cfd8dc"/>
+                    <span asp-validation-for="ConfirmPassword" style="color: #cfd8dc" ></span>
                 </div>
-                <button style="margin-top:10px; background-color:#81cac4; font-weight:bold;" type="submit" class=" waves-effect waves-light btn sharpCorners black-text">Register</button>
+                <button style="margin-top:10px; background-color:#81cac4; font-weight:bold;" type="submit" class=" waves-effect waves-light lightTeal-hover btn sharpCorners black-text">Register</button>
             </form>
         </div>
     </div>
 </div>
 
 <div style="height:300px;"></div>
-
-
-<style>
-    .sharpCorners {
-        border-radius: 0px !important;
-    }
-</style>
 
 
 @section Scripts {
