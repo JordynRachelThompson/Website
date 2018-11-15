@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Web;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Buffers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using MyWebsite.Data;
 using MyWebsite.Models.BudgetProject;
+using MyWebsite.Service;
 
 
 namespace MyWebsite.Controllers
@@ -229,11 +235,18 @@ namespace MyWebsite.Controllers
         }
 
         //Add Transaction
-        public ActionResult AddTransaction()
+        public ActionResult AddTransaction(bool deleted, string description)
         {
             string username = User.Identity.Name;
             int budgetMonth = DateTime.Now.Month;
             var budget = _context.BudgetItems.Where(x => x.Email == username).Where(x => x.Month == budgetMonth).ToList();
+
+            if (deleted)
+            {
+                description = description.ToUpper();
+                ViewBag.Deleted = ($"Transaction titled {description} was successfully deleted!");
+            }
+
             return View(budget);
         }
 
@@ -476,9 +489,12 @@ namespace MyWebsite.Controllers
             if (budgetTransaction != null)
             {
                 _context.BudgetItems.Remove(budgetTransaction);
-                _context.SaveChanges();               
+                _context.SaveChanges();
             }
-            return RedirectToAction("AddTransaction");
+
+            string itemDeletedDescr = budgetTransaction.Description;
+
+            return RedirectToAction("AddTransaction", new { deleted = true, description = itemDeletedDescr });
         }
 
         //Delete Past Specific Transaction
@@ -490,9 +506,8 @@ namespace MyWebsite.Controllers
                 _context.BudgetItems.Remove(budgetTransaction);
                 _context.SaveChanges();
 
-                bool itemDeleted = true;
                 string itemDeletedDescr = budgetTransaction.Description;
-                return RedirectToAction("PastBudgets", new { deleted = itemDeleted, description = itemDeletedDescr });
+                return RedirectToAction("PastBudgets", new { deleted = true, description = itemDeletedDescr });
 
             }
 
@@ -508,8 +523,42 @@ namespace MyWebsite.Controllers
             var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
             _context.Budget.Remove(budget);
             await _context.SaveChangesAsync();
+
             return RedirectToAction("AddTransaction");
         }
 
+        public IActionResult ExportExcel()
+        {
+            return View();
+        }
+        //public void ExportListFromTsv()
+        //{
+        //    TextWriter tw = new StreamWriter(Response.Body);
+
+        //    var excelTsv = new ExcelUtil();
+        //    var data = new[]{
+        //        new{ Name="Ram", Email="ram@techbrij.com", Phone="111-222-3333" },
+        //        new{ Name="Shyam", Email="shyam@techbrij.com", Phone="159-222-1596" },
+        //        new{ Name="Mohan", Email="mohan@techbrij.com", Phone="456-222-4569" },
+        //        new{ Name="Sohan", Email="sohan@techbrij.com", Phone="789-456-3333" },
+        //        new{ Name="Karan", Email="karan@techbrij.com", Phone="111-222-1234" },
+        //        new{ Name="Brij", Email="brij@techbrij.com", Phone="111-222-3333" }
+        //    };
+
+        //    Response.Clear();
+
+
+        //    Response.Headers[HeaderNames.ContentDisposition] = "attachment; filename=DemoExcel.xls";
+
+        //    Response.Headers[HeaderNames.ContentType] = "application/vnd.ms-excel";
+        //    excelTsv.WriteTsv(data, tw);
+        //    HttpContext.Response.Clear();
+        //}
+
+        public IActionResult BudgetAnalytics()
+        {
+            return View();
+        }
     }
+
 }

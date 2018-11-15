@@ -13,8 +13,9 @@
 
 
 <div class="container">
-    <div style="margin-top:25px; text-align:center;">
-        <a href='@Url.Action("Index", "Budgets", new { userName = user })'; class="waves-effect waves-light btn-large sharpCorners lightBrown-hover grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+    <div style="margin-top: 25px; text-align: center;">
+        <p style="text-align:center; font-weight:bold; color:#81cac4; margin-top:10px;">@ViewBag.Deleted</p>
+        <a href='@Url.Action("Index", "Budgets", new {userName = user})'; class="waves-effect waves-light btn-large sharpCorners lightBrown-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
         @*@Html.ActionLink("Return to Budget", "Index", "Budgets", new { userName = user }, new { @class = "grey-button" })*@
     </div>
     <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Add Transaction</h4>
@@ -26,7 +27,7 @@
     </div>
     <div class="row">
         <div class="col s12 m12 l4"></div>
-        <form asp-action="AddTransaction" class="col s12 m12 l4 center" style="background-color:#212121">
+        <form asp-action="AddTransaction" class="col s12 m12 l4 center z-depth-2" style="border: solid 3px #212121">
             <div class="input-field col s12" style="margin-bottom:35px; margin-top:35px;">
                 <select name="TypeOfBudget">
                     <option value="0" disabled selected>Select a Category </option>
@@ -40,11 +41,11 @@
             </div>
             <h5>Description</h5>
             <div class="input-field">
-                <input name="Description" placeholder=" Enter item description..." id="purchase-item" style="margin-top: 25px;" type="text" class="validate">
+                <input name="Description" placeholder=" Enter item description..." id="purchase-item" style="margin-top: 25px; background-color: black !important;" type="text" class="validate">
             </div>
             <h5 style="margin-top:25px;">Price</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#b2dfdb;">attach_money</i>
+            <div class="input-field" style="margin-bottom: 10px;">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798">attach_money</i>
                 <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
                 @Html.Hidden("Email", user)
                 @Html.Hidden("Description", "Description")
@@ -52,7 +53,7 @@
                 @Html.Hidden("TypeOfBudget", "TypeOfBudget")
                 @Html.Hidden("Date", DateTime.Now)
                 @Html.Hidden("Month", budgetMonth)
-                <div style="margin-top:23px;"><button type="submit" class="btn-floating btn-large waves-effect waves-light;" style="background-color:#cfd8dc !important;"><i class="material-icons" style="font-weight:bold; color: #212121 !important;">add</i></button>@*<input type="submit" style="cursor:pointer" value="ADD" class="grey-button" />*@</div>
+                <div style="margin-top:23px;"><button type="submit" class="btn-floating btn-large add-btn waves-effect waves-light blue-grey lighten-4"><i class="material-icons" style="font-weight:bold; color: #212121 !important;">library_add</i></button></div>
             </div>
         </form>
         <div class="col s12 m12 l4"></div>
@@ -252,18 +253,18 @@
     }
 
     .select-wrapper input.select-dropdown {
-        color: #cfd8dc !important;
+        color: #424242 !important;
         font-weight: bold !important;
         font-size: 25px;
         text-align: center;
-        background-color: black !important;
+        background-color: #cfd8dc !important;
         padding-top: 10px;
-       padding-bottom: 10px;
+        padding-bottom: 10px;
     }
 
     .select-wrapper input.select-dropdown:hover {
-        background-color: black !important;
-        color: #81cac4 !important;
+        background-color: #54b798 !important;
+        color: #424242 !important;
     }
 
     .trashcan-icon{
@@ -272,13 +273,16 @@
     }
 
     .trashcan-icon:hover {
-        color: #81cac4 !important;
+        color: #54b798 !important;
     }
 
     .lightBrown-hover:hover {
         background-color: #424242 !important;
     }
 
+    .add-btn:hover {
+        background-color: #54b798 !important;
+    }
 </style>
 
 <script>
@@ -326,7 +330,7 @@
 
    $('#transaction-btnG').click(function () {
         if (clickedG) {
-            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedG = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -336,7 +340,7 @@
    
     $('#transaction-btnH').click(function () {
             if (clickedH) {
-                $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+                $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
                 clickedH = false;
             } else {
                 $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -346,7 +350,7 @@
 
     $('#transaction-btnB').click(function () {
         if (clickedB) {
-            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedB = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -356,7 +360,7 @@
 
     $('#transaction-btnE').click(function () {
         if (clickedE) {
-            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedE = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -366,7 +370,7 @@
 
     $('#transaction-btnGas').click(function () {
         if (clickedGas) {
-            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedGas = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
@@ -376,7 +380,7 @@
 
     $('#transaction-btnM').click(function () {
         if (clickedM) {
-            $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedM = false;
         } else {
             $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");

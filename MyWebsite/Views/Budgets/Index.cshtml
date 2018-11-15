@@ -212,8 +212,8 @@ else
                 <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
             }
             <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+            <a href='@Url.Action("BudgetAnalytics", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Analytics</a>
+            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>
 
         foreach (var item in Model.Where(x => x.Month == budgetMonth))
@@ -380,12 +380,6 @@ else
         background-color: #424242 !important;
     }
 
-    .footer {
-        position: absolute;
-        right: 0;
-        bottom: 0 !important;
-        left: 0;
-    }
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
