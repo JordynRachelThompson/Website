@@ -6,7 +6,10 @@ using MyWebsite.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using MyWebsite.Models.BudgetProject;
+using System.Linq.Dynamic;
+using System.Reflection;
 
 namespace MyWebsite.Services
 {
@@ -24,27 +27,50 @@ namespace MyWebsite.Services
             return _context.Budget.Any(e => e.Id == id);
         }
 
-        public int GetBudgetLimitByLimitType(string limitType, int budgetMonth, string user)
+        public float GetBudgetLimitByLimitType(int type, int budgetMonth, string user)
         {
-            return Convert.ToInt32(_context.Budget.Where(x => x.Email == user).Where(x => x.Month == budgetMonth)
-                .Select(x => limitType));
+            var budget = _context.Budget.Where(x => x.Email == user).Where(x => x.Month == budgetMonth);
+
+            foreach (var item in budget)
+            {
+                switch (type)
+                {
+                    case 1:
+                        return item.GroceryLimit;
+                    case 2:
+                        return item.HousingLimit;
+                    case 3:
+                        return item.BillsLimit;
+                    case 4:
+                        return item.EntLimit;
+                    case 5:
+                        return item.GasLimit;
+                    case 6:
+                        return item.MiscLimit;
+                }
+            }
+
+            return 0;
         }
 
-        public int GetTotalBudgetLimitByMonth(int month, string user)
+        public float GetTotalBudgetLimitByMonth(int month, string user)
         {
-            var grocery = GetBudgetLimitByLimitType("GroceryLimit", month, user);
-            var housing = GetBudgetLimitByLimitType("HousingLimit", month, user);
-            var bills = GetBudgetLimitByLimitType("BillsLimit", month, user);
-            var ent = GetBudgetLimitByLimitType("EntLimit", month, user);
-            var gas = GetBudgetLimitByLimitType("GasLimit", month, user);
-            var misc = GetBudgetLimitByLimitType("MiscLimit", month, user);
+            var grocery = GetBudgetLimitByLimitType(1, month, user);
+            var housing = GetBudgetLimitByLimitType(2, month, user);
+            var bills = GetBudgetLimitByLimitType(3, month, user);
+            var ent = GetBudgetLimitByLimitType(4, month, user);
+            var gas = GetBudgetLimitByLimitType(5, month, user);
+            var misc = GetBudgetLimitByLimitType(6, month, user);
 
             return (grocery + housing + bills + ent + gas + misc);
         }
 
         public int TotalSpentByMonth(int month, string user)
         {
-            return Convert.ToInt32(_context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month).Select(x => x.Cost).Sum());
+            var totalSpent = _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month)
+                .Select(x => x.Cost).Sum();
+
+            return Convert.ToInt32(totalSpent);
         }
 
         public float TotalSpentThisMonth(int month, string user)
@@ -54,7 +80,7 @@ namespace MyWebsite.Services
             for (var type = 1; type < 7; type++)
             {
                 foreach (var item in _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month)
-                        .Where(x => Convert.ToInt32(x.TypeOfBudget) == type))
+                    .Where(x => Convert.ToInt32(x.TypeOfBudget) == type))
                 {
                     sum += item.Cost;
                 }
@@ -74,6 +100,24 @@ namespace MyWebsite.Services
             }
 
             return sum;
+        }
+
+        public void SetBudgetLimitToPastLimit(string user, Budget currentBudget)
+        {
+            var previousBudget = _context.Budget.Where(x => x.Email == user).Select(x => x).FirstOrDefault();
+
+            if (previousBudget != null)
+            {
+                currentBudget.GroceryLimit = previousBudget.GroceryLimit;
+                currentBudget.HousingLimit = previousBudget.HousingLimit;
+                currentBudget.BillsLimit = previousBudget.BillsLimit;
+                currentBudget.EntLimit = previousBudget.EntLimit;
+                currentBudget.GasLimit = previousBudget.GasLimit;
+                currentBudget.MiscLimit = previousBudget.MiscLimit;
+
+                _context.Add(currentBudget);
+                _context.SaveChanges();
+            }
         }
     }
 }
