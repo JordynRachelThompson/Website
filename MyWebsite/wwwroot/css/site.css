@@ -164,3 +164,13 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #cfd8dc;
     font-size: 18px;
 }
+
+
+.field-validation-error {
+    color: #D50000 !important;
+}
+
+.hover-underline:hover {
+    border-bottom: dotted 1px #81cac4;
+    cursor: pointer;
+}

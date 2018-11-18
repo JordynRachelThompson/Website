@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Web;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Buffers;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Net.Http.Headers;
 using MyWebsite.Data;
 using MyWebsite.Models.BudgetProject;
-using MyWebsite.Service;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using MyWebsite.Services;
 
 
 namespace MyWebsite.Controllers
@@ -20,191 +13,49 @@ namespace MyWebsite.Controllers
     public class BudgetsController : Controller
     {
         private readonly ApplicationDbContext _context;
-        
-        private bool BudgetExists(int id)
-        {
-            return _context.Budget.Any(e => e.Id == id);
-        }
 
-        public int GetLimit(string limitType, int budgetMonth)
-        {
-            if (limitType == "Grocery")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GroceryLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-
-            if (limitType == "Housing")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.HousingLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-
-            if (limitType == "Bills")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.BillsLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-
-            if (limitType == "Entertainment")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.EntLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-
-            if (limitType == "Gas")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.GasLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-
-            if (limitType == "Misc")
-            {
-                var limit = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == budgetMonth).Select(x => x.MiscLimit).FirstOrDefault();
-                return Convert.ToInt32(limit);
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public int GetTotalLimitByMonth(int month)
-        {
-            int grocery = GetLimit("Grocery", month);
-            int housing = GetLimit("Housing", month);
-            int bills = GetLimit("Bills", month);
-            int ent = GetLimit("Ent", month);
-            int gas = GetLimit("Gas", month);
-            int misc = GetLimit("Misc", month);
-
-            int sum = grocery + housing + bills + ent + gas + misc;
-            return sum;
-        }
-
-        public int TotalSpentByMonth(int month)
-        {
-            var budgetItemsTotal = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == month).Select(x => x.Cost).Sum();
-
-            return Convert.ToInt32(budgetItemsTotal); 
-        }
-
-
-    public BudgetsController(ApplicationDbContext context)
+        public BudgetsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        //Index
         public ActionResult Index(bool success)
         {
-            string userName = User.Identity.Name;
-            int month = DateTime.Now.Month;
+            int currentMonth = DateTime.Now.Month;
+            var budget = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == currentMonth);
 
             if (success)
+                ViewBag.SuccessLimitsUpdated = "Budget Limits successfully updated!";
+            
+            if (!budget.Any() || User.Identity.Name == null)
             {
-                TempData["successLimitsUpdated"] = "Budget Limits successfully updated!";
+                ViewBag.EmptyBudget = true;
+                ViewBag.HasPastBudget = false;
+                var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name);
+                if (pastBudget.Any())
+                    ViewBag.HasPastBudget = true;
             }
 
-            int totalBudget = 0;
-            float totalGrocery = 0;
-            float totalHousing = 0;
-            float totalBills = 0;
-            float totalEntertainment = 0;
-            float totalGas = 0;
-            float totalMisc = 0;
-
-            if (userName == null)
+            if (!ViewBag.EmptyBudget)
             {
-                TempData["isBudgetEmpty"] = true;
-                return View();
+                var budgetService = new BudgetService(_context);
+
+                var totalBudget = budgetService.GetTotalBudgetLimitByMonth(currentMonth, User.Identity.Name);
+                TempData["TotalLimit"] = totalBudget;
+
+                var totalSpent = budgetService.TotalSpentByMonth(currentMonth, User.Identity.Name); //totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
+                TempData["totalSpent"] = totalSpent;
+
+
+                TempData["groceryTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 1);
+                TempData["housingTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 2);
+                TempData["billsTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 3);
+                TempData["entTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 4);
+                TempData["gasTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 5);
+                TempData["miscTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 6);
             }
-            else
-            {
-                var budget = _context.Budget.Where(x => x.Email == userName).Where(x => x.Month == month);
-                int budgetId = budget.Select(x => x.Id).FirstOrDefault();
 
-                if (budgetId == 0)
-                {
-                    TempData["isBudgetEmpty"] = true;
-                    var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name);
-                    if (pastBudget != null)
-                    {
-                        TempData["hasPastBudget"] = true;
-                    }
-                    else
-                    {
-                        TempData["hasPastBudget"] = false;
-                    }
-                    return View();
-                }
-                else
-                {
-                    TempData["isBudgetEmpty"] = false;
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 1))
-                    {
-                        float cost = item.Cost;
-                        totalGrocery += cost;
-
-                    }
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 2))
-                    {
-                        float cost = item.Cost;
-                        totalHousing += cost;
-
-                    }
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 3))
-                    {
-                        float cost = item.Cost;
-                        totalBills += cost;
-
-                    }
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 4))
-                    {
-                        float cost = item.Cost;
-                        totalEntertainment += cost;
-
-                    }
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 5))
-                    {
-                        float cost = item.Cost;
-                        totalGas += cost;
-
-                    }
-
-                    foreach (var item in _context.BudgetItems.Where(x => x.Email == userName).Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == 6))
-                    {
-                        float cost = item.Cost;
-                        totalMisc += cost;
-                    }
-
-                    int groceryLimit = GetLimit("Grocery", month);
-                    int housingLimit = GetLimit("Housing", month);
-                    int billsLimit = GetLimit("Bills", month);
-                    int entLimit = GetLimit("Entertainment", month);
-                    int gasLimit = GetLimit("Gas", month);
-                    int miscLimit = GetLimit("Misc", month);
-                    totalBudget = (groceryLimit + housingLimit + billsLimit + entLimit + gasLimit + miscLimit);
-
-                    float totalSpent = totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
-
-                    TempData["totalSpent"] = totalSpent;
-                    TempData["TotalLimit"] = totalBudget;
-                    TempData["groceryTotal"] = totalGrocery;
-                    TempData["housingTotal"] = totalHousing;
-                    TempData["billsTotal"] = totalBills;
-                    TempData["entTotal"] = totalEntertainment;
-                    TempData["gasTotal"] = totalGas;
-                    TempData["miscTotal"] = totalMisc;
-
-                    return View(budget);
-                }
-            }
+            return View(budget);
         }
 
         //Set Budget Limits
@@ -460,26 +311,26 @@ namespace MyWebsite.Controllers
             {
                 return NotFound();
             }
-            
-                try
+
+            try
+            {
+                _context.Update(budget);
+                await _context.SaveChangesAsync();
+                bool editSucess = true;
+                string username = User.Identity.Name;
+                return RedirectToAction("Index", new { userName = username, success = editSucess });
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!BudgetExists(budget.Id))
                 {
-                    _context.Update(budget);
-                    await _context.SaveChangesAsync();
-                    bool editSucess = true;
-                    string username = User.Identity.Name;
-                    return RedirectToAction("Index", new { userName = username, success = editSucess });
+                    return NotFound();
                 }
-                catch (DbUpdateConcurrencyException)
+                else
                 {
-                    if (!BudgetExists(budget.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }                       
+                    throw;
+                }
+            }
         }
 
         //Delete Specific Transaction

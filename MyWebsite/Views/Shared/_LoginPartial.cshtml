@@ -14,7 +14,7 @@
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
             <ul id="buttonInLine">
                 <li>
-                    <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" class="userName" style="font-size:20px;">Hello @UserManager.GetUserName(User)!</a>
+                    <a class="hover-underline userName" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" style="font-size:20px;">Hello @User.Identity.Name!</a>
                 </li>
                 <li>
                     <button type="submit" class="waves-effect waves-light black btn sharpCorners lightTeal-icon-hover fas fa-sign-out-alt " style="color:#81cac4; font-size: 23px; font-weight:bold;"></button>

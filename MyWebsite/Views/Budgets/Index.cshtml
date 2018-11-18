@@ -10,9 +10,6 @@
     var limit = Convert.ToInt32(TempData["totalLimit"]);
     var spent = Convert.ToInt32(TempData["totalSpent"]);
     int budgetMonth = DateTime.Now.Month;
-    var emptyBudget = Convert.ToBoolean(TempData["isBudgetEmpty"]);
-    string hasPastBudget = Convert.ToString(TempData["hasPastBudget"]);
-    TempData.Keep("hasPastBudget");
     int appType = Convert.ToInt32(TempData["AppType"]);
     var currentMonth = DateTime.Now.ToString("MMMM");
 }
@@ -23,13 +20,13 @@
 
 @if (!SignInManager.IsSignedIn(User))
 {
-    <p style="text-align:center; font-size:20px; margin-top:30px;">Please log in or register first to use the app.</p>
+    <p style="text-align:center; font-size:20px; margin-top:30px; margin-bottom: 500px;">Please log in or register first to use the app.</p>
 }
 else
 {
-    if (emptyBudget)
+    if (ViewBag.EmptyBudget)
     {
-        if (hasPastBudget == "True")
+        if (ViewBag.HasPastBudget)
         {
             <div style="border-bottom: 1px dotted #b2dfdb;"></div>
             <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@currentMonth</h3>
@@ -38,7 +35,7 @@ else
                 <div class="row">
                     <div class="col l12 m12 s12" align="center">
                         @*Wants to use past budget limit*@
-                        <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = hasPastBudget })">
+                        <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = ViewBag.HasPastBudget })">
                             @*Use last month's set budget limits*@
                             <button class="waves-effect waves-light btn-large grey darken-3 lighterBrown-hover sharpCorners" style="font-weight:bold; font-size:20px; margin-top: 10px; margin-bottom: 5px;" type="submit" name="Save">
                                 <i class="material-icons left">replay</i>Use Last Month's Budget Limits for @currentMonth
@@ -59,10 +56,8 @@ else
             //Set Budget Form
             <div id="hidden-set-budget-form" style="display:none;">
                 @*Set Budget Limit - Has had past budgets but wants to choose new limits*@
-                @{
-                    bool pastBudgetLimits = false;
-                }
-                <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = pastBudgetLimits })">
+                
+                <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
                     <div style="margin-top:35px; text-align:center;">
                         <button class="waves-effect waves-light btn-large sharpCorners black-text" style="background-color:#212121; font-weight:bold; font-size:20px;" type="submit" name="Save">
                             <i class="material-icons left">local_atm</i>Save Budget Limits
@@ -133,8 +128,7 @@ else
         {
             <div style="border-bottom: 1px dotted #b2dfdb;"></div>
             @*Set Budget Limit - Has never had budget*@
-            bool pastBudgetLimits = false;
-            <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = pastBudgetLimits })">
+            <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
                 <div style="margin-top:35px; text-align:center;">
                     <button class="waves-effect waves-light btn-large black-text sharpCorners" style="background-color:#b2dfdb; font-weight:bold; font-size:20px;" type="submit" name="Save">
                         <i class="material-icons left">local_atm</i>Set Budget Limits
@@ -204,7 +198,7 @@ else
     else
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
-            <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@TempData["successLimitsUpdated"]</h5>
+            <h5 style="text-align:center; color:#b2dfdb; margin-top:10px;">@ViewBag.SuccessLimitsUpdated</h5>
             <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@currentMonth</h3>
             <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
