@@ -2,352 +2,352 @@
 function Transactions() {
 
     //Jan
-    $('#transaction-btnG1').on('click', function () {
-        $('#transactionsG1').toggle();
+    $('#transaction-btn11').on('click', function () {
+        $('#transactions11').toggle();
     });
 
-    $('#transaction-btnH1').on('click', function () {
-        $('#transactionsH1').toggle();
+    $('#transaction-btn21').on('click', function () {
+        $('#transactions21').toggle();
     });
 
-    $('#transaction-btnB1').on('click', function () {
-        $('#transactionsB1').toggle();
+    $('#transaction-btn31').on('click', function () {
+        $('#transactions31').toggle();
     });
 
-    $('#transaction-btnE1').on('click', function () {
-        $('#transactionsE1').toggle();
+    $('#transaction-btn41').on('click', function () {
+        $('#transactions41').toggle();
     });
 
-    $('#transaction-btnGas1').on('click', function () {
-        $('#transactionsGas1').toggle();
+    $('#transaction-btn51').on('click', function () {
+        $('#transactions51').toggle();
     });
 
-    $('#transaction-btnM1').on('click', function () {
-        $('#transactionsM1').toggle();
+    $('#transaction-btn61').on('click', function () {
+        $('#transactions61').toggle();
     });
 
     //Feb
-    $('#transaction-btnG2').on('click', function () {
-        $('#transactionsG2').toggle();
+    $('#transaction-btn12').on('click', function () {
+        $('#transactions12').toggle();
     });
 
-    $('#transaction-btnH2').on('click', function () {
-        $('#transactionsH2').toggle();
+    $('#transaction-btn22').on('click', function () {
+        $('#transactions22').toggle();
     });
 
-    $('#transaction-btnB2').on('click', function () {
-        $('#transactionsB2').toggle();
+    $('#transaction-btn32').on('click', function () {
+        $('#transactions32').toggle();
     });
 
-    $('#transaction-btnE2').on('click', function () {
-        $('#transactionsE2').toggle();
+    $('#transaction-btn42').on('click', function () {
+        $('#transactions42').toggle();
     });
 
-    $('#transaction-btnGas2').on('click', function () {
-        $('#transactionsGas2').toggle();
+    $('#transaction-btn52').on('click', function () {
+        $('#transactions52').toggle();
     });
 
-    $('#transaction-btnM2').on('click', function () {
-        $('#transactionsM2').toggle();
+    $('#transaction-btn62').on('click', function () {
+        $('#transactions62').toggle();
     });
 
     //March
-    $('#transaction-btnG3').on('click', function () {
-        $('#transactionsG3').toggle();
+    $('#transaction-btn13').on('click', function () {
+        $('#transactions13').toggle();
     });
 
-    $('#transaction-btnH3').on('click', function () {
-        $('#transactionsH3').toggle();
+    $('#transaction-btn23').on('click', function () {
+        $('#transactions23').toggle();
     });
 
-    $('#transaction-btnB3').on('click', function () {
-        $('#transactionsB3').toggle();
+    $('#transaction-btn33').on('click', function () {
+        $('#transactions33').toggle();
     });
 
-    $('#transaction-btnE3').on('click', function () {
-        $('#transactionsE3').toggle();
+    $('#transaction-btn43').on('click', function () {
+        $('#transactions43').toggle();
     });
 
-    $('#transaction-btnGas3').on('click', function () {
-        $('#transactionsGas3').toggle();
+    $('#transaction-btn53').on('click', function () {
+        $('#transactions53').toggle();
     });
 
-    $('#transaction-btnM3').on('click', function () {
-        $('#transactionsM3').toggle();
+    $('#transaction-btn63').on('click', function () {
+        $('#transactions63').toggle();
     });
 
     //Apr
-    $('#transaction-btnG4').on('click', function () {
-        $('#transactionsG4').toggle();
+    $('#transaction-btn14').on('click', function () {
+        $('#transactions14').toggle();
     });
 
-    $('#transaction-btnH4').on('click', function () {
-        $('#transactionsH4').toggle();
+    $('#transaction-btn24').on('click', function () {
+        $('#transactions24').toggle();
     });
 
-    $('#transaction-btnB4').on('click', function () {
-        $('#transactionsB4').toggle();
+    $('#transaction-btn34').on('click', function () {
+        $('#transactions34').toggle();
     });
 
-    $('#transaction-btnE4').on('click', function () {
-        $('#transactionsE4').toggle();
+    $('#transaction-btn44').on('click', function () {
+        $('#transactions44').toggle();
     });
 
-    $('#transaction-btnGas4').on('click', function () {
-        $('#transactionsGas4').toggle();
+    $('#transaction-btn54').on('click', function () {
+        $('#transactions54').toggle();
     });
 
-    $('#transaction-btnM4').on('click', function () {
-        $('#transactionsM4').toggle();
+    $('#transaction-btn64').on('click', function () {
+        $('#transactions64').toggle();
     });
 
     //May
-    $('#transaction-btnG5').on('click', function () {
-        $('#transactionsG5').toggle();
+    $('#transaction-btn15').on('click', function () {
+        $('#transactions15').toggle();
     });
 
-    $('#transaction-btnH5').on('click', function () {
-        $('#transactionsH5').toggle();
+    $('#transaction-btn25').on('click', function () {
+        $('#transactions25').toggle();
     });
 
-    $('#transaction-btnB5').on('click', function () {
-        $('#transactionsB5').toggle();
+    $('#transaction-btn35').on('click', function () {
+        $('#transactions35').toggle();
     });
 
-    $('#transaction-btnE5').on('click', function () {
-        $('#transactionsE5').toggle();
+    $('#transaction-btn45').on('click', function () {
+        $('#transactions45').toggle();
     });
 
-    $('#transaction-btnGas5').on('click', function () {
-        $('#transactionsGas5').toggle();
+    $('#transaction-btn55').on('click', function () {
+        $('#transactions55').toggle();
     });
 
-    $('#transaction-btnM5').on('click', function () {
-        $('#transactionsM5').toggle();
+    $('#transaction-btn65').on('click', function () {
+        $('#transactions65').toggle();
     });
 
     //June
-    $('#transaction-btnG6').on('click', function () {
-        $('#transactionsG6').toggle();
+    $('#transaction-btn16').on('click', function () {
+        $('#transactions16').toggle();
     });
 
-    $('#transaction-btnH6').on('click', function () {
-        $('#transactionsH6').toggle();
+    $('#transaction-btn26').on('click', function () {
+        $('#transactions26').toggle();
     });
 
-    $('#transaction-btnB6').on('click', function () {
-        $('#transactionsB6').toggle();
+    $('#transaction-btn36').on('click', function () {
+        $('#transactions36').toggle();
     });
 
-    $('#transaction-btnE6').on('click', function () {
-        $('#transactionsE6').toggle();
+    $('#transaction-btn46').on('click', function () {
+        $('#transactions46').toggle();
     });
 
-    $('#transaction-btnGas6').on('click', function () {
-        $('#transactionsGas6').toggle();
+    $('#transaction-btn56').on('click', function () {
+        $('#transactions56').toggle();
     });
 
-    $('#transaction-btnM6').on('click', function () {
-        $('#transactionsM6').toggle();
+    $('#transaction-btn66').on('click', function () {
+        $('#transactions66').toggle();
     });
 
     //July
-    $('#transaction-btnG7').on('click', function () {
-        $('#transactionsG7').toggle();
+    $('#transaction-btn17').on('click', function () {
+        $('#transactions17').toggle();
     });
 
-    $('#transaction-btnH7').on('click', function () {
-        $('#transactionsH7').toggle();
+    $('#transaction-btn27').on('click', function () {
+        $('#transactions27').toggle();
     });
 
-    $('#transaction-btnB7').on('click', function () {
-        $('#transactionsB7').toggle();
+    $('#transaction-btn37').on('click', function () {
+        $('#transactions37').toggle();
     });
 
-    $('#transaction-btnE7').on('click', function () {
-        $('#transactionsE7').toggle();
+    $('#transaction-btn47').on('click', function () {
+        $('#transactions47').toggle();
     });
 
-    $('#transaction-btnGas7').on('click', function () {
-        $('#transactionsGas7').toggle();
+    $('#transaction-btn57').on('click', function () {
+        $('#transactions57').toggle();
     });
 
-    $('#transaction-btnM7').on('click', function () {
-        $('#transactionsM7').toggle();
+    $('#transaction-btn67').on('click', function () {
+        $('#transactions67').toggle();
     });
 
     //Aug
-    $('#transaction-btnG8').on('click', function () {
-        $('#transactionsG8').toggle();
+    $('#transaction-btn18').on('click', function () {
+        $('#transactions18').toggle();
     });
 
-    $('#transaction-btnH8').on('click', function () {
-        $('#transactionsH8').toggle();
+    $('#transaction-btn28').on('click', function () {
+        $('#transactions28').toggle();
     });
 
-    $('#transaction-btnB8').on('click', function () {
-        $('#transactionsB8').toggle();
+    $('#transaction-btn38').on('click', function () {
+        $('#transactions38').toggle();
     });
 
-    $('#transaction-btnE8').on('click', function () {
-        $('#transactionsE8').toggle();
+    $('#transaction-btn48').on('click', function () {
+        $('#transactions48').toggle();
     });
 
-    $('#transaction-btnGas8').on('click', function () {
-        $('#transactionsGas8').toggle();
+    $('#transaction-btn58').on('click', function () {
+        $('#transactions58').toggle();
     });
 
-    $('#transaction-btnM8').on('click', function () {
-        $('#transactionsM8').toggle();
+    $('#transaction-btn68').on('click', function () {
+        $('#transactions68').toggle();
     });
 
     //Sept
-    $('#transaction-btnG9').on('click', function () {
-        $('#transactionsG9').toggle();
+    $('#transaction-btn19').on('click', function () {
+        $('#transactions19').toggle();
     });
 
-    $('#transaction-btnH9').on('click', function () {
-        $('#transactionsH9').toggle();
+    $('#transaction-btn29').on('click', function () {
+        $('#transactions29').toggle();
     });
 
-    $('#transaction-btnB9').on('click', function () {
-        $('#transactionsB9').toggle();
+    $('#transaction-btn39').on('click', function () {
+        $('#transactions39').toggle();
     });
 
-    $('#transaction-btnE9').on('click', function () {
-        $('#transactionsE9').toggle();
+    $('#transaction-btn49').on('click', function () {
+        $('#transactions49').toggle();
     });
 
-    $('#transaction-btnGas9').on('click', function () {
-        $('#transactionsGas9').toggle();
+    $('#transaction-btn59').on('click', function () {
+        $('#transactions59').toggle();
     });
 
-    $('#transaction-btnM9').on('click', function () {
-        $('#transactionsM9').toggle();
+    $('#transaction-btn69').on('click', function () {
+        $('#transactions69').toggle();
     });
 
     //Oct
-    $('#transaction-btnG10').on('click', function () {
-        $('#transactionsG10').toggle();
+    $('#transaction-btn110').on('click', function () {
+        $('#transactions110').toggle();
     });
 
-    $('#transaction-btnH10').on('click', function () {
-        $('#transactionsH10').toggle();
+    $('#transaction-btn210').on('click', function () {
+        $('#transactions210').toggle();
     });
 
-    $('#transaction-btnB10').on('click', function () {
-        $('#transactionsB10').toggle();
+    $('#transaction-btn310').on('click', function () {
+        $('#transactions310').toggle();
     });
 
-    $('#transaction-btnE10').on('click', function () {
-        $('#transactionsE10').toggle();
+    $('#transaction-btn410').on('click', function () {
+        $('#transactions410').toggle();
     });
 
-    $('#transaction-btnGas10').on('click', function () {
-        $('#transactionsGas10').toggle();
+    $('#transaction-btn510').on('click', function () {
+        $('#transactions510').toggle();
     });
 
-    $('#transaction-btnM10').on('click', function () {
-        $('#transactionsM10').toggle();
+    $('#transaction-btn610').on('click', function () {
+        $('#transactions610').toggle();
     });
 
     //Nov
-    $('#transaction-btnG11').on('click', function () {
-        $('#transactionsG11').toggle();
+    $('#transaction-btn111').on('click', function () {
+        $('#transactions111').toggle();
     });
 
-    $('#transaction-btnH11').on('click', function () {
-        $('#transactionsH11').toggle();
+    $('#transaction-btn211').on('click', function () {
+        $('#transactions211').toggle();
     });
 
-    $('#transaction-btnB11').on('click', function () {
-        $('#transactionsB11').toggle();
+    $('#transaction-btn311').on('click', function () {
+        $('#transactions311').toggle();
     });
 
-    $('#transaction-btnE11').on('click', function () {
-        $('#transactionsE11').toggle();
+    $('#transaction-btn411').on('click', function () {
+        $('#transactions411').toggle();
     });
 
-    $('#transaction-btnGas11').on('click', function () {
-        $('#transactionsGas11').toggle();
+    $('#transaction-btn511').on('click', function () {
+        $('#transactions511').toggle();
     });
 
-    $('#transaction-btnM11').on('click', function () {
-        $('#transactionsM11').toggle();
+    $('#transaction-btn611').on('click', function () {
+        $('#transactions611').toggle();
     });
 
     //Dec
-    $('#transaction-btnG12').on('click', function () {
-        $('#transactionsG12').toggle();
+    $('#transaction-btn112').on('click', function () {
+        $('#transactions112').toggle();
     });
 
-    $('#transaction-btnH12').on('click', function () {
-        $('#transactionsH12').toggle();
+    $('#transaction-btn212').on('click', function () {
+        $('#transactions212').toggle();
     });
 
-    $('#transaction-btnB12').on('click', function () {
-        $('#transactionsB12').toggle();
+    $('#transaction-btn312').on('click', function () {
+        $('#transactions312').toggle();
     });
 
-    $('#transaction-btnE12').on('click', function () {
-        $('#transactionsE12').toggle();
+    $('#transaction-btn412').on('click', function () {
+        $('#transactions412').toggle();
     });
 
-    $('#transaction-btnGas12').on('click', function () {
-        $('#transactionsGas12').toggle();
+    $('#transaction-btn512').on('click', function () {
+        $('#transactions512').toggle();
     });
 
-    $('#transaction-btnM12').on('click', function () {
-        $('#transactionsM12').toggle();
+    $('#transaction-btn612').on('click', function () {
+        $('#transactions612').toggle();
     });
 
 
-    $('#jan').on('click', function () {
-        $('#itemizedBudgetContainer1').toggle();
+    $('#January').on('click', function () {
+        $('#BudgetContainer1').toggle();
     });
 
-    $('#feb').on('click', function () {
-        $('#itemizedBudgetContainer2').toggle();
+    $('#February').on('click', function () {
+        $('#BudgetContainer2').toggle();
     });
 
-    $('#march').on('click', function () {
-        $('#itemizedBudgetContainer3').toggle();
+    $('#March').on('click', function () {
+        $('#BudgetContainer3').toggle();
     });
 
-    $('#apr').on('click', function () {
-        $('#itemizedBudgetContainer4').toggle();
+    $('#April').on('click', function () {
+        $('#BudgetContainer4').toggle();
     });
 
-    $('#may').on('click', function () {
-        $('#itemizedBudgetContainer5').toggle();
+    $('#May').on('click', function () {
+        $('#BudgetContainer5').toggle();
     });
 
-    $('#june').on('click', function () {
-        $('#itemizedBudgetContainer6').toggle();
+    $('#June').on('click', function () {
+        $('#BudgetContainer6').toggle();
     });
 
-    $('#july').on('click', function () {
-        $('#itemizedBudgetContainer7').toggle();
+    $('#July').on('click', function () {
+        $('#BudgetContainer7').toggle();
     });
 
-    $('#aug').on('click', function () {
-        $('#itemizedBudgetContainer8').toggle();
+    $('#August').on('click', function () {
+        $('#BudgetContainer8').toggle();
     });
 
-    $('#sept').on('click', function () {
-        $('#itemizedBudgetContainer9').toggle();
+    $('#September').on('click', function () {
+        $('#BudgetContainer9').toggle();
     });
 
-    $('#oct').on('click', function () {
-        $('#itemizedBudgetContainer10').toggle();
+    $('#October').on('click', function () {
+        $('#BudgetContainer10').toggle();
     });
 
-    $('#nov').on('click', function () {
-        $('#itemizedBudgetContainer11').toggle();
+    $('#November').on('click', function () {
+        $('#BudgetContainer11').toggle();
     });
 
-    $('#dec').on('click', function () {
-        $('#itemizedBudgetContainer12').toggle();
+    $('#December').on('click', function () {
+        $('#BudgetContainer12').toggle();
     });
 }
 
@@ -869,3 +869,20 @@ function donutChartTotal12() {
         chart.draw(data, options);
     }
 };
+
+//TODO
+
+//Look at PastBudgets view
+//try to refactor or put in list
+
+//id = BudgetContainer1(itemizedBudgetContainer1)
+//id = transactionBtn11(transaction - btnG1) Jan transactionBtnG111 Nov
+//id = transactions11(transactionsG1) transactions111 Nov
+
+//List of "Grocery, Bills, Ent....
+
+//Type of Budget list 1 - 6
+
+
+//Do icon variables last(6 of them)
+

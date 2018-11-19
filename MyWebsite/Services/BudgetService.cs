@@ -119,5 +119,67 @@ namespace MyWebsite.Services
                 _context.SaveChanges();
             }
         }
+
+        public List<string> GetBudgetMonthsList(string user)
+        {
+            var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == user).ToList();
+
+            var hasBudgetMonths = new List<string>();
+            foreach (var transaction in pastBudgetTransactions)
+            {
+                switch (transaction.Month)
+                {
+                    case 1:
+                        hasBudgetMonths.Add("January");
+                        break;
+
+                    case 2:
+                        hasBudgetMonths.Add("February");
+                        break;
+
+                    case 3:
+                        hasBudgetMonths.Add("March");
+                        break;
+
+                    case 4:
+                        hasBudgetMonths.Add("April");
+                        break;
+
+                    case 5:
+                        hasBudgetMonths.Add("May");
+                        break;
+
+                    case 6:
+                        hasBudgetMonths.Add("June");
+                        break;
+
+                    case 7:
+                        hasBudgetMonths.Add("July");
+                        break;
+
+                    case 8:
+                        hasBudgetMonths.Add("August");
+                        break;
+
+                    case 9:
+                        hasBudgetMonths.Add("September");
+                        break;
+
+                    case 10:
+                        hasBudgetMonths.Add("October");
+                        break;
+
+                    case 11:
+                        hasBudgetMonths.Add("November");
+                        break;
+
+                    case 12:
+                        hasBudgetMonths.Add("December");
+                        break;
+                }
+            }
+
+            return hasBudgetMonths;
+        }
     }
 }

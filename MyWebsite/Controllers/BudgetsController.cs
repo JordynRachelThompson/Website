@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MyWebsite.Data;
 using MyWebsite.Models.BudgetProject;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyWebsite.Services;
@@ -117,20 +118,6 @@ namespace MyWebsite.Controllers
 
         public ActionResult PastBudgets(bool deleted, string description)
         {
-            TempData["jan"] = false;
-            TempData["feb"] = false;
-            TempData["march"] = false;
-            TempData["apr"] = false;
-            TempData["may"] = false;
-            TempData["june"] = false;
-            TempData["july"] = false;
-            TempData["aug"] = false;
-            TempData["sept"] = false;
-            TempData["oct"] = false;
-            TempData["nov"] = false;
-            TempData["dec"] = false;
-
-
             //Budget totals for pie charts
             var budgetService = new BudgetService(_context);
 
@@ -163,66 +150,10 @@ namespace MyWebsite.Controllers
 
             if (deleted)
                 ViewBag.Deleted = ($"Transaction titled {description.ToUpper()} was successfully deleted!");
+
+            ViewBag.BudgetMonthList = budgetService.GetBudgetMonthsList(User.Identity.Name);
             
-            var pastBudgetTransactions = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList();
-
-            //Setting month to true if budget for that month exists
-            foreach (var transaction in pastBudgetTransactions)
-            {
-                switch (transaction.Month)
-                {
-                    case 1:
-                        TempData["jan"] = true;
-                        break;
-
-                    case 2:
-                        TempData["feb"] = true;
-                        break;
-
-                    case 3:
-                        TempData["march"] = true;
-                        break;
-
-                    case 4:
-                        TempData["apr"] = true;
-                        break;
-
-                    case 5:
-                        TempData["may"] = true;
-                        break;
-
-                    case 6:
-                        TempData["june"] = true;
-                        break;
-
-                    case 7:
-                        TempData["july"] = true;
-                        break;
-
-                    case 8:
-                        TempData["aug"] = true;
-                        break;
-
-                    case 9:
-                        TempData["sept"] = true;
-                        break;
-
-                    case 10:
-                        TempData["oct"] = true;
-                        break;
-
-                    case 11:
-                        TempData["nov"] = true;
-                        break;
-
-                    case 12:
-                        TempData["dec"] = true;
-                        break;
-
-                }
-            }
-
-            return View(pastBudgetTransactions);
+            return View(_context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList());
         }
 
         // GET: Budgets/Details/
