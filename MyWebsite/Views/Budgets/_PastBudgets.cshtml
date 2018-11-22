@@ -12,9 +12,8 @@
 
     for (var month = 1; month < 13; month++)
     {
-        var monthNumber = 1;
-        string monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(monthNumber);
-        var containerId = "BudgetContainer" + monthNumber.ToString();
+        var monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+        var containerId = "BudgetContainer" + month.ToString();
         <div class="container center" id=@containerId style="margin-top:35px; margin-bottom:50px; display:none;">
             <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">@monthName Transactions</h5>
             
@@ -50,7 +49,6 @@
                     }
                 </table>
             }
-            @monthNumber++;
         }
             <h2 id="totalSpent1" style="display:none">@TempData["spentInJan"]</h2>
             <h2 id="totalBudget1" style="display:none">@TempData["janTotal"]</h2>

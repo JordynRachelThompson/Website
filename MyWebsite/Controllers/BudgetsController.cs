@@ -134,18 +134,18 @@ namespace MyWebsite.Controllers
             TempData["novTotal"] = budgetService.GetTotalBudgetLimitByMonth(11, User.Identity.Name);
             TempData["decTotal"] = budgetService.GetTotalBudgetLimitByMonth(12, User.Identity.Name);
 
-            TempData["spentInJan"] = budgetService.TotalSpentThisMonth(1, User.Identity.Name);
-            TempData["spentInFeb"] = budgetService.TotalSpentThisMonth(2, User.Identity.Name);
-            TempData["spentInMarch"] = budgetService.TotalSpentThisMonth(3, User.Identity.Name);
-            TempData["spentInApr"] = budgetService.TotalSpentThisMonth(4, User.Identity.Name);
-            TempData["spentInMay"] = budgetService.TotalSpentThisMonth(5, User.Identity.Name);
-            TempData["spentInJune"] = budgetService.TotalSpentThisMonth(6, User.Identity.Name);
-            TempData["spentInJuly"] = budgetService.TotalSpentThisMonth(7, User.Identity.Name);
-            TempData["spentInAug"] = budgetService.TotalSpentThisMonth(8, User.Identity.Name);
-            TempData["spentInSept"] = budgetService.TotalSpentThisMonth(9, User.Identity.Name);
-            TempData["spentInOct"] = budgetService.TotalSpentThisMonth(10, User.Identity.Name);
-            TempData["spentInNov"] = budgetService.TotalSpentThisMonth(11, User.Identity.Name);
-            TempData["spentInDec"] = budgetService.TotalSpentThisMonth(12, User.Identity.Name);
+            TempData["spentInJan"] = budgetService.TotalSpentByMonth(1, User.Identity.Name);
+            TempData["spentInFeb"] = budgetService.TotalSpentByMonth(2, User.Identity.Name);
+            TempData["spentInMarch"] = budgetService.TotalSpentByMonth(3, User.Identity.Name);
+            TempData["spentInApr"] = budgetService.TotalSpentByMonth(4, User.Identity.Name);
+            TempData["spentInMay"] = budgetService.TotalSpentByMonth(5, User.Identity.Name);
+            TempData["spentInJune"] = budgetService.TotalSpentByMonth(6, User.Identity.Name);
+            TempData["spentInJuly"] = budgetService.TotalSpentByMonth(7, User.Identity.Name);
+            TempData["spentInAug"] = budgetService.TotalSpentByMonth(8, User.Identity.Name);
+            TempData["spentInSept"] = budgetService.TotalSpentByMonth(9, User.Identity.Name);
+            TempData["spentInOct"] = budgetService.TotalSpentByMonth(10, User.Identity.Name);
+            TempData["spentInNov"] = budgetService.TotalSpentByMonth(11, User.Identity.Name);
+            TempData["spentInDec"] = budgetService.TotalSpentByMonth(12, User.Identity.Name);
 
 
             if (deleted)
