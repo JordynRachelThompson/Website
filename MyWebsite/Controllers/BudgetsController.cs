@@ -8,7 +8,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MyWebsite.Services;
 
-
 namespace MyWebsite.Controllers
 {
     public class BudgetsController : Controller
@@ -22,14 +21,14 @@ namespace MyWebsite.Controllers
 
         public ActionResult Index(bool success)
         {
+            if (success)
+                ViewBag.SuccessLimitsUpdated = "Budget limits successfully updated!";
+
             ViewBag.EmptyBudget = false;
-            int currentMonth = DateTime.Now.Month;
+            var currentMonth = DateTime.Now.Month;
             var budget = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == currentMonth);
 
-            if (success)
-                ViewBag.SuccessLimitsUpdated = "Budget Limits successfully updated!";
-
-            if (!budget.Any() || User.Identity.Name == null)
+            if (!budget.Any())
             {
                 ViewBag.EmptyBudget = true;
                 ViewBag.HasPastBudget = false;
@@ -42,35 +41,25 @@ namespace MyWebsite.Controllers
             {
                 var budgetService = new BudgetService(_context);
 
-                var totalBudget = budgetService.GetTotalBudgetLimitByMonth(currentMonth, User.Identity.Name);
-                TempData["TotalLimit"] = totalBudget;
+                var budgetTotals = new List<float>();
+                for (var i = 1; i < 7; i++)
+                {
+                    budgetTotals.Add(budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, i));
+                }
 
-                var totalSpent = budgetService.TotalSpentByMonth(currentMonth, User.Identity.Name); //totalGrocery + totalHousing + totalBills + totalEntertainment + totalGas + totalMisc;
-                TempData["totalSpent"] = totalSpent;
-
-                TempData["groceryTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 1);
-                TempData["housingTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 2);
-                TempData["billsTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 3);
-                TempData["entTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 4);
-                TempData["gasTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 5);
-                TempData["miscTotal"] = budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, 6);
+                ViewBag.BudgetTotals = budgetTotals;
             }
 
             return View(budget);
         }
 
-        //Set Budget Limits
-        [HttpPost]
+        [HttpPost] //Set Budget Limits
         public ActionResult Index(Budget budget, bool usePastBudgetLimit)
         {
+            var budgetService = new BudgetService(_context);
+
             if (ModelState.IsValid && usePastBudgetLimit)
-            {
-                var budgetService = new BudgetService(_context);
-
-                budgetService.SetBudgetLimitToPastLimit(User.Identity.Name, budget);
-
-                return RedirectToAction("Index", new { userName = User.Identity.Name });
-            }
+                budgetService.SetBudgetLimitToPastLimit(budget);
 
             return View();
         }
@@ -91,7 +80,6 @@ namespace MyWebsite.Controllers
             var errors = false;
             var budget = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == DateTime.Now.Month).ToList();
 
-            //Validation
             if (Convert.ToInt32(budgetItems.TypeOfBudget) == 0)
             {
                 ViewBag.typeError = "Please select a budget type from the dropdown.";
@@ -104,15 +92,14 @@ namespace MyWebsite.Controllers
                 errors = true;
             }
 
-            if (!errors)
+            if (!errors && ModelState.IsValid)
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Add(budgetItems);
-                    _context.SaveChanges();
-                    ViewBag.SuccessTransactionAdded = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
-                }
+                _context.Add(budgetItems);
+                _context.SaveChanges();
+                ViewBag.SuccessTransactionAdded = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
+
             }
+
             return View(budget);
         }
 
@@ -152,56 +139,22 @@ namespace MyWebsite.Controllers
                 ViewBag.Deleted = ($"Transaction titled {description.ToUpper()} was successfully deleted!");
 
             ViewBag.BudgetMonthList = budgetService.GetBudgetMonthsList(User.Identity.Name);
-            
+
             return View(_context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList());
         }
 
-        // GET: Budgets/Details/
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-                return NotFound();
-            
-            var budget = await _context.Budget
-                .SingleOrDefaultAsync(m => m.Id == id);
-
-            if (budget == null)
-                return NotFound();
-            
-            return View(budget);
-        }
-
-        // GET: Budgets/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Budgets/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit")] Budget budget)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(budget);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(budget);
-        }
 
         // GET: Budgets/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
                 return NotFound();
-            
+
             var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
 
             if (budget == null)
                 return NotFound();
-            
+
             TempData["userId"] = id;
 
             return View(budget);
@@ -214,7 +167,7 @@ namespace MyWebsite.Controllers
         {
             if (id != budget.Id)
                 return NotFound();
-            
+
             _context.Update(budget);
             await _context.SaveChangesAsync();
 
@@ -229,7 +182,7 @@ namespace MyWebsite.Controllers
             {
                 _context.BudgetItems.Remove(budgetTransaction);
                 _context.SaveChanges();
-                
+
                 return RedirectToAction("AddTransaction", new { deleted = true, description = budgetTransaction.Description });
             }
 

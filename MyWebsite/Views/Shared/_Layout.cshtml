@@ -15,7 +15,8 @@
     </environment>
 </head>
 
-<body style="color:#cfd8dc !important; background-color:black;">
+
+<body style="color:#cfd8dc !important; background-color: #080C10;">
     @*NAVBAR*@
     <div class="navbar-fixed">
         <nav class="black">
@@ -23,33 +24,25 @@
                 <a href="@Url.Action("Index", "Home")" class="brand-logo" style="letter-spacing:2.5px; color:#cfd8dc;">JT</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">ABOUT</a></li>
-                    <li><a asp-area="" asp-controller="Projects" asp-action="Index">PROJECTS</a></li>
+                    <li><a asp-area="" asp-controller="Projects" asp-action="Index">PORTFOLIO</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
                 </ul>
             </div>
         </nav>
     </div>
-
-
-
     @RenderBody()
-@RenderSection("Scripts", required: false)
+    @RenderSection("Scripts", required: false)
 
-<footer>
-    <div class="footer-copyright black" style="border-top: 1px solid #cfd8dc; border-bottom: 1px solid #cfd8dc;">
-        <div class="container" style="color:#cfd8dc;">
+    <footer>
+        <div class="footer-copyright black">
             <ul id="horizontal-list" class="center">
                 <li style="margin-right:20px;"> © 2018 Jordyn Thompson</li>
-                <li><a style="color:#cfd8dc;" a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i id="footer-icon" class="fab fa-linkedin" style="font-size:35px;"></i></a></li>
-                <li><a style="color:#cfd8dc;" a href="https://github.com/JordynRachelThompson/" target="_blank"><i id="footer-icon" class="fab fa-github-square" style="font-size:35px;"></i></a></li>
-                <li style="margin-left:20px;"><a style="color:#cfd8dc;" href="mailto:" jordyn@virtualzero.net">jordyn@virtualzero.net</a></li>
+                <li><a style="color:#cfd8dc;" a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon" style="font-size:35px; margin-top: 15px; margin-bottom: 15px;"></i></a></li>
+                <li><a style="color:#cfd8dc;" a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon" style="font-size:35px; margin-top: 15px; margin-bottom: 15px;"></i></a></li>
+                <li style="margin-left:20px;"><a class="footer-icon" style="color:#cfd8dc;" href="mailto:jordyn@virtualzero.net">jordyn@virtualzero.net</a></li>
             </ul>
         </div>
-    </div>
-</footer>
-
-
-
+    </footer>
 </body>
 </html>
 
@@ -60,20 +53,20 @@
         vertical-align: middle;
     }
 
-    ul#horizontal-list li {
-        display: inline;
-        padding: 10px;
-    }
+        ul#horizontal-list li {
+            display: inline;
+            padding: 10px;
+        }
 
-    #footer-icon:hover {
+    .footer-icon:hover {
         color: white;
     }
 </style>
 
 <environment>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/materialize.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/js/materialize.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
 </environment>
 
 

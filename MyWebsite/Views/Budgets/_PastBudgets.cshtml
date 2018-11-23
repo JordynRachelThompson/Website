@@ -10,18 +10,31 @@
     budgetType.Add(5, "Gas");
     budgetType.Add(6, "Miscellaneous");
 
+    var iconSymbolType = new List<string>();
+    iconSymbolType.Add("local_dining");
+    iconSymbolType.Add("home");
+    iconSymbolType.Add("monetization_on");
+    iconSymbolType.Add("local_activity");
+    iconSymbolType.Add("drive_eta");
+    iconSymbolType.Add("gesture");
+
     for (var month = 1; month < 13; month++)
     {
+        var iconCount = 0;
         var monthName = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-        var containerId = "BudgetContainer" + month.ToString();
+        var containerId = "BudgetContainer" + month;
+        var donutId = "donutchartTotal" + month;
+
         <div class="container center" id=@containerId style="margin-top:35px; margin-bottom:50px; display:none;">
             <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">@monthName Transactions</h5>
             
             @foreach (var type in budgetType)
             {
-                var transactionId = "transactionBtn" + type.Key.ToString() + type.Value.ToString();
-                var transactionsId = "transactions" + type.Key.ToString() + type.Value.ToString();
-                <a class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" id=@transactionId style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>@type.Value</a>
+                var transactionId = "transactionBtn" + type.Key + month;
+                var transactionsId = "transactions" + type.Key + month;
+                var count = 0;
+
+                <a class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" id=@transactionId style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">@iconSymbolType[iconCount]</i>@type.Value</a>
                 <table class="table" id=@transactionsId align="center" style="display:none; width:25%; margin-bottom:25px;">
                     <tr style="border-bottom: 1px dotted #cfd8dc">
                         <th>Date</th>
@@ -29,8 +42,8 @@
                         <th>Price</th>
                         <th></th>
                     </tr>
-                    @{ int count = 0;}
-                    @foreach (var item in Model.Where(x => x.Month == 1).Where(x => Convert.ToInt32(x.TypeOfBudget) == type.Key).OrderBy(x => x.Date))
+
+                    @foreach (var item in Model.Where(x => x.Month == month).Where(x => Convert.ToInt32(x.TypeOfBudget) == type.Key).OrderBy(x => x.Date))
                     {
                         count += 1;
                         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -48,12 +61,17 @@
                         </tr>
                     }
                 </table>
+                iconCount++;
             }
-        }
-            <h2 id="totalSpent1" style="display:none">@TempData["spentInJan"]</h2>
-            <h2 id="totalBudget1" style="display:none">@TempData["janTotal"]</h2>
+            
+            @{
+                var totalSpentId = "totalSpent" + month;
+                var totalBudgetId = "totalBudget" + month;}
+        
+            <h2 id=@totalSpentId style="display:none">@TempData["spentInJan"]</h2>
+            <h2 id=@totalBudgetId style="display:none">@TempData["janTotal"]</h2>
             <div style="margin-bottom:-100px;"></div>
-            <div align="center" style="margin-top:50px;" id="donutchartTotal1"></div>
+            <div align="center" style="margin-top:50px;" id=@donutId></div>
         </div>
     }
 }

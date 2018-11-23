@@ -1,8 +1,26 @@
 ﻿body {
-    padding-bottom: 20px;
     color: #cfd8dc;
-    height: 100vh;
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
 
+html {
+    height: 100%;
+}
+
+body::after {
+    content: '';
+    display: block;
+    height: 50px; 
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
 }
 
 .body-content {
@@ -21,7 +39,7 @@ nav ul li:hover {
 
 nav ul a:hover {
     color: #cfd8dc !important;
-    border: 1px solid #cfd8dc !important;
+    border: 1px dotted #cfd8dc !important;
 }
 
 nav ul a {
@@ -83,39 +101,43 @@ a {
     color: #cfd8dc;
 }
 
+#email:hover {
+    color: white;
+}
+
 
 input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #81cac4 !important;
+    border-bottom: 1px solid #54b798 !important;
     box-shadow: 0 1px 0 0 black !important;
-    background-color: black !important;
+    background-color: #080C10 !important;
 }
 
 input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #81cac4 !important;
+    border-bottom: 1px solid #54b798 !important;
     box-shadow: 0 1px 0 0 black !important;
-    background-color: black !important;
+    background-color: #080C10 !important;
 }
 
 input[type=password]:not(.browser-default) {
-    border-bottom: 1px solid #81cac4 !important;
+    border-bottom: 1px solid #54b798 !important;
     box-shadow: 0 1px 0 0 black !important;
-    background-color: black !important;
+    background-color: #080C10 !important;
 }
 
 input.valid[type=password]:not(.browser-default) {
     border-bottom: 1px solid #81cac4 !important;
     box-shadow: 0 1px 0 0 black !important;
-    background-color: black !important;
+    background-color: #080C10 !important;
 }
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
-    color: #81cac4 !important;
+    color: #54b798 !important;
 }
 
 
 input[type=text]:not(.browser-default) {
     background-color: #212121 !important;
-    color: #81cac4 !important;
+    color: #54b798 !important;
     font-size: 30px;
 }
 
@@ -138,16 +160,8 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #D50000 !important;
 }
 
-.lightBrown-hover:hover {
-    background-color: #424242 !important;
-}
-
-.lighterBrown-hover:hover {
-    background-color: #5b5a5a !important;
-}
-
 .lightTeal-hover:hover {
-    background-color: #a7f2ec !important;
+    background-color: #54b798 !important;
 }
 
 .userName {
@@ -171,6 +185,78 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 .hover-underline:hover {
-    border-bottom: dotted 1px #81cac4;
+    border-bottom: dotted 1px #cfd8dc;
     cursor: pointer;
 }
+
+.black-btn {
+    background-color: black !important;
+    color: #cfd8dc;
+    font-size: 19px;
+    border: 1px dotted #cfd8dc !important;
+}
+
+.black-btn:hover {
+    background-color: #080C10 !important;
+    border: none !important;
+    border-bottom: 1px solid #cfd8dc !important;
+}
+
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #cfd8dc !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    text-align: center;
+    background-color: #020305 !important;
+}
+
+.dropdown-content li > a, .dropdown-content li > span:hover {
+    background-color: #cfd8dc !important;
+    color: #212121 !important;
+}
+
+.select-dropdown li.disabled, .select-dropdown li.disabled > span, .select-dropdown li.optgroup {
+    color: #080C10 !important;
+    font-weight: bold;
+    text-align: center;
+}
+
+.select-wrapper input.select-dropdown {
+    border-bottom: none!important; 
+}
+
+.select-wrapper input.select-dropdown {
+    background-color: #020305 !important;
+    font-weight: bold !important;
+    font-size: 25px !important;
+    text-align: center;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    border-radius: 50px !important;
+    color: #cfd8dc !important;
+}
+
+.select-wrapper input.select-dropdown:hover {
+    background-color: #020305 !important;
+    color: #cfd8dc !important;
+    text-decoration: underline;
+}
+
+.trashcan-icon{
+    color: #cfd8dc !important;
+
+}
+
+.trashcan-icon:hover {
+    color: #54b798 !important;
+}
+
+.lightBrown-hover:hover {
+    text-decoration: underline;
+}
+
+.add-btn:hover {
+    color: black !important;
+}
+

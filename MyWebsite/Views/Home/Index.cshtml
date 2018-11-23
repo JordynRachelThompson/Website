@@ -1,57 +1,32 @@
-﻿@{
-    string lagoonNebulaText = "The Lagoon Nebula is a giant interstellar cloud in the constellation Sagittarius and is estimated to be 4,000-6,000 light-years from the Earth. Credits: NASA, ESA, and STScI";
-    var loggedOutMsg = "";
-    if (ViewBag.LoggedOut != null)
-    {
-        loggedOutMsg = ViewBag.LoggedOut;
-    }
-}
+﻿@*HOME PAGE*@
 
-<div id="particles-js" style="height:500px;"></div>
-
-<div><p style="text-align: center; margin-top: 10px; color: #81cac4;">@loggedOutMsg</p></div>
+<div id="particles-js" style="height: 800px; z-index: 0"></div>
 
 <div>
-    <ul class="collapsible">
-        <li>
-            <div class="collapsible-header black" style="font-size:20px;"><i class="fas fa-arrow-alt-circle-down" style="color: #ff7733; font-size:20px; padding-top:5px;"></i>Lagoon Nebula</div>
-            <div class="collapsible-body"><span style="font-size:17px;">@lagoonNebulaText</span></div>
-        </li>
+    <p style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.LoggedOut</p>
+</div>
+
+<h3 style="text-align:center; margin-top:-500px; margin-bottom: 300px; font-weight:200; font-size:30px; letter-spacing:1.5px;">TECHNOLOGIES USED</h3>
+
+<div class="container center-div" style="background-color:#020305; margin-top:-200px; margin-bottom:200px; z-index: 100; text-align:center; width:55%; padding:10px; border: .5px dotted #cfd8dc;">
+    <ul id="tech-used">
+        <li>C#</li><li>ASP.NET MVC</li><li>Razor Syntax</li><li>LINQ</li>
+        <li>Entity Framework</li><li>MS Visual Studio</li><li>Microsoft SQL Server</li>
+        <li>SSMS</li><li>Bootstrap</li><li>Materialize</li><li>Kendo UI</li>
+        <li>JavaScript</li><li>jQuery</li><li>JSON</li><li>AJAX</li><li>HTML/CSS</li>
+        <li>Git</li><li>Bash</li><li>WordPress</li><li>OOP Concepts</li>
     </ul>
 </div>
 
+@{var photoCreditText = "<b>Galaxy NGC 1300</b> \r\n\r\nCredit:\r\nNASA, ESA, and The Hubble Heritage Team (STScI/AURA)";}
 
 @*Main Image*@
-<div class="parallax-container">
-    <div class="parallax"><img src="~/images/nebula.png" alt="Image of Nebula" /></div>
+<div class="parallax-container" style="height: 750px;">
+    <div class="parallax">
+        <img class="materialboxed" src="~/images/spiralGalaxy.jpg" alt="Image of Nebula"/>
+    </div>
+    <a class="btn tooltipped" style="background-color:#020305; border: 1px dotted #cfd8dc" data-position="right" data-tooltip='@photoCreditText'><i class="fa fa-info-circle" aria-hidden="true"></i></a>
 </div>
-
-<h3 style="text-align:center; margin-top:40px; font-weight:200; font-size:30px; letter-spacing:1.5px;">TECHNOLOGIES</h3>
-<div class="container center-div" style="background-color:#050505; margin-top:40px; margin-bottom:150px; text-align:center; width:55%; padding:10px; border: .5px dotted #cfd8dc;">
-    <ul id="tech-used">
-        <li>C#</li>
-        <li>ASP.NET MVC</li>
-        <li>Razor Syntax</li>
-        <li>LINQ</li>
-        <li>Entity Framework</li>
-        <li>MS Visual Studio</li>
-        <li>Microsoft SQL Server</li>
-        <li>SSMS</li>
-        <li>Bootstrap</li>
-        <li>Materialize</li>
-        <li>Kendo UI</li>
-        <li>JavaScript</li>
-        <li>jQuery</li>
-        <li>JSON</li>
-        <li>AJAX</li>
-        <li>HTML/CSS</li>
-        <li>Git</li>
-        <li>Bash</li>
-        <li>WordPress</li>
-        <li>OOP Concepts</li>
-    </ul>
-</div>
-
 
 <script src="~/js/particles.js"></script>
 
@@ -60,14 +35,14 @@
         {
             "particles": {
                 "number": {
-                    "value": 73,
+                    "value": 29,
                     "density": {
                         "enable": true,
-                        "value_area": 800
+                        "value_area": 599
                     }
                 },
                 "color": {
-                    "value": "#ff7733"
+                    "value": "#cfd8dc"
                 },
                 "shape": {
                     "type": "circle",
@@ -76,7 +51,7 @@
                         "color": "#000000"
                     },
                     "polygon": {
-                        "nb_sides": 12
+                        "nb_sides": 5
                     },
                     "image": {
                         "src": "img/github.svg",
@@ -85,7 +60,7 @@
                     }
                 },
                 "opacity": {
-                    "value": 0.7696377892154509,
+                    "value": 0.49716301422833176,
                     "random": false,
                     "anim": {
                         "enable": false,
@@ -95,21 +70,21 @@
                     }
                 },
                 "size": {
-                    "value": 3,
+                    "value": 2.7,
                     "random": true,
                     "anim": {
                         "enable": false,
-                        "speed": 40,
+                        "speed": 48.7246327380807,
                         "size_min": 0.1,
                         "sync": false
                     }
                 },
                 "line_linked": {
                     "enable": true,
-                    "distance": 150,
-                    "color": "#ffffff",
-                    "opacity": 0.4,
-                    "width": 1
+                    "distance": 304.6482915644493,
+                    "color": "#525e78",
+                    "opacity": 0.5130918594769673,
+                    "width": 0.5
                 },
                 "move": {
                     "enable": true,
@@ -147,8 +122,8 @@
                         }
                     },
                     "bubble": {
-                        "distance": 389.7970619046457,
-                        "size": 101.50965153766813,
+                        "distance": 400,
+                        "size": 40,
                         "duration": 2,
                         "opacity": 8,
                         "speed": 3
@@ -172,6 +147,6 @@
 
     $(document).ready(function () {
         $('.parallax').parallax();
-        $('.collapsible').collapsible();
+        $('.tooltipped').tooltip();
     });
 </script>

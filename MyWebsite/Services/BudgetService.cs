@@ -101,8 +101,9 @@ namespace MyWebsite.Services
             return sum;
         }
 
-        public void SetBudgetLimitToPastLimit(string user, Budget currentBudget)
+        public void SetBudgetLimitToPastLimit(Budget currentBudget)
         {
+            var user = currentBudget.Email;
             var previousBudget = _context.Budget.Where(x => x.Email == user).Select(x => x).FirstOrDefault();
 
             if (previousBudget != null)
@@ -122,8 +123,9 @@ namespace MyWebsite.Services
         //Return list of months where user set a budget
         public List<string> GetBudgetMonthsList(string user)
         {
-            return _context.BudgetItems.Where(x => x.Email == user).Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
-            
+            return _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
+                .Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
+
         }
     }
 }

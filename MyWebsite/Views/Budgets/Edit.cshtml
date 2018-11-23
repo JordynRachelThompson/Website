@@ -1,17 +1,9 @@
 ﻿@model MyWebsite.Models.BudgetProject.Budget
-@using System.Linq;
-@using System.ComponentModel.DataAnnotations.Schema;
 
+@{ var user = User.Identity.Name; }
 
-@{
-    string user = User.Identity.Name;
-    int userId = Convert.ToInt32(TempData["userId"]);
-    TempData.Keep("userId");
-}
-
-<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
-<h3 style="text-align:center; margin-top:100px;">The Painless Budget</h3>
-<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
+<h3 style="text-align:center; margin-top:100px; text-decoration: underline">The Painless Budget</h3>
 
 <div class="container center-div" style="margin-bottom:100px;">
     <form asp-action="Edit">
@@ -20,12 +12,12 @@
                 <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
 
                 <button class="waves-effect waves-light btn-large lightBrown-hover grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
-                    <i class="material-icons left">save</i>Save
+                    <i class="material-icons left">save</i>Save Budget Limits
                 </button>
             </div>
         </div>
 
-        <h4 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#b2dfdb; text-align: center;">Edit Your Budget's Limits</h4>
+        <h4 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color: #54b798; text-align: center;">Edit Your Budget's Limits</h4>
 
         <div class="row" align="center">
             <div class="col s12">
@@ -36,7 +28,7 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="GroceryLimit" style="color: #cfd8dc; font-size: 25px; float: left">Food/Grocery </label>
+                        <label for="GroceryLimit" style="color: #cfd8dc; font-size: 25px; float: left">Grocery | Restaurant </label>
                         <input asp-for="GroceryLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
                     </div>
                     <div class="col l5 m4"></div>
@@ -45,7 +37,7 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class=" col l6 m5 s12">
-                        <label for="HousingLimit" style="color: #cfd8dc; font-size: 25px; float: left">Housing/Rent </label>
+                        <label for="HousingLimit" style="color: #cfd8dc; font-size: 25px; float: left">Mortgage | Rent </label>
                         <input asp-for="HousingLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
                     </div>
                     <div class="col l5 m4"></div>
@@ -63,7 +55,7 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="BillsLimit" style="color: #cfd8dc; font-size: 25px; float: left">Bills </label>
+                        <label for="BillsLimit" style="color: #cfd8dc; font-size: 25px; float: left">Bills | Payments </label>
                         <input asp-for="BillsLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
                     </div>
                     <div class="col l5 m4"></div>
@@ -72,7 +64,7 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="Gas" style="color: #cfd8dc; font-size: 25px; float: left">Gas/Car </label>
+                        <label for="Gas" style="color: #cfd8dc; font-size: 25px; float: left">Gas | Auto </label>
                         <input asp-for="GasLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
                     </div>
                     <div class="col l5 m4"></div>
@@ -96,11 +88,7 @@
         display: none !important;
     }
 
-    .lightBrown-hover:hover {
-        background-color: #424242 !important;
-    }
-
     input[type=text]:not(.browser-default) {
-        background-color: black !important;
+        background-color: #080C10 !important;
     }
 </style>

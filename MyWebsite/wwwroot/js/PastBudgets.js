@@ -1,303 +1,303 @@
-﻿//Show/Hide transactions based on category
+﻿//Show/hide transactions based on category
 function Transactions() {
 
     //Jan
-    $('#transaction-btn11').on('click', function () {
+    $('#transactionBtn11').on('click', function () {
         $('#transactions11').toggle();
     });
 
-    $('#transaction-btn21').on('click', function () {
+    $('#transactionBtn21').on('click', function () {
         $('#transactions21').toggle();
     });
 
-    $('#transaction-btn31').on('click', function () {
+    $('#transactionBtn31').on('click', function () {
         $('#transactions31').toggle();
     });
 
-    $('#transaction-btn41').on('click', function () {
+    $('#transactionBtn41').on('click', function () {
         $('#transactions41').toggle();
     });
 
-    $('#transaction-btn51').on('click', function () {
+    $('#transactionBtn51').on('click', function () {
         $('#transactions51').toggle();
     });
 
-    $('#transaction-btn61').on('click', function () {
+    $('#transactionBtn61').on('click', function () {
         $('#transactions61').toggle();
     });
 
     //Feb
-    $('#transaction-btn12').on('click', function () {
+    $('#transactionBtn12').on('click', function () {
         $('#transactions12').toggle();
     });
 
-    $('#transaction-btn22').on('click', function () {
+    $('#transactionBtn22').on('click', function () {
         $('#transactions22').toggle();
     });
 
-    $('#transaction-btn32').on('click', function () {
+    $('#transactionBtn32').on('click', function () {
         $('#transactions32').toggle();
     });
 
-    $('#transaction-btn42').on('click', function () {
+    $('#transactionBtn42').on('click', function () {
         $('#transactions42').toggle();
     });
 
-    $('#transaction-btn52').on('click', function () {
+    $('#transactionBtn52').on('click', function () {
         $('#transactions52').toggle();
     });
 
-    $('#transaction-btn62').on('click', function () {
+    $('#transactionBtn62').on('click', function () {
         $('#transactions62').toggle();
     });
 
     //March
-    $('#transaction-btn13').on('click', function () {
+    $('#transactionBtn13').on('click', function () {
         $('#transactions13').toggle();
     });
 
-    $('#transaction-btn23').on('click', function () {
+    $('#transactionBtn23').on('click', function () {
         $('#transactions23').toggle();
     });
 
-    $('#transaction-btn33').on('click', function () {
+    $('#transactionBtn33').on('click', function () {
         $('#transactions33').toggle();
     });
 
-    $('#transaction-btn43').on('click', function () {
+    $('#transactionBtn43').on('click', function () {
         $('#transactions43').toggle();
     });
 
-    $('#transaction-btn53').on('click', function () {
+    $('#transactionBtn53').on('click', function () {
         $('#transactions53').toggle();
     });
 
-    $('#transaction-btn63').on('click', function () {
+    $('#transactionBtn63').on('click', function () {
         $('#transactions63').toggle();
     });
 
     //Apr
-    $('#transaction-btn14').on('click', function () {
+    $('#transactionBtn14').on('click', function () {
         $('#transactions14').toggle();
     });
 
-    $('#transaction-btn24').on('click', function () {
+    $('#transactionBtn24').on('click', function () {
         $('#transactions24').toggle();
     });
 
-    $('#transaction-btn34').on('click', function () {
+    $('#transactionBtn34').on('click', function () {
         $('#transactions34').toggle();
     });
 
-    $('#transaction-btn44').on('click', function () {
+    $('#transactionBtn44').on('click', function () {
         $('#transactions44').toggle();
     });
 
-    $('#transaction-btn54').on('click', function () {
+    $('#transactionBtn54').on('click', function () {
         $('#transactions54').toggle();
     });
 
-    $('#transaction-btn64').on('click', function () {
+    $('#transactionBtn64').on('click', function () {
         $('#transactions64').toggle();
     });
 
     //May
-    $('#transaction-btn15').on('click', function () {
+    $('#transactionBtn15').on('click', function () {
         $('#transactions15').toggle();
     });
 
-    $('#transaction-btn25').on('click', function () {
+    $('#transactionBtn25').on('click', function () {
         $('#transactions25').toggle();
     });
 
-    $('#transaction-btn35').on('click', function () {
+    $('#transactionBtn35').on('click', function () {
         $('#transactions35').toggle();
     });
 
-    $('#transaction-btn45').on('click', function () {
+    $('#transactionBtn45').on('click', function () {
         $('#transactions45').toggle();
     });
 
-    $('#transaction-btn55').on('click', function () {
+    $('#transactionBtn55').on('click', function () {
         $('#transactions55').toggle();
     });
 
-    $('#transaction-btn65').on('click', function () {
+    $('#transactionBtn65').on('click', function () {
         $('#transactions65').toggle();
     });
 
     //June
-    $('#transaction-btn16').on('click', function () {
+    $('#transactionBtn16').on('click', function () {
         $('#transactions16').toggle();
     });
 
-    $('#transaction-btn26').on('click', function () {
+    $('#transactionBtn26').on('click', function () {
         $('#transactions26').toggle();
     });
 
-    $('#transaction-btn36').on('click', function () {
+    $('#transactionBtn36').on('click', function () {
         $('#transactions36').toggle();
     });
 
-    $('#transaction-btn46').on('click', function () {
+    $('#transactionBtn46').on('click', function () {
         $('#transactions46').toggle();
     });
 
-    $('#transaction-btn56').on('click', function () {
+    $('#transactionBtn56').on('click', function () {
         $('#transactions56').toggle();
     });
 
-    $('#transaction-btn66').on('click', function () {
+    $('#transactionBtn66').on('click', function () {
         $('#transactions66').toggle();
     });
 
     //July
-    $('#transaction-btn17').on('click', function () {
+    $('#transactionBtn17').on('click', function () {
         $('#transactions17').toggle();
     });
 
-    $('#transaction-btn27').on('click', function () {
+    $('#transactionBtn27').on('click', function () {
         $('#transactions27').toggle();
     });
 
-    $('#transaction-btn37').on('click', function () {
+    $('#transactionBtn37').on('click', function () {
         $('#transactions37').toggle();
     });
 
-    $('#transaction-btn47').on('click', function () {
+    $('#transactionBtn47').on('click', function () {
         $('#transactions47').toggle();
     });
 
-    $('#transaction-btn57').on('click', function () {
+    $('#transactionBtn57').on('click', function () {
         $('#transactions57').toggle();
     });
 
-    $('#transaction-btn67').on('click', function () {
+    $('#transactionBtn67').on('click', function () {
         $('#transactions67').toggle();
     });
 
     //Aug
-    $('#transaction-btn18').on('click', function () {
+    $('#transactionBtn18').on('click', function () {
         $('#transactions18').toggle();
     });
 
-    $('#transaction-btn28').on('click', function () {
+    $('#transactionBtn28').on('click', function () {
         $('#transactions28').toggle();
     });
 
-    $('#transaction-btn38').on('click', function () {
+    $('#transactionBtn38').on('click', function () {
         $('#transactions38').toggle();
     });
 
-    $('#transaction-btn48').on('click', function () {
+    $('#transactionBtn48').on('click', function () {
         $('#transactions48').toggle();
     });
 
-    $('#transaction-btn58').on('click', function () {
+    $('#transactionBtn58').on('click', function () {
         $('#transactions58').toggle();
     });
 
-    $('#transaction-btn68').on('click', function () {
+    $('#transactionBtn68').on('click', function () {
         $('#transactions68').toggle();
     });
 
     //Sept
-    $('#transaction-btn19').on('click', function () {
+    $('#transactionBtn19').on('click', function () {
         $('#transactions19').toggle();
     });
 
-    $('#transaction-btn29').on('click', function () {
+    $('#transactionBtn29').on('click', function () {
         $('#transactions29').toggle();
     });
 
-    $('#transaction-btn39').on('click', function () {
+    $('#transactionBtn39').on('click', function () {
         $('#transactions39').toggle();
     });
 
-    $('#transaction-btn49').on('click', function () {
+    $('#transactionBtn49').on('click', function () {
         $('#transactions49').toggle();
     });
 
-    $('#transaction-btn59').on('click', function () {
+    $('#transactionBtn59').on('click', function () {
         $('#transactions59').toggle();
     });
 
-    $('#transaction-btn69').on('click', function () {
+    $('#transactionBtn69').on('click', function () {
         $('#transactions69').toggle();
     });
 
     //Oct
-    $('#transaction-btn110').on('click', function () {
+    $('#transactionBtn110').on('click', function () {
         $('#transactions110').toggle();
     });
 
-    $('#transaction-btn210').on('click', function () {
+    $('#transactionBtn210').on('click', function () {
         $('#transactions210').toggle();
     });
 
-    $('#transaction-btn310').on('click', function () {
+    $('#transactionBtn310').on('click', function () {
         $('#transactions310').toggle();
     });
 
-    $('#transaction-btn410').on('click', function () {
+    $('#transactionBtn410').on('click', function () {
         $('#transactions410').toggle();
     });
 
-    $('#transaction-btn510').on('click', function () {
+    $('#transactionBtn510').on('click', function () {
         $('#transactions510').toggle();
     });
 
-    $('#transaction-btn610').on('click', function () {
+    $('#transactionBtn610').on('click', function () {
         $('#transactions610').toggle();
     });
 
     //Nov
-    $('#transaction-btn111').on('click', function () {
+    $('#transactionBtn111').on('click', function () {
         $('#transactions111').toggle();
     });
 
-    $('#transaction-btn211').on('click', function () {
+    $('#transactionBtn211').on('click', function () {
         $('#transactions211').toggle();
     });
 
-    $('#transaction-btn311').on('click', function () {
+    $('#transactionBtn311').on('click', function () {
         $('#transactions311').toggle();
     });
 
-    $('#transaction-btn411').on('click', function () {
+    $('#transactionBtn411').on('click', function () {
         $('#transactions411').toggle();
     });
 
-    $('#transaction-btn511').on('click', function () {
+    $('#transactionBtn511').on('click', function () {
         $('#transactions511').toggle();
     });
 
-    $('#transaction-btn611').on('click', function () {
+    $('#transactionBtn611').on('click', function () {
         $('#transactions611').toggle();
     });
 
     //Dec
-    $('#transaction-btn112').on('click', function () {
+    $('#transactionBtn112').on('click', function () {
         $('#transactions112').toggle();
     });
 
-    $('#transaction-btn212').on('click', function () {
+    $('#transactionBtn212').on('click', function () {
         $('#transactions212').toggle();
     });
 
-    $('#transaction-btn312').on('click', function () {
+    $('#transactionBtn312').on('click', function () {
         $('#transactions312').toggle();
     });
 
-    $('#transaction-btn412').on('click', function () {
+    $('#transactionBtn412').on('click', function () {
         $('#transactions412').toggle();
     });
 
-    $('#transaction-btn512').on('click', function () {
+    $('#transactionBtn512').on('click', function () {
         $('#transactions512').toggle();
     });
 
-    $('#transaction-btn612').on('click', function () {
+    $('#transactionBtn612').on('click', function () {
         $('#transactions612').toggle();
     });
 
@@ -364,8 +364,8 @@ var clickedOct = true;
 var clickedNov = true;
 var clickedDec = true;
 
-//Add green to clicked month buttons
-$('#jan').click(function () {
+//Add green txt to clicked month buttons
+$('#January').click(function () {
     if (clickedJan) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedJan = false;
@@ -375,7 +375,7 @@ $('#jan').click(function () {
     }
 });
 
-$('#feb').click(function () {
+$('#February').click(function () {
     if (clickedFeb) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedFeb = false;
@@ -385,7 +385,7 @@ $('#feb').click(function () {
     }
 });
 
-$('#march').click(function () {
+$('#March').click(function () {
     if (clickedMarch) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedMarch = false;
@@ -395,7 +395,7 @@ $('#march').click(function () {
     }
 });
 
-$('#apr').click(function () {
+$('#April').click(function () {
     if (clickedApr) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedApr = false;
@@ -405,7 +405,7 @@ $('#apr').click(function () {
     }
 });
 
-$('#may').click(function () {
+$('#May').click(function () {
     if (clickedMay) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedMay = false;
@@ -415,7 +415,7 @@ $('#may').click(function () {
     }
 });
 
-$('#june').click(function () {
+$('#June').click(function () {
     if (clickedJune) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedJune = false;
@@ -425,7 +425,7 @@ $('#june').click(function () {
     }
 });
 
-$('#july').click(function () {
+$('#July').click(function () {
     if (clickedJuly) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedJuly = false;
@@ -435,7 +435,7 @@ $('#july').click(function () {
     }
 });
 
-$('#aug').click(function () {
+$('#August').click(function () {
     if (clickedAug) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedAug = false;
@@ -445,7 +445,7 @@ $('#aug').click(function () {
     }
 });
 
-$('#sept').click(function () {
+$('#September').click(function () {
     if (clickedSept) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold;font-size:20px; margin-top:10px;");
         clickedSept = false;
@@ -455,7 +455,7 @@ $('#sept').click(function () {
     }
 });
 
-$('#oct').click(function () {
+$('#October').click(function () {
     if (clickedOct) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedOct = false;
@@ -465,7 +465,7 @@ $('#oct').click(function () {
     }
 });
 
-$('#nov').click(function () {
+$('#November').click(function () {
     if (clickedNov) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedNov = false;
@@ -475,7 +475,7 @@ $('#nov').click(function () {
     }
 });
 
-$('#dec').click(function () {
+$('#December').click(function () {
     if (clickedDec) {
         $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
         clickedDec = false;
@@ -485,11 +485,12 @@ $('#dec').click(function () {
     }
 });
 
+//Donut charts
 function donutChartTotal1() {
     var totalSpent = parseInt(document.getElementById('totalSpent1').innerHTML);
     var totalBudget = parseInt(document.getElementById('totalBudget1').innerHTML);
 
-    var budgetData = [['Total Spent', 'Remaining Budget'], ['Total Spent', totalSpent], ['Remaining Budget', totalBudget]];
+    var budgetData = [['Total Spent in Jan', 'Remaining Budget'], ['Total Spent', totalSpent], ['Remaining Budget', totalBudget]];
 
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(drawChart);
@@ -504,7 +505,7 @@ function donutChartTotal1() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -536,7 +537,7 @@ function donutChartTotal2() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -568,7 +569,7 @@ function donutChartTotal3() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -600,7 +601,7 @@ function donutChartTotal4() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -632,7 +633,7 @@ function donutChartTotal5() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -664,7 +665,7 @@ function donutChartTotal6() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -696,7 +697,7 @@ function donutChartTotal7() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -728,7 +729,7 @@ function donutChartTotal8() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -760,7 +761,7 @@ function donutChartTotal9() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -793,7 +794,7 @@ function donutChartTotal10() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -825,7 +826,7 @@ function donutChartTotal11() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -857,7 +858,7 @@ function donutChartTotal12() {
             ,
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
-            backgroundColor: 'black',
+            backgroundColor: '#080C10',
             color: '#cfd8dc',
             is3D: true,
             width: 700,
@@ -870,19 +871,4 @@ function donutChartTotal12() {
     }
 };
 
-//TODO
-
-//Look at PastBudgets view
-//try to refactor or put in list
-
-//id = BudgetContainer1(itemizedBudgetContainer1)
-//id = transactionBtn11(transaction - btnG1) Jan transactionBtnG111 Nov
-//id = transactions11(transactionsG1) transactions111 Nov
-
-//List of "Grocery, Bills, Ent....
-
-//Type of Budget list 1 - 6
-
-
-//Do icon variables last(6 of them)
 
