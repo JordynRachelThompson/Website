@@ -78,7 +78,7 @@
                     <td>@item.Date.ToString("MM/dd/yyyy")</td>
                     <td>@item.Description</td>
                     <td>$@item.Cost</td>
-                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                    <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
                 </tr>            
             }
 
@@ -105,7 +105,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
         @if (countH == 0)
@@ -132,7 +132,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
         @if (countB == 0)
@@ -159,7 +159,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
         @if (countE == 0)
@@ -186,7 +186,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
         @if (countGas == 0)
@@ -213,7 +213,7 @@
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
         @if (countM == 0)

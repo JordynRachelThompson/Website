@@ -50,7 +50,7 @@
                             <td>@item.Date.ToString("MM/dd/yyyy")</td>
                             <td>@item.Description</td>
                             <td>$@item.Cost</td>
-                            <td><a href='@Url.Action("DeletePastTransaction", "Budgets", new { id = item.TransactionId })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                            <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "PastBudgets" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
                         </tr>
                     }
 
@@ -68,8 +68,8 @@
                 var totalSpentId = "totalSpent" + month;
                 var totalBudgetId = "totalBudget" + month;}
         
-            <h2 id=@totalSpentId style="display:none">@TempData["spentInJan"]</h2>
-            <h2 id=@totalBudgetId style="display:none">@TempData["janTotal"]</h2>
+            <h2 id=@totalSpentId style="display:none">@ViewBag.MonthListSpent[month -1]</h2>
+            <h2 id=@totalBudgetId style="display:none">@ViewBag.MonthListTotal[month -1]</h2>
             <div style="margin-bottom:-100px;"></div>
             <div align="center" style="margin-top:50px;" id=@donutId></div>
         </div>
