@@ -14,34 +14,7 @@
 
     <div class="container center-div z-depth-5" style="background-color:#020305; margin-top:50px; text-align:center; width:75%; padding:10px; border: .5px dotted #cfd8dc;">
         <ul id="project-list">
-            <li style="text-decoration: underline; font-size: 25px;"><span style="cursor:pointer" id="painlessBudget">The Painless Budget</span></li>
+            <li style="text-decoration: underline; font-size: 25px;"><a href='@Url.Action("Index", "Budgets")' class="purple-hover"><span id="painlessBudget">The Painless Budget</span></a></li>
         </ul>
     </div>
-
-    <div id="painlessBudgetDiv" class="container center-div z-depth-5" style="background-color:#020305; margin-top:50px; text-align:center; width:75%; padding:10px; border: .5px dotted #cfd8dc;">
-        <p style="text-align: center; margin-top: 20px;"><a style=" text-transform: capitalize !important; font-size: 23px; font-weight: 400;" href='@Url.Action("Index", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black-btn">Visit The Painless Budget</a></p>
-        <p style="text-align: center; margin-top: 35px; margin-left: 25px; margin-right: 25px; font-size: 20px;">@painlessBudgetInfo</p>
-        <div class="carousel" style="margin-bottom: 35px; margin-top: -15px;">
-            <a class="carousel-item" href="#one!"><img src="~/images/painlessBudget/painlessBudget1.png" /></a>
-            <a class="carousel-item" href="#two!"><img src="~/images/painlessBudget/painlessBudget2.png" /></a>
-            <a class="carousel-item" href="#three!"><img src="~/images/painlessBudget/painlessBudget3.png" /></a>
-            <a class="carousel-item" href="#four!"><img src="~/images/painlessBudget/painlessBudget4.png" /></a>
-            <a class="carousel-item" href="#five!"><img src="~/images/painlessBudget/painlessBudget5.png" /></a>
-        </div>
-    </div>
 </div>
-
-<style>
-    .carousel .carousel-item {
-        width:600px !important;
-        height: 300px !important;
-    }
-</style>
-
-<script>
-    $(document).ready(function(){
-        $('.carousel').carousel();
-    });
-
-    $('.carousel.carousel-slider').carousel({ fullWidth: true });
-</script>

@@ -10,11 +10,18 @@
 }
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
-<h3 style="text-align:center; margin-top:100px; text-decoration: underline">The Painless Budget</h3>
+<h3 style="text-align:center; margin-top:80px; text-decoration: underline">The Painless Budget</h3>
 
 @if (!SignInManager.IsSignedIn(User)) 
 {
-    <p style="text-align:center; font-size:20px; margin-top:30px; margin-bottom: 500px;">Please log in or register first to use the app.</p>
+    <p style="text-align:center; font-size:20px; margin-top:30px; ">Please log in or register first to use the app.</p>
+    <div class="carousel">
+        <a class="carousel-item" href="#one!"><img src="~/images/painlessBudget/painlessBudget1.png" /></a>
+        <a class="carousel-item" href="#two!"><img src="~/images/painlessBudget/painlessBudget2.png" /></a>
+        <a class="carousel-item" href="#three!"><img src="~/images/painlessBudget/painlessBudget3.png" /></a>
+        <a class="carousel-item" href="#four!"><img src="~/images/painlessBudget/painlessBudget4.png" /></a>
+        <a class="carousel-item" href="#five!"><img src="~/images/painlessBudget/painlessBudget5.png" /></a>
+    </div>
 }
 
 else
@@ -210,7 +217,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingG.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingG.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GroceryLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartGrocery" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -230,7 +237,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingH.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingH.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.HousingLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartHousing" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -252,7 +259,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingE.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingE.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.EntLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartEntertainment" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -272,7 +279,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingB.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingB.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.BillsLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartBills" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -294,7 +301,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingGas.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingGas.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GasLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartGas" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -314,7 +321,7 @@ else
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingM.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingM.ToString("#,##0.00") left</span></h5>
                         }
                         <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.MiscLimit.ToString("#,##0.00")">View Budget Limit</a>
                         <div id="donutchartMisc" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
@@ -339,6 +346,11 @@ else
     #Total Remaining Budget {
         color: #cfd8dc !important;
     }
+
+    .carousel .carousel-item {
+        width: 600px !important;
+        height: 300px !important;
+    }
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -348,6 +360,7 @@ else
 
     $(document).ready(function () {
         $('.tooltipped').tooltip();
+        $('.carousel').carousel();
         donutChartGrocery();
         donutChartHousing();
         donutChartEntertainment();
@@ -356,6 +369,7 @@ else
         donutChartMisc();
     });
 
+    $('.carousel.carousel-slider').carousel({ fullWidth: true });
     $('#unhide-set-budget-form').on('click', function () {
         $('#hidden-set-budget-form').toggle();
     });

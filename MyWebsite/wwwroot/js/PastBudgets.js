@@ -502,7 +502,7 @@ function donutChartTotal1() {
                 bold: true,
                 fontName: 'arial'
             }
-            ,
+            , 
             colors: ['#e6c5c4', '#54b798'],
             pieHole: 0.5,
             backgroundColor: '#080C10',

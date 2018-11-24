@@ -1,9 +1,8 @@
 ﻿@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
-@using MyWebsite.Models.BudgetProject
 
 @{  
-    string user = User.Identity.Name;
-    int budgetMonth = DateTime.Now.Month;
+    var user = User.Identity.Name;
+    var budgetMonth = DateTime.Now.Month;
 }
 
 
@@ -52,7 +51,7 @@
                 @Html.Hidden("TypeOfBudget", "TypeOfBudget")
                 @Html.Hidden("Date", DateTime.Now)
                 @Html.Hidden("Month", budgetMonth)
-                <div style="margin-top:23px;"><h5><b>4. Save</b></h5> <button type="submit" class="btn-floating btn-large waves-effect waves-light blue-grey lighten-4"><i class="material-icons add-btn" style="font-weight:bold; color: #212121 !important;">library_add</i></button></div>
+                <div style="margin-top:23px;"><h5><b>4. Save</b></h5> <button type="submit" class="btn-floating btn-large waves-effect waves-light blue-grey lighten-4 purple-hover"><i class="material-icons add-btn" style="font-weight:bold; color: #212121 !important;">library_add</i></button></div>
             </div>
         </form>
         <div class="col s12 m12 l4"></div>
