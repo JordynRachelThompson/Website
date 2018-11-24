@@ -56,12 +56,19 @@ namespace MyWebsite.Controllers
         [HttpPost] //Set Budget Limits
         public ActionResult Index(Budget budget, bool usePastBudgetLimit)
         {
-            var budgetService = new BudgetService(_context);
+            if (!ModelState.IsValid)
+                TempData["budgetLimitError"] = "Please choose a value for each budget limit or enter 0.";
+            else
+            {
+                var budgetService = new BudgetService(_context);
 
-            if (ModelState.IsValid && usePastBudgetLimit)
-                budgetService.SetBudgetLimitToPastLimit(budget);
+                if (ModelState.IsValid && usePastBudgetLimit)
+                    budgetService.SetBudgetLimitToPastLimit(budget);
+                else
+                    budgetService.SetNewBudgetLimits(budget);
+            }
 
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult AddTransaction(bool deleted, string description)
@@ -105,7 +112,6 @@ namespace MyWebsite.Controllers
 
         public ActionResult PastBudgets(bool deleted, string description)
         {
-            //Budget totals for pie charts
             var budgetService = new BudgetService(_context);
             var monthListTotal = new List<float>();
             var monthListSpent = new List<float>();
@@ -214,7 +220,7 @@ namespace MyWebsite.Controllers
         //    HttpContext.Response.Clear();
         //}
 
-        public IActionResult BudgetAnalytics()
+        public IActionResult BudgetInsights()
         {
             return View();
         }

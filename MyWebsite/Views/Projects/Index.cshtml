@@ -1,81 +1,47 @@
 ﻿@*Project Directory*@
 
-@{ string user = User.Identity.Name;}
+@{
+    var painlessBudgetInfo = "A user friendly budget app that lets users add, delete, and track purchases, set budget limits, and view past budgets and spending insights. User can choose to save their budget as an Excel file for easy tracking.";
+}
+
+}
 
 
 <div style="margin: 50px;">
     <h3 style="margin-top:100px; text-align:center; padding-bottom:10px; text-decoration:  underline">PROJECTS</h3>
-    <div class="row">
-        @*GITHUB*@
-        <div class="col l4 m12 s12">
-            <div class="card" style="width:70%; margin:70px;">
-                <div class="card-image">
-                    <img src="~/images/darkStars.jpg" />
-                    <span class="card-title" style="font-size:30px;">GitHub</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4" a href="https://github.com/JordynRachelThompson/Website" target="_blank"><i class="fab fa-github" style="color:black"></i></a>
-                </div>
-                <div class="card-content black-text">
-                    <p>View the code for this website and past projects.</p>
-                </div>
-            </div>
-        </div>
 
-        @*BUDGET*@
-        <div class="col l4 m12 s12">
-            <div class="card" style="width:70%; margin:70px;">
-                <div class="card-image">
-                    <img src="~/images/painlessBudgetPic.png" />
-                    <span class="card-title" style="font-size:30px;"></span>
-                    <a href='@Url.Action("Index", "Budgets")' class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="far fa-money-bill-alt" style="color:black"></i></a>
-                </div>
-                <div class="card-content black-text">
-                    <p>
-                        <b>The Painless Budget:</b> An easy to use, functional budget with budget analytics and an option to export to Excel. ASP.NET Core, C#,
-                        Materialize, Google Charts, jQuery, JavaScript
-                    </p>
-                </div>
-            </div>
-        </div>
+    <p style="text-align:center"><a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i id="gitHubIcon" style="color: #525e78; font-size: 50px;" class="fab fa-github z-depth-5"></i></a></p>
 
-        @*WEATHER*@
-        <div class="col l4 m12 s12">
-            <div class="card" style="width:70%; margin:70px;">
-                <div class="card-image">
-                    <img src="~/images/darkStars.jpg" />
-                    <span class="card-title" style="font-size:30px;">Weather</span>
-                    <a href='@Url.Action("Index", "Weather")' class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="material-icons black-text">arrow_right</i></a>
-                </div>
-                <div class="card-content black-text">
-                    <p>Some text explaining what it is will go here... Some text explaining what it is will go here...</p>
-                </div>
-            </div>
-        </div>
+    <div class="container center-div z-depth-5" style="background-color:#020305; margin-top:50px; text-align:center; width:75%; padding:10px; border: .5px dotted #cfd8dc;">
+        <ul id="project-list">
+            <li style="text-decoration: underline; font-size: 25px;"><span style="cursor:pointer" id="painlessBudget">The Painless Budget</span></li>
+        </ul>
+    </div>
 
-        <div class="col l4 m12 s12">
-            <div class="card" style="width:70%; margin:70px;">
-                <div class="card-image">
-                    <img src="~/images/darkStars.jpg" />
-                    <span class="card-title" style="font-size:30px;">Project Name</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="material-icons black-text">arrow_right</i></a>
-                </div>
-                <div class="card-content black-text">
-                    <p>Some text explaining what it is will go here... Some text explaining what it is will go here...</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col l4 m12 s12">
-            <div class="card" style="width:70%; margin:70px;">
-                <div class="card-image">
-                    <img src="~/images/darkStars.jpg" />
-                    <span class="card-title" style="font-size:30px;">Project Name</span>
-                    <a class="btn-floating halfway-fab waves-effect waves-light blue-grey lighten-4"><i class="material-icons black-text">arrow_right</i></a>
-                </div>
-                <div class="card-content black-text">
-                    <p>Some text explaining what it is will go here... Some text explaining what it is will go here...</p>
-                </div>
-            </div>
+    <div id="painlessBudgetDiv" class="container center-div z-depth-5" style="background-color:#020305; margin-top:50px; text-align:center; width:75%; padding:10px; border: .5px dotted #cfd8dc;">
+        <p style="text-align: center; margin-top: 20px;"><a style=" text-transform: capitalize !important; font-size: 23px; font-weight: 400;" href='@Url.Action("Index", "Budgets")' class="waves-effect waves-light btn-large sharpCorners black-btn">Visit The Painless Budget</a></p>
+        <p style="text-align: center; margin-top: 35px; margin-left: 25px; margin-right: 25px; font-size: 20px;">@painlessBudgetInfo</p>
+        <div class="carousel" style="margin-bottom: 35px; margin-top: -15px;">
+            <a class="carousel-item" href="#one!"><img src="~/images/painlessBudget/painlessBudget1.png" /></a>
+            <a class="carousel-item" href="#two!"><img src="~/images/painlessBudget/painlessBudget2.png" /></a>
+            <a class="carousel-item" href="#three!"><img src="~/images/painlessBudget/painlessBudget3.png" /></a>
+            <a class="carousel-item" href="#four!"><img src="~/images/painlessBudget/painlessBudget4.png" /></a>
+            <a class="carousel-item" href="#five!"><img src="~/images/painlessBudget/painlessBudget5.png" /></a>
         </div>
     </div>
 </div>
 
+<style>
+    .carousel .carousel-item {
+        width:600px !important;
+        height: 300px !important;
+    }
+</style>
+
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel();
+    });
+
+    $('.carousel.carousel-slider').carousel({ fullWidth: true });
+</script>

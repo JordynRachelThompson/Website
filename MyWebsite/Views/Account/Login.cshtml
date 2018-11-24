@@ -1,10 +1,5 @@
-﻿@using System.Collections.Generic
-@using System.Linq
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@model LoginViewModel
+﻿@model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
-<link href="~/css/site.css" rel="stylesheet" />
 
 @{
     int appType = Convert.ToInt32(ViewData["AppType"]);
@@ -15,7 +10,7 @@
     }
 }
 
-<h3 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
+<h3 style="text-align:center; margin-top:150px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
 
 <div style="width:30%; margin-left: 150px; margin-top:150px;">
     <div>

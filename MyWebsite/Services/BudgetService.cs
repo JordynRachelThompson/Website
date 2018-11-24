@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Extensions.Internal;
-using MyWebsite.Data;
+﻿using MyWebsite.Data;
 using MyWebsite.Models.BudgetProject;
 using System;
 using System.Collections.Generic;
@@ -70,23 +69,6 @@ namespace MyWebsite.Services
                 .Select(x => x.Cost).Sum();
         }
 
-
-        //public float TotalSpentThisMonth(int month, string user)
-        //{
-        //    float sum = 0;
-
-        //    for (var type = 1; type < 7; type++)
-        //    {
-        //        foreach (var item in _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month)
-        //            .Where(x => Convert.ToInt32(x.TypeOfBudget) == type))
-        //        {
-        //            sum += item.Cost;
-        //        }
-        //    }
-
-        //    return sum;
-        //}
-
         //Total spent by category (type)
         public float TotalSpentByBudgetCategory(int month, string user, int type)
         {
@@ -125,7 +107,13 @@ namespace MyWebsite.Services
         {
             return _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
                 .Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
+        }
 
+        //Set new budget limits
+        public void SetNewBudgetLimits(Budget budgetLimits)
+        {
+            _context.Add(budgetLimits);
+            _context.SaveChanges();
         }
     }
 }

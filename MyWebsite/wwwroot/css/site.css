@@ -260,3 +260,6 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: black !important;
 }
 
+#gitHubIcon:hover {
+    color: #cfd8dc !important;
+}
