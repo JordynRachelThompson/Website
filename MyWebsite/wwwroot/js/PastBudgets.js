@@ -1,4 +1,17 @@
-﻿//Show/hide transactions based on category
+﻿//Transaction colors when clicked
+$('.typeButton').click(function () {
+    var typeId = $(this).attr('id');
+    if ($("#" + typeId).hasClass('clickedContent').removeClass("clickedContent")) {
+        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+    }
+    else
+    {
+        $(this).css("cssText", "color: #525e78 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $("#" + typeId).addClass("clickedContent");
+    }
+});
+
+//Show/hide transactions based on category
 function Transactions() {
 
     //Jan

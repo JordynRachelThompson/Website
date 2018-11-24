@@ -1,22 +1,41 @@
 ﻿
-<div style="text-align:center; margin-top:80px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
-<h3 style="text-align:center; margin-top:100px;">The Painless Budget</h3>
-<div style="border-bottom: 1px dotted #cfd8dc;"></div>
+<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
+<h3 style="text-align:center; margin-top:100px; text-decoration: underline">The Painless Budget</h3>
 
-<div class="row">
+<div class="row" style="padding: 80px;">
     <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s3"><a href="#test1">Test 1</a></li>
-            <li class="tab col s3"><a class="active" href="#test2">Test 2</a></li>
-            <li class="tab col s3 disabled"><a href="#test3">Disabled Tab</a></li>
-            <li class="tab col s3"><a href="#test4">Test 4</a></li>
+        <ul class="tabs tabs-fixed-width z-depth-1">
+            <li class="tab col s3"><a href="#tab1">Average Spending</a></li>
+            <li class="tab col s3"><a  href="#tab2">Average Savings</a></li>
+            <li class="tab col s3"><a href="#tab3">Insights By Category</a></li>
         </ul>
     </div>
-    <div id="test1" class="col s12">Test 1</div>
-    <div id="test2" class="col s12">Test 2</div>
-    <div id="test3" class="col s12">Test 3</div>
-    <div id="test4" class="col s12">Test 4</div>
+
+    <div>
+        <div style="margin-top: 20px;" id="tab1" class="col s12">Testing tab 1</div>
+        <div style="margin-top: 20px;" id="tab2" class="col s12">Testing tab 2</div>
+        <div  style="margin-top: 20px;" id="tab3" class="col s12">Testing tab 3</div>
+    </div>
 </div>
+
+
+<style>
+    .tabs .tab a {
+        background-color: #54b798 !important;
+        color: black !important;
+        font-weight: bold;
+        font-size: medium;
+    }
+
+    .tabs .tab a.active {
+        background-color: #76c5ac !important;
+    }
+
+    .tabs .indicator {
+        background-color: #cfd8dc !important;
+    }
+
+</style>
 
 <script>
     $(document).ready(function(){

@@ -133,8 +133,6 @@ namespace MyWebsite.Controllers
             return View(_context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList());
         }
 
-
-        // GET: Budgets/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -150,7 +148,6 @@ namespace MyWebsite.Controllers
             return View(budget);
         }
 
-        // POST: Budgets/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit, Month")] Budget budget)
@@ -179,19 +176,6 @@ namespace MyWebsite.Controllers
             return RedirectToAction(returnTo, new { deleted = false });
         }
         
-
-        //// POST: Budgets/Delete
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
-        //    _context.Budget.Remove(budget);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction("AddTransaction");
-        //}
-
         public IActionResult ExportExcel()
         {
             return View();

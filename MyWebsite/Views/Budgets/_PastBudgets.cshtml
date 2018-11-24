@@ -77,22 +77,3 @@
 }
 
 
-
-<script>
-
-
-    $('.typeButton').click(function () {
-        var typeId = $('.typeButton').attr('id');
-        if ($('.typeButton').hasClass('clickedContent')) {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
-            $("#" + typeId).removeClass("clickedContent");
-        }
-        else
-        {
-            $(this).css("cssText", "color: #525e78 !important; font-weight:bold; font-size:20px; margin-top:10px;");
-            $("#" + typeId).addClass("clickedContent");
-        }
-    });
-   
-
-</script>
