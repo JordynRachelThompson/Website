@@ -1,8 +1,9 @@
 ﻿//Transaction colors when clicked
 $('.typeButton').click(function () {
     var typeId = $(this).attr('id');
-    if ($("#" + typeId).hasClass('clickedContent').removeClass("clickedContent")) {
+    if ($("#" + typeId).hasClass('clickedContent')) {
         $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $("#" + typeId).removeClass("clickedContent");
     }
     else
     {
