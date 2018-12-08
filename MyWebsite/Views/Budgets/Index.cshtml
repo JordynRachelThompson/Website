@@ -47,7 +47,7 @@ else
                             <i class="material-icons left">create</i>Create <span style="color:#54b798">New</span> Budget Limits
                         </button>
                         <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect lightBrown-hover waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+                        <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect lightBrown-hover waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
                         <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
@@ -135,7 +135,7 @@ else
                         <h5 style="margin-top:77px; font-weight:bold;">Groceries | Restaurant</h5>
                         <div class="input-field">
                             <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                            <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px; width:50%" type="number" class="validate">
                         </div>
                     </div>
                     <div class="col s12 m12 l4">
@@ -369,8 +369,13 @@ else
         donutChartMisc();
     });
 
-    $('.carousel.carousel-slider').carousel({ fullWidth: true });
-    $('#unhide-set-budget-form').on('click', function () {
+    //$('.carousel.carousel-slider').carousel({ fullWidth: true });
+
+    //$('#unhide-set-budget-form').on('click', function () {
+    //    $('#hidden-set-budget-form').toggle();
+    //});
+
+    $('#unhide-set-budget-form').click(function() {
         $('#hidden-set-budget-form').toggle();
     });
 
