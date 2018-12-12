@@ -1,26 +1,31 @@
-﻿using MyWebsite.Data;
-using MyWebsite.Models.BudgetProject;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using MyWebsite.Data.Interfaces;
+using MyWebsite.Models.BudgetProject;
 
-namespace MyWebsite.Services
+namespace MyWebsite.Data.Repositories
 {
-    public class BudgetService
+    public class BudgetRepository : IBudgetRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public BudgetService(ApplicationDbContext context)
+        public BudgetRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        private bool BudgetExists(int id)
+        public bool BudgetExists(int id)
         {
-            return _context.Budget.Any(e => e.Id == id);
+            return _context.Budget.Any(x => x.Id == id);
         }
 
+        public bool BudgetExistsByUser(string user)
+        {
+            return _context.Budget.Any(x => x.Email == user);
+        }
         //Budget limit by type of budget
         public float GetBudgetLimitByLimitType(int type, int budgetMonth, string user)
         {
@@ -62,27 +67,6 @@ namespace MyWebsite.Services
             return sum;
         }
 
-        //Total spent by month
-        public float TotalSpentByMonth(int month, string user)
-        {
-            return _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month)
-                .Select(x => x.Cost).Sum();
-        }
-
-        //Total spent by category (type)
-        public float TotalSpentByBudgetCategory(int month, string user, int type)
-        {
-            float sum = 0;
-
-            foreach (var item in _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month)
-                .Where(x => Convert.ToInt32(x.TypeOfBudget) == type))
-            {
-                sum += item.Cost;
-            }
-
-            return sum;
-        }
-
         public void SetBudgetLimitToPastLimit(Budget currentBudget)
         {
             var user = currentBudget.Email;
@@ -102,18 +86,26 @@ namespace MyWebsite.Services
             }
         }
 
-        //Return list of months where user set a budget
-        public List<string> GetBudgetMonthsList(string user)
-        {
-            return _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
-                .Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
-        }
-
         //Set new budget limits
         public void SetNewBudgetLimits(Budget budgetLimits)
         {
             _context.Add(budgetLimits);
             _context.SaveChanges();
+        }
+
+        public List<Budget> GetCurrentBudget(string user, int currentMonth)
+        {
+            return _context.Budget.Where(x => x.Email == user && x.Month == currentMonth).ToList();
+        }
+
+        public Budget GetBudgetById(int id)
+        {
+            return  _context.Budget.SingleOrDefault(x => x.Id == id);
+        }
+
+        public void Add(Budget budget)
+        {
+            _context.Budget.Add(budget);
         }
     }
 }

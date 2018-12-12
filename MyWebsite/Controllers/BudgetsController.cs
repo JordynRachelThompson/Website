@@ -1,24 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MyWebsite.Data;
+using MyWebsite.Data.Interfaces;
 using MyWebsite.Models.BudgetProject;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using MyWebsite.Services;
 
 namespace MyWebsite.Controllers
 {
     public class BudgetsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public BudgetsController(ApplicationDbContext context)
+        public BudgetsController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
-
+        
         public ActionResult Index(bool success)
         {
             if (success)
@@ -26,25 +22,26 @@ namespace MyWebsite.Controllers
 
             ViewBag.EmptyBudget = false;
             var currentMonth = DateTime.Now.Month;
-            var budget = _context.Budget.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == currentMonth);
+            var budget = _unitOfWork.BudgetRepository.GetCurrentBudget(User.Identity.Name, currentMonth);
 
-            if (!budget.Any())
+            foreach (var month in budget)
             {
-                ViewBag.EmptyBudget = true;
-                ViewBag.HasPastBudget = false;
-                var pastBudget = _context.Budget.Where(x => x.Email == User.Identity.Name);
-                if (pastBudget.Any())
-                    ViewBag.HasPastBudget = true;
+                if (month.Month != currentMonth)
+                {
+                    ViewBag.EmptyBudget = true;
+                    ViewBag.HasPastBudget = false;
+                    var pastBudget = _unitOfWork.BudgetRepository.BudgetExistsByUser(User.Identity.Name);
+                    if (pastBudget)
+                        ViewBag.HasPastBudget = true;
+                }
             }
 
             if (!ViewBag.EmptyBudget)
             {
-                var budgetService = new BudgetService(_context);
-
                 var budgetTotals = new List<float>();
                 for (var i = 1; i < 7; i++)
                 {
-                    budgetTotals.Add(budgetService.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, i));
+                    budgetTotals.Add(_unitOfWork.BudgetItemsRepository.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, i));
                 }
 
                 ViewBag.BudgetTotals = budgetTotals;
@@ -57,15 +54,13 @@ namespace MyWebsite.Controllers
         public ActionResult Index(Budget budget, bool usePastBudgetLimit)
         {
             if (!ModelState.IsValid)
-                TempData["budgetLimitError"] = "Please choose a value for each budget limit or enter 0.";
+                ViewBag.BudgetLimitError = "Please choose a value for each budget limit or enter 0.";
             else
             {
-                var budgetService = new BudgetService(_context);
-
                 if (ModelState.IsValid && usePastBudgetLimit)
-                    budgetService.SetBudgetLimitToPastLimit(budget);
+                    _unitOfWork.BudgetRepository.SetBudgetLimitToPastLimit(budget);
                 else
-                    budgetService.SetNewBudgetLimits(budget);
+                    _unitOfWork.BudgetRepository.SetNewBudgetLimits(budget);
             }
 
             return RedirectToAction("Index");
@@ -76,9 +71,7 @@ namespace MyWebsite.Controllers
             if (deleted)
                 ViewBag.Deleted = ($"Transaction titled {description.ToUpper()} was successfully deleted!");
 
-            var budget = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == DateTime.Now.Month).ToList();
-
-            return View(budget);
+            return View(_unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month));
         }
 
         [HttpPost]
@@ -100,26 +93,25 @@ namespace MyWebsite.Controllers
 
             if (!errors && ModelState.IsValid)
             {
-                _context.Add(budgetItems);
-                _context.SaveChanges();
+                _unitOfWork.BudgetItemsRepository.Add(budgetItems);
+                _unitOfWork.Complete();
                 ViewBag.SuccessTransactionAdded = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
             }
 
-            var budget = _context.BudgetItems.Where(x => x.Email == User.Identity.Name).Where(x => x.Month == DateTime.Now.Month).ToList();
+            var budget = _unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month);
 
             return View(budget);
         }
 
         public ActionResult PastBudgets(bool deleted, string description)
         {
-            var budgetService = new BudgetService(_context);
             var monthListTotal = new List<float>();
             var monthListSpent = new List<float>();
 
             for (var monthNum = 1; monthNum < 13; monthNum++)
             {
-                monthListTotal.Add(budgetService.GetTotalBudgetLimitByMonth(monthNum, User.Identity.Name));
-                monthListSpent.Add(budgetService.TotalSpentByMonth(monthNum, User.Identity.Name));
+                monthListTotal.Add(_unitOfWork.BudgetRepository.GetTotalBudgetLimitByMonth(monthNum, User.Identity.Name));
+                monthListSpent.Add(_unitOfWork.BudgetItemsRepository.TotalSpentByMonth(monthNum, User.Identity.Name));
             }
 
             ViewBag.MonthListTotal = monthListTotal;
@@ -128,17 +120,17 @@ namespace MyWebsite.Controllers
             if (deleted)
                 ViewBag.Deleted = ($"Transaction titled {description.ToUpper()} was successfully deleted!");
 
-            ViewBag.BudgetMonthList = budgetService.GetBudgetMonthsList(User.Identity.Name);
+            ViewBag.BudgetMonthList = _unitOfWork.BudgetItemsRepository.GetBudgetMonthsList(User.Identity.Name);
 
-            return View(_context.BudgetItems.Where(x => x.Email == User.Identity.Name).ToList());
+            return View(_unitOfWork.BudgetItemsRepository.ReturnBudgetItemsListForUser(User.Identity.Name));
         }
 
-        public async Task<IActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
                 return NotFound();
 
-            var budget = await _context.Budget.SingleOrDefaultAsync(m => m.Id == id);
+            var budget = _unitOfWork.BudgetRepository.GetBudgetById(Convert.ToInt32(id));
 
             if (budget == null)
                 return NotFound();
@@ -150,13 +142,12 @@ namespace MyWebsite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit, Month")] Budget budget)
+        public ActionResult Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit, Month")] Budget budget)
         {
             if (id != budget.Id)
                 return NotFound();
-
-            _context.Update(budget);
-            await _context.SaveChangesAsync();
+            _unitOfWork.BudgetRepository.Add(budget);
+            _unitOfWork.Complete();
 
             return RedirectToAction("Index", new { userName = User.Identity.Name, success = true });
         }
@@ -164,11 +155,11 @@ namespace MyWebsite.Controllers
         //Delete Specific Transaction
         public IActionResult DeleteTransaction(int? id, string returnTo)
         {
-            var budgetTransaction = _context.BudgetItems.SingleOrDefault(x => x.TransactionId == id);
+            var budgetTransaction = _unitOfWork.BudgetItemsRepository.GetTransactionById(Convert.ToInt32(id));
             if (budgetTransaction != null)
             {
-                _context.BudgetItems.Remove(budgetTransaction);
-                _context.SaveChanges();
+                _unitOfWork.BudgetItemsRepository.RemoveItem(budgetTransaction);
+                _unitOfWork.Complete();
 
                 return RedirectToAction(returnTo, new { deleted = true, description = budgetTransaction.Description });
             }

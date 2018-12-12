@@ -51,7 +51,7 @@ else
                         <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
-                <h6 style="text-align: center; font-weight: bold; color: #D50000">@TempData["budgetLimitError"]</h6>
+                <h6 style="text-align: center; font-weight: bold; color: #D50000">@ViewBag.BudgetLimitError</h6>
             </div>
 
             //Set Budget Form - Choose New Limits

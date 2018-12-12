@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyWebsite.Data;
+using MyWebsite.Data.Interfaces;
+using MyWebsite.Data.Repositories;
 using MyWebsite.Models;
 using MyWebsite.Services;
 using Newtonsoft.Json.Serialization;
@@ -33,6 +35,10 @@ namespace MyWebsite
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IBudgetRepository, BudgetRepository>();
+            services.AddScoped<IBudgetItemsRepository, BudgetItemsRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
