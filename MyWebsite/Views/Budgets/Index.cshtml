@@ -9,8 +9,8 @@
     var currentMonth = DateTime.Now.ToString("MMMM");
 }
 
-<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
-<h3 style="text-align:center; margin-top:80px; text-decoration: underline">The Painless Budget</h3>
+<div class="painlessBudgetTitle"><p>@Html.Partial("_LoginPartial", 1)</p></div>
+<h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 @if (!SignInManager.IsSignedIn(User)) 
 {
@@ -37,18 +37,18 @@ else
                     <div class="col l12 m12 s12" align="center">
                         @*Use past budget limit for this month?*@
                         <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = ViewBag.HasPastBudget })">
-                            <button class="waves-effect waves-light btn-large grey darken-3 lightBrown-hover sharpCorners" style="font-weight:bold; color: #54b798 !important; font-size:20px; margin-top: 10px; margin-bottom: 5px;" type="submit" name="Save">
+                            <button class="waves-effect waves-light btn-large grey darken-3 underline-hover " style="font-weight:bold; color: #54b798 !important; font-size:20px; margin-top: 10px; margin-bottom: 5px;" type="submit" name="Save">
                                 <i class="material-icons left">replay</i>Use<span style="color:#cfd8dc;"> Last Month's</span> Budget Limits for @currentMonth
                             </button>
                             @Html.Hidden("Email", user)
                             @Html.Hidden("Month", DateTime.Now.Month)
                         </form>
-                        <button id="unhide-set-budget-form" class="waves-effect waves-light lightBrown-hover btn-large grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:30px;">
+                        <button id="unhide-set-budget-form" class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;">
                             <i class="material-icons left">create</i>Create <span style="color:#54b798">New</span> Budget Limits
                         </button>
-                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-                        <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect lightBrown-hover waves-light btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+                        <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
                 <h6 style="text-align: center; font-weight: bold; color: #D50000">@ViewBag.BudgetLimitError</h6>
@@ -58,7 +58,7 @@ else
             <div id="hidden-set-budget-form" style="display:none; margin-bottom: 20px;">
                 <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
                     <div style="margin-top:35px; text-align:center;">
-                        <button class="waves-effect waves-light btn-large lightBrown-hover sharpCorners" style="background-color: #54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
+                        <button class="waves-effect waves-light btn-large underline-hover" style="background-color: #54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
                             <i class="material-icons left">local_atm</i>Save Budget Limits
                         </button>
                     </div>
@@ -126,7 +126,7 @@ else
         {
             <form method="post" style="margin-bottom: 20px;" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
                 <div style="margin-top:35px; text-align:center;">
-                    <button class="waves-effect waves-light btn-large lightBrown-hover sharpCorners" style="background-color:#54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
+                    <button class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
                         <i class="material-icons left">local_atm</i>Set Budget Limits
                     </button>
                 </div>
@@ -195,14 +195,14 @@ else
             <h5 style="text-align:center; color:#54b798; margin-top:10px;">@ViewBag.SuccessLimitsUpdated</h5>
             <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@currentMonth</h3>
 
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
             @foreach (var item in Model)
             {
-                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
             }
-            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-            <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large lightBrown-hover sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>
 
         foreach (var item in Model.Where(x => x.Month == budgetMonth))

@@ -2,22 +2,24 @@
 
 @{ var user = User.Identity.Name; }
 
-<div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 1)</p></div>
-<h3 style="text-align:center; margin-top:100px; text-decoration: underline">The Painless Budget</h3>
+<div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
+
+<h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 <div class="container center-div" style="margin-bottom:100px;">
     <form asp-action="Edit">
         <div class="row">
-            <div class="col l12 m12 s12" align="center" style="margin-top:25px;">
-                <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light lightBrown-hover btn-large sharpCorners grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
-
-                <button class="waves-effect waves-light btn-large lightBrown-hover grey darken-4 sharpCorners" style="font-weight:bold; font-size:20px; margin-top:10px;" type="submit" name="Save">
+            <div class="col l12" align="center" style="margin-top:25px;">
+                <a href='@Url.Action("Index", "Budgets", new {userName = user})' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">
+                    <i class="material-icons left">arrow_back</i>Return to Budget
+                </a>
+                <button class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;" type="submit" name="Save">
                     <i class="material-icons left">save</i>Save Budget Limits
                 </button>
             </div>
         </div>
 
-        <h4 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color: #54b798; text-align: center;">Edit Your Budget's Limits</h4>
+        <h4 class="grnEditBtn">Edit Your Budget's Limits</h4>
 
         <div class="row" align="center">
             <div class="col s12">
@@ -25,11 +27,12 @@
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Email" />
                 <input type="hidden" asp-for="Month" />
+
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="GroceryLimit" style="color: #cfd8dc; font-size: 25px; float: left">Grocery | Restaurant </label>
-                        <input asp-for="GroceryLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Grocery | Restaurant </label>
+                        <input asp-for="GroceryLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
@@ -37,8 +40,8 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class=" col l6 m5 s12">
-                        <label for="HousingLimit" style="color: #cfd8dc; font-size: 25px; float: left">Mortgage | Rent </label>
-                        <input asp-for="HousingLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Mortgage | Rent </label>
+                        <input asp-for="HousingLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
@@ -46,8 +49,8 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="EntLimit" style="color: #cfd8dc; font-size: 25px; float: left">Entertainment </label>
-                        <input asp-for="EntLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Entertainment </label>
+                        <input asp-for="EntLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
@@ -55,8 +58,8 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="BillsLimit" style="color: #cfd8dc; font-size: 25px; float: left">Bills | Payments </label>
-                        <input asp-for="BillsLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Bills | Payments </label>
+                        <input asp-for="BillsLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
@@ -64,8 +67,8 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="Gas" style="color: #cfd8dc; font-size: 25px; float: left">Gas | Auto </label>
-                        <input asp-for="GasLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Gas | Auto </label>
+                        <input asp-for="GasLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
@@ -73,20 +76,21 @@
                 <div class="row">
                     <div class="col l5 m4"></div>
                     <div class="col l6 m5 s12">
-                        <label for="MiscLimit" style="color: #cfd8dc; font-size: 25px; float: left">Miscellaneous </label>
-                        <input asp-for="MiscLimit" style="margin-left: 5px; width: 75px; float: left; text-align: center;" />
+                        <label class="editBudgetLimitLabel">Miscellaneous </label>
+                        <input asp-for="MiscLimit" class="editTag" />
                     </div>
                     <div class="col l5 m4"></div>
                 </div>
-                </div>
+
             </div>
+        </div>
     </form>
 </div>
 
 <style>
-    .field-validation-error {
+    /*.field-validation-error {
         display: none !important;
-    }
+    }*/
 
     input[type=text]:not(.browser-default) {
         background-color: #080C10 !important;

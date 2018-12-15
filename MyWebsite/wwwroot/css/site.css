@@ -184,10 +184,16 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #D50000 !important;
 }
 
-.hover-underline:hover {
-    border-bottom: dotted 1px #cfd8dc;
+.hover-underline {
     cursor: pointer;
+    border-radius: 0px !important;
+    font-weight: bold;
+    font-size: 20px;
 }
+
+    .hover-underline:hover {
+        border-bottom: dotted 1px #cfd8dc;
+    }
 
 .black-btn {
     background-color: black !important;
@@ -196,11 +202,11 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     border: 1px dotted #cfd8dc !important;
 }
 
-.black-btn:hover {
-    background-color: #080C10 !important;
-    border: none !important;
-    border-bottom: 1px solid #cfd8dc !important;
-}
+    .black-btn:hover {
+        background-color: #080C10 !important;
+        border: none !important;
+        border-bottom: 1px solid #cfd8dc !important;
+    }
 
 
 .dropdown-content li > a, .dropdown-content li > span {
@@ -237,33 +243,96 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #cfd8dc !important;
 }
 
-.select-wrapper input.select-dropdown:hover {
-    background-color: #020305 !important;
-    color: #cfd8dc !important;
-    text-decoration: underline;
-}
+    .select-wrapper input.select-dropdown:hover {
+        background-color: #020305 !important;
+        color: #cfd8dc !important;
+        text-decoration: underline #54b798;
+    }
 
 .trashcan-icon{
     color: #cfd8dc !important;
 
 }
 
-.trashcan-icon:hover {
-    color: #54b798 !important;
+    .trashcan-icon:hover {
+        color: #54b798 !important;
+    }
+
+    .underline-hover:hover {
+        text-decoration: underline;
+    }
+
+    .add-btn:hover {
+        color: black !important;
+    }
+
+    #gitHubIcon:hover {
+        color: #cfd8dc !important;
+    }
+
+    .grey-hover:hover {
+        background-color: #525e78 !important;
+    }
+
+.editBudgetLimitLabel {
+    color: #cfd8dc;
+    font-size: 25px;
+    float: left;
+    margin-top: 13px
 }
 
-.lightBrown-hover:hover {
+.painlessBudgetTitle {
+    text-align: center;
+    margin-top: 100px;
+    text-decoration: underline
+}
+
+.partialLoginText {
+    text-align: center;
+    margin-top: 100px;
+    text-align: center;
+}
+
+.grnEditBtn {
+    margin-top: 55px;
+    margin-bottom: 35px;
+    font-weight: bold;
+    color: #54b798;
+    text-align: center;
+}
+
+.editTag {
+    margin-left: 15px;
+    width: 75px;
+    float: left;
+    text-align: center;
+}
+
+.underlineTitle {
+    margin-top: 100px;
+    text-align: center;
+    padding-bottom: 10px;
+    text-decoration: underline
+}
+
+.darkBox {
+    background-color: #020305;
+    margin-top: 50px;
+    text-align: center;
+    width: 75%;
+    padding: 10px;
+    border: .5px dotted #cfd8dc;
+}
+
+.purple-hover {
     text-decoration: underline;
-}
-
-.add-btn:hover {
-    color: black !important;
-}
-
-#gitHubIcon:hover {
-    color: #cfd8dc !important;
+    font-size: 25px;
 }
 
 .purple-hover:hover {
-    color: #525e78 !important;
+    color: #525e78;
+}
+
+#saveBtn:hover {
+    background-color: #54b798 !important;
 }
