@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace MyWebsite.Models.BudgetProject
+namespace MyWebsite.Models.BudgetApp
 {
     public class BudgetItems
     {
@@ -14,6 +11,7 @@ namespace MyWebsite.Models.BudgetProject
         public int TransactionId { get; set; }
         public string Email { get; set; }
         public string Description { get; set; }
+        [DataType(DataType.Currency)]
         public float Cost { get; set; }
         public DateTime Date { get; set; }
         public int Month { get; set; }

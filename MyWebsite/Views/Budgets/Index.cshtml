@@ -1,4 +1,4 @@
-﻿@model MyWebsite.Models.BudgetProject.Budget
+﻿@model MyWebsite.Models.BudgetApp.Budget
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 
@@ -142,10 +142,11 @@ else
             <div class="container" style="margin-bottom:100px;">
                 <div class="row">
                     <div class="col s12 m12 l6">
-                        @{float remainingG = Model.GroceryLimit - ViewBag.BudgetTotals[0] < 0 ? 0 : Model.GroceryLimit - ViewBag.BudgetTotals[0];}
+                        @{ float remainingG = Model.GroceryLimit - ViewBag.BudgetTotals[0];}
                         @if (0 >= remainingG)
                         {
                             <h5 style="margin-left: 150px;"><span style="color: #e6c5c4">$@remainingG.ToString("#,##0.00")</span></h5>
+                            remainingG = 0;
                         }
                         else
                         {
@@ -158,10 +159,11 @@ else
                     </div>
 
                     <div class="col s12 m12 l6">
-                        @{float remainingH = Model.HousingLimit - ViewBag.BudgetTotals[1] < 0 ? 0 : Model.HousingLimit - ViewBag.BudgetTotals[1];}
+                        @{float remainingH = Model.HousingLimit - ViewBag.BudgetTotals[1];}
                         @if (0 >= remainingH)
                         {
                             <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
+                            remainingH = 0;
                         }
                         else
                         {
@@ -175,10 +177,11 @@ else
 
                     <div class="row">
                         <div class="col s12 m12 l6">
-                            @{float remainingE = Model.EntLimit - ViewBag.BudgetTotals[2] < 0 ? 0 : Model.EntLimit - ViewBag.BudgetTotals[2];}
+                            @{float remainingE = Model.EntLimit - ViewBag.BudgetTotals[2];}
                             @if (0 >= remainingE)
                             {
                                 <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingE.ToString("#,##0.00")</span></h5>
+                                remainingE = 0;
                             }
                             else
                             {
@@ -191,10 +194,11 @@ else
                         </div>
 
                         <div class="col s12 m12 l6">
-                            @{float remainingB = Model.BillsLimit - ViewBag.BudgetTotals[3] < 0 ? 0 : Model.BillsLimit - ViewBag.BudgetTotals[3];}
+                            @{float remainingB = Model.BillsLimit - ViewBag.BudgetTotals[3];}
                             @if (0 >= remainingB)
                             {
                                 <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingB.ToString("#,##0.00")</span></h5>
+                                remainingB = 0;
                             }
                             else
                             {
@@ -209,10 +213,11 @@ else
 
                     <div class="row">
                         <div class="col s12 m12 l6">
-                            @{float remainingGas = Model.GasLimit - ViewBag.BudgetTotals[4] < 0 ? 0 : Model.GasLimit - ViewBag.BudgetTotals[4];}
+                            @{float remainingGas = Model.GasLimit - ViewBag.BudgetTotals[4];}
                             @if (0 >= remainingGas)
                             {
                                 <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
+                                remainingGas = 0;
                             }
                             else
                             {
@@ -225,10 +230,11 @@ else
                         </div>
 
                         <div class="col s12 m12 l6">
-                            @{float remainingM = Model.MiscLimit - ViewBag.BudgetTotals[5] < 0 ? 0 : Model.MiscLimit - ViewBag.BudgetTotals[5];}
+                            @{float remainingM = Model.MiscLimit - ViewBag.BudgetTotals[5];}
                             @if (0 >= remainingM)
                             {
                                 <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingM.ToString("#,##0.00")</span></h5>
+                                remainingM = 0;
                             }
                             else
                             {
@@ -249,8 +255,12 @@ else
 <style>
     #Total Spent {
         color: #cfd8dc !important;
+        fill: white !important;
+        font-size: 54px !important;
+        background-color: white !important;
     }
 
+    
     #Total Remaining Budget {
         color: #cfd8dc !important;
     }
@@ -295,7 +305,7 @@ else
                     color: '#cfd8dc',
                     fontSize: 28,
                     bold: true,
-                    fontName: 'arial',
+                    fontName: 'arial'
                 }
                 , title: 'Grocery | Restaurant ',
                 fontSize: 17,
@@ -304,6 +314,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#cfd8dc',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartGrocery'));
             chart.draw(data, options);
@@ -334,6 +345,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#ffffff',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartHousing'));
             chart.draw(data, options);
@@ -364,6 +376,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#cfd8dc',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartEntertainment'));
             chart.draw(data, options);
@@ -394,6 +407,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#cfd8dc',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartBills'));
             chart.draw(data, options);
@@ -424,6 +438,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#cfd8dc',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartGas'));
             chart.draw(data, options);
@@ -454,6 +469,7 @@ else
                 backgroundColor: '#080C10',
                 color: '#cfd8dc',
                 is3D: true,
+                legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
             };
             var chart = new google.visualization.PieChart(document.getElementById('donutchartMisc'));
             chart.draw(data, options);

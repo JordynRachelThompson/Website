@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 
 namespace MyWebsite.Data.Repositories
 {
@@ -56,7 +55,7 @@ namespace MyWebsite.Data.Repositories
 
         public void Add(BudgetItems budgetItems)
         {
-            _context.Add(budgetItems);
+            _context.BudgetItems.Add(budgetItems);
         }
 
         public BudgetItems GetTransactionById(int id)
@@ -67,6 +66,79 @@ namespace MyWebsite.Data.Repositories
         public void RemoveItem(BudgetItems budgetItem)
         {
             _context.BudgetItems.Remove(budgetItem);
+        }
+
+        public float AvgMonthlySpending(string user)
+        {
+            float total = 0;
+            var count = 0;
+
+            var transactionList = _context.BudgetItems.Where(x => x.Email == user).Select(x => x.Cost).ToList();
+
+            foreach (var purchase in transactionList)
+            {
+                total += purchase;
+                count++;
+            }
+
+            return total / count;
+        }
+
+        public float AmtOverOrUnderBudget(string user)
+        {
+            List<int> monthList = _context.Budget.Where(x => x.Email == user).Select(x => x.Month).ToList();
+
+            if (!monthList.Any()) return 0.00f;
+
+            float totalBudget = 0;
+            float totalSpent = 0;
+
+            var budgetRepo = new BudgetRepository(_context);
+
+            foreach (var month in monthList)
+            {
+                totalBudget += budgetRepo.GetTotalBudgetLimitByMonth(month, user);
+                totalSpent += TotalSpentByMonth(month, user);
+            }
+
+            return totalBudget - totalSpent;
+        }
+
+        public string MostCommonCategory(string user)
+        {
+            var item = _context.BudgetItems
+                .Where(x => x.Email == user)
+                .GroupBy(x => x.TypeOfBudget)
+                .OrderByDescending(gb => gb.Count())
+                .Select(g => g.Key)
+                .FirstOrDefault().ToString();
+
+            return item;
+        }
+
+        public int HowManyTimesCatOccur(string category, string user)
+        {
+            return _context.BudgetItems.Count(x => x.Email == user && x.TypeOfBudget.ToString() == category);
+        }
+
+        public int NumMonthsUnderBudget(string user)
+        {
+            List<int> monthList = _context.Budget.Where(x => x.Email == user).Select(x => x.Month).ToList();
+
+            if (!monthList.Any()) return 0;
+
+            var underBudget = 0;
+
+            var budgetRepo = new BudgetRepository(_context);
+
+            foreach (var month in monthList)
+            {
+                var difference = budgetRepo.GetTotalBudgetLimitByMonth(month, user) - TotalSpentByMonth(month, user);
+
+                if (difference > 0) underBudget++;
+            }
+
+            return underBudget;
         }
     }
 }

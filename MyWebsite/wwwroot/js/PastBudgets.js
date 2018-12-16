@@ -525,7 +525,8 @@ function donutChartTotal1() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal1'));
         chart.draw(data, options);
@@ -557,7 +558,8 @@ function donutChartTotal2() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal2'));
         chart.draw(data, options);
@@ -589,7 +591,8 @@ function donutChartTotal3() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal3'));
         chart.draw(data, options);
@@ -621,7 +624,8 @@ function donutChartTotal4() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal4'));
         chart.draw(data, options);
@@ -653,7 +657,8 @@ function donutChartTotal5() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal5'));
         chart.draw(data, options);
@@ -685,7 +690,8 @@ function donutChartTotal6() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal6'));
         chart.draw(data, options);
@@ -717,7 +723,8 @@ function donutChartTotal7() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal7'));
         chart.draw(data, options);
@@ -749,7 +756,8 @@ function donutChartTotal8() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal8'));
         chart.draw(data, options);
@@ -781,7 +789,8 @@ function donutChartTotal9() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal9'));
         chart.draw(data, options);
@@ -814,7 +823,8 @@ function donutChartTotal10() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal10'));
         chart.draw(data, options);
@@ -846,7 +856,8 @@ function donutChartTotal11() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal11'));
         chart.draw(data, options);
@@ -878,7 +889,8 @@ function donutChartTotal12() {
             width: 700,
             height: 600,
             fontSize: 25,
-            bold: true
+            bold: true,
+            legend: { position: 'right', textStyle: { color: '#cfd8dc', fontSize: 17 } }
         };
         var chart = new google.visualization.PieChart(document.getElementById('donutchartTotal12'));
         chart.draw(data, options);

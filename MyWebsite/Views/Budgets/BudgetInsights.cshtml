@@ -19,12 +19,12 @@
         <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
             <div class="row">
                 <div class="col s12 m5">
-                    <div class="card-panel z-depth-5" style="background-color: #54b798;">
+                    <div class="card-panel z-depth-5 teal">
                         <span>
                             <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
                         </span>
                         <span style="float:right">
-                            $345.09
+                            @String.Format("{0:C}", ViewBag.AvgMonthlySpending)
                         </span>
                     </div>
                 </div>
@@ -33,22 +33,27 @@
                 <div class="col s12 m5">
                     <div class="card-panel teal z-depth-5">
                         <span >
-                            <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Average Over | Under Budget
+                            <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
                         </span>
                         <span style="float:right">
-                            $45.09 under
+                            @if (ViewBag.AmtOverOrUnder > 0)
+                            {@String.Format("{0:C}", ViewBag.AmtOverOrUnder)<span> under</span>}
+                            @if (ViewBag.AmtOverOrUnder < 0)
+                            {@ViewBag.AmtOverOrUnder<span> over</span>}
+                            @if (ViewBag.AmtOverOrUnder == 0.00f)
+                            {<span>On Budget!</span>}
                         </span>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12 m5">
-                    <div class="card-panel z-depth-5" style="background-color: #54b798;">
+                    <div class="card-panel z-depth-5 teal">
                         <span>
                             <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
                         </span>
                         <span style="float:right">
-                            Grocery (8 times per month)
+                            @ViewBag.MostCommonCategory @ViewBag.CategoryTimes times
                         </span>
                     </div>
                 </div>
@@ -58,12 +63,12 @@
         <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
             <div class="row"> 
                 <div class="col s12 m5 offset-m4">
-                    <div class="card-panel z-depth-5" style="background-color: #54b798;">
+                    <div class="card-panel z-depth-5 teal">
                         <span>
                             <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
                         </span>
                         <span style="float:right">
-                            8 / 8 months
+                            @ViewBag.NoMothsUnderBudget / @ViewBag.TotalMonths months
                         </span>
                     </div>
                 </div>
@@ -83,7 +88,7 @@
             </div>
             <div class="row">
                 <div class="col s12 m5 offset-m4">
-                    <div class="card-panel z-depth-5" style="background-color: #54b798;">
+                    <div class="card-panel z-depth-5 teal">
                         <span class="white-text">
                             <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Most Savings
                         </span>
@@ -98,12 +103,12 @@
         <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
             <div class="row">
                 <div class="col s12 m8" style="float: right">
-                    <button id="food" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">local_dining</i>Food</button>
-                    <button id="housing" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">home</i>Housing</button>
-                    <button id="bills" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
-                    <button id="entertainment" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">local_activity</i>Entertainment</button>
-                    <button id="gas" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
-                    <button id="misc" class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:13px; margin-top: 5px;"><i class="material-icons left">gesture</i>Misc</button>
+                    <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
+                    <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
+                    <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
+                    <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
+                    <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
+                    <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
 
                     
                 </div>

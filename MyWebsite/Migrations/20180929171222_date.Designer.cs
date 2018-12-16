@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using MyWebsite.Data;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 using System;
 
 namespace MyWebsite.Migrations

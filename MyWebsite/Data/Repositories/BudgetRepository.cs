@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 
 namespace MyWebsite.Data.Repositories
 {
@@ -31,12 +31,11 @@ namespace MyWebsite.Data.Repositories
         {
             return _context.Budget.Any(x => x.Email == user);
         }
+
         //Budget limit by type of budget
         public float GetBudgetLimitByLimitType(int type, int budgetMonth, string user)
         {
-            var budget = _context.Budget.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).ToList();
-
-            foreach (var item in budget)
+            foreach (var item in _context.Budget.Where(x => x.Email == user).Where(x => x.Month == budgetMonth).ToList())
             {
                 switch (type)
                 {
@@ -77,24 +76,23 @@ namespace MyWebsite.Data.Repositories
             var user = currentBudget.Email;
             var previousBudget = _context.Budget.Where(x => x.Email == user).Select(x => x).FirstOrDefault();
 
-            if (previousBudget != null)
-            {
-                currentBudget.GroceryLimit = previousBudget.GroceryLimit;
-                currentBudget.HousingLimit = previousBudget.HousingLimit;
-                currentBudget.BillsLimit = previousBudget.BillsLimit;
-                currentBudget.EntLimit = previousBudget.EntLimit;
-                currentBudget.GasLimit = previousBudget.GasLimit;
-                currentBudget.MiscLimit = previousBudget.MiscLimit;
+            if (previousBudget == null) return;
 
-                _context.Add(currentBudget);
-                _context.SaveChanges();
-            }
+            currentBudget.GroceryLimit = previousBudget.GroceryLimit;
+            currentBudget.HousingLimit = previousBudget.HousingLimit;
+            currentBudget.BillsLimit = previousBudget.BillsLimit;
+            currentBudget.EntLimit = previousBudget.EntLimit;
+            currentBudget.GasLimit = previousBudget.GasLimit;
+            currentBudget.MiscLimit = previousBudget.MiscLimit;
+
+            _context.Budget.Add(currentBudget);
+            _context.SaveChanges();
         }
 
         //Set new budget limits
         public void SetNewBudgetLimits(Budget budgetLimits)
         {
-            _context.Add(budgetLimits);
+            _context.Budget.Add(budgetLimits);
             _context.SaveChanges();
         }
 
@@ -105,7 +103,7 @@ namespace MyWebsite.Data.Repositories
 
         public Budget GetBudgetById(int id)
         {
-            return  _context.Budget.SingleOrDefault(x => x.Id == id);
+            return _context.Budget.SingleOrDefault(x => x.Id == id);
         }
 
         public void Add(Budget budget)
@@ -132,6 +130,6 @@ namespace MyWebsite.Data.Repositories
             originalBudget.MiscLimit = budget.MiscLimit;
         }
 
-
+       
     }
 }

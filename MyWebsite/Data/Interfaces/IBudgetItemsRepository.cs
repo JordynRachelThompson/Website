@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 
 namespace MyWebsite.Data.Interfaces
 {
@@ -16,5 +16,10 @@ namespace MyWebsite.Data.Interfaces
         List<BudgetItems> ReturnBudgetItemsListForUser(string user);
         BudgetItems GetTransactionById(int id);
         void RemoveItem(BudgetItems budgetItem);
+        float AvgMonthlySpending(string user);
+        float AmtOverOrUnderBudget(string user);
+        string MostCommonCategory(string user);
+        int HowManyTimesCatOccur(string category, string user);
+        int NumMonthsUnderBudget(string user);
     }
 }

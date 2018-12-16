@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 
 namespace MyWebsite.Data.Interfaces
 {

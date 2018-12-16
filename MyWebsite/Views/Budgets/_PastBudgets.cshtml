@@ -1,5 +1,5 @@
 ﻿@using System.Globalization
-@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
+@model IEnumerable<MyWebsite.Models.BudgetApp.BudgetItems>
 
 @{
     var budgetType = new Dictionary<int, string>();
@@ -50,7 +50,7 @@
                             <td>@item.Date.ToString("MM/dd/yyyy")</td>
                             <td>@item.Description</td>
                             <td>$@item.Cost</td>
-                            <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "PastBudgets" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+                            <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "PastBudgets" })'><i class="material-icons left purple-trashcan">delete</i></a></td>
                         </tr>
                     }
 

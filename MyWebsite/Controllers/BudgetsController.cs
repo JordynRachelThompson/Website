@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.BudgetProject;
+using MyWebsite.Models.BudgetApp;
 using System;
 using System.Collections.Generic;
 
@@ -17,7 +17,7 @@ namespace MyWebsite.Controllers
 
         public ActionResult Index(bool success)
         {
-            var user = User.Identity.Name; 
+            var user = User.Identity.Name;
             if (success)
                 ViewBag.SuccessLimitsUpdated = "Budget limits successfully updated!";
 
@@ -31,7 +31,7 @@ namespace MyWebsite.Controllers
             var budgetTotals = new List<float>();
             for (var i = 1; i < 7; i++)
                 budgetTotals.Add(_unitOfWork.BudgetItemsRepository.TotalSpentByBudgetCategory(DateTime.Now.Month, user, i));
-            
+
             ViewBag.BudgetTotals = budgetTotals;
 
             return View(currentBudget);
@@ -80,14 +80,15 @@ namespace MyWebsite.Controllers
 
             if (!errors && ModelState.IsValid)
             {
+                budgetItems.Email = User.Identity.Name;
+                budgetItems.Month = DateTime.Now.Month;
+                budgetItems.Date = DateTime.Now;
                 _unitOfWork.BudgetItemsRepository.Add(budgetItems);
                 _unitOfWork.Complete();
                 ViewBag.SuccessTransactionAdded = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
             }
 
-            var budget = _unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month);
-
-            return View(budget);
+            return View(_unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month));
         }
 
         public ActionResult PastBudgets(bool deleted, string description)
@@ -141,21 +142,20 @@ namespace MyWebsite.Controllers
         public IActionResult DeleteTransaction(int? id, string returnTo)
         {
             var budgetTransaction = _unitOfWork.BudgetItemsRepository.GetTransactionById(Convert.ToInt32(id));
-            if (budgetTransaction != null)
-            {
-                _unitOfWork.BudgetItemsRepository.RemoveItem(budgetTransaction);
-                _unitOfWork.Complete();
 
-                return RedirectToAction(returnTo, new { deleted = true, description = budgetTransaction.Description });
-            }
+            if (budgetTransaction == null) return RedirectToAction(returnTo, new { deleted = false });
 
-            return RedirectToAction(returnTo, new { deleted = false });
+            _unitOfWork.BudgetItemsRepository.RemoveItem(budgetTransaction);
+            _unitOfWork.Complete();
+
+            return RedirectToAction(returnTo, new { deleted = true, description = budgetTransaction.Description });
         }
 
         public IActionResult ExportExcel()
         {
             return View();
         }
+
         //public void ExportListFromTsv()
         //{
         //    TextWriter tw = new StreamWriter(Response.Body);
@@ -182,6 +182,14 @@ namespace MyWebsite.Controllers
 
         public IActionResult BudgetInsights()
         {
+            ViewBag.AvgMonthlySpending = _unitOfWork.BudgetItemsRepository.AvgMonthlySpending(User.Identity.Name);
+            ViewBag.AmtOverOrUnder = _unitOfWork.BudgetItemsRepository.AmtOverOrUnderBudget(User.Identity.Name);
+
+            ViewBag.MostCommonCategory = _unitOfWork.BudgetItemsRepository.MostCommonCategory(User.Identity.Name);
+            ViewBag.CategoryTimes = _unitOfWork.BudgetItemsRepository.HowManyTimesCatOccur(ViewBag.MostCommonCategory, User.Identity.Name);
+
+            ViewBag.NoMothsUnderBudget = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudget(User.Identity.Name);
+            ViewBag.TotalMonths = _unitOfWork.BudgetItemsRepository.GetBudgetMonthsList(User.Identity.Name).Count;
             return View();
         }
     }

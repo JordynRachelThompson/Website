@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyWebsite.Models.BudgetProject.BudgetItems>
+﻿@model IEnumerable<MyWebsite.Models.BudgetApp.BudgetItems>
 
 @{var user = User.Identity.Name;}
 
@@ -7,17 +7,17 @@
 
 <div class="container">
     <div style="margin-top:25px; text-align:center;">
-        <p style="text-align:center; font-weight:bold; color:#81cac4; margin-top:10px;">@ViewBag.Deleted</p>
+        <p class="greenCenterTxt">@ViewBag.Deleted</p>
         <a href='@Url.Action("Index", "Budgets", new { userName = user })' ; class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
     </div>
 
-    <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; color:#cfd8dc; text-align:center">Past Budgets</h4>
+    <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; text-align:center">Past Budgets</h4>
 
     @*Displays month buttons only for months with budgets*@
     <div style="text-align: center;">
         @foreach (var month in ViewBag.BudgetMonthList)
         {
-            <button id=@month class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight: bold; font-size: 20px; margin-top: 10px;">@month</button>
+            <button id=@month class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">@month</button>
         }
     </div>
 </div>
