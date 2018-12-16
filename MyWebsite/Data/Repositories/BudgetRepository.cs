@@ -22,6 +22,11 @@ namespace MyWebsite.Data.Repositories
             return _context.Budget.Any(x => x.Id == id);
         }
 
+        public bool CurrentBudgetExistsByUser(string user, int currentMonth)
+        {
+            return _context.Budget.Any(x => x.Email == user && x.Month == currentMonth);
+        }
+
         public bool BudgetExistsByUser(string user)
         {
             return _context.Budget.Any(x => x.Email == user);
@@ -93,9 +98,9 @@ namespace MyWebsite.Data.Repositories
             _context.SaveChanges();
         }
 
-        public List<Budget> GetCurrentBudget(string user, int currentMonth)
+        public Budget GetCurrentBudget(string user, int currentMonth)
         {
-            return _context.Budget.Where(x => x.Email == user && x.Month == currentMonth).ToList();
+            return _context.Budget.FirstOrDefault(x => x.Email == user && x.Month == currentMonth);
         }
 
         public Budget GetBudgetById(int id)
@@ -107,5 +112,26 @@ namespace MyWebsite.Data.Repositories
         {
             _context.Budget.Add(budget);
         }
+
+        public List<Budget> GetAllBudgetsForUser(string user)
+        {
+            return _context.Budget.Where(x => x.Email == user).ToList();
+        }
+
+        public void EditBudgetLimits(Budget budget)
+        {
+            var originalBudget = _context.Budget.FirstOrDefault(x => x.Id == budget.Id);
+
+            if (originalBudget == null) return;
+
+            originalBudget.BillsLimit = budget.BillsLimit;
+            originalBudget.EntLimit = budget.EntLimit;
+            originalBudget.GasLimit = budget.GasLimit;
+            originalBudget.GroceryLimit = budget.GroceryLimit;
+            originalBudget.HousingLimit = budget.HousingLimit;
+            originalBudget.MiscLimit = budget.MiscLimit;
+        }
+
+
     }
 }

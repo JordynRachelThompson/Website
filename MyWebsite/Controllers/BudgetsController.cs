@@ -14,40 +14,27 @@ namespace MyWebsite.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        
+
         public ActionResult Index(bool success)
         {
+            var user = User.Identity.Name; 
             if (success)
                 ViewBag.SuccessLimitsUpdated = "Budget limits successfully updated!";
 
-            ViewBag.EmptyBudget = false;
-            var currentMonth = DateTime.Now.Month;
-            var budget = _unitOfWork.BudgetRepository.GetCurrentBudget(User.Identity.Name, currentMonth);
+            ViewBag.HasPastBudget = _unitOfWork.BudgetRepository.BudgetExistsByUser(user);
+            ViewBag.NoCurrentBudget = !(_unitOfWork.BudgetRepository.CurrentBudgetExistsByUser(user, DateTime.Now.Month));
+            if (ViewBag.NoCurrentBudget) return View();
 
-            foreach (var month in budget)
-            {
-                if (month.Month != currentMonth)
-                {
-                    ViewBag.EmptyBudget = true;
-                    ViewBag.HasPastBudget = false;
-                    var pastBudget = _unitOfWork.BudgetRepository.BudgetExistsByUser(User.Identity.Name);
-                    if (pastBudget)
-                        ViewBag.HasPastBudget = true;
-                }
-            }
+            var currentBudget = _unitOfWork.BudgetRepository.GetCurrentBudget(user, DateTime.Now.Month);
+            ViewBag.BudgetId = currentBudget.Id;
 
-            if (!ViewBag.EmptyBudget)
-            {
-                var budgetTotals = new List<float>();
-                for (var i = 1; i < 7; i++)
-                {
-                    budgetTotals.Add(_unitOfWork.BudgetItemsRepository.TotalSpentByBudgetCategory(currentMonth, User.Identity.Name, i));
-                }
+            var budgetTotals = new List<float>();
+            for (var i = 1; i < 7; i++)
+                budgetTotals.Add(_unitOfWork.BudgetItemsRepository.TotalSpentByBudgetCategory(DateTime.Now.Month, user, i));
+            
+            ViewBag.BudgetTotals = budgetTotals;
 
-                ViewBag.BudgetTotals = budgetTotals;
-            }
-
-            return View(budget);
+            return View(currentBudget);
         }
 
         [HttpPost] //Set Budget Limits
@@ -81,13 +68,13 @@ namespace MyWebsite.Controllers
 
             if (Convert.ToInt32(budgetItems.TypeOfBudget) == 0)
             {
-                ViewBag.typeError = "Please select a budget type from the dropdown.";
+                ViewBag.Error = "Please select a budget category from the dropdown.";
                 errors = true;
             }
 
             if (budgetItems.Cost <= 0)
             {
-                ViewBag.costError = "Please enter a price greater than $0.00 for your transaction.";
+                ViewBag.Error = "Please enter a price greater than $0.00 for your transaction.";
                 errors = true;
             }
 
@@ -142,11 +129,9 @@ namespace MyWebsite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, [Bind("Id,Email,GroceryLimit,HousingLimit,EntLimit,BillsLimit,GasLimit,MiscLimit, Month")] Budget budget)
+        public ActionResult Edit(Budget budget)
         {
-            if (id != budget.Id)
-                return NotFound();
-            _unitOfWork.BudgetRepository.Add(budget);
+            _unitOfWork.BudgetRepository.EditBudgetLimits(budget);
             _unitOfWork.Complete();
 
             return RedirectToAction("Index", new { userName = User.Identity.Name, success = true });
@@ -166,7 +151,7 @@ namespace MyWebsite.Controllers
 
             return RedirectToAction(returnTo, new { deleted = false });
         }
-        
+
         public IActionResult ExportExcel()
         {
             return View();

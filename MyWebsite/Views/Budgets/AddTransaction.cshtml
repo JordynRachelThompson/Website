@@ -3,15 +3,14 @@
 @{  
     var user = User.Identity.Name;
     var budgetMonth = DateTime.Now.Month;
+    var TypeOfBudget = "";
 }
-
-
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 <div class="container">
     <div style="margin-top: 25px; text-align: center;">
-        <p style="text-align:center; font-weight:bold; color:#54b798; margin-top:10px;">@ViewBag.Deleted</p>
+        <h6 class="greenCenterTxt">@ViewBag.Deleted</h6>
         <a href='@Url.Action("Index", "Budgets")'; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
     </div>
 
@@ -19,9 +18,8 @@
 
     @*Validation Errors*@
     <div class="container" style="margin-top:20px;">
-        <p style="font-weight:bold; color:#D50000; text-align:center">@ViewBag.typeError</p>
-        <p style="font-weight:bold; color:#D50000; text-align:center">@ViewBag.costError</p>
-        <p style="text-align:center; font-weight:bold; color: #54b798; margin-top:10px;">@ViewBag.SuccessTransactionAdded</p>
+        <h6 style="font-weight:bold; color:#D50000; text-align:center">@ViewBag.Error</h6>
+        <h6 class="greenCenterTxt">@ViewBag.SuccessTransactionAdded</h6>
     </div>
     <div class="row">
         <div class="col s12 m12 l4"></div>

@@ -1,18 +1,16 @@
-﻿@model IEnumerable<MyWebsite.Models.BudgetProject.Budget>
+﻿@model MyWebsite.Models.BudgetProject.Budget
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
-@using System.Linq
 
-@{ 
+@{
     var user = User.Identity.Name;
-    var budgetMonth = DateTime.Now.Month;
     var currentMonth = DateTime.Now.ToString("MMMM");
 }
 
 <div class="painlessBudgetTitle"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
-@if (!SignInManager.IsSignedIn(User)) 
+@if (!SignInManager.IsSignedIn(User))
 {
     <p style="text-align:center; font-size:20px; margin-top:30px; ">Please log in or register first to use the app.</p>
     <div class="carousel">
@@ -26,7 +24,7 @@
 
 else
 {
-    if (ViewBag.EmptyBudget)
+    if (ViewBag.NoCurrentBudget)
     {
         if (ViewBag.HasPastBudget)
         {
@@ -37,24 +35,24 @@ else
                     <div class="col l12 m12 s12" align="center">
                         @*Use past budget limit for this month?*@
                         <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = ViewBag.HasPastBudget })">
-                            <button class="waves-effect waves-light btn-large grey darken-3 underline-hover " style="font-weight:bold; color: #54b798 !important; font-size:20px; margin-top: 10px; margin-bottom: 5px;" type="submit" name="Save">
+                            <button class="waves-effect waves-light btn-large grey darken-3 underline-hover squareSaveBtn" type="submit" name="Save">
                                 <i class="material-icons left">replay</i>Use<span style="color:#cfd8dc;"> Last Month's</span> Budget Limits for @currentMonth
                             </button>
                             @Html.Hidden("Email", user)
                             @Html.Hidden("Month", DateTime.Now.Month)
                         </form>
-                        <button id="unhide-set-budget-form" class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;">
+                        <button id="unhide-set-budget-form" class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;">
                             <i class="material-icons left">create</i>Create <span style="color:#54b798">New</span> Budget Limits
                         </button>
-                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-                        <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="font-weight:bold; font-size:20px; margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+                        <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+                        <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
                     </div>
                 </div>
                 <h6 style="text-align: center; font-weight: bold; color: #D50000">@ViewBag.BudgetLimitError</h6>
             </div>
 
-            //Set Budget Form - Choose New Limits
+            //Set Budget Limits Form - Choose New Limits
             <div id="hidden-set-budget-form" style="display:none; margin-bottom: 20px;">
                 <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
                     <div style="margin-top:35px; text-align:center;">
@@ -67,44 +65,44 @@ else
                             <h5 style="margin-top:77px; font-weight:bold;">Groceries | Restaurant</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                         <div class="col s12 m12 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Mortgage | Rent</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="HousingLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                         <div class="col s12 m12 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="EntLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                     </div>
-                    <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
+                    <div class="row" style="margin-top:77px; margin-left:200px; margin-right:200px;">
                         <div class="col s12 m12 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Bills | Payments</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="BillsLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                         <div class="col s12 m12 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Gas | Auto</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="GasLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                         <div class="col s12 m12 l4">
                             <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
                             <div class="input-field">
                                 <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                                <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
+                                <input name="MiscLimit" placeholder="0" id="budget-limit-amount" type="number" class="validate">
                             </div>
                         </div>
                     </div>
@@ -117,121 +115,51 @@ else
                     @Html.Hidden("MiscLimit", "MiscLimit")
                     @Html.Hidden("Month", DateTime.Now.Month)
                 </form>
-                @*End of Set Budget Limit*@
+                @*End of Set Budget Limit Form*@
             </div>
         }
-
-
-        else //Has Never Had Budget - Set Limits For First Time
+        else //Has Never Had Budget - New Set Budget Limits Form
         {
-            <form method="post" style="margin-bottom: 20px;" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
-                <div style="margin-top:35px; text-align:center;">
-                    <button class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
-                        <i class="material-icons left">local_atm</i>Set Budget Limits
-                    </button>
-                </div>
-                <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Groceries | Restaurant</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="GroceryLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px; width:50%" type="number" class="validate">
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Mortgage | Rent</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="HousingLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="EntLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Bills | Payments</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="BillsLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Gas | Auto</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="GasLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                        </div>
-                    </div>
-                    <div class="col s12 m12 l4">
-                        <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
-                        <div class="input-field">
-                            <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                            <input name="MiscLimit" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" class="validate">
-                        </div>
-                    </div>
-                </div>
-                @Html.Hidden("Email", user)
-                @Html.Hidden("GroceryLimit", "GroceryLimit")
-                @Html.Hidden("HousingLimit", "HousingLimit")
-                @Html.Hidden("EntLimit", "EntLimit")
-                @Html.Hidden("BillsLimit", "BillsLimit")
-                @Html.Hidden("GasLimit", "GasLimit")
-                @Html.Hidden("MiscLimit", "MiscLimit")
-                @Html.Hidden("Month", DateTime.Now.Month)
-            </form>
-            //End of Set Budget Limit
+            @Html.Partial("_SetBudgetLimitForm")
         }
     }
 
-    else //Has Current Budget to Display
+    else //Has Current Budget Information to Display
     {
         <div style="margin-top:55px; margin-bottom: 55px; text-align:center;">
             <h5 style="text-align:center; color:#54b798; margin-top:10px;">@ViewBag.SuccessLimitsUpdated</h5>
             <h3 style="text-align:center; color:#cfd8dc; font-weight:bold; margin-bottom:15px;">@currentMonth</h3>
 
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
-            @foreach (var item in Model)
-            {
-                <a asp-action="Edit" asp-route-id="@item.Id" class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
-            }
-            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
-            <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">add_box</i>Add Transaction</a>
+            <a asp-action="Edit" asp-route-id="@ViewBag.BudgetId" class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
+            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style=" margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
         </div>
 
-        foreach (var item in Model.Where(x => x.Month == budgetMonth))
+        if (Model != null) //Display donut charts
         {
             <div class="container" style="margin-bottom:100px;">
                 <div class="row">
                     <div class="col s12 m12 l6">
-                        @{float remainingG = item.GroceryLimit - ViewBag.BudgetTotals[0];}
-                        @if (remainingG <= 0)
+                        @{float remainingG = Model.GroceryLimit - ViewBag.BudgetTotals[0] < 0 ? 0 : Model.GroceryLimit - ViewBag.BudgetTotals[0];}
+                        @if (0 >= remainingG)
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingG.ToString("#,##0.00")</span></h5>
+                            <h5 style="margin-left: 150px;"><span style="color: #e6c5c4">$@remainingG.ToString("#,##0.00")</span></h5>
                         }
                         else
                         {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingG.ToString("#,##0.00") left</span></h5>
+                            <h5 style="margin-left: 150px;"><span style="color: #54b798">$@remainingG.ToString("#,##0.00") left</span></h5>
                         }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GroceryLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartGrocery" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingG < 0)
-                        {
-                            remainingG = 0;
-                        }
-                        <h2 id="totalBudgetG" style="display:none">@remainingG</h2>
-                        <h2 id="totalSpentG" style="display:none">@ViewBag.BudgetTotals[0]</h2>
+                        <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.GroceryLimit.ToString("#,##0.00")">View Budget Limit</a>
+                        <div id="donutchartGrocery" class="center-div donutSize"></div>
+                        <h2 id="totalBudgetG" style="display: none">@remainingG</h2>
+                        <h2 id="totalSpentG" style="display: none">@ViewBag.BudgetTotals[0]</h2>
                     </div>
 
                     <div class="col s12 m12 l6">
-                        @{double remainingH = item.HousingLimit - ViewBag.BudgetTotals[1];}
-                        @if (remainingH <= 0)
+                        @{float remainingH = Model.HousingLimit - ViewBag.BudgetTotals[1] < 0 ? 0 : Model.HousingLimit - ViewBag.BudgetTotals[1];}
+                        @if (0 >= remainingH)
                         {
                             <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
                         }
@@ -239,98 +167,78 @@ else
                         {
                             <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingH.ToString("#,##0.00") left</span></h5>
                         }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.HousingLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartHousing" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingH < 0)
-                        {
-                            remainingH = 0;
-                        }
+                        <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.HousingLimit.ToString("#,##0.00")">View Budget Limit</a>
+                        <div id="donutchartHousing" class="center-div donutSize"></div>
                         <h2 id="totalBudgetH" style="display:none">@remainingH</h2>
                         <h2 id="totalSpentH" style="display:none">@ViewBag.BudgetTotals[1]</h2>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col s12 m12 l6">
-                        @{double remainingE = item.EntLimit - ViewBag.BudgetTotals[2];}
-                        @if (remainingE <= 0)
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingE.ToString("#,##0.00")</span></h5>
-                        }
-                        else
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingE.ToString("#,##0.00") left</span></h5>
-                        }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.EntLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartEntertainment" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingE < 0)
-                        {
-                            remainingE = 0;
-                        }
-                        <h2 id="totalBudgetE" style="display:none">@remainingE</h2>
-                        <h2 id="totalSpentE" style="display:none">@ViewBag.BudgetTotals[2]</h2>
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            @{float remainingE = Model.EntLimit - ViewBag.BudgetTotals[2] < 0 ? 0 : Model.EntLimit - ViewBag.BudgetTotals[2];}
+                            @if (0 >= remainingE)
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingE.ToString("#,##0.00")</span></h5>
+                            }
+                            else
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingE.ToString("#,##0.00") left</span></h5>
+                            }
+                            <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.EntLimit.ToString("#,##0.00")">View Budget Limit</a>
+                            <div id="donutchartEntertainment" class="center-div donutSize"></div>
+                            <h2 id="totalBudgetE" style="display:none">@remainingE</h2>
+                            <h2 id="totalSpentE" style="display:none">@ViewBag.BudgetTotals[2]</h2>
+                        </div>
+
+                        <div class="col s12 m12 l6">
+                            @{float remainingB = Model.BillsLimit - ViewBag.BudgetTotals[3] < 0 ? 0 : Model.BillsLimit - ViewBag.BudgetTotals[3];}
+                            @if (0 >= remainingB)
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingB.ToString("#,##0.00")</span></h5>
+                            }
+                            else
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingB.ToString("#,##0.00") left</span></h5>
+                            }
+                            <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.BillsLimit.ToString("#,##0.00")">View Budget Limit</a>
+                            <div id="donutchartBills" class="center-div donutSize"></div>
+                            <h2 id="totalBudgetB" style="display:none">@remainingB</h2>
+                            <h2 id="totalSpentB" style="display:none">@ViewBag.BudgetTotals[3]</h2>
+                        </div>
                     </div>
 
-                    <div class="col s12 m12 l6">
-                        @{double remainingB = item.BillsLimit - ViewBag.BudgetTotals[3];}
-                        @if (remainingB <= 0)
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingB.ToString("#,##0.00")</span></h5>
-                        }
-                        else
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingB.ToString("#,##0.00") left</span></h5>
-                        }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.BillsLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartBills" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingB < 0)
-                        {
-                            remainingB = 0;
-                        }
-                        <h2 id="totalBudgetB" style="display:none">@remainingB</h2>
-                        <h2 id="totalSpentB" style="display:none">@ViewBag.BudgetTotals[3]</h2>
-                    </div>
-                </div>
+                    <div class="row">
+                        <div class="col s12 m12 l6">
+                            @{float remainingGas = Model.GasLimit - ViewBag.BudgetTotals[4] < 0 ? 0 : Model.GasLimit - ViewBag.BudgetTotals[4];}
+                            @if (0 >= remainingGas)
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
+                            }
+                            else
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingGas.ToString("#,##0.00") left</span></h5>
+                            }
+                            <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.GasLimit.ToString("#,##0.00")">View Budget Limit</a>
+                            <div id="donutchartGas" class="center-div donutSize"></div>
+                            <h2 id="totalBudgetGas" style="display:none">@remainingGas</h2>
+                            <h2 id="totalSpentGas" style="display:none">@ViewBag.BudgetTotals[4]</h2>
+                        </div>
 
-                <div class="row">
-                    <div class="col s12 m12 l6">
-                        @{double remainingGas = item.GasLimit - ViewBag.BudgetTotals[4];}
-                        @if (remainingGas <= 0)
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
-                        }
-                        else
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingGas.ToString("#,##0.00") left</span></h5>
-                        }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.GasLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartGas" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingGas < 0)
-                        {
-                            remainingGas = 0;
-                        }
-                        <h2 id="totalBudgetGas" style="display:none">@remainingGas</h2>
-                        <h2 id="totalSpentGas" style="display:none">@ViewBag.BudgetTotals[4]</h2>
-                    </div>
-
-                    <div class="col s12 m12 l6">
-                        @{double remainingM = item.MiscLimit - ViewBag.BudgetTotals[5];}
-                        @if (remainingM <= 0)
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingM.ToString("#,##0.00")</span></h5>
-                        }
-                        else
-                        {
-                            <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingM.ToString("#,##0.00") left</span></h5>
-                        }
-                        <a class="btn tooltipped" style="margin-bottom:25px; margin-left:150px; background-color:#212121; font-weight:bold;" data-position="right" data-tooltip="$@item.MiscLimit.ToString("#,##0.00")">View Budget Limit</a>
-                        <div id="donutchartMisc" class="center-div" style="width: 600px; height: 300px; margin-top:10px;"></div>
-                        @if (remainingM < 0)
-                        {
-                            remainingM = 0;
-                        }
-                        <h2 id="totalBudgetM" style="display:none">@remainingM</h2>
-                        <h2 id="totalSpentM" style="display:none">@ViewBag.BudgetTotals[5]</h2>
+                        <div class="col s12 m12 l6">
+                            @{float remainingM = Model.MiscLimit - ViewBag.BudgetTotals[5] < 0 ? 0 : Model.MiscLimit - ViewBag.BudgetTotals[5];}
+                            @if (0 >= remainingM)
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingM.ToString("#,##0.00")</span></h5>
+                            }
+                            else
+                            {
+                                <h5 style="margin-left:150px;"><span style="color:#54b798">$@remainingM.ToString("#,##0.00") left</span></h5>
+                            }
+                            <a class="btn tooltipped tooltippedStyle" data-position="right" data-tooltip="$@Model.MiscLimit.ToString("#,##0.00")">View Budget Limit</a>
+                            <div id="donutchartMisc" class="center-div donutSize"></div>
+                            <h2 id="totalBudgetM" style="display:none">@remainingM</h2>
+                            <h2 id="totalSpentM" style="display:none">@ViewBag.BudgetTotals[5]</h2>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -356,8 +264,6 @@ else
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-
-
     $(document).ready(function () {
         $('.tooltipped').tooltip();
         $('.carousel').carousel();
@@ -369,13 +275,8 @@ else
         donutChartMisc();
     });
 
-    //$('.carousel.carousel-slider').carousel({ fullWidth: true });
 
-    //$('#unhide-set-budget-form').on('click', function () {
-    //    $('#hidden-set-budget-form').toggle();
-    //});
-
-    $('#unhide-set-budget-form').click(function() {
+    $('#unhide-set-budget-form').click(function () {
         $('#hidden-set-budget-form').toggle();
     });
 
@@ -558,6 +459,5 @@ else
             chart.draw(data, options);
         }
     }
-
 </script>
 

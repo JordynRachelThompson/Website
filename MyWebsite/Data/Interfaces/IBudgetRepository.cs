@@ -13,9 +13,12 @@ namespace MyWebsite.Data.Interfaces
         float GetTotalBudgetLimitByMonth(int month, string user);
         void SetBudgetLimitToPastLimit(Budget currentBudget);
         void SetNewBudgetLimits(Budget budgetLimits);
-        List<Budget> GetCurrentBudget(string user, int currentMonth);
+        Budget GetCurrentBudget(string user, int currentMonth);
         bool BudgetExistsByUser(string user);
         Budget GetBudgetById(int id);
         void Add(Budget budget);
+        List<Budget> GetAllBudgetsForUser(string user);
+        bool CurrentBudgetExistsByUser(string user, int currentMonth);
+        void EditBudgetLimits(Budget budget);
     }
 }

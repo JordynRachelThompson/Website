@@ -9,7 +9,7 @@
 <div class="container center-div" style="margin-bottom:100px;">
     <form asp-action="Edit">
         <div class="row">
-            <div class="col l12" align="center" style="margin-top:25px;">
+            <div class="col l12 m12 s12" align="center" style="margin-top:25px;">
                 <a href='@Url.Action("Index", "Budgets", new {userName = user})' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">
                     <i class="material-icons left">arrow_back</i>Return to Budget
                 </a>
@@ -22,7 +22,7 @@
         <h4 class="grnEditBtn">Edit Your Budget's Limits</h4>
 
         <div class="row" align="center">
-            <div class="col s12">
+            <div class="col m12 s12">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Email" />

@@ -1,0 +1,63 @@
+﻿@*Set Budget Limit Form*@
+<form method="post" style="margin-bottom: 20px;" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
+    <div style="margin-top:35px; text-align:center;">
+        <button class="waves-effect waves-light btn-large underline-hover" style="background-color:#54b798; font-weight:bold; font-size:20px;" type="submit" name="Save">
+            <i class="material-icons left">local_atm</i>Set Budget Limits
+        </button>
+    </div>
+    <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Groceries | Restaurant</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="GroceryLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Mortgage | Rent</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="HousingLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Entertainment</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="EntLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Bills | Payments</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="BillsLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Gas | Auto</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="GasLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+        <div class="col s12 m12 l4">
+            <h5 style="margin-top:77px; font-weight:bold;">Miscellaneous Expenses</h5>
+            <div class="input-field">
+                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
+                <input name="MiscLimit" placeholder="0" style="margin-top: 25px;" type="number" class="validate">
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("Email", User.Identity.Name)
+    @Html.Hidden("GroceryLimit", "GroceryLimit")
+    @Html.Hidden("HousingLimit", "HousingLimit")
+    @Html.Hidden("EntLimit", "EntLimit")
+    @Html.Hidden("BillsLimit", "BillsLimit")
+    @Html.Hidden("GasLimit", "GasLimit")
+    @Html.Hidden("MiscLimit", "MiscLimit")
+    @Html.Hidden("Month", DateTime.Now.Month)
+</form>
+  

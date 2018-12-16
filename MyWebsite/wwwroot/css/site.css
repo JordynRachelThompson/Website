@@ -150,6 +150,7 @@ input.valid[type=text]:not(.browser-default):focus,
     border-bottom: 1px solid #cfd8dc !important;
     color: #81cac4;
     font-size: 30px;
+    margin-top: 25px;
 }
 
 input[type=search]:not(.browser-default):focus:not([readonly]) {
@@ -187,8 +188,8 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 .hover-underline {
     cursor: pointer;
     border-radius: 0px !important;
-    font-weight: bold;
-    font-size: 20px;
+    font-weight: bold !important;
+    font-size: 20px !important;
 }
 
     .hover-underline:hover {
@@ -258,6 +259,12 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
         color: #54b798 !important;
     }
 
+.underline-hover {
+    font-weight: bold !important;
+    font-size: 20px !important;
+    border-radius: 0px !important;
+}
+
     .underline-hover:hover {
         text-decoration: underline;
     }
@@ -302,10 +309,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 .editTag {
-    margin-left: 15px;
-    width: 75px;
-    float: left;
-    text-align: center;
+    margin-left: 15px !important;
+    width: 75px !important;
+    float: left !important;
+    text-align: center !important;
 }
 
 .underlineTitle {
@@ -330,9 +337,38 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 .purple-hover:hover {
-    color: #525e78;
+    color: #525e78 !important;
+    font-weight: bold;
 }
 
 #saveBtn:hover {
     background-color: #54b798 !important;
+}
+
+.squareSaveBtn {
+    font-weight: bold;
+    color: #54b798 !important;
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.tooltippedStyle {
+    margin-bottom: 25px !important;
+    margin-left: 150px !important;
+    background-color: #212121 !important;
+    font-weight: bold !important;
+}
+
+.donutSize {
+    width: 600px;
+    height: 300px;
+    margin-top: 10px;
+}
+
+.greenCenterTxt {
+    text-align: center;
+    font-weight: bold;
+    color: #54b798;
+    margin-top: 10px;
 }
