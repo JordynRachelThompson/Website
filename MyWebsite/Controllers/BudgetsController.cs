@@ -183,22 +183,23 @@ namespace MyWebsite.Controllers
 
         public IActionResult BudgetInsights()
         {
-            ViewBag.AvgMonthlySpending = _unitOfWork.BudgetItemsRepository.AvgMonthlySpending(User.Identity.Name);
-            ViewBag.AmtOverOrUnder = _unitOfWork.BudgetItemsRepository.AmtOverOrUnderBudget(User.Identity.Name);
+            var user = User.Identity.Name;
+            var highestSavings = _unitOfWork.BudgetItemsRepository.HighestSavings(user).Single();
+            var budgetInsights = new BudgetInsightsViewModel
+            {
+                AvgMonthlySpending = _unitOfWork.BudgetItemsRepository.AvgMonthlySpending(user),
+                AmtOverOrUnder = _unitOfWork.BudgetItemsRepository.AmtOverOrUnderBudget(user),
+                MostCommonCategory = _unitOfWork.BudgetItemsRepository.MostCommonCategory(user),
+                CategoryTimes = _unitOfWork.BudgetItemsRepository.HowManyTimesCatOccur(_unitOfWork.BudgetItemsRepository.MostCommonCategory(user), user),
+                NumMonthsUnderBudget = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudget(user),
+                TotalMonths = _unitOfWork.BudgetItemsRepository.GetBudgetMonthsList(user).Count,
+                TotalSpentFirstMonth = _unitOfWork.BudgetItemsRepository.TotalSpentByMonth(DateTime.Now.Month, user),
+                TotalSpentSecondMonth = _unitOfWork.BudgetItemsRepository.TotalSpentByMonth((DateTime.Now.Month - 1), user),
+                HighSaveCat = highestSavings.Key,
+                HighSaveAmt = highestSavings.Value
+            };
 
-            ViewBag.MostCommonCategory = _unitOfWork.BudgetItemsRepository.MostCommonCategory(User.Identity.Name);
-            ViewBag.CategoryTimes = _unitOfWork.BudgetItemsRepository.HowManyTimesCatOccur(ViewBag.MostCommonCategory, User.Identity.Name);
-
-            ViewBag.NoMothsUnderBudget = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudget(User.Identity.Name);
-            ViewBag.TotalMonths = _unitOfWork.BudgetItemsRepository.GetBudgetMonthsList(User.Identity.Name).Count;
-
-            ViewBag.FirstMonth =_unitOfWork.BudgetItemsRepository.TotalSpentByMonth(DateTime.Now.Month, User.Identity.Name);
-            ViewBag.SecondMonth = _unitOfWork.BudgetItemsRepository.TotalSpentByMonth((DateTime.Now.Month - 1), User.Identity.Name);
-
-            var highestSavings = _unitOfWork.BudgetItemsRepository.HighestSavings(User.Identity.Name).Single();
-            ViewBag.HighestSaveCat = highestSavings.Key;
-            ViewBag.HighestSaveAmt = highestSavings.Value;
-            return View();
+            return View(budgetInsights);
         }
     }
 

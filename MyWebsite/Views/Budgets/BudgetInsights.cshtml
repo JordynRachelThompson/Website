@@ -1,121 +1,127 @@
-﻿
+﻿@model MyWebsite.Models.BudgetApp.BudgetInsightsViewModel
+
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 <div style="margin-top: 25px; text-align: center;">
-    <a href='@Url.Action("Index", "Budgets")'; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+    <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
 </div>
 
 <div class="row" style="padding: 80px;">
     <div class="col s12">
         <ul class="tabs tabs-fixed-width z-depth-1">
             <li class="tab col s3"><a href="#tab1">Average Spending</a></li>
-            <li class="tab col s3"><a  href="#tab2">Average Savings</a></li>
+            <li class="tab col s3"><a href="#tab2">Average Savings</a></li>
             <li class="tab col s3"><a href="#tab3">Insights By Category</a></li>
         </ul>
     </div>
 
-    <div>
-        @*TAB ONE*@
-        <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
-            <div class="row">
-                <div class="col s12 m5">
-                    <div class="card-panel z-depth-5 teal">
-                        <span>
-                            <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
-                        </span>
-                        <span style="float:right">
-                            @String.Format("{0:C}", ViewBag.AvgMonthlySpending)
-                        </span>
+    @if (Model != null)
+    {
+        
+            <div>
+                @*TAB ONE*@
+                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
+                    <div class="row">
+                        <div class="col s12 m5">
+                            <div class="card-panel z-depth-5 teal">
+                                <span>
+                                    <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
+                                </span>
+                                <span style="float:right">
+                                    @String.Format("{0:C}", Model.AvgMonthlySpending)
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m5">
+                            <div class="card-panel teal z-depth-5">
+                                <span>
+                                    <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
+                                </span>
+                                <span style="float:right">
+                                    @if (Model.AmtOverOrUnder > 0)
+                                    {@String.Format("{0:C}", Model.AmtOverOrUnder)<span> under</span>}
+                                    @if (Model.AmtOverOrUnder < 0)
+                                    {@Model.AmtOverOrUnder<span> over</span>}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m5">
+                            <div class="card-panel z-depth-5 teal">
+                                <span>
+                                    <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
+                                </span>
+                                <span style="float:right">
+                                    @Model.MostCommonCategory @Model.CategoryTimes times
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m5">
-                    <div class="card-panel teal z-depth-5">
-                        <span >
-                            <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
-                        </span>
-                        <span style="float:right">
-                            @if (ViewBag.AmtOverOrUnder > 0)
-                            {@String.Format("{0:C}", ViewBag.AmtOverOrUnder)<span> under</span>}
-                            @if (ViewBag.AmtOverOrUnder < 0)
-                            {@ViewBag.AmtOverOrUnder<span> over</span>}
-                            @if (ViewBag.AmtOverOrUnder == 0.00f)
-                            {<span>On Budget!</span>}
-                        </span>
+                @*TAB TWO*@
+                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
+                    <div class="row">
+                        <div class="col s12 m5 offset-m4">
+                            <div class="card-panel z-depth-5 teal">
+                                <span>
+                                    <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
+                                </span>
+                                <span style="float:right">
+                                    @Model.NumMonthsUnderBudget / @Model.TotalMonths months
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m5 offset-m4">
+                            <div class="card-panel teal z-depth-5">
+                                <span>
+                                    <i style="margin-right: 10px;" class="fas fa-balance-scale"></i>Compare Last Two Months
+                                </span>
+                                <span style="float: right">
+                                    <text>@DateTime.Now.ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentFirstMonth)</text>
+                                    <text>@DateTime.Now.AddMonths(-1).ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentSecondMonth)</text>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m5 offset-m4">
+                            <div class="card-panel z-depth-5 teal">
+                                <span class="white-text">
+                                    <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Highest Savings
+                                </span>
+                                <span style="float:right">
+                                    <text>@Model.HighSaveCat : @String.Format("{0:C}", Model.HighSaveAmt)</text>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m5">
-                    <div class="card-panel z-depth-5 teal">
-                        <span>
-                            <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
-                        </span>
-                        <span style="float:right">
-                            @ViewBag.MostCommonCategory @ViewBag.CategoryTimes times
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @*TAB TWO*@
-        <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
-            <div class="row"> 
-                <div class="col s12 m5 offset-m4">
-                    <div class="card-panel z-depth-5 teal">
-                        <span>
-                            <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
-                        </span>
-                        <span style="float:right">
-                            @ViewBag.NoMothsUnderBudget / @ViewBag.TotalMonths months
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m5 offset-m4">
-                    <div class="card-panel teal z-depth-5">
-                        <span>
-                            <i style="margin-right: 10px;" class="fas fa-balance-scale"></i>Compare Last Two Months
-                        </span>
-                        <span style="float: right">
-                            <text>@DateTime.Now.ToString("MMMM") : @String.Format("{0:C}", ViewBag.FirstMonth)</text>
-                            <text>@DateTime.Now.AddMonths(-1).ToString("MMMM") : @String.Format("{0:C}", ViewBag.SecondMonth)</text>
-                        </span>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m5 offset-m4">
-                    <div class="card-panel z-depth-5 teal">
-                        <span class="white-text">
-                            <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Highest Savings
-                        </span>
-                        <span style="float:right">
-                            <text>@ViewBag.HighestSaveCat : @String.Format("{0:C}", ViewBag.HighestSaveAmt)</text>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @*TAB THREE*@
-        <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
-            <div class="row">
-                <div class="col s12 m8" style="float: right">
-                    <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
-                    <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
-                    <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
-                    <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
-                    <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
-                    <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
+                @*TAB THREE*@
+                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
+                    <div class="row">
+                        <div class="col s12 m8" style="float: right">
+                            <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
+                            <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
+                            <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
+                            <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
+                            <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
+                            <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
 
-                    
+
+                        </div>
+                        <div style="height: 300px;"></div>
+                    </div>
                 </div>
-                <div style="height: 300px;"></div>
             </div>
-        </div>
-    </div>
+        
+
+    }
+
 </div>
 
 
@@ -127,18 +133,17 @@
         font-size: medium;
     }
 
-    .tabs .tab a.active {
-        background-color: #76c5ac !important;
-    }
+        .tabs .tab a.active {
+            background-color: #76c5ac !important;
+        }
 
     .tabs .indicator {
         background-color: #cfd8dc !important;
     }
-
 </style>
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
         $('.tabs').tabs();
         $('select').formSelect();
     });
