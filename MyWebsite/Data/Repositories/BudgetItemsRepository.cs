@@ -44,8 +44,9 @@ namespace MyWebsite.Data.Repositories
         //Return list of months where user set a budget
         public List<string> GetBudgetMonthsList(string user)
         {
-            return _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
+            var months = _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
                 .Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
+            return months;
         }
 
         public List<BudgetItems> GetBudgetItemsListByMonth(string user, int month)
@@ -123,15 +124,19 @@ namespace MyWebsite.Data.Repositories
 
         public int NumMonthsUnderBudget(string user)
         {
-            List<int> monthList = _context.Budget.Where(x => x.Email == user).Select(x => x.Month).ToList();
 
+            List<string> monthList = GetBudgetMonthsList(user);
             if (!monthList.Any()) return 0;
 
+            var monthListNumbers = new List<int>();
+            foreach (var month in monthList)
+                monthListNumbers.Add(DateTime.ParseExact(month, "MMMM", CultureInfo.CurrentCulture).Month);
+            
             var underBudget = 0;
 
             var budgetRepo = new BudgetRepository(_context);
 
-            foreach (var month in monthList)
+            foreach (var month in monthListNumbers)
             {
                 var difference = budgetRepo.GetTotalBudgetLimitByMonth(month, user) - TotalSpentByMonth(month, user);
 
@@ -139,6 +144,61 @@ namespace MyWebsite.Data.Repositories
             }
 
             return underBudget;
+        }
+
+        public Dictionary<string, float> HighestSavings(string user)
+        {
+            var category = 0;
+            var mostSaved = 0.0f;
+            var categoryStr = "";
+
+            var budgetRepo = new BudgetRepository(_context);
+
+            for (var month = 1; month < 13; month++)
+            {
+                for (var budgetType = 1; budgetType < 7; budgetType++)
+                {
+                    var limit = budgetRepo.GetBudgetLimitByLimitType(budgetType, month, user);
+                    var spent = TotalSpentByBudgetCategory(month, user, budgetType);
+                    var difference = limit - spent;
+                    if (difference > mostSaved)
+                    {
+                        category = budgetType;
+                        mostSaved = difference;
+                    }
+                }
+            }
+
+            var categoryUnderBudget = new Dictionary<string, float>();
+
+            switch (category)
+            {
+                case 1:
+                    categoryStr = "Grocery | Restaurant";
+                    break;
+                case 2:
+                    categoryStr = "Mortgage | Rent";
+                    break;
+                case 3:
+                    categoryStr = "Bills | Payments";
+                    break;
+                case 4:
+                    categoryStr = "Entertainment";
+                    break;
+                case 5:
+                    categoryStr = "Gas | Auto";
+                    break;
+                case 6:
+                    categoryStr = "Miscellaneous";
+                    break;
+            }
+
+            if (mostSaved > 0)
+                categoryUnderBudget.Add(categoryStr, mostSaved);
+            else
+                categoryUnderBudget.Add("No Information", 0);
+
+            return categoryUnderBudget;
         }
     }
 }

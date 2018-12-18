@@ -3,6 +3,7 @@ using MyWebsite.Data.Interfaces;
 using MyWebsite.Models.BudgetApp;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyWebsite.Controllers
 {
@@ -190,6 +191,13 @@ namespace MyWebsite.Controllers
 
             ViewBag.NoMothsUnderBudget = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudget(User.Identity.Name);
             ViewBag.TotalMonths = _unitOfWork.BudgetItemsRepository.GetBudgetMonthsList(User.Identity.Name).Count;
+
+            ViewBag.FirstMonth =_unitOfWork.BudgetItemsRepository.TotalSpentByMonth(DateTime.Now.Month, User.Identity.Name);
+            ViewBag.SecondMonth = _unitOfWork.BudgetItemsRepository.TotalSpentByMonth((DateTime.Now.Month - 1), User.Identity.Name);
+
+            var highestSavings = _unitOfWork.BudgetItemsRepository.HighestSavings(User.Identity.Name).Single();
+            ViewBag.HighestSaveCat = highestSavings.Key;
+            ViewBag.HighestSaveAmt = highestSavings.Value;
             return View();
         }
     }

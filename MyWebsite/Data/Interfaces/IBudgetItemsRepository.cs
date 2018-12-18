@@ -21,5 +21,6 @@ namespace MyWebsite.Data.Interfaces
         string MostCommonCategory(string user);
         int HowManyTimesCatOccur(string category, string user);
         int NumMonthsUnderBudget(string user);
+        Dictionary<string, float> HighestSavings(string user);
     }
 }
