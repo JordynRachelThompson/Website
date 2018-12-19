@@ -1,4 +1,6 @@
-﻿namespace MyWebsite.Models.BudgetApp
+﻿using System.Collections.Generic;
+
+namespace MyWebsite.Models.BudgetApp
 {
     public class BudgetInsightsViewModel
     {
@@ -12,5 +14,15 @@
         public float TotalSpentSecondMonth { get; set; }
         public string HighSaveCat { get; set; }
         public float HighSaveAmt { get; set; }
+        public List<BudgetInsightsByCategory> BudgetInsightsByCategory { get; set; }
+    }
+
+    public class BudgetInsightsByCategory
+    {
+        public int CategoryType { get; set; }
+        public float AvgSpentPerMonth { get; set; }
+        public float AvgOverUnderPerCategory { get; set; }
+        public int NumMonthsUnderBudgetPerCat { get; set; }
+        public float AvgPurchasePrice { get; set; }
     }
 }

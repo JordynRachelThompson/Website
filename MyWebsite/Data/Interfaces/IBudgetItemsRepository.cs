@@ -22,5 +22,10 @@ namespace MyWebsite.Data.Interfaces
         int HowManyTimesCatOccur(string category, string user);
         int NumMonthsUnderBudget(string user);
         Dictionary<string, float> HighestSavings(string user);
+        List<int> GetBudgetMonthNumbersList(string user);
+        float AverageMonthlySpendingByCat(List<int> months, string user, int budgetType);
+        float AveragePurchasePriceByCat(List<int> months, string user, int budgetType);
+        float AvgOverUnderByCat(List<int> months, string user, int budgetType);
+        int NumMonthsUnderBudgetByCat(List<int> months, string user, int budgetType);
     }
 }

@@ -199,7 +199,34 @@ namespace MyWebsite.Controllers
                 HighSaveAmt = highestSavings.Value
             };
 
-            return View(budgetInsights);
+            var budgetInsightsWithCategoryInsights = CalculateCategoryInsights(budgetInsights, User.Identity.Name);
+
+            return View(budgetInsightsWithCategoryInsights);
+        }
+
+        public BudgetInsightsViewModel CalculateCategoryInsights(BudgetInsightsViewModel budgetInsights, string user)
+        {
+            var categoryData = new List<BudgetInsightsByCategory>();
+
+            var monthListForUser = _unitOfWork.BudgetItemsRepository.GetBudgetMonthNumbersList(user);
+
+            for (var budgetType = 1; budgetType < 7; budgetType++)
+            {
+                var insights = new BudgetInsightsByCategory
+                {
+                    CategoryType = budgetType,
+                    AvgPurchasePrice = _unitOfWork.BudgetItemsRepository.AveragePurchasePriceByCat(monthListForUser, user, budgetType),
+                    AvgSpentPerMonth = _unitOfWork.BudgetItemsRepository.AverageMonthlySpendingByCat(monthListForUser, user, budgetType),
+                    AvgOverUnderPerCategory = _unitOfWork.BudgetItemsRepository.AvgOverUnderByCat(monthListForUser, user, budgetType),
+                    NumMonthsUnderBudgetPerCat = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudgetByCat(monthListForUser, user, budgetType)
+                };
+                categoryData.Add(insights);
+            }
+
+            foreach (var dataItem in categoryData)
+                budgetInsights.BudgetInsightsByCategory.Add(dataItem);
+
+            return budgetInsights;
         }
     }
 
