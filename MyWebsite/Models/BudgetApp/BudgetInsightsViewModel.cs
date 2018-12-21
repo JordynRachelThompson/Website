@@ -14,7 +14,7 @@ namespace MyWebsite.Models.BudgetApp
         public float TotalSpentSecondMonth { get; set; }
         public string HighSaveCat { get; set; }
         public float HighSaveAmt { get; set; }
-        public List<BudgetInsightsByCategory> BudgetInsightsByCategory { get; set; }
+        public List<BudgetInsightsByCategory> BudgetInsightsByCategoryList { get; set; } = new List<BudgetInsightsByCategory>();
     }
 
     public class BudgetInsightsByCategory

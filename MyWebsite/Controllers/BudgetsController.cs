@@ -4,6 +4,8 @@ using MyWebsite.Models.BudgetApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.VisualStudio.Web.CodeGeneration;
 
 namespace MyWebsite.Controllers
 {
@@ -200,14 +202,47 @@ namespace MyWebsite.Controllers
             };
 
             var budgetInsightsWithCategoryInsights = CalculateCategoryInsights(budgetInsights, User.Identity.Name);
+            
+            if (budgetInsightsWithCategoryInsights.BudgetInsightsByCategoryList.Count == 0)
+            {
+                ViewBag.HasCategoryInsights = false;
+                return View(budgetInsightsWithCategoryInsights);
+            }
+
+            ViewBag.CategoryList = budgetInsightsWithCategoryInsights.BudgetInsightsByCategoryList.Select(x => x.CategoryType).ToList();
+            var listOfCategoryNames = new List<string>();
+            foreach (var category in ViewBag.CategoryList)
+            {
+                switch (category)
+                {
+                    case 1:
+                        listOfCategoryNames.Add("Food | Grocery");
+                        break;
+                    case 2:
+                        listOfCategoryNames.Add("Housing");
+                        break;
+                    case 3:
+                        listOfCategoryNames.Add("Bills | Payments");
+                        break;
+                    case 4:
+                        listOfCategoryNames.Add("Entertainment");
+                        break;
+                    case 5:
+                        listOfCategoryNames.Add("Gas | Auto");
+                        break;
+                    case 6:
+                        listOfCategoryNames.Add("Miscellaneous");
+                        break;
+                }
+            }
+
+            ViewBag.ListOfCategoryNames = listOfCategoryNames;
 
             return View(budgetInsightsWithCategoryInsights);
         }
 
         public BudgetInsightsViewModel CalculateCategoryInsights(BudgetInsightsViewModel budgetInsights, string user)
         {
-            var categoryData = new List<BudgetInsightsByCategory>();
-
             var monthListForUser = _unitOfWork.BudgetItemsRepository.GetBudgetMonthNumbersList(user);
 
             for (var budgetType = 1; budgetType < 7; budgetType++)
@@ -220,11 +255,8 @@ namespace MyWebsite.Controllers
                     AvgOverUnderPerCategory = _unitOfWork.BudgetItemsRepository.AvgOverUnderByCat(monthListForUser, user, budgetType),
                     NumMonthsUnderBudgetPerCat = _unitOfWork.BudgetItemsRepository.NumMonthsUnderBudgetByCat(monthListForUser, user, budgetType)
                 };
-                categoryData.Add(insights);
+                budgetInsights.BudgetInsightsByCategoryList.Add(insights);
             }
-
-            foreach (var dataItem in categoryData)
-                budgetInsights.BudgetInsightsByCategory.Add(dataItem);
 
             return budgetInsights;
         }

@@ -49,7 +49,7 @@ namespace MyWebsite.Data.Repositories
                 .Select(x => DateTimeFormatInfo.CurrentInfo.GetMonthName(x.Month)).Distinct().ToList();
         }
 
-        public List<int> GetBudgetMonthNubersList(string user)
+        public List<int> GetBudgetMonthNumbersList(string user)
         {
             return _context.BudgetItems.Where(x => x.Email == user).OrderBy(x => x.Month)
                 .Select(x => x.Month).Distinct().ToList();
@@ -93,7 +93,7 @@ namespace MyWebsite.Data.Repositories
 
         public float AmtOverOrUnderBudget(string user)
         {
-            var monthListForUser = GetBudgetMonthNubersList(user);
+            var monthListForUser = GetBudgetMonthNumbersList(user);
 
             if (!monthListForUser.Any()) return 0.00f;
 
@@ -223,7 +223,7 @@ namespace MyWebsite.Data.Repositories
 
         public float AvgOverUnderByCat(List<int> months, string user, int budgetType)
         {
-            var monthListForUser = GetBudgetMonthNubersList(user);
+            var monthListForUser = GetBudgetMonthNumbersList(user);
 
             if (!monthListForUser.Any()) return 0.00f;
 

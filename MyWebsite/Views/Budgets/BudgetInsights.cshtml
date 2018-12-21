@@ -17,107 +17,131 @@
 
     @if (Model != null)
     {
-        
-            <div>
-                @*TAB ONE*@
-                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
-                    <div class="row">
-                        <div class="col s12 m5">
-                            <div class="card-panel z-depth-5 teal">
-                                <span>
-                                    <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
-                                </span>
-                                <span style="float:right">
-                                    @String.Format("{0:C}", Model.AvgMonthlySpending)
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m5">
-                            <div class="card-panel teal z-depth-5">
-                                <span>
-                                    <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
-                                </span>
-                                <span style="float:right">
-                                    @if (Model.AmtOverOrUnder > 0)
-                                    {@String.Format("{0:C}", Model.AmtOverOrUnder)<span> under</span>}
-                                    @if (Model.AmtOverOrUnder < 0)
-                                    {@Model.AmtOverOrUnder<span> over</span>}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m5">
-                            <div class="card-panel z-depth-5 teal">
-                                <span>
-                                    <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
-                                </span>
-                                <span style="float:right">
-                                    @Model.MostCommonCategory @Model.CategoryTimes times
-                                </span>
-                            </div>
+        <div>
+            @*TAB ONE*@
+            <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel z-depth-5 teal">
+                            <span>
+                                <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
+                            </span>
+                            <span style="float:right">
+                                @String.Format("{0:C}", Model.AvgMonthlySpending)
+                            </span>
                         </div>
                     </div>
                 </div>
-                @*TAB TWO*@
-                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
-                    <div class="row">
-                        <div class="col s12 m5 offset-m4">
-                            <div class="card-panel z-depth-5 teal">
-                                <span>
-                                    <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
-                                </span>
-                                <span style="float:right">
-                                    @Model.NumMonthsUnderBudget / @Model.TotalMonths months
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m5 offset-m4">
-                            <div class="card-panel teal z-depth-5">
-                                <span>
-                                    <i style="margin-right: 10px;" class="fas fa-balance-scale"></i>Compare Last Two Months
-                                </span>
-                                <span style="float: right">
-                                    <text>@DateTime.Now.ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentFirstMonth)</text>
-                                    <text>@DateTime.Now.AddMonths(-1).ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentSecondMonth)</text>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12 m5 offset-m4">
-                            <div class="card-panel z-depth-5 teal">
-                                <span class="white-text">
-                                    <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Highest Savings
-                                </span>
-                                <span style="float:right">
-                                    <text>@Model.HighSaveCat : @String.Format("{0:C}", Model.HighSaveAmt)</text>
-                                </span>
-                            </div>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel teal z-depth-5">
+                            <span>
+                                <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
+                            </span>
+                            <span style="float:right">
+                                @if (Model.AmtOverOrUnder > 0)
+                                {@String.Format("{0:C}", Model.AmtOverOrUnder)<span> under</span>}
+                                @if (Model.AmtOverOrUnder < 0)
+                                {@Math.Abs(Model.AmtOverOrUnder)<span style="color:#D50000 !important;"> over</span>}
+                            </span>
                         </div>
                     </div>
                 </div>
-                @*TAB THREE*@
-                <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
-                    <div class="row">
-                        <div class="col s12 m8" style="float: right">
-                            <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
-                            <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
-                            <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
-                            <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
-                            <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
-                            <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
+                <div class="row">
+                    <div class="col s12 m5">
+                        <div class="card-panel z-depth-5 teal">
+                            <span>
+                                <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
+                            </span>
+                            <span style="float:right">
+                                @Model.MostCommonCategory @Model.CategoryTimes times
+                            </span>
                         </div>
-                        <div style="height: 300px;"></div>
                     </div>
                 </div>
             </div>
-        
-
+            @*TAB TWO*@
+            <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
+                <div class="row">
+                    <div class="col s12 m5 offset-m4">
+                        <div class="card-panel z-depth-5 teal">
+                            <span>
+                                <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
+                            </span>
+                            <span style="float:right">
+                                @Model.NumMonthsUnderBudget / @Model.TotalMonths months
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m5 offset-m4">
+                        <div class="card-panel teal z-depth-5">
+                            <span>
+                                <i style="margin-right: 10px;" class="fas fa-balance-scale"></i>Compare Last Two Months
+                            </span>
+                            <span style="float: right">
+                                <text>@DateTime.Now.ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentFirstMonth)</text>
+                                <text>@DateTime.Now.AddMonths(-1).ToString("MMMM").Substring(0, 3) : @String.Format("{0:C}", Model.TotalSpentSecondMonth)</text>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m5 offset-m4">
+                        <div class="card-panel z-depth-5 teal">
+                            <span class="white-text">
+                                <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Highest Savings
+                            </span>
+                            <span style="float:right">
+                                <text>@Model.HighSaveCat : @String.Format("{0:C}", Model.HighSaveAmt)</text>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*TAB THREE*@
+            <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
+                <div class="row">
+                    <div class="col s12 m8" style="float: right">
+                        <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
+                        <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
+                        <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
+                        <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
+                        <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
+                        <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
+                    </div>
+                    @foreach (var dataItem in Model.BudgetInsightsByCategoryList)
+                    {
+                        var hiddenContainerId = "budgetInsights" + dataItem.CategoryType;
+                        <div id=@hiddenContainerId class="col s12 m8" style="float: right; display:none">
+                            <h5 style="text-align: center; margin: 30px;">@ViewBag.ListOfCategoryNames[dataItem.CategoryType -1]</h5>
+                            <table style="font-size: 17px;">
+                                <tr style="border-bottom: 1px solid #cfd8dc;">
+                                    <th>Average Spent Each Month</th>
+                                    <th>Total Amount Over | Under Budget</th>
+                                    <th>Number of Months Under Budget</th>
+                                    <th>Average Purchase Price</th>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center;">@String.Format("{0:C}", dataItem.AvgSpentPerMonth)</td>
+                                    @if (dataItem.AvgOverUnderPerCategory > 0) //Under Budget
+                                    {
+                                        <td style="color: #76c5ac !important; text-align:center">@String.Format("{0:C}", dataItem.AvgOverUnderPerCategory) Under</td>
+                                    }
+                                    else //Over Budget
+                                    {
+                                        <td style="color:#D50000 !important; text-align:center">@String.Format("{0:C}", Math.Abs(dataItem.AvgOverUnderPerCategory)) Over</td>
+                                    }
+                                    <td style="text-align: center;">@dataItem.NumMonthsUnderBudgetPerCat Months</td>
+                                    <td style="text-align: center;">@String.Format("{0:C}", dataItem.AvgPurchasePrice)</td>
+                                </tr>
+                            </table>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     }
 
 </div>
@@ -144,5 +168,29 @@
     $(document).ready(function () {
         $('.tabs').tabs();
         $('select').formSelect();
+    });
+
+    $('#food').on('click', function () {
+        $('#budgetInsights1').toggle();
+    });
+
+    $('#housing').on('click', function () {
+        $('#budgetInsights2').toggle();
+    });
+
+    $('#bills').on('click', function () {
+        $('#budgetInsights3').toggle();
+    });
+
+    $('#entertainment').on('click', function () {
+        $('#budgetInsights4').toggle();
+    });
+
+    $('#gas').on('click', function () {
+        $('#budgetInsights5').toggle();
+    });
+
+    $('#misc').on('click', function () {
+        $('#budgetInsights6').toggle();
     });
 </script>
