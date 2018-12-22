@@ -1,14 +1,14 @@
 ﻿@*HOME PAGE*@
 
-<div id="particles-js" style="height: 800px; z-index: 0"></div>
+<div id="particles-js" style="height: 900px; z-index: 0"></div>
 
 <div>
     <p style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.LoggedOut</p>
 </div>
 
-<h3 style="text-align:center; margin-top:-500px; margin-bottom: 300px; font-weight:200; font-size:30px; letter-spacing:1.5px;">TECHNOLOGIES USED</h3>
+<h3 style="text-align:center; margin-top:-650px; margin-bottom: 300px; font-weight:200; font-size:30px; letter-spacing:1.5px;">TECHNOLOGIES USED</h3>
 
-<div class="container center-div z-depth-5" style="background-color:#020305; margin-top:-200px; margin-bottom:200px; z-index: 100; text-align:center; width:55%; padding:10px; border: .5px dotted #cfd8dc;">
+<div class="container center-div z-depth-5" style="background-color:#020305; margin-top:-200px; margin-bottom:1px; z-index: 100; text-align:center; width:55%; padding:10px; border: .5px dotted #cfd8dc;">
     <ul id="tech-used">
         <li>C#</li><li>ASP.NET MVC</li><li>Razor Syntax</li><li>LINQ</li>
         <li>Entity Framework</li><li>MS Visual Studio</li><li>Microsoft SQL Server</li>
@@ -16,16 +16,6 @@
         <li>JavaScript</li><li>jQuery</li><li>JSON</li><li>AJAX</li><li>HTML/CSS</li>
         <li>Git</li><li>Bash</li><li>WordPress</li><li>OOP Concepts</li>
     </ul>
-</div>
-
-@{var photoCreditText = "<b>Galaxy NGC 1300</b> \r\n\r\nCredit:\r\nNASA, ESA, and The Hubble Heritage Team (STScI/AURA)";}
-
-@*Main Image*@
-<div class="parallax-container" style="height: 750px;">
-    <div class="parallax">
-        <img class="materialboxed" src="~/images/spiralGalaxy.jpg" alt="Image of Nebula"/>
-    </div>
-    <a class="btn tooltipped" style="background-color:#020305; border: 1px dotted #cfd8dc" data-position="right" data-tooltip='@photoCreditText'><i class="fa fa-info-circle" aria-hidden="true"></i></a>
 </div>
 
 <script src="~/js/particles.js"></script>
@@ -144,9 +134,4 @@
         }
 
     );
-
-    $(document).ready(function () {
-        $('.parallax').parallax();
-        $('.tooltipped').tooltip();
-    });
 </script>

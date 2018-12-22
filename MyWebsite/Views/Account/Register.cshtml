@@ -1,13 +1,13 @@
 ﻿@model RegisterViewModel
 
 
-<h3 style="text-align:center; margin-top:150px; margin-bottom: 30px; font-weight:200; letter-spacing:1.5px;">REGISTER</h3>
+<h3 style="text-align:center; margin-top:150px; font-weight:200; letter-spacing:1.5px;">REGISTER</h3>
 
 <div style="margin:50px 100px;">
     <div class="row">
         <div class="col s6">
             <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-                <h4 style="text-align:center; margin-top:100px; font-weight:200; letter-spacing:1.5px;">Create a New Account</h4>
+                <h4 style="text-align:center; margin-top:50px; font-weight:200; margin-bottom: 50px; letter-spacing:1.5px;">Create a New Account</h4>
                 <div>
                     <label class="textGrey">Email (username)</label>
                     <input asp-for="Email" style="color: #cfd8dc"/>
@@ -23,9 +23,9 @@
                     <input asp-for="ConfirmPassword" style="color: #cfd8dc"/>
                     <span asp-validation-for="ConfirmPassword" style="color: #cfd8dc" ></span>
                 </div>
-                <button style="margin-top:10px;" type="submit" class=" waves-effect waves-light btn sharpCorners black-btn">Register</button>
+                <button style="margin-top:10px;" type="submit" class=" waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-user"></span> Register</button>
             </form>
-            <div style="margin-top: 10px;">
+            <div style="margin-top: 40px; margin-left: 3px;">
                 <a class="hover-underline" onclick="window.history.go(-1)">Cancel</a>
             </div>
         </div>

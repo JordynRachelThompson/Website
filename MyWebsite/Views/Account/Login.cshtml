@@ -12,11 +12,11 @@
 
 <h3 style="text-align:center; margin-top:150px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
 
-<div style="width:30%; margin-left: 150px; margin-top:150px;">
+<div style="width:30%; margin-left: 150px; margin-top:100px;">
     <div>
         <section>
             <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4 style="text-align:center; margin-top:100px; margin-bottom: 30px; font-weight:200; letter-spacing:1.5px;">Enter Your Account Information</h4>
+                <h4 style="text-align:center; margin-top:100px; margin-bottom: 50px; font-weight:200; letter-spacing:1.5px;">Enter Your Account Information</h4>
                 <div>
                     <label class="textGrey">Username</label>
                     <input asp-for="Email" style="color:#cfd8dc" />
@@ -30,10 +30,10 @@
                 @Html.Hidden("AppType", appType)
                 <div>
                     <div><p style="color: #D50000;">@error</p></div>
-                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn">Log in</button>
+                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="fas fa-sign-in-alt"></span> Log in</button>
                 </div>
                 <div>
-                    <p><a class="hover-underline" asp-action="ForgotPassword">Forgot your password?</a></p>
+                    <p style="margin-top: 45px;"><a class="hover-underline" asp-action="ForgotPassword">Forgot your password?</a></p>
                     <p><a class="hover-underline" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a></p>
                 </div>
             </form>

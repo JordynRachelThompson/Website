@@ -8,34 +8,18 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="container">
+    <div style="margin-right: 100px; padding-bottom: 10px;">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-            <ul id="buttonInLine">
-                <li>
-                    <a class="hover-underline userName" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" style="font-size:20px; margin-right: 10px;">Hello @User.Identity.Name!</a>
-                </li>
-                <li>
-                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn fas fa-sign-out-alt " style="background-color: #080C10; font-size: 23px;"></button>
-                </li>
-            </ul>
+            @*<a class="userName" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" style="margin-right: 10px; display:inline">Hello @User.Identity.Name!</a>*@
+            <button class="waves-effect waves-light btn sharpCorners black-btn" style="margin-left: 10px; float: right;"><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="fas fa-user-cog"></span> Hello @User.Identity.Name!</a></button>
+            <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn" style="background-color: #080C10; font-size: 20px; float:right"><span class="fas fa-sign-out-alt"></span> Sign out</button>
         </form>
     </div>
 }
 else
 {
-    <div class="container">
-        <ul id="buttonInLine">
-            <li><a asp-area="" asp-controller="Account" asp-action="Register" class="waves-effect waves-light btn sharpCorners black-btn" style="margin-right: 5px;">Register</a></li>
-            <li><a href='@Url.Action("Login", "Account", new { AppType = Model}, null)' class="waves-effect waves-light btn sharpCorners black-btn">Log in</a></li>
-
-        </ul>
+    <div style="margin-right: 100px; padding-bottom: 10px;">
+        <button class="waves-effect waves-light btn sharpCorners black-btn" style="float: right; margin-left: 10px;"><span class="far fa-user"></span><a asp-area="" asp-controller="Account" asp-action="Register"> Register</a></button>
+        <button class="waves-effect waves-light btn sharpCorners black-btn" style="float:right"><span class="fas fa-sign-in-alt"></span>@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model }, null)</button>
     </div>
 }
-
-<style>
-
-    .lightTeal-icon-hover:hover {
-        color: #a7f2ec !important;
-    }
-</style>
-

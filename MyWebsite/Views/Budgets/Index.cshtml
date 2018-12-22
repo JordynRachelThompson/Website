@@ -7,7 +7,9 @@
     var currentMonth = DateTime.Now.ToString("MMMM");
 }
 
-<div class="painlessBudgetTitle"><p>@Html.Partial("_LoginPartial", 1)</p></div>
+<div style="margin-top: 100px;">
+    @Html.Partial("_LoginPartial", 1)
+</div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 @if (!SignInManager.IsSignedIn(User))
@@ -216,7 +218,7 @@ else
                             @{float remainingGas = Model.GasLimit - ViewBag.BudgetTotals[4];}
                             @if (0 >= remainingGas)
                             {
-                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingH.ToString("#,##0.00")</span></h5>
+                                <h5 style="margin-left:150px;"><span style="color:#e6c5c4">$@remainingGas.ToString("#,##0.00")</span></h5>
                                 remainingGas = 0;
                             }
                             else

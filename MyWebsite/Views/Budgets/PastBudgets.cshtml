@@ -12,14 +12,20 @@
     </div>
 
     <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; text-align:center">Past Budgets</h4>
-
-    @*Displays month buttons only for months with budgets*@
-    <div style="text-align: center;">
-        @foreach (var month in ViewBag.BudgetMonthList)
-        {
-            <button id=@month class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">@month</button>
-        }
-    </div>
+    @if (ViewBag.BudgetMonthList.Count > 0)
+    {
+        @*Displays month buttons only for months with budgets*@
+        <div style="text-align: center;">
+            @foreach (var month in ViewBag.BudgetMonthList)
+            {
+                <button id=@month class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">@month</button>
+            }
+        </div>
+    }
+    else
+    {
+        <h5 class="greenCenterTxt"><i class="far fa-times-circle"></i> No past budgets to display</h5>
+    }
 </div>
 
 <div>

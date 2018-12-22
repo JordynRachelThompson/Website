@@ -25,7 +25,7 @@
         var containerId = "BudgetContainer" + month;
         var donutId = "donutchartTotal" + month;
 
-        <div class="container center" id=@containerId style="margin-top:35px; margin-bottom:50px; display:none;">
+        <div class="container center" id=@containerId style="margin-top:35px; margin-bottom:70px; display:none;">
             <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">@monthName Transactions</h5>
             
             @foreach (var type in budgetType)
@@ -57,7 +57,7 @@
                     @if (count == 0)
                     {
                         <tr>
-                            <th>No Transactions...</th>
+                            <td>No Transactions...</td>
                         </tr>
                     }
                 </table>

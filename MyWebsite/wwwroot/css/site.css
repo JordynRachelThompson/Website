@@ -60,10 +60,6 @@ nav {
     border-radius: 0px !important;
 }
 
-#buttonInLine li {
-    display: inline;
-}
-
 a {
     color:#cfd8dc !important;
 }
@@ -168,8 +164,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 .userName {
     color: #cfd8dc;
     letter-spacing: 1.5px;
-    font-size: 25px;
-    padding-right: 13px;
+    font-size: 20px;
+    padding-right: 10px;
+    font-weight: 100 !important;
+    background-color: #080C10 !important;
 }
 
 #tech-used {
@@ -197,18 +195,20 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     }
 
 .black-btn {
-    background-color: black !important;
+    background-color: #141d26 !important;
     color: #cfd8dc;
-    font-size: 19px;
-    border: 1px dotted #cfd8dc !important;
+    font-size: 21px !important;
+    text-decoration: none !important;
 }
 
     .black-btn:hover {
-        background-color: #080C10 !important;
+        background-color: #263442 !important;
         border: none !important;
-        border-bottom: 1px solid #cfd8dc !important;
     }
 
+#buttonInLine {
+    display: inline !important;
+}
 
 .dropdown-content li > a, .dropdown-content li > span {
     color: #cfd8dc !important;
@@ -290,7 +290,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 
 .painlessBudgetTitle {
     text-align: center;
-    margin-top: 100px;
+    margin-top: 140px;
     text-decoration: underline
 }
 
@@ -310,7 +310,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 
 .editTag {
     margin-left: 15px !important;
-    width: 75px !important;
+    width: 85px !important;
     float: left !important;
     text-align: center !important;
 }
