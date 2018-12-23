@@ -1,13 +1,23 @@
-﻿
-
+﻿@using System.Globalization
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 <div class="container">
     <div style="margin-top: 25px; text-align: center;">
         <h6 class="greenCenterTxt">@ViewBag.Deleted</h6>
-        <a href='@Url.Action("Index", "Budgets")'; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+        <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large underline-hover grey darken-4"><i class="material-icons left">arrow_back</i> Return to Budget</a>
     </div>
 
-    <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; text-align:center">Export to Excel</h4>
+    <h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; text-align:center"><i class="far fa-file-excel"></i> Export to Excel</h4>
+    
+    <div align="center">
+        <a href='@Url.Action("ExportToExcel", "Budgets", new {month = 13})'; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin: 30px;"><i class="far fa-calendar-plus"></i> Export all Months to Excel</a>
+    </div>
+
+    <div align="center">
+        @foreach (var month in ViewBag.MonthsWithBudgetList)
+        {
+            <button class="waves-effect waves-light btn-large underline-hover squareSaveBtn" style="color: #cfd8dc !important;"onclick="location.href = '@Url.Action("ExportToExcel", "Budgets", new {month})'"><i class="fas fa-file-export"></i> @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</button>
+        }
+    </div>
 </div>

@@ -3,9 +3,9 @@ using MyWebsite.Data.Interfaces;
 using MyWebsite.Models.BudgetApp;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.VisualStudio.Web.CodeGeneration;
+using MyWebsite.Services;
 
 namespace MyWebsite.Controllers
 {
@@ -154,35 +154,6 @@ namespace MyWebsite.Controllers
             return RedirectToAction(returnTo, new { deleted = true, description = budgetTransaction.Description });
         }
 
-        public IActionResult ExportExcel()
-        {
-            return View();
-        }
-
-        //public void ExportListFromTsv()
-        //{
-        //    TextWriter tw = new StreamWriter(Response.Body);
-
-        //    var excelTsv = new ExcelUtil();
-        //    var data = new[]{
-        //        new{ Name="Ram", Email="ram@techbrij.com", Phone="111-222-3333" },
-        //        new{ Name="Shyam", Email="shyam@techbrij.com", Phone="159-222-1596" },
-        //        new{ Name="Mohan", Email="mohan@techbrij.com", Phone="456-222-4569" },
-        //        new{ Name="Sohan", Email="sohan@techbrij.com", Phone="789-456-3333" },
-        //        new{ Name="Karan", Email="karan@techbrij.com", Phone="111-222-1234" },
-        //        new{ Name="Brij", Email="brij@techbrij.com", Phone="111-222-3333" }
-        //    };
-
-        //    Response.Clear();
-
-
-        //    Response.Headers[HeaderNames.ContentDisposition] = "attachment; filename=DemoExcel.xls";
-
-        //    Response.Headers[HeaderNames.ContentType] = "application/vnd.ms-excel";
-        //    excelTsv.WriteTsv(data, tw);
-        //    HttpContext.Response.Clear();
-        //}
-
         public IActionResult BudgetInsights()
         {
             var user = User.Identity.Name;
@@ -260,6 +231,30 @@ namespace MyWebsite.Controllers
 
             return budgetInsights;
         }
+
+        public IActionResult ExportExcel()
+        {
+            ViewBag.MonthsWithBudgetList = _unitOfWork.BudgetItemsRepository.GetBudgetMonthNumbersList(User.Identity.Name);
+            return View();
+        }
+
+        [HttpGet]
+        public FileContentResult ExportToExcel(int month)
+        {
+            var title = month > 12 ? "Budget Data" : "Budget Data for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
+           var exportToExcelViewModel =_unitOfWork.BudgetItemsRepository.GenerateExportToExcelViewModel(User.Identity.Name, month);
+            List<TransactionData> transactionDataList = exportToExcelViewModel.TransactionDataList;
+            //string[] columns = { "Budget Month", "Budget Category", "Description", "Price", "Date"};
+            byte[] fileContent = ExportToExcelHelper.ExportExcel(transactionDataList, title, true);
+            return File(fileContent, ExportToExcelHelper.ExcelContentType, "BudgetData.xlsx");
+        }
+
+        //[HttpPost]
+        //public IActionResult ExportExcel(string month)
+        //{
+
+        //    return View();
+        //}
     }
 
 }

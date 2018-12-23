@@ -382,7 +382,6 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 .budgetCatBtns {
-    /*background-color: #54b798;*/
     font-weight: bold;
     font-size: 13px !important;
     margin-top: 5px !important;

@@ -274,5 +274,50 @@ namespace MyWebsite.Data.Repositories
 
             return totalSpent / howManyMonths;
         }
+
+        public ExportToExcelViewModel GenerateExportToExcelViewModel(string user, int month)
+        {
+            var exportToExcelViewModel = new ExportToExcelViewModel();
+            var allPurchases = _context.BudgetItems.Where(x => x.Email == user).ToList();
+
+            if (!allPurchases.Any()) return exportToExcelViewModel;
+
+            //If month == 13 add all months to Excel
+            var budgetData = month > 12
+                ? _context.BudgetItems.Where(x => x.Email == user).ToList()
+                : _context.BudgetItems.Where(x => x.Email == user).Where(x => x.Month == month).ToList();
+            
+            foreach (var transaction in budgetData)
+            {
+                var transactionData = new TransactionData
+                {
+                    Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(transaction.Month),
+                    Category = transaction.TypeOfBudget.ToString(), //deal with later
+                    Description = transaction.Description,
+                    Price = transaction.Cost,
+                    Date = transaction.Date,
+                };
+
+                exportToExcelViewModel.TransactionDataList.Add(transactionData);
+            }
+
+            foreach (var category in exportToExcelViewModel.TransactionDataList)
+            {
+                if (category.Category == "1")
+                    category.Category = "Grocery/Food";
+                if (category.Category == "2")
+                    category.Category = "Housing";
+                if (category.Category == "3")
+                    category.Category = "Entertainment";
+                if (category.Category == "4")
+                    category.Category = "Bills/Payments";
+                if (category.Category == "5")
+                    category.Category = "Gas/Auto";
+                if (category.Category == "6")
+                    category.Category = "Miscellaneous";
+            }
+
+            return exportToExcelViewModel;
+        }
     }
 }

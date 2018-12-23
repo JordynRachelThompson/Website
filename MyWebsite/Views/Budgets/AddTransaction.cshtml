@@ -28,8 +28,8 @@
                     <option value="0" disabled selected>1. Select a Category</option>
                     <option value="1">Grocery</option>
                     <option value="2">Housing</option>
-                    <option value="3">Bills</option>
-                    <option value="4">Entertainment</option>
+                    <option value="3">Entertainment</option>
+                    <option value="4">Bills</option>
                     <option value="5">Gas</option>
                     <option value="6">Miscellaneous</option>
                 </select>
@@ -108,33 +108,6 @@
         }
     </table>
 
-    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">monetization_on</i>Bills</a>
-    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
-        <tr style="border-bottom: 1px dotted #cfd8dc">
-            <th>Date</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
-        @{ int countB = 0;}
-        @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {
-            countB += 1;
-            <tr style="border-bottom: 1px dotted #cfd8dc">
-                <td>@item.Date.ToString("MM/dd/yyyy")</td>
-                <td>@item.Description</td>
-                <td>$@item.Cost</td>
-                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
-            </tr>
-        }
-        @if (countB == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
-    </table>
-
     <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_activity</i>Entertainment</a>
     <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -144,7 +117,7 @@
             <th></th>
         </tr>
         @{ int countE = 0;}
-        @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+        @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
         {           
             countE += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
@@ -155,6 +128,33 @@
             </tr>
         }
         @if (countE == 0)
+        {
+            <tr>
+                <th>No Transactions...</th>
+            </tr>
+        }
+    </table>
+    
+    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">monetization_on</i>Bills</a>
+    <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
+        <tr style="border-bottom: 1px dotted #cfd8dc">
+            <th>Date</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        @{ int countB = 0;}
+        @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
+        {
+            countB += 1;
+            <tr style="border-bottom: 1px dotted #cfd8dc">
+                <td>@item.Date.ToString("MM/dd/yyyy")</td>
+                <td>@item.Description</td>
+                <td>$@item.Cost</td>
+                <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
+            </tr>
+        }
+        @if (countB == 0)
         {
             <tr>
                 <th>No Transactions...</th>

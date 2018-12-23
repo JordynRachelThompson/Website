@@ -27,5 +27,6 @@ namespace MyWebsite.Data.Interfaces
         float AveragePurchasePriceByCat(List<int> months, string user, int budgetType);
         float AvgOverUnderByCat(List<int> months, string user, int budgetType);
         int NumMonthsUnderBudgetByCat(List<int> months, string user, int budgetType);
+        ExportToExcelViewModel GenerateExportToExcelViewModel(string user, int month);
     }
 }
