@@ -386,3 +386,12 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     font-size: 13px !important;
     margin-top: 5px !important;
 }
+
+.weatherBtn {
+    border-radius: 50px !important;
+    background-color: #f9ffa8 !important;
+}
+
+    .weatherBtn:hover {
+        background-color: #f5f9b6 !important;
+    }

@@ -12,5 +12,15 @@ namespace MyWebsite.Controllers
         {
            return View();
         }
+
+        public IActionResult ManageWeatherAccount()
+        {
+            return View();
+        }
+
+        public IActionResult ManageWeatherAlerts()
+        {
+            return View();
+        }
     }
 }

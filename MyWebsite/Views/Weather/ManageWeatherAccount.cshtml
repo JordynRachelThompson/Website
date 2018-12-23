@@ -1,23 +1,20 @@
-﻿@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
+﻿
 <div id="particles-js-snow"></div>
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 2) </p></div>
 <h3 style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
 
-@if (!SignInManager.IsSignedIn(User))
-{
-    <p style="text-align:center; color:black; font-size:20px; margin-top:30px;">Please log in or register first to use the app.</p>
-}
-else
-{
+<div class="container">
+    <h3 style="text-align: center; margin: 50px 0 30px; color: black !important;">Manage Weather Account</h3>
 
-    <div align="center" style="margin-top:20px;">
-        <a href='@Url.Action("ManageWeatherAccount", "Weather")'; class="waves-effect waves-light btn-large black-text z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-user-circle"></i><b> Manage My Weather Account</b></a>
-        <a href='@Url.Action("ManageWeatherAlerts", "Weather")'; class="waves-effect waves-light btn-large black-text z-depth-1 weatherBtn"><i style="color:#ff7733;"class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    <div align="center">
+        <a href='@Url.Action("Index", "Weather")' ; class="waves-effect waves-light btn-large black-text z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-backward"></i></a>
     </div>
-}
+    
+    <div>
+        <p>Add Location</p>
+    </div>
+</div>
 
 <style>
     body {
