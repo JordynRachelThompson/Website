@@ -16,7 +16,7 @@ namespace MyWebsite.Models.BudgetApp
         public string Month { get; set; }
         public string Category { get; set; }
         public string Description { get; set; }
-        public float Price { get; set; }
-        public DateTime Date { get; set; }
+        public string Price { get; set; }
+        public string Date { get; set; } //To render date in Excel
     }
 }

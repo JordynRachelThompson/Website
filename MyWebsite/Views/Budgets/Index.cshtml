@@ -48,7 +48,7 @@ else
                         </button>
                         <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
                         <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+                        <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top:30px;"><i class="far fa-file-excel"></i> Export Budget Data to Excel</a>
                     </div>
                 </div>
                 <h6 style="text-align: center; font-weight: bold; color: #D50000">@ViewBag.BudgetLimitError</h6>
@@ -136,7 +136,7 @@ else
             <a asp-action="Edit" asp-route-id="@ViewBag.BudgetId" class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">edit</i>Edit Budget Limits</a>
             <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
             <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style=" margin-top:10px;"><i class="material-icons left">insert_chart</i>Transfer to Excel</a>
+            <a href='@Url.Action("ExportExcel", "Budgets")' class="waves-effect waves-light btn-large underline-hover grey darken-4" style=" margin-top:10px;"><i class="far fa-file-excel"></i> Export Budget Data to Excel</a>
         </div>
 
         if (Model != null) //Display donut charts

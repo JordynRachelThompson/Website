@@ -294,8 +294,8 @@ namespace MyWebsite.Data.Repositories
                     Month = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(transaction.Month),
                     Category = transaction.TypeOfBudget.ToString(), //deal with later
                     Description = transaction.Description,
-                    Price = transaction.Cost,
-                    Date = transaction.Date,
+                    Price = String.Format("{0:$#,##0.00;($#,##0.00);Zero}", transaction.Cost),
+                    Date = transaction.Date.ToString("MM/dd/yyyy"),
                 };
 
                 exportToExcelViewModel.TransactionDataList.Add(transactionData);
