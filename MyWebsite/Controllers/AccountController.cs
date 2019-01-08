@@ -72,7 +72,7 @@ namespace MyWebsite.Controllers
                         case 1:
                             return RedirectToAction("Index", "Budgets", new { userName = model.Email });
                         case 2:
-                            return RedirectToAction("Index", "Weather");
+                            return RedirectToAction("Index", "OpenWeather");
                     }
 
 

@@ -101,27 +101,20 @@ a {
     color: white;
 }
 
-
 input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #54b798 !important;
-    box-shadow: 0 1px 0 0 black !important;
-    background-color: #080C10 !important;
-}
-
-input[type=email]:not(.browser-default) {
-    border-bottom: 1px solid #54b798 !important;
+    /*border-bottom: 1px solid #54b798 !important;*/
     box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
 }
 
 input[type=password]:not(.browser-default) {
-    border-bottom: 1px solid #54b798 !important;
+    /*border-bottom: 1px solid #54b798 !important;*/
     box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
 }
 
 input.valid[type=password]:not(.browser-default) {
-    border-bottom: 1px solid #81cac4 !important;
+    /*border-bottom: 1px solid #81cac4 !important;*/
     box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
 }
@@ -132,8 +125,8 @@ input.valid[type=password]:not(.browser-default) {
 
 
 input[type=text]:not(.browser-default) {
-    background-color: #212121 !important;
-    color: #54b798 !important;
+    background-color: #212121;
+    color: #54b798;
     font-size: 30px;
 }
 
@@ -389,9 +382,55 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 
 .weatherBtn {
     border-radius: 50px !important;
-    background-color: #f9ffa8 !important;
+    background-color: #141d26 !important;
+    color: #cfd8dc !important;
 }
 
     .weatherBtn:hover {
-        background-color: #f5f9b6 !important;
+        background-color: #263442 !important;
+    }
+
+.weatherCheckBtn {
+    border-radius: 50px !important;
+    background-color: #141d26 !important;
+    color: #cfd8dc !important;
+}
+
+    .weatherCheckBtn:hover {
+        background-color: #263442 !important;
+        color: #1e9948 !important;
+    }
+
+.weatherCityInput {
+    margin-top: 15px !important;
+    width: 150px !important;
+    color: black !important;
+    font-weight: bold;
+    background-color: #b0b5c1 !important;
+    border: none !important;
+    height: 36px !important;
+    border-bottom: black !important;
+    display: inline-block;
+}
+
+    .weatherCityInput input[type=text]:not(.browser-default) {
+        border-bottom: 1px solid black !important;
+        border: none !important;
+        box-shadow: none !important;
+        background-color: #c3cce0 !important;
+        color: #cfd8dc !important;
+    }
+
+    .weatherCityInput input[type=text]:focus {
+        outline: none !important;
+    }
+
+
+
+.switch label input[type=checkbox]:checked + .lever {
+    background-color: #ff7733 !important;
+}
+
+    .switch label input[type=checkbox]:checked + .lever:after {
+        background-color: white !important;
     }

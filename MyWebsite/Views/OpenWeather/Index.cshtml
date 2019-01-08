@@ -4,6 +4,8 @@
 <div id="particles-js-snow"></div>
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 2) </p></div>
+@*Current weather card*@
+<div id="weatherResponse" class="card" style="background-color: #c3cce0 !important; width: 20%; display: none; float:right"></div>
 <h3 style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
 
 @if (!SignInManager.IsSignedIn(User))
@@ -12,16 +14,35 @@
 }
 else
 {
+    <div align="center" style="margin:30px;">
+        <a id="forecastBtn" href='#'; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 7 Day Forecast</b></a>
+        <a id="managerAlertsBtn"href='#'; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    </div>
 
-    <div align="center" style="margin-top:20px;">
-        <a href='@Url.Action("ManageWeatherAccount", "Weather")'; class="waves-effect waves-light btn-large black-text z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-user-circle"></i><b> Manage My Weather Account</b></a>
-        <a href='@Url.Action("ManageWeatherAlerts", "Weather")'; class="waves-effect waves-light btn-large black-text z-depth-1 weatherBtn"><i style="color:#ff7733;"class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    <div align="center" style="margin-top: 50px;">
+        <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City</h4>
+        <input type="text" id="city" class="weatherCityInput z-depth-3" placeholder=' enter city name...' />
+        <!--Switch -->
+        <div class="switch" style="display: inline-block;">
+            <label>
+                Off
+                <input id="cityCheckbox" type="checkbox">
+                <span class="lever"></span>
+                Set City
+            </label>
+        </div>
+        <h5 id="enterCityName" style="display: none; color:#ff7733;">Please type a city name first.</h5>
+        @*Manage account card*@
+        <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; width: 20%; display: none;">
+            <h4 class="black-text">7 Day Forecast</h4>
+        </div>
+
     </div>
 }
 
 <style>
     body {
-        background-color: #9BCDF2 !important;
+        background-color: #c3cce0 !important;
     }
 
     #particles-js-snow canvas {
@@ -30,11 +51,72 @@ else
         height: 100%;
         z-index: -1;
     }
+
+    label {
+        margin-left: 10px;
+        font-size: 20px !important;
+    }
 </style>
 
 
 <script src="~/js/particles.js"></script>
 <script>
+
+    //Hide current weather/Display manage account
+    $("#forecastBtn").click(function () {
+        $( "#forecast" ).toggle();
+    });
+
+    $(".switch").find("input[type=checkbox]").on("change",
+        function () {
+            if (document.getElementById('cityCheckbox').unchecked) {
+                $('#weatherResponse').hide();}
+            var status = $(this).prop('checked');
+            if (status) {
+                if ($('#city').val() !== "") {
+                    $('#enterCityName').hide();
+                    GetWeather();
+                }
+                else {
+                    $('#enterCityName').show();
+                    $(this).prop('checked', false);
+                }
+            }
+        });
+
+    $('#cityCheckbox').click(function() {
+        $("#weatherResponse").toggle(this.checked);
+    });
+
+    function GetWeather() {
+        var selectedCity = $('#city').val();
+        var url = '/api/Weather/City/' + selectedCity;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function(data) {
+                var html = "<ul style='color: black; font-size: 25px;'>" +
+                    "<li style='padding: 10px;'>" + data.City + "<img src='http://openweathermap.org/img/w/" + data.Icon + ".png'/></li>" +
+                    "<li style='padding: 10px;'>Current: " + data.Temp + " &deg;F</li>" +
+                    "<li style='padding: 10px;'>High: " +  data.temp_max + " &deg;F</li>" +
+                    "<li style='padding: 10px;'>Low: " + data.temp_min + " &deg;F</li></ul>";
+                $('#weatherResponse').show();
+                $('#weatherResponse').html(html);
+            },
+            error: function(result) {
+                alert('Error.' + result);
+            }
+        });
+    }
+
+
+
+
+
+
+
+
+
     particlesJS("particles-js-snow", {
         "particles": {
             "number": {
