@@ -16,6 +16,6 @@ namespace MyWebsite.Models.WeatherApp
         [EmailAddress]
         public string Email { get; set; }
         public bool IsSubscribed { get; set; } = false;
-
+        public string City { get; set; }
     }
 }

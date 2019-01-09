@@ -2,16 +2,19 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <div id="particles-js-snow"></div>
+<div id="email" style="display:none">@User.Identity.Name</div>
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 2) </p></div>
 @*Current weather card*@
-<div id="weatherResponse" class="card" style="background-color: #c3cce0 !important; width: 20%; display: none; float:right"></div>
-<h3 style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
+<div id="weatherResponse" style="color: black; width: 40%; display: none; margin-left: 10px; float:left"></div>
+<h3 id="weatherApp" style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
 
 @if (!SignInManager.IsSignedIn(User))
 {
     <p style="text-align:center; color:black; font-size:20px; margin-top:30px;">Please log in or register first to use the app.</p>
 }
+
+
 else
 {
     <div align="center" style="margin:30px;">
@@ -84,6 +87,25 @@ else
             }
         });
 
+    function AddCity() {
+        var selectedCity = $('#city').val();
+        var email = $('#email').val();
+        var data = { city: selectedCity, email: email };
+        console.log(JSON.stringify(data));
+        $.ajax({
+            url: 'api/AddWeatherCity/',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(data),
+            type: 'POST',
+            success: function(data) {
+                var html = "";},
+            error: function(result) {
+                alert('Error.' + result);
+            }
+        });
+    }
+
+
     $('#cityCheckbox').click(function() {
         $("#weatherResponse").toggle(this.checked);
     });
@@ -95,11 +117,10 @@ else
             url: url,
             type: 'GET',
             success: function(data) {
-                var html = "<ul style='color: black; font-size: 25px;'>" +
-                    "<li style='padding: 10px;'>" + data.City + "<img src='http://openweathermap.org/img/w/" + data.Icon + ".png'/></li>" +
-                    "<li style='padding: 10px;'>Current: " + data.Temp + " &deg;F</li>" +
-                    "<li style='padding: 10px;'>High: " +  data.temp_max + " &deg;F</li>" +
-                    "<li style='padding: 10px;'>Low: " + data.temp_min + " &deg;F</li></ul>";
+                var html = "<span><img src='http://openweathermap.org/img/w/" + data.Icon + ".png'/><h6 style='display:inline'>" + data.City + "</h6></span>" +
+                    "<span><i class='fas fa-thermometer-three-quarters'></i><h6 style='display:inline'> " + data.Temp + " &deg;F </h6></span>" +
+                    "<span><i class='fas fa-long-arrow-alt-up'></i><h6 style='display:inline'>" + data.temp_max + " &deg;F </h6></span>" +
+                    "<span><i class='fas fa-long-arrow-alt-down'></i><h6 style='display:inline'>" + data.temp_min + " &deg;F </h6></span>";
                 $('#weatherResponse').show();
                 $('#weatherResponse').html(html);
             },
@@ -108,15 +129,7 @@ else
             }
         });
     }
-
-
-
-
-
-
-
-
-
+    
     particlesJS("particles-js-snow", {
         "particles": {
             "number": {
