@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyWebsite.Data.Interfaces;
 using MyWebsite.Models.WeatherApp;
 using Newtonsoft.Json;
 using OfficeOpenXml.FormulaParsing.Utilities;
@@ -14,6 +15,13 @@ namespace MyWebsite.Api
     [Route("api/[controller]")]
     public class WeatherController : Controller
     {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public WeatherController(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         [HttpGet("[action]/{city}")]
         public async Task<IActionResult> City(string city)
         {
@@ -28,6 +36,18 @@ namespace MyWebsite.Api
 
                     var stringResult = await response.Content.ReadAsStringAsync();
                     var rawWeather = JsonConvert.DeserializeObject<OpenWeatherResponse>(stringResult);
+
+                    var user = User.Identity.Name;
+                    var userAlreadyHasSavedCity = user != null && _unitOfWork.WeatherRepository.DoesUserHaveSavedCity(user);
+
+                    if(userAlreadyHasSavedCity)
+                        _unitOfWork.WeatherRepository.SetUserSelectedCity(city, user);
+
+                    if (!userAlreadyHasSavedCity && user != null)
+                        _unitOfWork.WeatherRepository.createUserProfile(city, user);
+
+                    _unitOfWork.Complete();
+                    
                     return Ok(new
                     {
                         City = rawWeather.Name,
@@ -37,7 +57,6 @@ namespace MyWebsite.Api
                         rawWeather.Main.temp_min,
                         Icon = rawWeather.Weather.Select(x => x.Icon)
                     });
-
                     
                 }
                 catch (HttpRequestException httpRequestException)

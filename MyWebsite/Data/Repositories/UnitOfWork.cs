@@ -14,13 +14,14 @@ namespace MyWebsite.Data.Repositories
 
         public IBudgetRepository BudgetRepository { get; set; }
         public IBudgetItemsRepository BudgetItemsRepository { get; set; }
+        public IWeatherRepository WeatherRepository { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             BudgetRepository = new BudgetRepository(context);
             BudgetItemsRepository = new BudgetItemsRepository(context);
-            
+            WeatherRepository = new WeatherRepository(context);
         }
 
         public void Complete()

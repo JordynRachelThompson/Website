@@ -9,6 +9,7 @@ namespace MyWebsite.Data.Interfaces
     {
         IBudgetRepository BudgetRepository { get; set; }
         IBudgetItemsRepository BudgetItemsRepository { get; set; }
+        IWeatherRepository WeatherRepository { get; set; }
 
         void Complete();
         //int Count(Func<T, bool> predicate);

@@ -2,46 +2,47 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <div id="particles-js-snow"></div>
-<div id="email" style="display:none">@User.Identity.Name</div>
+<div id="previouslySelectedCity" style="display:none">@ViewBag.City</div>
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 2) </p></div>
 @*Current weather card*@
 <div id="weatherResponse" style="color: black; width: 40%; display: none; margin-left: 10px; float:left"></div>
 <h3 id="weatherApp" style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
 
-@if (!SignInManager.IsSignedIn(User))
-{
-    <p style="text-align:center; color:black; font-size:20px; margin-top:30px;">Please log in or register first to use the app.</p>
-}
+@*7 Day Forecast / Manage Weather Alerts BTNS*@
+<div align="center" style="margin:30px;">
+    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 7 Day Forecast</b></a>
+    <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+</div>
 
+<div align="center" style="margin-top: 50px;">
+    <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City</h4>
+    <input type="text" id="city" class="weatherCityInput z-depth-3" placeholder=' enter city name...' />
+    <!--Switch -->
+    <div class="switch" style="display: inline-block;">
+        <label>
+            Off
+            <input id="cityCheckbox" type="checkbox">
+            <span class="lever"></span>
+            Set City
+        </label>
+    </div>
+    <h5 id="enterCityName" style="display: none; color:#ff7733;">Please type a city name first.</h5>
+    
+    @if (!SignInManager.IsSignedIn(User))
+    {
+        <p id="registerFirst" style="text-align:center; color:black; font-size:20px; margin-top:30px; display:none"><i class="fas fa-exclamation"></i> Please log in or register to save a city and manage weather alerts.</p>
+    }
+    
+    <h4 id ="setCityFirst" style="text-align:center; color:black; font-size:20px; margin-top:30px; display:none"><i class="fas fa-map-pin"></i> Please set your city to view the 7 day forecast.</h4>
 
-else
-{
-    <div align="center" style="margin:30px;">
-        <a id="forecastBtn" href='#'; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 7 Day Forecast</b></a>
-        <a id="managerAlertsBtn"href='#'; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    @*7 Day Forecast*@
+    <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; width: 20%; display: none;">
+        <h4 class="black-text">7 Day Forecast</h4>
     </div>
 
-    <div align="center" style="margin-top: 50px;">
-        <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City</h4>
-        <input type="text" id="city" class="weatherCityInput z-depth-3" placeholder=' enter city name...' />
-        <!--Switch -->
-        <div class="switch" style="display: inline-block;">
-            <label>
-                Off
-                <input id="cityCheckbox" type="checkbox">
-                <span class="lever"></span>
-                Set City
-            </label>
-        </div>
-        <h5 id="enterCityName" style="display: none; color:#ff7733;">Please type a city name first.</h5>
-        @*Manage account card*@
-        <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; width: 20%; display: none;">
-            <h4 class="black-text">7 Day Forecast</h4>
-        </div>
+</div>
 
-    </div>
-}
 
 <style>
     body {
@@ -59,26 +60,38 @@ else
         margin-left: 10px;
         font-size: 20px !important;
     }
+
+    #weatherIcon {
+        font-size: 25px;
+    }
 </style>
 
 
 <script src="~/js/particles.js"></script>
 <script>
 
-    //Hide current weather/Display manage account
+    SetPreselectedCity();
+
+    //7 Day Forecast Btn
     $("#forecastBtn").click(function () {
-        $( "#forecast" ).toggle();
+        if ($('#city').val() == "") {
+            $('#setCityFirst').toggle();
+        } else {
+            $("#forecast").toggle();
+            $('#setCityFirst').hide();
+        }
     });
 
     $(".switch").find("input[type=checkbox]").on("change",
         function () {
             if (document.getElementById('cityCheckbox').unchecked) {
-                $('#weatherResponse').hide();}
+                $('#weatherResponse').hide();
+            }
             var status = $(this).prop('checked');
             if (status) {
                 if ($('#city').val() !== "") {
                     $('#enterCityName').hide();
-                    GetWeather();
+                    GetWeather($('#city').val());
                 }
                 else {
                     $('#enterCityName').show();
@@ -87,49 +100,43 @@ else
             }
         });
 
-    function AddCity() {
-        var selectedCity = $('#city').val();
-        var email = $('#email').val();
-        var data = { city: selectedCity, email: email };
-        console.log(JSON.stringify(data));
-        $.ajax({
-            url: 'api/AddWeatherCity/',
-            contentType: "application/json; charset=utf-8",
-            data: JSON.stringify(data),
-            type: 'POST',
-            success: function(data) {
-                var html = "";},
-            error: function(result) {
-                alert('Error.' + result);
-            }
-        });
+    function SetPreselectedCity() {
+        var preselectedCity = "@ViewBag.City";
+        alert(preselectedCity);
+        if (preselectedCity != "false") {
+            GetWeather(preselectedCity);
+            $('#cityCheckbox').prop('checked', true);
+        }
     }
 
+    //$('#cityCheckbox').click(function() {
+    //    $("#weatherResponse").toggle(this.checked);
+    //    GetWeather($('#city').val());
+    //});
 
-    $('#cityCheckbox').click(function() {
-        $("#weatherResponse").toggle(this.checked);
-    });
+    function GetWeather(selectedCity) {
 
-    function GetWeather() {
-        var selectedCity = $('#city').val();
         var url = '/api/Weather/City/' + selectedCity;
         $.ajax({
             url: url,
             type: 'GET',
-            success: function(data) {
-                var html = "<span><img src='http://openweathermap.org/img/w/" + data.Icon + ".png'/><h6 style='display:inline'>" + data.City + "</h6></span>" +
-                    "<span><i class='fas fa-thermometer-three-quarters'></i><h6 style='display:inline'> " + data.Temp + " &deg;F </h6></span>" +
-                    "<span><i class='fas fa-long-arrow-alt-up'></i><h6 style='display:inline'>" + data.temp_max + " &deg;F </h6></span>" +
+            success: function (data) {
+                var html = "<span><img id='weatherIcon' src='http://openweathermap.org/img/w/" + data.Icon + ".png'/><h6 style='display:inline; margin-right:5px; font-weight:bold'>" + data.City + "</h6></span>" +
+                    "<span><i class='fas fa-thermometer-three-quarters'></i><h6 style='display:inline; margin-right:10px;'> " + data.Temp + " &deg;F </h6></span>" +
+                    "<span><i class='fas fa-long-arrow-alt-up'></i><h6 style='display:inline; margin-right:10px;'>" + data.temp_max + " &deg;F </h6></span>" +
                     "<span><i class='fas fa-long-arrow-alt-down'></i><h6 style='display:inline'>" + data.temp_min + " &deg;F </h6></span>";
                 $('#weatherResponse').show();
                 $('#weatherResponse').html(html);
+                $('#city').val(data.City);
+                $('#registerFirst').show();
+                $('#setCityFirst').hide();
             },
-            error: function(result) {
+            error: function (result) {
                 alert('Error.' + result);
             }
         });
     }
-    
+
     particlesJS("particles-js-snow", {
         "particles": {
             "number": {
