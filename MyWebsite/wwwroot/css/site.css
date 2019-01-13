@@ -39,7 +39,7 @@ nav ul li:hover {
 
 nav ul a:hover {
     color: #cfd8dc !important;
-    border: 1px dotted #cfd8dc !important;
+    border: 1px solid #cfd8dc !important;
 }
 
 nav ul a {
@@ -434,3 +434,11 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     .switch label input[type=checkbox]:checked + .lever:after {
         background-color: white !important;
     }
+
+.weatherHiddenBlackTxt {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    margin-top: 30px;
+    display: none;
+}

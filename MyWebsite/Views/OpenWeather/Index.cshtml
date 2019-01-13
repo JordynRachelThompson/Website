@@ -2,45 +2,88 @@
 @inject UserManager<ApplicationUser> UserManager
 
 <div id="particles-js-snow"></div>
+<div id="email" style="display:none">@User.Identity.Name</div>
 <div id="previouslySelectedCity" style="display:none">@ViewBag.City</div>
 
 <div style="text-align:center; margin-top:100px;"><p style="text-align:center;">@Html.Partial("_LoginPartial", 2) </p></div>
 @*Current weather card*@
-<div id="weatherResponse" style="color: black; width: 40%; display: none; margin-left: 10px; float:left"></div>
+<div id="weatherResponse" style="color: black; width: 40%; display: none; margin-left: 10px; margin-top: -35px; float:left"></div>
 <h3 id="weatherApp" style="text-align:center; color:black; font-weight: bold; margin-top:100px;">Weather App</h3>
 
-@*7 Day Forecast / Manage Weather Alerts BTNS*@
+@*7 Day Forecast / Manage UserWeatherPreferences Alerts BTNS*@
 <div align="center" style="margin:30px;">
-    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 7 Day Forecast</b></a>
+    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 5 Day/Hourly Forecast</b></a>
     <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
-    <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City</h4>
+    <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City to View Weather</h4>
     <input type="text" id="city" class="weatherCityInput z-depth-3" placeholder=' enter city name...' />
     <!--Switch -->
     <div class="switch" style="display: inline-block;">
         <label>
             Off
-            <input id="cityCheckbox" type="checkbox">
+            <input id="cityCheckbox" type="checkbox" name="cityCheckbox">
             <span class="lever"></span>
             Set City
         </label>
     </div>
     <h5 id="enterCityName" style="display: none; color:#ff7733;">Please type a city name first.</h5>
-    
+
     @if (!SignInManager.IsSignedIn(User))
     {
-        <p id="registerFirst" style="text-align:center; color:black; font-size:20px; margin-top:30px; display:none"><i class="fas fa-exclamation"></i> Please log in or register to save a city and manage weather alerts.</p>
+        <h4 id="registerFirst" class="weatherHiddenBlackTxt"><i style="color:#ff7733;" class="fas fa-exclamation"></i> Please log in or register to set city preferences and manage weather alerts.</h4>
     }
-    
-    <h4 id ="setCityFirst" style="text-align:center; color:black; font-size:20px; margin-top:30px; display:none"><i class="fas fa-map-pin"></i> Please set your city to view the 7 day forecast.</h4>
 
-    @*7 Day Forecast*@
-    <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; width: 20%; display: none;">
-        <h4 class="black-text">7 Day Forecast</h4>
+    <h4 id="setCityFirst" class="weatherHiddenBlackTxt"><i style="color:#ff7733;" class="fas fa-map-pin"></i> Please set your city to view the 5 day/hourly forecast.</h4>
+
+    @*5 Day Forecast*@
+    <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; display: none;">
+        <h4 class="black-text">5 Day Forecast</h4>
+        @*Forecast Cards*@
+        <div class="row">
+            <div class="col s6 offset-s3">
+                <div class="card" style="background-color: #bec5d6 !important;">
+                    <div class="card-content black-text">
+                        <span class="card-title"><i class="fas fa-cloud"></i> Monday, Jan 01 2018</span>
+                        <div>
+                            <h5>description</h5>
+                            <h6>High temp Low temp</h6>
+                            <h6>Cloud percentage Humidity percentage</h6>
+                        </div>
+                    </div>
+                    <div class="card-action">
+                        <a id="hourlyForecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i class="far fa-clock"></i><b> Hourly Forecast</b></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*Hourly Forecast Card*@
+        <div id="hourlyForecast" class="row" style="display:none">
+            <div class="col s10 offset-s2">
+                @for (var i = 0; i < 10; i++)
+                {
+                    <div class="card col l1" style="background-color: #bec5d6 !important;">
+                        <div class="card-content black-text">
+                            <span class="card-title"><i class="fas fa-cloud"></i> Time</span>
+                            <div>
+                                <p>description</p>
+                                <p>temp</p>
+                                <p>Cloud percentage Humidity percentage</p>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     </div>
 
+    @*Manage Alerts*@
+    <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
+        <h4 class="black-text">Manage</h4>
+    </div>
 </div>
 
 
@@ -62,7 +105,8 @@
     }
 
     #weatherIcon {
-        font-size: 25px;
+        width: 55px;
+        height: auto;
     }
 </style>
 
@@ -72,9 +116,43 @@
 
     SetPreselectedCity();
 
-    //7 Day Forecast Btn
+    //Change main 2 btn colors when clicked & hourly forecast btn
+    var clickedForecast = true;
+    var clickedManage = true;
+    var clickedHourly = true;
+    $('#forecastBtn').click(function () {
+        if (clickedForecast) {
+            $(this).css("cssText", "background-color: #263442 !important;");
+            clickedForecast = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;");
+            clickedForecast = true;
+        }
+    });
+
+    $('#managerAlertsBtn').click(function () {
+        if (clickedForecast) {
+            $(this).css("cssText", "background-color: #263442 !important;");
+            clickedForecast = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;");
+            clickedForecast = true;
+        }
+    });
+    
+    $('#hourlyForecastBtn').click(function () {
+        if (clickedHourly) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly = true;
+        }
+    });
+
+    //5 Day Forecast Btn
     $("#forecastBtn").click(function () {
-        if ($('#city').val() == "") {
+        if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
             $('#setCityFirst').toggle();
         } else {
             $("#forecast").toggle();
@@ -82,37 +160,54 @@
         }
     });
 
+    //Hourly Forecast Btn
+    $('#hourlyForecastBtn').click(function() {
+        $('#hourlyForecast').toggle();
+    });
+
+    //Manage Alerts Btn
+    $('#managerAlertsBtn').click(function () {
+        if (($('#email').val() == "")) {
+            $('#registerFirst').toggle();
+        } else {
+            $('#registerFirst').hide();
+            if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
+                $('#setCityFirst').toggle();
+            } else {
+                $('#manageAlerts').toggle();
+            }
+        }
+    });
+
+    //Switch toggle
     $(".switch").find("input[type=checkbox]").on("change",
         function () {
-            if (document.getElementById('cityCheckbox').unchecked) {
-                $('#weatherResponse').hide();
-            }
             var status = $(this).prop('checked');
             if (status) {
                 if ($('#city').val() !== "") {
                     $('#enterCityName').hide();
                     GetWeather($('#city').val());
-                }
-                else {
+                    GetForecast($('#city').val());
+                } else {
                     $('#enterCityName').show();
-                    $(this).prop('checked', false);
                 }
+            }
+            else {
+                $('#city').val(" enter city name...");
+                $('#weatherResponse').hide();
+                $('#registerFirst').hide();
+                $(this).prop('checked', false);
             }
         });
 
     function SetPreselectedCity() {
         var preselectedCity = "@ViewBag.City";
-        alert(preselectedCity);
-        if (preselectedCity != "false") {
+        if (preselectedCity != "False") {
             GetWeather(preselectedCity);
+            GetForecast(preselectedCity);
             $('#cityCheckbox').prop('checked', true);
-        }
+        } 
     }
-
-    //$('#cityCheckbox').click(function() {
-    //    $("#weatherResponse").toggle(this.checked);
-    //    GetWeather($('#city').val());
-    //});
 
     function GetWeather(selectedCity) {
 
@@ -121,18 +216,31 @@
             url: url,
             type: 'GET',
             success: function (data) {
-                var html = "<span><img id='weatherIcon' src='http://openweathermap.org/img/w/" + data.Icon + ".png'/><h6 style='display:inline; margin-right:5px; font-weight:bold'>" + data.City + "</h6></span>" +
-                    "<span><i class='fas fa-thermometer-three-quarters'></i><h6 style='display:inline; margin-right:10px;'> " + data.Temp + " &deg;F </h6></span>" +
-                    "<span><i class='fas fa-long-arrow-alt-up'></i><h6 style='display:inline; margin-right:10px;'>" + data.temp_max + " &deg;F </h6></span>" +
-                    "<span><i class='fas fa-long-arrow-alt-down'></i><h6 style='display:inline'>" + data.temp_min + " &deg;F </h6></span>";
+                var html = "<span><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.Icon + ".png'/><h6 style='display:inline; margin-right:5px; font-weight:bold'>" + data.City + "</h6></span>" +
+                    "<span><i class='fas fa-thermometer-three-quarters'></i><h6 style='display:inline; margin-right:10px;'> " + data.Temp + " &deg;F " + data.Description + "</h6></span>";
                 $('#weatherResponse').show();
                 $('#weatherResponse').html(html);
                 $('#city').val(data.City);
-                $('#registerFirst').show();
                 $('#setCityFirst').hide();
             },
             error: function (result) {
-                alert('Error.' + result);
+                console.log('Error.' + result);
+            }
+        });
+    }
+
+    function GetForecast(selectedCity) {
+
+        var url = '/api/Forecast/City/' + selectedCity;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
+                
+               
+            },
+            error: function (result) {
+                console.log('Error.' + result);
             }
         });
     }

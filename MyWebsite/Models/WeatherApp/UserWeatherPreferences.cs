@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyWebsite.Models.WeatherApp
 {
-    public class Weather
+    public class UserWeatherPreferences
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

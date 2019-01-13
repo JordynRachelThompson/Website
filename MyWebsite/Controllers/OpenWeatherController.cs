@@ -25,20 +25,5 @@ namespace MyWebsite.Controllers
 
            return View();
         }
-
-        //[HttpPost]
-        //public IActionResult Index(string city)
-        //{
-        //}
-
-        public IActionResult ManageWeatherAccount()
-        {
-            return View();
-        }
-
-        public IActionResult ManageWeatherAlerts()
-        {
-            return View();
-        }
     }
 }

@@ -2,22 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyWebsite.Data.Interfaces;
 using MyWebsite.Models.WeatherApp;
 using Newtonsoft.Json;
-using OfficeOpenXml.FormulaParsing.Utilities;
 
 namespace MyWebsite.Api
 {
     [Route("api/[controller]")]
-    public class WeatherController : Controller
+    public class ForecastController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public WeatherController(IUnitOfWork unitOfWork)
+        public ForecastController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
@@ -30,33 +28,30 @@ namespace MyWebsite.Api
                 var apiKey = "6a8c9bd2f7fcb773bb364ec94c4551ec";
                 try
                 {
+                    var countryCode = "US";
                     client.BaseAddress = new Uri("http://api.openweathermap.org");
-                    var response = await client.GetAsync($"/data/2.5/weather?q={city}&appid={apiKey}&units=imperial");
+                    var response = await client.GetAsync($"/data/2.5/forecast?q={city},{countryCode}&appid={apiKey}&units=imperial");
                     response.EnsureSuccessStatusCode();
 
                     var stringResult = await response.Content.ReadAsStringAsync();
-                    var rawWeather = JsonConvert.DeserializeObject<OpenWeatherResponse>(stringResult);
+                    var rawWeather = JsonConvert.DeserializeObject<OpenWeatherFiveDayResponse>(stringResult);
 
-                    var user = User.Identity.Name;
-                    var userAlreadyHasSavedCity = user != null && _unitOfWork.WeatherRepository.DoesUserHaveSavedCity(user);
-
-                    if(userAlreadyHasSavedCity)
-                        _unitOfWork.WeatherRepository.SetUserSelectedCity(city, user);
-
-                    if (!userAlreadyHasSavedCity && user != null)
-                        _unitOfWork.WeatherRepository.createUserProfile(city, user);
-
-                    _unitOfWork.Complete();
-                    
                     return Ok(new
                     {
-                        City = rawWeather.Name,
-                        rawWeather.Main.Temp,
-                        Icon = rawWeather.Weather.Select(x => x.Icon),
-                        Description = rawWeather.Weather.Select(x => x.Description)
+                        City = rawWeather.City.Name,
+                        rawWeather.List[0].Weather[0].Icon,
+                        Date = rawWeather.List[0].Dt_txt,
+                        rawWeather.List[0].Weather[0].Description,
+                        rawWeather.List[0].Main.Temp,
+                        rawWeather.List[0].Main.temp_max,
+                        rawWeather.List[0].Main.temp_min,
+                        Clouds = rawWeather.List[0].Clouds.All,
+                        rawWeather.List[0].Main.Humidity,
+                        List = rawWeather.List
+
                     });
-                    
                 }
+
                 catch (HttpRequestException httpRequestException)
                 {
                     return BadRequest($"Error getting weather from OpenWeather: {httpRequestException.Message}");
@@ -65,4 +60,3 @@ namespace MyWebsite.Api
         }
     }
 }
-

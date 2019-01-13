@@ -229,7 +229,7 @@ namespace MyWebsite.Migrations
                     b.ToTable("BudgetItems");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.WeatherProject.Weather", b =>
+            modelBuilder.Entity("MyWebsite.Models.WeatherProject.UserWeatherPreferences", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -240,7 +240,7 @@ namespace MyWebsite.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Weather");
+                    b.ToTable("UserWeatherPreferences");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

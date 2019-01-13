@@ -28,7 +28,7 @@ namespace MyWebsite.Data.Repositories
 
         public void createUserProfile(string city, string user)
         {
-            var userInfo = new Weather
+            var userInfo = new UserWeatherPreferences
             {
                 City = city,
                 Email = user
