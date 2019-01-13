@@ -168,7 +168,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     -moz-column-count: 4;
     column-count: 4;
     color: #cfd8dc;
-    font-size: 18px;
+    font-size: 21px;
 }
 
 
@@ -321,7 +321,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     text-align: center;
     width: 75%;
     padding: 10px;
-    border: .5px dotted #cfd8dc;
+    border: .5px solid #cfd8dc;
 }
 
 .purple-hover {
@@ -441,4 +441,18 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     font-size: 20px;
     margin-top: 30px;
     display: none;
+}
+
+.thinHeading {
+    font-weight: 200;
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    text-align: center;
+}
+
+.techBoxes li{
+    border: 1px solid white;
+    background-color: #020305;
+    padding: 3px;
+    margin: 5px;
 }

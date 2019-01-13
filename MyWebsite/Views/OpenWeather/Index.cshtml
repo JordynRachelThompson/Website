@@ -306,10 +306,10 @@
                             dayIndex = day0[k];
                             var dateTime0 = moment(data.List[dayIndex].Dt_txt);
                             dateTime0 = moment(dateTime0).subtract(6, 'hours');
-                            dateTime0 = moment(dateTime0).format('dddd, hh:mm A');
+                            dateTime0 = moment(dateTime0).format('hh:mm A');
                             hourlyData0 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime0 + "</span><div>" +
-                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p>" + data.List[dayIndex].Main.Temp + " &deg;F</p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity percentage</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     if (i == 1) { //day1
@@ -318,7 +318,7 @@
                             dayIndex = day1[k];
                             var dateTime1 = moment(data.List[dayIndex].Dt_txt);
                             dateTime1 = moment(dateTime1).subtract(6, 'hours');
-                            dateTime1 = moment(dateTime1).format('dddd, hh:mm A');
+                            dateTime1 = moment(dateTime1).format('hh:mm A');
                             hourlyData1 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime1 + "</span><div>" +
                                 "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
@@ -330,7 +330,7 @@
                             dayIndex = day2[k];
                             var dateTime2 = moment(data.List[dayIndex].Dt_txt);
                             dateTime2 = moment(dateTime2).subtract(6, 'hours');
-                            dateTime2 = moment(dateTime2).format('dddd, hh:mm A');
+                            dateTime2 = moment(dateTime2).format('hh:mm A');
                             hourlyData2 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime2 + "</span><div>" +
                                 "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
@@ -342,7 +342,7 @@
                             dayIndex = day3[k];
                             var dateTime3 = moment(data.List[dayIndex].Dt_txt);
                             dateTime3 = moment(dateTime3).subtract(6, 'hours');
-                            dateTime3 = moment(dateTime3).format('dddd, hh:mm A');
+                            dateTime3 = moment(dateTime3).format('hh:mm A');
                             hourlyData3 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" +  dateTime3 + "</span><div>" +
                                 "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
@@ -354,7 +354,7 @@
                             dayIndex = day4[k];
                             var dateTime4 = moment(data.List[dayIndex].Dt_txt);
                             dateTime4 = moment(dateTime4).subtract(6, 'hours');
-                            dateTime4 = moment(dateTime4).format('dddd, hh:mm A');
+                            dateTime4 = moment(dateTime4).format('hh:mm A');
                             hourlyData4 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime4 + "</span><div>" +
                                 "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";

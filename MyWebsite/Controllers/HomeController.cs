@@ -16,7 +16,7 @@ namespace MyWebsite.Controllers
         }
 
 
-        public IActionResult Contact()
+        public IActionResult Experience()
         {
             ViewData["Message"] = "Your contact page.";
 

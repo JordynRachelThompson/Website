@@ -1,23 +1,40 @@
 ﻿@*HOME PAGE*@
-
 <div id="particles-js" style="height: 900px; z-index: 0"></div>
-
 <div>
     <p style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.LoggedOut</p>
 </div>
+<h3 class="thinHeading" style="margin-top:-650px; margin-bottom: 300px;">.NET DEVELOPER PORTFOLIO</h3>
+@*<h3 style="text-align:center; margin-top: 50px; margin-bottom: 250px; font-weight:200; font-size:30px; letter-spacing:1.5px;">RECENTLY USED TECHNOLOGIES</h3>*@
 
-<h3 style="text-align:center; margin-top:-650px; margin-bottom: 300px; font-weight:200; font-size:30px; letter-spacing:1.5px;">TECHNOLOGIES</h3>
+<div class="container center-div z-depth-5" style="background-color: #101111; margin-top:-200px; margin-bottom:1px; z-index: 100; text-align:center; width:55%; padding:10px;">
+    <h4 class="thinHeading" style="margin-top: 10px; margin-bottom: 20px;">Recently Used Technologies</h4>
 
-<div class="container center-div z-depth-5" style="background-color:#020305; margin-top:-200px; margin-bottom:1px; z-index: 100; text-align:center; width:55%; padding:10px; border: .5px dotted #cfd8dc;">
-    <ul id="tech-used">
-        <li>C#</li><li>ASP.NET MVC 5</li><li>ASP.NET Core</li><li>Web API</li><li>LINQ</li>
-        <li>Entity Framework</li><li>MS Visual Studio 2017</li><li>Microsoft SQL Server</li>
-        <li>SSMS</li><li>Bootstrap</li><li>Materialize</li><li>Kendo UI</li>
-        <li>JavaScript</li><li>jQuery</li><li>JSON</li><li>Ajax</li><li>HTML/CSS</li>
-        <li>Git</li><li>WordPress</li><li>AWS</li><li>Azure</li>
+    <ul id="tech-used" class="techBoxes">
+        <li>C#</li>
+        <li>ASP.NET MVC 5</li>
+        <li>ASP.NET Core</li>
+        <li>Web API</li>
+        <li>LINQ</li>
+        <li>Entity Framework</li>
+        <li>MS Visual Studio 2017</li>
+        <li>Microsoft SQL Server</li>
+        <li>Bootstrap</li>
+        <li>Materialize</li>
+        <li>Kendo UI</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+        <li>JSON</li>
+        <li>Ajax</li>
+        <li>HTML/CSS</li>
+        <li>Git</li>
+        <li>Azure</li>
     </ul>
 </div>
-
+<style>
+    body {
+        background-color: #020305 !important;
+    }
+</style>
 <script src="~/js/particles.js"></script>
 
 <script type="text/javascript">
@@ -25,14 +42,14 @@
         {
             "particles": {
                 "number": {
-                    "value": 29,
+                    "value": 80,
                     "density": {
                         "enable": true,
-                        "value_area": 599
+                        "value_area": 1104.8066982851817
                     }
                 },
                 "color": {
-                    "value": "#cfd8dc"
+                    "value": "#040405"
                 },
                 "shape": {
                     "type": "circle",
@@ -50,7 +67,7 @@
                     }
                 },
                 "opacity": {
-                    "value": 0.49716301422833176,
+                    "value": 0.14993805191013182,
                     "random": false,
                     "anim": {
                         "enable": false,
@@ -60,29 +77,29 @@
                     }
                 },
                 "size": {
-                    "value": 2.7,
+                    "value": 3,
                     "random": true,
                     "anim": {
                         "enable": false,
-                        "speed": 48.7246327380807,
+                        "speed": 40,
                         "size_min": 0.1,
                         "sync": false
                     }
                 },
                 "line_linked": {
                     "enable": true,
-                    "distance": 304.6482915644493,
-                    "color": "#525e78",
-                    "opacity": 0.5130918594769673,
-                    "width": 0.5
+                    "distance": 150,
+                    "color": "#cfd8dc",
+                    "opacity": 1,
+                    "width": 2
                 },
                 "move": {
                     "enable": true,
-                    "speed": 6,
-                    "direction": "none",
+                    "speed": 1,
+                    "direction": "bottom",
                     "random": false,
                     "straight": false,
-                    "out_mode": "out",
+                    "out_mode": "bounce",
                     "bounce": false,
                     "attract": {
                         "enable": false,
