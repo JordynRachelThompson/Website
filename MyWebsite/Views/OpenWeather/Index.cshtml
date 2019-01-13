@@ -41,10 +41,12 @@
     <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; display: none;">
         <h4 class="black-text">5 Day Forecast</h4>
         @*Forecast Cards*@
-        <div class="row">
-            <div class="col s6 offset-s3">
-                <div class="card" style="background-color: #bec5d6 !important;">
-                    <div class="card-content black-text">
+        <div class="row" id="forecastDayData">
+            @*<div class="col s6 offset-s3">
+                <div class="card" id="forecastData" style="background-color: #bec5d6 !important;">*@
+                    
+                    @*FORECAST DATA*@
+                    @*<div class="card-content black-text">
                         <span class="card-title"><i class="fas fa-cloud"></i> Monday, Jan 01 2018</span>
                         <div>
                             <h5>description</h5>
@@ -56,7 +58,7 @@
                         <a id="hourlyForecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i class="far fa-clock"></i><b> Hourly Forecast</b></a>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
         @*Hourly Forecast Card*@
         <div id="hourlyForecast" class="row" style="display:none">
@@ -131,12 +133,12 @@
     });
 
     $('#managerAlertsBtn').click(function () {
-        if (clickedForecast) {
+        if (clickedManage) {
             $(this).css("cssText", "background-color: #263442 !important;");
-            clickedForecast = false;
+            clickedManage = false;
         } else {
             $(this).css("cssText", "background-color: #141d26 !important;");
-            clickedForecast = true;
+            clickedManage = true;
         }
     });
     
@@ -209,6 +211,7 @@
         } 
     }
 
+    //Get weather now by city
     function GetWeather(selectedCity) {
 
         var url = '/api/Weather/City/' + selectedCity;
@@ -229,6 +232,7 @@
         });
     }
 
+    //Get 5 day hourly forecast by city
     function GetForecast(selectedCity) {
 
         var url = '/api/Forecast/City/' + selectedCity;
@@ -236,8 +240,50 @@
             url: url,
             type: 'GET',
             success: function (data) {
-                
-               
+                $.each(data, function(index, row) {
+                    console.log(data.List[1]);     
+                });
+                var forecastDayData = "";
+
+                var now = moment(moment(), "YYYY-MM-DD HH:mm:ss");
+
+                var listNumbers = [];
+                var origDay = "";
+                var count = 0;
+                //Get index list of indexes with new day
+                for (var j = 0; j < data.List.length; j++) {
+                    var dataDay = moment(data.List[j].Dt_txt);
+                    var day = moment(dataDay, 'dddd');
+                    if (origDay != day.format('dddd')) {
+                        listNumbers[count] = j;
+                        count++;
+                        origDay = day.format('dddd');
+                    }
+                }
+
+                for (var i = 0; i < 5; i++) {
+                    var counter = listNumbers[i];
+                    //.add(5, 'days')
+                    var icon = data.List[counter].Weather[0].Icon;
+                    var date = data.List[counter].Dt_txt;
+                    var description = data.List[counter].Weather[0].Description;
+                    var temp = data.List[counter].Main.Temp;
+                    var tempMax = data.List[counter].Main.temp_max;
+                    var tempMin = data.List[counter].Main.temp_min;
+                    var clouds = data.List[counter].Clouds.All;
+                    var humidity = data.List[counter].Main.Humidity;
+                    
+                    var forecastData = "<div class='col s6 offset-s3'><div class='card' style='background-color: #bec5d6 !important;'>" +
+                        "<div class='card-content black-text'>" +
+                        "<span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + icon + ".png'/>" + now.format('dddd') + ", " + now.format("MMMM-DD-YYYY") + "</span>" +
+                        "<div><h5>" + description + "</h5><h6>Avg: " + temp + " &deg;F</h6><h6>Clouds:" + clouds + "% Humidity: " + humidity + "</h6></div></div>" +
+                        "<div class='card-action'><a id='hourlyForecastBtn" + i + "' href='#' ; class='waves-effect waves-light btn-large z-depth-1 weatherBtn'>" +
+                        "<i class='far fa-clock'></i><b> Hourly Forecast</b></a></div></div></div>";
+                    forecastDayData += forecastData;
+                    now.add(1, 'days');
+                }
+                $('#forecastDayData').html(forecastDayData);
+
             },
             error: function (result) {
                 console.log('Error.' + result);

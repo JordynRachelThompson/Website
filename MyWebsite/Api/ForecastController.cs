@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MyWebsite.Data.Interfaces;
@@ -25,6 +26,7 @@ namespace MyWebsite.Api
         {
             using (var client = new HttpClient())
             {
+                //var apiKey = "6a8c9bd2f7fcb773bb364ec94c4551ec";
                 var apiKey = "6a8c9bd2f7fcb773bb364ec94c4551ec";
                 try
                 {
@@ -36,19 +38,21 @@ namespace MyWebsite.Api
                     var stringResult = await response.Content.ReadAsStringAsync();
                     var rawWeather = JsonConvert.DeserializeObject<OpenWeatherFiveDayResponse>(stringResult);
 
+                    var infoTime = TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time");
+
                     return Ok(new
                     {
+                        List = rawWeather.List,
                         City = rawWeather.City.Name,
                         rawWeather.List[0].Weather[0].Icon,
-                        Date = rawWeather.List[0].Dt_txt,
+                        Date = TimeZoneInfo.ConvertTimeFromUtc(DateTime.ParseExact(rawWeather.List[0].Dt_txt, "yyyy-MM-dd HH:mm:ss",
+                            System.Globalization.CultureInfo.InvariantCulture), infoTime),
                         rawWeather.List[0].Weather[0].Description,
                         rawWeather.List[0].Main.Temp,
                         rawWeather.List[0].Main.temp_max,
                         rawWeather.List[0].Main.temp_min,
                         Clouds = rawWeather.List[0].Clouds.All,
-                        rawWeather.List[0].Main.Humidity,
-                        List = rawWeather.List
-
+                        rawWeather.List[0].Main.Humidity
                     });
                 }
 
