@@ -40,53 +40,37 @@
     @*5 Day Forecast*@
     <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; display: none;">
         <h4 class="black-text">5 Day Forecast</h4>
-        @*Forecast Cards*@
-        <div class="row" id="forecastDayData">
-            @*<div class="col s6 offset-s3">
-                <div class="card" id="forecastData" style="background-color: #bec5d6 !important;">*@
-                    
-                    @*FORECAST DATA*@
-                    @*<div class="card-content black-text">
-                        <span class="card-title"><i class="fas fa-cloud"></i> Monday, Jan 01 2018</span>
-                        <div>
-                            <h5>description</h5>
-                            <h6>High temp Low temp</h6>
-                            <h6>Cloud percentage Humidity percentage</h6>
-                        </div>
-                    </div>
-                    <div class="card-action">
-                        <a id="hourlyForecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i class="far fa-clock"></i><b> Hourly Forecast</b></a>
+        <div class="row" id="forecastDayData">@*DATA*@</div>
+        @*Hourly Forecast Card*@
+
+        @*<div id="hourlyForecast1" class="black-text" style="display:none">
+                <div class="row">
+                    <div class="col s10 offset-s2">
+                        @for (var i = 0; i < 10; i++)
+                        {
+                            <div class="card col l1" style="background-color: #bec5d6 !important;">
+                                <div class="card-content">
+                                    <span class="card-title"><i class="fas fa-cloud"></i> Time</span>
+                                    <div>
+                                        <p>description</p>
+                                        <p>temp</p>
+                                        <p>Cloud percentage Humidity percentage</p>
+                                    </div>
+                                </div>
+                                <div class="card-action">
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>*@
         </div>
-        @*Hourly Forecast Card*@
-        <div id="hourlyForecast" class="row" style="display:none">
-            <div class="col s10 offset-s2">
-                @for (var i = 0; i < 10; i++)
-                {
-                    <div class="card col l1" style="background-color: #bec5d6 !important;">
-                        <div class="card-content black-text">
-                            <span class="card-title"><i class="fas fa-cloud"></i> Time</span>
-                            <div>
-                                <p>description</p>
-                                <p>temp</p>
-                                <p>Cloud percentage Humidity percentage</p>
-                            </div>
-                        </div>
-                        <div class="card-action">
-                        </div>
-                    </div>
-                }
-            </div>
+
+        @*Manage Alerts*@
+        <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
+            <h4 class="black-text">Manage</h4>
         </div>
     </div>
-
-    @*Manage Alerts*@
-    <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
-        <h4 class="black-text">Manage</h4>
-    </div>
-</div>
 
 
 <style>
@@ -115,13 +99,12 @@
 
 <script src="~/js/particles.js"></script>
 <script>
-
+    
     SetPreselectedCity();
 
     //Change main 2 btn colors when clicked & hourly forecast btn
     var clickedForecast = true;
     var clickedManage = true;
-    var clickedHourly = true;
     $('#forecastBtn').click(function () {
         if (clickedForecast) {
             $(this).css("cssText", "background-color: #263442 !important;");
@@ -142,16 +125,6 @@
         }
     });
     
-    $('#hourlyForecastBtn').click(function () {
-        if (clickedHourly) {
-            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
-            clickedHourly = false;
-        } else {
-            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
-            clickedHourly = true;
-        }
-    });
-
     //5 Day Forecast Btn
     $("#forecastBtn").click(function () {
         if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
@@ -244,6 +217,7 @@
                     console.log(data.List[1]);     
                 });
                 var forecastDayData = "";
+                var hourlyData = "";
 
                 var now = moment(moment(), "YYYY-MM-DD HH:mm:ss");
 
@@ -265,24 +239,35 @@
                     var counter = listNumbers[i];
                     //.add(5, 'days')
                     var icon = data.List[counter].Weather[0].Icon;
-                    var date = data.List[counter].Dt_txt;
+                    //var date = data.List[counter].Dt_txt;
                     var description = data.List[counter].Weather[0].Description;
                     var temp = data.List[counter].Main.Temp;
-                    var tempMax = data.List[counter].Main.temp_max;
-                    var tempMin = data.List[counter].Main.temp_min;
+                    //var tempMax = data.List[counter].Main.temp_max;
+                    //var tempMin = data.List[counter].Main.temp_min;
                     var clouds = data.List[counter].Clouds.All;
                     var humidity = data.List[counter].Main.Humidity;
-                    
+
                     var forecastData = "<div class='col s6 offset-s3'><div class='card' style='background-color: #bec5d6 !important;'>" +
                         "<div class='card-content black-text'>" +
                         "<span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + icon + ".png'/>" + now.format('dddd') + ", " + now.format("MMMM-DD-YYYY") + "</span>" +
-                        "<div><h5>" + description + "</h5><h6>Avg: " + temp + " &deg;F</h6><h6>Clouds:" + clouds + "% Humidity: " + humidity + "</h6></div></div>" +
-                        "<div class='card-action'><a id='hourlyForecastBtn" + i + "' href='#' ; class='waves-effect waves-light btn-large z-depth-1 weatherBtn'>" +
-                        "<i class='far fa-clock'></i><b> Hourly Forecast</b></a></div></div></div>";
+                        "<div><h5>" + description + "</h5><h6>Avg: " + temp + " &deg;F</h6><h6>Clouds: " + clouds + "% Humidity: " + humidity + "%</h6></div></div>" +
+                        "<div class='card-action'><button id='hourlyForecastBtn" + i + "'class='waves-effect waves-light btn-large z-depth-1 weatherBtn'>" +
+                        "<i class='far fa-clock'></i><b> Hourly Forecast</b></button></div></div></div>" +
+                        "<div id='hourlyForecast" + i + "'class=black-text' style='display:none'></div>";
                     forecastDayData += forecastData;
                     now.add(1, 'days');
+
+                    hourlyData = "<div class='row'><div class='col s10 offset-s2'>";
+                    for (var k = 0; k < 10; k++) {
+                        hourlyData += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                            "<div class='card-content'><span class='card-title'><i class='fas fa-cloud'></i> Time</span><div>" +
+                            "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                    }
                 }
                 $('#forecastDayData').html(forecastDayData);
+                for (var l = 0; l < 5; l++) {
+                    $('#hourlyForecast' + l).html(hourlyData);
+                }
 
             },
             error: function (result) {
@@ -290,6 +275,53 @@
             }
         });
     }
+
+    //    //5 hourly forecast buttons
+
+    $(document).on('click', '#hourlyForecastBtn0', function () {
+        alert('click');
+        $('#hourlyForecast0').toggle();
+    });
+
+    $(document).on('click', '#hourlyForecastBtn1', function () {
+        alert('click');
+        $('#hourlyForecast1').toggle();
+    });
+
+    $(document).on('click', '#hourlyForecastBtn2', function () {
+        alert('click');
+        $('#hourlyForecast2').toggle();
+    });
+
+    $(document).on('click', '#hourlyForecastBtn3', function () {
+        alert('click');
+        $('#hourlyForecast3').toggle();
+    });
+
+    $(document).on('click', '#hourlyForecastBtn4', function () {
+        alert('click');
+        $('#hourlyForecast4').toggle();
+    });
+
+    //Hourly buttons clicked color
+
+    //var clickedHourly0 = true;
+    //var clickedHourly1 = true;
+    //var clickedHourly2 = true;
+    //var clickedHourly3 = true;
+    //var clickedHourly4 = true;
+    //for (var c = 0; c < 5; c++) {
+    //    $('#hourlyForecastBtn' + c).click(function () {
+    //        var variable = "clickedHourly" + c;
+    //        if (variable) {
+    //            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+    //            variable = false;
+    //        } else {
+    //            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+    //            variable = true;
+    //        }
+    //    });
+    //}
 
     particlesJS("particles-js-snow", {
         "particles": {
