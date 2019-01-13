@@ -99,7 +99,6 @@
 
 <script src="~/js/particles.js"></script>
 <script>
-    
     SetPreselectedCity();
 
     //Change main 2 btn colors when clicked & hourly forecast btn
@@ -216,27 +215,71 @@
                 $.each(data, function(index, row) {
                     console.log(data.List[1]);     
                 });
-                var forecastDayData = "";
-                var hourlyData = "";
-
                 var now = moment(moment(), "YYYY-MM-DD HH:mm:ss");
-
-                var listNumbers = [];
+                var forecastDayData = "";
+                var hourlyData0 = "";
+                var hourlyData1 = "";
+                var hourlyData2 = "";
+                var hourlyData3 = "";
+                var hourlyData4 = "";
+                var day0 = [];
+                var day1 = [];
+                var day2 = [];
+                var day3 = [];
+                var day4 = [];
+                var indexCounter0 = 0;
+                var indexCounter1 = 0;
+                var indexCounter2 = 0;
+                var indexCounter3 = 0;
+                var indexCounter4 = 0;
+                var indexesOfNewDays = [];
                 var origDay = "";
-                var count = 0;
-                //Get index list of indexes with new day
+                var newDaysIndex = 0;
+                var sameDayIndex = 0;
+                //Get index list of indexes with new day & get index list of same days
                 for (var j = 0; j < data.List.length; j++) {
                     var dataDay = moment(data.List[j].Dt_txt);
+                    dataDay = moment(dataDay).subtract(6, 'hours');
                     var day = moment(dataDay, 'dddd');
+
                     if (origDay != day.format('dddd')) {
-                        listNumbers[count] = j;
-                        count++;
+                        indexesOfNewDays[newDaysIndex] = j;
+                        newDaysIndex ++;
+                    }
+                    if (origDay != "" && origDay != day.format('dddd')) {
+                        sameDayIndex ++;
+                    }
+                    switch (sameDayIndex) {
+                        case (0):
+                        day0[indexCounter0] = j;
+                            indexCounter0++;
+                            origDay = day.format('dddd');
+                            break;
+                        case (1):
+                        day1[indexCounter1] = j;
+                        indexCounter1++;
                         origDay = day.format('dddd');
+                        break;
+                    case (2):
+                        day2[indexCounter2] = j;
+                        indexCounter2++;
+                        origDay = day.format('dddd');
+                            break;
+                    case (3):
+                        day3[indexCounter3] = j;
+                        indexCounter3++;
+                        origDay = day.format('dddd');
+                            break;
+                    case (4):
+                        day4[indexCounter4] = j;
+                        indexCounter4++;
+                        origDay = day.format('dddd');
+                        break;
                     }
                 }
-
+                
                 for (var i = 0; i < 5; i++) {
-                    var counter = listNumbers[i];
+                    var counter = indexesOfNewDays[i];
                     //.add(5, 'days')
                     var icon = data.List[counter].Weather[0].Icon;
                     //var date = data.List[counter].Dt_txt;
@@ -256,17 +299,73 @@
                         "<div id='hourlyForecast" + i + "'class=black-text' style='display:none'></div>";
                     forecastDayData += forecastData;
                     now.add(1, 'days');
-
-                    hourlyData = "<div class='row'><div class='col s10 offset-s2'>";
-                    for (var k = 0; k < 10; k++) {
-                        hourlyData += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
-                            "<div class='card-content'><span class='card-title'><i class='fas fa-cloud'></i> Time</span><div>" +
-                            "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                    var dayIndex = 0;
+                    if (i == 0) { //day0
+                        hourlyData0 = "<div class='row'><div class='col s10 offset-s3'>";
+                        for (var k = 0; k < day0.length; k++) {
+                            dayIndex = day0[k];
+                            var dateTime0 = moment(data.List[dayIndex].Dt_txt);
+                            dateTime0 = moment(dateTime0).subtract(6, 'hours');
+                            dateTime0 = moment(dateTime0).format('dddd, hh:mm A');
+                            hourlyData0 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                                "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime0 + "</span><div>" +
+                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                        }
                     }
-                }
-                $('#forecastDayData').html(forecastDayData);
-                for (var l = 0; l < 5; l++) {
-                    $('#hourlyForecast' + l).html(hourlyData);
+                    if (i == 1) { //day1
+                        hourlyData1 = "<div class='row'><div class='col s10 offset-s3'>";
+                        for (var k = 0; k < day1.length; k++) {
+                            dayIndex = day1[k];
+                            var dateTime1 = moment(data.List[dayIndex].Dt_txt);
+                            dateTime1 = moment(dateTime1).subtract(6, 'hours');
+                            dateTime1 = moment(dateTime1).format('dddd, hh:mm A');
+                            hourlyData1 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                                "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime1 + "</span><div>" +
+                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                        }
+                    }
+                    if (i == 2) { //day2
+                        hourlyData2 = "<div class='row'><div class='col s10 offset-s3'>";
+                        for (var k = 0; k < day2.length; k++) {
+                            dayIndex = day2[k];
+                            var dateTime2 = moment(data.List[dayIndex].Dt_txt);
+                            dateTime2 = moment(dateTime2).subtract(6, 'hours');
+                            dateTime2 = moment(dateTime2).format('dddd, hh:mm A');
+                            hourlyData2 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                                "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime2 + "</span><div>" +
+                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                        }
+                    }
+                    if (i == 3) { //day3
+                        hourlyData3 = "<div class='row'><div class='col s10 offset-s3'>";
+                        for (var k = 0; k < day3.length; k++) {
+                            dayIndex = day3[k];
+                            var dateTime3 = moment(data.List[dayIndex].Dt_txt);
+                            dateTime3 = moment(dateTime3).subtract(6, 'hours');
+                            dateTime3 = moment(dateTime3).format('dddd, hh:mm A');
+                            hourlyData3 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                                "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" +  dateTime3 + "</span><div>" +
+                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                        }
+                    }
+                    if (i == 4) { //day4
+                        hourlyData4 = "<div class='row'><div class='col s10 offset-s3'>";
+                        for (var k = 0; k < day4.length; k++) {
+                            dayIndex = day4[k];
+                            var dateTime4 = moment(data.List[dayIndex].Dt_txt);
+                            dateTime4 = moment(dateTime4).subtract(6, 'hours');
+                            dateTime4 = moment(dateTime4).format('dddd, hh:mm A');
+                            hourlyData4 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
+                                "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime4 + "</span><div>" +
+                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                        }
+                    }
+                    $('#forecastDayData').html(forecastDayData);
+                    $('#hourlyForecast0').html(hourlyData0);
+                    $('#hourlyForecast1').html(hourlyData1);
+                    $('#hourlyForecast2').html(hourlyData2);
+                    $('#hourlyForecast3').html(hourlyData3);
+                    $('#hourlyForecast4').html(hourlyData4);
                 }
 
             },
@@ -276,52 +375,67 @@
         });
     }
 
-    //    //5 hourly forecast buttons
+    // 5 hourly forecast buttons
+    var clickedHourly0 = true;
+    var clickedHourly1 = true;
+    var clickedHourly2 = true;
+    var clickedHourly3 = true;
+    var clickedHourly4 = true;
 
     $(document).on('click', '#hourlyForecastBtn0', function () {
-        alert('click');
+        if (clickedHourly0) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly0 = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly0 = true;
+        }
         $('#hourlyForecast0').toggle();
     });
 
     $(document).on('click', '#hourlyForecastBtn1', function () {
-        alert('click');
+        if (clickedHourly1) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly1 = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly1 = true;
+        }
         $('#hourlyForecast1').toggle();
     });
 
     $(document).on('click', '#hourlyForecastBtn2', function () {
-        alert('click');
+        if (clickedHourly2) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly2 = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly2 = true;
+        }
         $('#hourlyForecast2').toggle();
     });
 
     $(document).on('click', '#hourlyForecastBtn3', function () {
-        alert('click');
+        if (clickedHourly3) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly3 = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly3 = true;
+        }
         $('#hourlyForecast3').toggle();
     });
 
     $(document).on('click', '#hourlyForecastBtn4', function () {
-        alert('click');
+        if (clickedHourly4) {
+            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
+            clickedHourly4 = false;
+        } else {
+            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
+            clickedHourly4 = true;
+        }
         $('#hourlyForecast4').toggle();
-    });
-
-    //Hourly buttons clicked color
-
-    //var clickedHourly0 = true;
-    //var clickedHourly1 = true;
-    //var clickedHourly2 = true;
-    //var clickedHourly3 = true;
-    //var clickedHourly4 = true;
-    //for (var c = 0; c < 5; c++) {
-    //    $('#hourlyForecastBtn' + c).click(function () {
-    //        var variable = "clickedHourly" + c;
-    //        if (variable) {
-    //            $(this).css("cssText", "background-color: #263442 !important; color: #ff7733 !important");
-    //            variable = false;
-    //        } else {
-    //            $(this).css("cssText", "background-color: #141d26 !important;  color: #cfd8dc !important");
-    //            variable = true;
-    //        }
-    //    });
-    //}
+    });  
 
     particlesJS("particles-js-snow", {
         "particles": {
