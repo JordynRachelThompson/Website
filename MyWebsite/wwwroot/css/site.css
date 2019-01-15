@@ -456,3 +456,15 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     padding: 3px;
     margin: 5px;
 }
+
+#particles-js-snow canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#weatherIcon {
+    width: 55px;
+    height: auto;
+}

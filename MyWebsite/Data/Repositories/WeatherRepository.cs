@@ -39,9 +39,9 @@ namespace MyWebsite.Data.Repositories
 
         public void SetUserSelectedCity(string city, string user)
         {
-            var userCity = _context.Weather.Where(x => x.Email == user).Select(x => x.City).ToString();
+            var userCity = _context.Weather.Where(x => x.Email == user).Select(x => x.City).FirstOrDefault();
             if (userCity == city) return;
-            var userInfo = _context.Weather.Where(x => x.Email == user).Select(x => x).FirstOrDefault();
+            var userInfo = _context.Weather.Where(x => x.Email == user).Select(x => x).FirstOrDefault(); //fix this
             if (userInfo == null) return;
             userInfo.City = city;
             _context.Entry(userInfo).State = EntityState.Modified;
@@ -49,8 +49,7 @@ namespace MyWebsite.Data.Repositories
 
         public string returnUserCity(string user)
         {
-            var city = _context.Weather.Where(x => x.Email == user).Select(x => x.City).FirstOrDefault();
-            return city  != null ? city : "";
+            return _context.Weather.Where(x => x.Email == user).Select(x => x.City).FirstOrDefault();
         }
     }
 }

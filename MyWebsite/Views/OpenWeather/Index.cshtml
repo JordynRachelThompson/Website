@@ -41,58 +41,38 @@
     <div id="forecast" class="black-text" style="background-color: #c3cce0 !important; display: none;">
         <h4 class="black-text">5 Day Forecast</h4>
         <div class="row" id="forecastDayData">@*DATA*@</div>
-        @*Hourly Forecast Card*@
+    </div>
 
-        @*<div id="hourlyForecast1" class="black-text" style="display:none">
-                <div class="row">
-                    <div class="col s10 offset-s2">
-                        @for (var i = 0; i < 10; i++)
-                        {
-                            <div class="card col l1" style="background-color: #bec5d6 !important;">
-                                <div class="card-content">
-                                    <span class="card-title"><i class="fas fa-cloud"></i> Time</span>
-                                    <div>
-                                        <p>description</p>
-                                        <p>temp</p>
-                                        <p>Cloud percentage Humidity percentage</p>
-                                    </div>
-                                </div>
-                                <div class="card-action">
-                                </div>
-                            </div>
-                        }
-                    </div>
+    @*Manage Alerts*@
+<div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
+    <h4 class="black-text"><i class="fas fa-cogs"></i> Manage</h4>
+    <div class='row'>
+        <div class="card col s6 offset-s3" style="background-color: #bec5d6 !important;">
+            <div class="card-content black-text">
+                <span class="card-title">My Alerts</span>
+                <h5>Alert if severe weather: </h5>
+                <h5>Alert if rain: </h5>
+                <h5>Alert if snow: </h5>
+                <h5>Alert if great day: </h5>
+                <h5>Alert if book day: </h5>
+                <div class='card-action'>
+                    <button></button>
                 </div>
-            </div>*@
-        </div>
-
-        @*Manage Alerts*@
-        <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
-            <h4 class="black-text">Manage</h4>
+            </div>
         </div>
     </div>
+</div>
 
 
 <style>
     body {
         background-color: #c3cce0 !important;
-    }
-
-    #particles-js-snow canvas {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        overflow-x: hidden;
     }
 
     label {
         margin-left: 10px;
         font-size: 20px !important;
-    }
-
-    #weatherIcon {
-        width: 55px;
-        height: auto;
     }
 </style>
 
@@ -129,7 +109,8 @@
         if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
             $('#setCityFirst').toggle();
         } else {
-            $("#forecast").toggle();
+            $('#forecast').toggle();
+            $('#particles-js-snow').toggle();
             $('#setCityFirst').hide();
         }
     });
@@ -141,13 +122,15 @@
 
     //Manage Alerts Btn
     $('#managerAlertsBtn').click(function () {
-        if (($('#email').val() == "")) {
+        if (($('#email').text() == "")) {
             $('#registerFirst').toggle();
         } else {
-            $('#registerFirst').hide();
             if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
+                $('#registerFirst').hide();
                 $('#setCityFirst').toggle();
             } else {
+               
+                $('#registerFirst').hide();
                 $('#manageAlerts').toggle();
             }
         }
@@ -216,39 +199,24 @@
                     console.log(data.List[1]);     
                 });
                 var now = moment(moment(), "YYYY-MM-DD HH:mm:ss");
-                var forecastDayData = "";
-                var hourlyData0 = "";
-                var hourlyData1 = "";
-                var hourlyData2 = "";
-                var hourlyData3 = "";
-                var hourlyData4 = "";
-                var day0 = [];
-                var day1 = [];
-                var day2 = [];
-                var day3 = [];
-                var day4 = [];
-                var indexCounter0 = 0;
-                var indexCounter1 = 0;
-                var indexCounter2 = 0;
-                var indexCounter3 = 0;
-                var indexCounter4 = 0;
-                var indexesOfNewDays = [];
-                var origDay = "";
-                var newDaysIndex = 0;
-                var sameDayIndex = 0;
-                //Get index list of indexes with new day & get index list of same days
+                var forecastDayData = "", hourlyData0 = "", hourlyData1 = "", hourlyData2 = "", hourlyData3 = "", hourlyData4 = "", origDay = "";
+                var day0 = [], day1 = [], day2 = [], day3 = [], day4 = [], indexesOfNewDays = [];
+                var indexCounter0 = 0, indexCounter1 = 0, indexCounter2 = 0, indexCounter3 = 0, indexCounter4 = 0, newDaysIndex = 0, sameDayIndex = 0;
+                
+                //Record indexes in array which mark the start of a new day
+                //Record all weather indexes in array for each distinct day
                 for (var j = 0; j < data.List.length; j++) {
                     var dataDay = moment(data.List[j].Dt_txt);
                     dataDay = moment(dataDay).subtract(6, 'hours');
                     var day = moment(dataDay, 'dddd');
 
-                    if (origDay != day.format('dddd')) {
+                    if (origDay != day.format('dddd')) { 
                         indexesOfNewDays[newDaysIndex] = j;
                         newDaysIndex ++;
                     }
-                    if (origDay != "" && origDay != day.format('dddd')) {
+                    if (origDay != "" && origDay != day.format('dddd')) 
                         sameDayIndex ++;
-                    }
+                    
                     switch (sameDayIndex) {
                         case (0):
                         day0[indexCounter0] = j;
@@ -277,28 +245,38 @@
                         break;
                     }
                 }
-                
-                for (var i = 0; i < 5; i++) {
-                    var counter = indexesOfNewDays[i];
-                    //.add(5, 'days')
-                    var icon = data.List[counter].Weather[0].Icon;
-                    //var date = data.List[counter].Dt_txt;
-                    var description = data.List[counter].Weather[0].Description;
-                    var temp = data.List[counter].Main.Temp;
-                    //var tempMax = data.List[counter].Main.temp_max;
-                    //var tempMin = data.List[counter].Main.temp_min;
-                    var clouds = data.List[counter].Clouds.All;
-                    var humidity = data.List[counter].Main.Humidity;
 
+                //Display 12PM weather icon for daily weather except for today's date - return icon at current time
+                var counter = 0;
+                for (var i = 0; i < 5; i++) {
+                    switch (i) {
+                        case (0):
+                            counter = day0[0];
+                            break;
+                        case (1):
+                            counter = day1[4];
+                            break;
+                        case (2):
+                            counter = day2[4];
+                            break;
+                        case (3):
+                            counter = day3[4];
+                        case (4):
+                            counter = day4[4];
+                            break;
+                    }
+
+                    //5 day forecast data
                     var forecastData = "<div class='col s6 offset-s3'><div class='card' style='background-color: #bec5d6 !important;'>" +
                         "<div class='card-content black-text'>" +
-                        "<span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + icon + ".png'/>" + now.format('dddd') + ", " + now.format("MMMM-DD-YYYY") + "</span>" +
-                        "<div><h5>" + description + "</h5><h6>Avg: " + temp + " &deg;F</h6><h6>Clouds: " + clouds + "% Humidity: " + humidity + "%</h6></div></div>" +
+                        "<span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[counter].Weather[0].Icon + ".png'/>" + now.format('dddd') + ", " + now.format("MMMM-DD-YYYY") + "</span>" +
+                        "<div><h5>" + data.List[counter].Weather[0].Description + "</h5><h6><b>" + data.List[counter].Main.Temp + " &deg;F</b></h6><h6>Clouds: " + data.List[counter].Clouds.All + "% Humidity: " + data.List[counter].Main.Humidity + "%</h6></div></div>" +
                         "<div class='card-action'><button id='hourlyForecastBtn" + i + "'class='waves-effect waves-light btn-large z-depth-1 weatherBtn'>" +
                         "<i class='far fa-clock'></i><b> Hourly Forecast</b></button></div></div></div>" +
                         "<div id='hourlyForecast" + i + "'class=black-text' style='display:none'></div>";
                     forecastDayData += forecastData;
                     now.add(1, 'days');
+                    //Hourly forecast data 
                     var dayIndex = 0;
                     if (i == 0) { //day0
                         hourlyData0 = "<div class='row'><div class='col s10 offset-s3'>";
@@ -309,7 +287,7 @@
                             dateTime0 = moment(dateTime0).format('hh:mm A');
                             hourlyData0 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime0 + "</span><div>" +
-                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p>" + data.List[dayIndex].Main.Temp + " &deg;F</p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p><b>" + data.List[dayIndex].Main.Temp + " &deg;F</b></p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity: " + data.List[dayIndex].Main.Humidity + "%</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     if (i == 1) { //day1
@@ -321,7 +299,7 @@
                             dateTime1 = moment(dateTime1).format('hh:mm A');
                             hourlyData1 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime1 + "</span><div>" +
-                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p><b>" + data.List[dayIndex].Main.Temp + " &deg;F</b></p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity: " + data.List[dayIndex].Main.Humidity + "%</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     if (i == 2) { //day2
@@ -333,7 +311,7 @@
                             dateTime2 = moment(dateTime2).format('hh:mm A');
                             hourlyData2 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime2 + "</span><div>" +
-                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p><b>" + data.List[dayIndex].Main.Temp + " &deg;F</b></p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity: " + data.List[dayIndex].Main.Humidity + "%</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     if (i == 3) { //day3
@@ -345,7 +323,7 @@
                             dateTime3 = moment(dateTime3).format('hh:mm A');
                             hourlyData3 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" +  dateTime3 + "</span><div>" +
-                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p><b>" + data.List[dayIndex].Main.Temp + " &deg;F</b></p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity: " + data.List[dayIndex].Main.Humidity + "%</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     if (i == 4) { //day4
@@ -357,7 +335,7 @@
                             dateTime4 = moment(dateTime4).format('hh:mm A');
                             hourlyData4 += "<div class='card col l1' style='background-color: #bec5d6 !important;'>" +
                                 "<div class='card-content'><span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[dayIndex].Weather[0].Icon + ".png'/>" + dateTime4 + "</span><div>" +
-                                "<p>description</p><p>temp</p><p>Cloud percentage Humidity percentage</p></div></div><div class='card-action'></div></div>";
+                                "<p>" + data.List[dayIndex].Weather[0].Description + "</p><p><b>" + data.List[dayIndex].Main.Temp + " &deg;F</b></p><p>Clouds: " + data.List[dayIndex].Clouds.All + "% Humidity: " + data.List[dayIndex].Main.Humidity + "%</p></div></div><div class='card-action'></div></div>";
                         }
                     }
                     $('#forecastDayData').html(forecastDayData);

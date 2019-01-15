@@ -17,5 +17,10 @@ namespace MyWebsite.Models.WeatherApp
         public string Email { get; set; }
         public bool IsSubscribed { get; set; } = false;
         public string City { get; set; }
+        public bool SevereWeatherDay { get; set; } = false;
+        public bool RainyDay { get; set; } = false;
+        public bool SnowyDay { get; set; } = false;
+        public bool GoodWeatherDay { get; set; } = false;
+        public bool BookWeatherDay { get; set; } = false;
     }
 }

@@ -2,7 +2,7 @@
 
 <div style="margin: 50px;">
     <h3 class="underlineTitle">PROJECTS</h3>
-    <p style="text-align: center"><a href="https://github.com/JordynRachelThompson" target="_blank"><i id="gitHubIcon" style="color: #525e78; font-size: 50px;" class="fab fa-github z-depth-5"></i></a></p>
+    <p style="text-align: center"><a class="tooltipped" data-tooltip="View the code for this website" data-position="right" href="https://github.com/JordynRachelThompson/website" target="_blank"><i id="gitHubIcon" style="color: #525e78; font-size: 50px;" class="fab fa-github z-depth-5"></i></a></p>
     <div class="container center-div z-depth-5 darkBox">
         <ul>
             <li><a href='@Url.Action("Index", "Budgets")'; class="purple-hover">The Painless Budget</a></li>
@@ -10,5 +10,15 @@
         </ul>
     </div>
 </div>
-
+<style>
+    .material-tooltip {
+        background-color: #080C10 !important;
+        color: #525e78 !important;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        $('.tooltipped').tooltip();
+    });
+</script>
 
