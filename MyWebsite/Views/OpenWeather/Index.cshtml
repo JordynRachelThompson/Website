@@ -12,8 +12,8 @@
 
 @*7 Day Forecast / Manage UserWeatherPreferences Alerts BTNS*@
 <div align="center" style="margin:30px;">
-    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 5 Day/Hourly Forecast</b></a>
-    <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-1 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 5 Day/Hourly Forecast</b></a>
+    <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
@@ -44,25 +44,33 @@
     </div>
 
     @*Manage Alerts*@
-<div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
-    <h4 class="black-text"><i class="fas fa-cogs"></i> Manage</h4>
-    <div class='row'>
-        <div class="card col s6 offset-s3" style="background-color: #bec5d6 !important;">
-            <div class="card-content black-text">
-                <span class="card-title">My Alerts</span>
-                <h5>Alert if severe weather: </h5>
-                <h5>Alert if rain: </h5>
-                <h5>Alert if snow: </h5>
-                <h5>Alert if great day: </h5>
-                <h5>Alert if book day: </h5>
-                <div class='card-action'>
-                    <button></button>
+    <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
+        <h4 class="black-text"><i class="fas fa-cogs"></i> Manage</h4>
+        <div class='row'>
+            <div class="card col s6 offset-s3 z-depth-1" style="background-color: #bec5d6 !important;">
+                <div class="card-content black-text">
+                    <!--Switch -->
+                    <div class="switch" style="display: inline-block;">
+                        <label>
+                            Turn All Alerts Off
+                            <input id="allAlertsCheckbox" type="checkbox" name="allAlertsCheckbox">
+                            <span class="lever"></span>
+                            Turn All Alerts On
+                        </label>
+                    </div>
+                    <h5>Alert if severe weather: </h5>
+                    <h5>Alert if rain: </h5>
+                    <h5>Alert if snow: </h5>
+                    <h5>Alert if great day: </h5>
+                    <h5>Alert if book day: </h5>
+                    <div class='card-action'>
+                        <button></button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <style>
     body {
@@ -106,6 +114,7 @@
     
     //5 Day Forecast Btn
     $("#forecastBtn").click(function () {
+        $('#forecastBtn').toggleClass("z-depth-3");
         if (($('#city').val() == "") || ($('#city').val() == " enter city name...")) {
             $('#setCityFirst').toggle();
         } else {
@@ -122,6 +131,7 @@
 
     //Manage Alerts Btn
     $('#managerAlertsBtn').click(function () {
+        $('#managerAlertsBtn').toggleClass("z-depth-3");
         if (($('#email').text() == "")) {
             $('#registerFirst').toggle();
         } else {
@@ -168,7 +178,6 @@
 
     //Get weather now by city
     function GetWeather(selectedCity) {
-
         var url = '/api/Weather/City/' + selectedCity;
         $.ajax({
             url: url,

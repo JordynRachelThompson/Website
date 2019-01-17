@@ -18,10 +18,9 @@ namespace MyWebsite.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.City = false;
             var userCity = _unitOfWork.WeatherRepository.returnUserCity(User.Identity.Name);
-            if (userCity != "")
-                ViewBag.City = userCity;
+
+            ViewBag.City = userCity ?? "False";
 
            return View();
         }
