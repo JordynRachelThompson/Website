@@ -1,51 +1,163 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>@ViewData["Title"] - JordynThompson</title>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
 
-        <environment include="Development">
-            <link href="~/css/site.css" rel="stylesheet" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+    <environment include="Development">
+        <link href="~/css/site.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/moment.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="~/css/materialize.css" />
+    </environment>
+    <environment exclude="Development"></environment>
+</head>
 
+<body>
+    @*NAVBAR*@
+    <div class="navbar-fixed hide-on-med-and-down">
+        <nav class="black mainNav">
+            <div class="nav-wrapper" style="margin-left: 100px; margin-right: 100px;">
+                <a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="material-icons">view_module</i></a>
+                <ul class="right">
+                    <li><a asp-area="" asp-controller="Projects" asp-action="Index">PROJECTS</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Experience">EXPERIENCE</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    @*MOBILE NAVBAR*@
+    <div class="navbar-right hide-on-med-and-up show-on-medium-and-down">
+        <ul id="dropdown1" class="dropdown-content">
+            <li style="text-align:center"><a id="mobileHomeIcon" href="@Url.Action("Index", "Home")"><i class="material-icons">home</i></a></li>
+            <li><a asp-area="" asp-controller="Projects" asp-action="Index">Projects</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Experience">Experience</a></li>
+            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+        </ul>
+        <nav id="mobileNav" class="mobileNav" style="background-color: #020305 !important;">
+            <div class="nav-wrapper">
+                <ul class="right">
+                    <!-- Dropdown Trigger -->
+                    <li style="text-align: center;"><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="border: none !important;">MENU<i class="material-icons right" style="font-size: 35px;">arrow_drop_down</i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+    <script>
+        $(document).ready(function() {
 
-            <script src="~/lib/jquery/dist/jquery.js"></script>
-            <script src="~/js/moment.js"></script>
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-            <link rel="stylesheet" href="~/css/materialize.css"/>
-        </environment>
-        <environment exclude="Development"></environment>
-    </head>
+            $(".dropdown-trigger").dropdown();
 
-    <body style="color: #cfd8dc !important; background-color: #080C10;">
-        @*NAVBAR*@
-        <div class="navbar-fixed">
-            <nav class="black">
-                <div class="nav-wrapper" style="margin-left: 100px; margin-right: 100px;">
-                    @*<a href="@Url.Action("Index", "Home")" class="brand-logo" style="letter-spacing: 2.5px; color: #cfd8dc;">Jordyn</a>*@
-                    <ul class="right hide-on-med-and-down">
-                        <li><a asp-area="" asp-controller="Home" asp-action="Index">ABOUT</a></li>
-                        <li><a asp-area="" asp-controller="Projects" asp-action="Index">PORTFOLIO</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="Experience">EXPERIENCE</a></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        @RenderBody()
-        @RenderSection("Scripts", required: false)
+            $('#navHomeIcon').mouseenter(
+                function() {
+                    $(this).animate({ marginLeft: '10px' }, 'slow');
+                });
+            $('#navHomeIcon').mouseleave(
+                function() {
+                    $(this).animate({ marginLeft: '0px' }, 'slow');
+                });
+        });
+    </script>
     <footer>
         <div class="footer-copyright black">
-            <ul id="horizontal-list" style="list-style: none;" class="center">
-                <li style="margin-right: 20px;"> © 2018 Jordyn Thompson</li>
-                <li><a style="color: #cfd8dc;" a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon" style="font-size: 35px; margin-top: 15px; margin-bottom: 15px;"></i></a></li>
-                <li><a style="color: #cfd8dc;" a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon" style="font-size: 35px; margin-top: 15px; margin-bottom: 15px;"></i></a></li>
-                <li style="margin-left: 20px;"><a class="footer-icon" style="color: #cfd8dc;" href="mailto:jordyn@virtualzero.net">jordyn@virtualzero.net</a></li>
+            <ul id="horizontal-list" style="list-style: none;" class="center z-depth-5">
+                <li id="copyright"> © 2018 Jordyn Thompson</li>
+                <li><a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon"></i></a></li>
+                <li><a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon"></i></a></li>
+                <li><a href="mailto:jordyn@virtualzero.net" id="emailAddress">jordyn@virtualzero.net</a></li>
             </ul>
         </div>
     </footer>
-    </body>
+</body>
 </html>
+
+<style>
+
+    .mobileNav {
+        height: 140px !important;
+        padding-top:40px;
+        padding-bottom:40px;
+    }
+
+    #navHomeIcon:hover {
+        color: #525e78 !important;
+        background-color: #020305 !important;
+    }
+
+    .mobileNav .dropdown-trigger {
+        font-size: 23px !important;
+        margin: 10px !important;
+        letter-spacing: 2.5px !important;
+        color: #cfd8dc !important;
+    }
+
+    .mobileNav i:hover {
+        color: #525e78 !important;
+        background-color: #020305 !important;
+    }
+
+    #dropdown1 a {
+        background-color: #11141c !important;
+        display: inline-block !important;
+        color: #cfd8dc !important;
+        font-size: 20px !important;
+        letter-spacing: 1px !important;
+        font-weight: 400;
+    }
+
+        #dropdown1 a:hover {
+            color: #525e78 !important;
+            background-color: #11141c !important;
+            opacity: 0.9;
+        }
+
+    #emailAddress:hover {
+        color: #525e78 !important;
+    }
+
+    #dropdown1 li:hover {
+        background-color: #11141c !important;
+        opacity: 0.9;
+    }
+
+    #dropdown1 li {
+        text-align: center;
+    }
+
+    #mobileHomeIcon {
+        background-color: #11141c !important;
+        color: #cfd8dc !important;
+        font-size: 15px;
+        margin-left: 13px;
+    }
+
+        #mobileHomeIcon:hover {
+            background-color: #11141c !important;
+        }
+
+    #mobileHomeIcon i:hover {
+        color: #525e78 !important;
+        background-color: #11141c !important;
+    }
+
+    #dropdown1 {
+        background-color: #11141c !important;
+        opacity: 0.9;
+        z-index: 2;
+        border: 1px #020305 solid;
+    }
+
+    .dropdown-trigger:hover {
+        color: #525e78 !important;
+    }
+
+</style>
 
 
 <environment>
