@@ -18,9 +18,13 @@ namespace MyWebsite.Controllers
 
         public IActionResult Index()
         {
-            var userCity = _unitOfWork.WeatherRepository.returnUserCity(User.Identity.Name);
+            var userCity = _unitOfWork.WeatherRepository.ReturnUserCity(User.Identity.Name);
 
             ViewBag.City = userCity ?? "False";
+
+            var alertsEmail = _unitOfWork.WeatherRepository.ReturnAlertsEmail(User.Identity.Name);
+
+            ViewBag.AlertsEmail = alertsEmail ?? ""; 
 
            return View();
         }

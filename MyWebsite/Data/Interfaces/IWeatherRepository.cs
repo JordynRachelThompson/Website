@@ -9,8 +9,10 @@ namespace MyWebsite.Data.Interfaces
     public interface IWeatherRepository
     {
         bool DoesUserHaveSavedCity(string user);
-        void createUserProfile(string city, string user);
+        void CreateUserProfile(string city, string user);
         void SetUserSelectedCity(string city, string user);
-        string returnUserCity(string user);
+        string ReturnUserCity(string user);
+        string ReturnAlertsEmail(string user);
+        void SetAlertsEmail(string user, string newEmail);
     }
 }

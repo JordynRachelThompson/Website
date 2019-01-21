@@ -12,13 +12,13 @@
 
 @*7 Day Forecast / Manage UserWeatherPreferences Alerts BTNS*@
 <div align="center" style="margin:30px;">
-    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 5 Day/Hourly Forecast</b></a>
-    <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
+    <a id="forecastBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn" style="margin-bottom: 10px;"><i style="color:#ff7733;" class="far fa-sun"></i><b> View 5 Day/Hourly Forecast</b></a>
+    <a id="managerAlertsBtn" href='#' ; class="waves-effect waves-light btn-large z-depth-3 weatherBtn"  style="margin-bottom: 10px;"><i style="color:#ff7733;" class="fas fa-cloud-sun"></i><b> Manage My Weather Alerts</b></a>
 </div>
 
 <div align="center" style="margin-top: 50px;">
     <h4 class="black-text"><i class="fas fa-map-marker-alt"></i> Set your City to View Weather</h4>
-    <input type="text" id="city" class="weatherCityInput z-depth-3" placeholder=' enter city name...' />
+    <input type="text" id="city" class="weatherCityInput z-depth-5" placeholder=' enter city name...' />
     <!--Switch -->
     <div class="switch" style="display: inline-block;">
         <label>
@@ -47,24 +47,87 @@
     <div id="manageAlerts" class="black-text" style="background-color: #c3cce0 !important; display: none;">
         <h4 class="black-text"><i class="fas fa-cogs"></i> Manage</h4>
         <div class='row'>
-            <div class="card col s6 offset-s3 z-depth-1" style="background-color: #bec5d6 !important;">
+            <div class="card col l6 m10 s12 offset-l3 offset-m1 z-depth-2" style="background-color: #bec5d6 !important;">
                 <div class="card-content black-text">
-                    <!--Switch -->
-                    <div class="switch" style="display: inline-block;">
-                        <label>
-                            Turn All Alerts Off
-                            <input id="allAlertsCheckbox" type="checkbox" name="allAlertsCheckbox">
-                            <span class="lever"></span>
-                            Turn All Alerts On
-                        </label>
+                    <div class="row" style="margin-top:20px;">
+                        <div class="col l6 m4 offset-m2 s12">
+                            <span class="flow-text">Severe Weather</span>
+                        </div>
+                        <div class="col l6  m4 offset-m2 s12">
+                            <div class="switch" style="display: inline-block;">
+                                <label>
+                                    Off
+                                    <input id="severeWeatherCheckbox" type="checkbox" name="severeWeatherCheckbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                    <h5>Alert if severe weather: </h5>
-                    <h5>Alert if rain: </h5>
-                    <h5>Alert if snow: </h5>
-                    <h5>Alert if great day: </h5>
-                    <h5>Alert if book day: </h5>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col l6 m4 offset-m2 s12">
+                            <span class="flow-text">Rainy Day</span>
+                        </div>
+                        <div class="col l6  m4 offset-m2 s12">
+                            <div class="switch" style="display: inline-block;">
+                                <label>
+                                    Off
+                                    <input id="rainCheckbox" type="checkbox" name="rainCheckbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col l6 m4 offset-m2 s12">
+                            <span class="flow-text">Snowy Day</span>
+                        </div>
+                        <div class="col l6  m4 offset-m2 s12">
+                            <div class="switch" style="display: inline-block;">
+                                <label>
+                                    Off
+                                    <input id="snowCheckbox" type="checkbox" name="snowCheckbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col l6 m4 offset-m2 s12">
+                            <span class="flow-text">Outdoor Weather</span>
+                        </div>
+                        <div class="col l6  m4 offset-m2 s12">
+                            <div class="switch" style="display: inline-block;">
+                                <label>
+                                    Off
+                                    <input id="outdoorWeatherCheckbox" type="checkbox" name="outdoorWeatherCheckbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top:10px;">
+                        <div class="col l6 m4 offset-m2 s12">
+                            <span class="flow-text">Book Weather</span>
+                        </div>
+                        <div class="col l6  m4 offset-m2 s12">
+                            <div class="switch" style="display: inline-block;">
+                                <label>
+                                    Off
+                                    <input id="bookWeatherCheckbox" type="checkbox" name="bookWeatherCheckbox">
+                                    <span class="lever"></span>
+                                    On
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class='card-action'>
-                        <button></button>
+                        <h6><b>weather alerts will be sent to</b></h6>
+                        <input id="alertEmail" type="text" value="" name="alertEmail" placeholder="" />
+                        <a onclick="SaveAlertsEmail()" class="waves-effect waves-light btn-large z-depth-3 weatherBtn"><b>Save Email</b></a>
                     </div>
                 </div>
             </div>
@@ -82,12 +145,25 @@
         margin-left: 10px;
         font-size: 20px !important;
     }
+
+    #alertEmail {
+        width: 35%;
+    }
+
+    input, .actual-edit-overlay {
+        -webkit-text-fill-color: black !important;
+    }
+
+        input[type=text]:not(.browser-default) {
+            color:#ff7733 !important;
+        }
 </style>
 
 
 <script src="~/js/particles.js"></script>
 <script>
     SetPreselectedCity();
+    GetAlertsEmail();
 
     //Change main 2 btn colors when clicked & hourly forecast btn
     var clickedForecast = true;
@@ -121,6 +197,9 @@
             $('#forecast').toggle();
             $('#particles-js-snow').toggle();
             $('#setCityFirst').hide();
+            $('#manageAlerts').hide(); //hide manage alerts if up
+            $('#managerAlertsBtn').css("cssText", "background-color: #141d26 !important;");
+            clickedManage = true;
         }
     });
 
@@ -141,6 +220,9 @@
             } else {
                
                 $('#registerFirst').hide();
+                $('#forecast').hide(); //hide 5 day forecast if up
+                $('#forecastBtn').css("cssText", "background-color: #141d26 !important;");
+                clickedForecast = true;
                 $('#manageAlerts').toggle();
             }
         }
@@ -276,12 +358,12 @@
                     }
 
                     //5 day forecast data
-                    var forecastData = "<div class='col s6 offset-s3'><div class='card' style='background-color: #bec5d6 !important;'>" +
+                    var forecastData = "<div class='card col l6 m10 s12 offset-l3 offset-m1 z-depth-2' style='background-color: #bec5d6 !important;'>" +
                         "<div class='card-content black-text'>" +
                         "<span class='card-title'><img id='weatherIcon' src='https://openweathermap.org/img/w/" + data.List[counter].Weather[0].Icon + ".png'/>" + now.format('dddd') + ", " + now.format("MMMM-DD-YYYY") + "</span>" +
                         "<div><h5>" + data.List[counter].Weather[0].Description + "</h5><h6><b>" + data.List[counter].Main.Temp + " &deg;F</b></h6><h6>Clouds: " + data.List[counter].Clouds.All + "% Humidity: " + data.List[counter].Main.Humidity + "%</h6></div></div>" +
                         "<div class='card-action'><button id='hourlyForecastBtn" + i + "'class='waves-effect waves-light btn-large z-depth-1 weatherBtn'>" +
-                        "<i class='far fa-clock'></i><b> Hourly Forecast</b></button></div></div></div>" +
+                        "<i class='far fa-clock'></i><b> Hourly Forecast</b></button></div></div>" +
                         "<div id='hourlyForecast" + i + "'class=black-text' style='display:none'></div>";
                     forecastDayData += forecastData;
                     now.add(1, 'days');
@@ -355,6 +437,42 @@
                     $('#hourlyForecast4').html(hourlyData4);
                 }
 
+            },
+            error: function (result) {
+                console.log('Error.' + result);
+            }
+        });
+    }
+
+    //Set new weather alerts email 
+    function SaveAlertsEmail() {
+        var newEmail = $('#alertEmail').val();
+        var url = '/api/WeatherAlerts/SetAlertsEmail/' + newEmail;
+        $.ajax({
+            url: url,
+            type: 'POST',
+            success: function (data) {
+                console.log('Success');
+            },
+            complete: function() {
+                GetAlertsEmail();
+            },
+            error: function (result) {
+                console.log('Error.' + result);
+            }
+        });
+    }
+
+    //Get current alerts email
+    function GetAlertsEmail() {
+        alert('get alerts email()');
+        var url = '/api/WeatherAlerts/GetAlertsEmail/';
+        $.ajax({
+            url: url,
+            type: 'GET',
+            success: function (data) {
+                alert(data);
+                $('#alertEmail').attr("placeholder", data);
             },
             error: function (result) {
                 console.log('Error.' + result);

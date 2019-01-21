@@ -26,12 +26,13 @@ namespace MyWebsite.Data.Repositories
             return hasCity;
         }
 
-        public void createUserProfile(string city, string user)
+        public void CreateUserProfile(string city, string user)
         {
             var userInfo = new UserWeatherPreferences
             {
                 City = city,
-                Email = user
+                Email = user,
+                AlertsEmail = user
             };
 
             _context.Weather.Add(userInfo);
@@ -47,9 +48,23 @@ namespace MyWebsite.Data.Repositories
             _context.Entry(userInfo).State = EntityState.Modified;
         }
 
-        public string returnUserCity(string user)
+        public string ReturnUserCity(string user)
         {
             return _context.Weather.Where(x => x.Email == user).Select(x => x.City).FirstOrDefault();
+        }
+
+        public string ReturnAlertsEmail(string user)
+        {
+            return _context.Weather.Where(x => x.Email == user).Select(x => x.AlertsEmail).FirstOrDefault();
+        }
+
+        public void SetAlertsEmail(string user, string newEmail)
+        {
+            var account = _context.Weather.Where(x => x.Email == user).Select(x => x).FirstOrDefault();
+            if (account == null || account.AlertsEmail == newEmail) return;
+
+            account.AlertsEmail = newEmail;
+            _context.Entry(account).State = EntityState.Modified;
         }
     }
 }

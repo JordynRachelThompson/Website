@@ -388,6 +388,14 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 /*Login*/
+.accountButtons {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    text-transform: lowercase !important;
+    font-size: 13px !important;
+}
+
 .partialLoginText {
     text-align: center;
     margin-top: 100px;
@@ -534,7 +542,7 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
          -moz-column-count: 1;
          column-count: 1;
          font-size: 19px;
-         width: 40%;
+         width: 60%;
          margin: auto;
      }
     #skillsContainer { margin-bottom: 50px; }
@@ -544,6 +552,8 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     #copyright { font-size: 13px !important; }
     footer { height: 60px; }
     #horizontal-list li { padding: 2px; }
+    /*Weather*/
+    #alertEmail { width: 65% !important;}
  }
 
 @media only screen and (max-width: 1200px) and (min-width:750px) {
@@ -555,6 +565,8 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
          width: 80%;
          margin: auto;
      }
+    /*Weather*/
+    #alertEmail { width: 50% !important;}
  }
 
 @media only screen and (max-width: 1500px) and (min-width:1200px) {

@@ -22,5 +22,6 @@ namespace MyWebsite.Models.WeatherApp
         public bool SnowyDay { get; set; } = false;
         public bool GoodWeatherDay { get; set; } = false;
         public bool BookWeatherDay { get; set; } = false;
+        public string AlertsEmail { get; set; }
     }
 }

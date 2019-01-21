@@ -44,7 +44,7 @@ namespace MyWebsite.Api
                         _unitOfWork.WeatherRepository.SetUserSelectedCity(city, user);
 
                     if (!userAlreadyHasSavedCity && user != null)
-                        _unitOfWork.WeatherRepository.createUserProfile(city, user);
+                        _unitOfWork.WeatherRepository.CreateUserProfile(city, user);
 
                     _unitOfWork.Complete();
                     

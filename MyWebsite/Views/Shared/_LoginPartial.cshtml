@@ -5,21 +5,19 @@
 <link rel="stylesheet" href="~/css/materialize.css" />
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
 
-
 @if (SignInManager.IsSignedIn(User))
 {
     <div style="margin-right: 100px; padding-bottom: 10px;">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-            @*<a class="userName" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage" style="margin-right: 10px; display:inline">Hello @User.Identity.Name!</a>*@
-            <button class="waves-effect waves-light btn sharpCorners black-btn" style="margin-left: 10px; float: right;"><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="fas fa-user-cog"></span> Hello @User.Identity.Name!</a></button>
-            <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn" style="background-color: #080C10; font-size: 20px; float:right"><span class="fas fa-sign-out-alt"></span> Sign out</button>
+            <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="fas fa-user-cog"></span> @User.Identity.Name</a></button>
+            <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-out-alt"></span> Sign out</button>
         </form>
     </div>
 }
 else
 {
     <div style="margin-right: 100px; padding-bottom: 10px;">
-        <button class="waves-effect waves-light btn sharpCorners black-btn" style="float: right; margin-left: 10px;"><span class="far fa-user"></span><a asp-area="" asp-controller="Account" asp-action="Register"> Register</a></button>
-        <button class="waves-effect waves-light btn sharpCorners black-btn" style="float:right"><span class="fas fa-sign-in-alt"></span>@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model }, null)</button>
+        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="far fa-user"></span><a asp-area="" asp-controller="Account" asp-action="Register"> Register</a></button>
+        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-in-alt"></span>@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model }, null)</button>
     </div>
 }
