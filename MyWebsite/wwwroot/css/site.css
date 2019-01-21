@@ -141,6 +141,8 @@ a {
     color: #cfd8dc;
     font-size: 21px !important;
     text-decoration: none !important;
+    text-transform: lowercase !important;
+    font-size: 17px !important;
 }
 
 .black-btn:hover {
@@ -254,23 +256,23 @@ a {
 
 /*Inuts & Dropdowns*/
 
-input[type=email]:not(.browser-default) {
+/*input[type=email]:not(.browser-default) {
     /*border-bottom: 1px solid #54b798 !important;*/
-    box-shadow: 0 1px 0 0 black !important;
+    /*box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
-}
+}*/
 
-input[type=password]:not(.browser-default) {
+/*input[type=password]:not(.browser-default) {*/
     /*border-bottom: 1px solid #54b798 !important;*/
-    box-shadow: 0 1px 0 0 black !important;
+    /*box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
-}
+}*/
 
-input.valid[type=password]:not(.browser-default) {
+/*input.valid[type=password]:not(.browser-default) {*/
     /*border-bottom: 1px solid #81cac4 !important;*/
-    box-shadow: 0 1px 0 0 black !important;
+    /*box-shadow: 0 1px 0 0 black !important;
     background-color: #080C10 !important;
-}
+}*/
 
 [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
     color: #54b798 !important;
@@ -283,7 +285,7 @@ input[type=text]:not(.browser-default) {
     font-size: 30px;
 }
 
-input.valid[type=number]:not(.browser-default),
+/*input.valid[type=number]:not(.browser-default),
 input.valid[type=number]:not(.browser-default):focus,
 input.valid[type=text]:not(.browser-default),
 input.valid[type=text]:not(.browser-default):focus,
@@ -293,7 +295,7 @@ input.valid[type=text]:not(.browser-default):focus,
     color: #81cac4;
     font-size: 30px;
     margin-top: 25px;
-}
+}*/
 
 input[type=search]:not(.browser-default):focus:not([readonly]) {
     color: #212121 !important;
@@ -388,6 +390,87 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
 }
 
 /*Login*/
+
+/*Placeholder*/
+#acctForm input, .actual-edit-overlay {
+    -webkit-text-fill-color: #a2a8b5 !important;
+}
+
+    #acctForm input + label {
+        color: #525e78 !important;
+        font-size: 31px !important;
+    }
+
+#loginForm input:focus + label {
+    color: #8397c1 !important;
+    margin-top: -20px;
+}
+
+/* icon prefix focus color */
+#acctForm .input-field .prefix.active {
+    color: #8397c1 !important;
+}
+
+/*Username input*/
+#acctForm input[type=text]:not(.browser-default) {
+    background-color: #525e78 !important;
+    font-size: 20px !important;
+    border-bottom: 1px solid #9e9e9e !important;
+}
+
+    /*Username input - onclick*/
+    #acctForm input[type=text]:not(.browser-default):focus {
+        border-bottom: 1px solid #8397c1 !important;
+        color: #8397c1 !important;
+    }
+
+/* valid color */
+#acctForm .input-field input[type=text].valid {
+    border-bottom: 1px solid #2fef36 !important;
+    color: #2fef36 !important;
+}
+/* invalid color */
+#acctForm .input-field input[type=text].invalid {
+    border-bottom: 1px solid #D50000 !important;
+    color: #D50000 !important;
+}
+
+
+/*Password input*/
+#acctForm input[type=password]:not(.browser-default) {
+    background-color: #525e78 !important;
+    font-size: 20px !important;
+    border-bottom: 1px solid #9e9e9e !important;
+}
+
+    /*Password input - onclick*/
+    #acctForm input[type=password]:not(.browser-default):focus {
+        border-bottom: 1px solid #8397c1 !important;
+        color: #8397c1 !important;
+    }
+
+/* valid color */
+#acctForm .input-field input[type=password].valid {
+    border-bottom: 1px solid #2fef36 !important;
+    color: #2fef36 !important;
+}
+/* invalid color */
+#acctForm .input-field input[type=password].invalid {
+    border-bottom: 1px solid #D50000 !important;
+    color: #D50000 !important;
+}
+
+.accountBox {
+    background-color: #525e78; 
+    padding: 50px !important;
+}
+
+.centerAccountText {
+    text-align: center;
+    font-weight:200; 
+    letter-spacing:1px;
+}
+
 .accountButtons {
     float: right;
     margin-left: 10px;
@@ -554,6 +637,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]) {
     #horizontal-list li { padding: 2px; }
     /*Weather*/
     #alertEmail { width: 65% !important;}
+    /*Login*/
+    accountBox { margin-right: 15px !important; margin-left: 15px !important; }
+    input:focus + label { font-size: 20px !important; margin-top: -5px !important; }
+    }
  }
 
 @media only screen and (max-width: 1200px) and (min-width:750px) {

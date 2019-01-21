@@ -21,6 +21,7 @@ namespace MyWebsite.Api
         public IActionResult SetAlertsEmail(string newEmail)
         {
             _unitOfWork.WeatherRepository.SetAlertsEmail(User.Identity.Name, newEmail);
+            _unitOfWork.Complete();
             return Ok();
         }
 

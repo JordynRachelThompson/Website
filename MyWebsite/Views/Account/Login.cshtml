@@ -1,49 +1,37 @@
 ﻿@model LoginViewModel
 @inject SignInManager<ApplicationUser> SignInManager
 
-@{
-    int appType = Convert.ToInt32(ViewData["AppType"]);
-    var error = "";
-    if (ViewBag.Error != null)
-    {
-        error = ViewBag.Error;
-    }
-}
+@{var appType = Convert.ToInt32(ViewData["AppType"]);}
 
-<h3 style="text-align:center; margin-top:150px; font-weight:200; letter-spacing:1.5px;">LOGIN</h3>
-
-<div style="width:30%; margin-left: 150px; margin-top:100px;">
-    <div>
+<h3 class="centerAccountText" style="margin-top:150px;">LOGIN</h3>
+<div class="row" style=" margin-top:50px;">
+    <div class="accountBox col l6 offset-l3 m10 offset-m1 s12 z-depth-4">
         <section>
-            <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4 style="text-align:center; margin-top:100px; margin-bottom: 50px; font-weight:200; letter-spacing:1.5px;">Enter Your Account Information</h4>
-                <div>
-                    <label class="textGrey">Username</label>
-                    <input asp-for="Email" style="color:#cfd8dc" />
-                    <span asp-validation-for="Email"></span>
+            <form id="acctForm" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                <h4 class="centerAccountText flow-text" style="margin-top:30px; margin-bottom: 30px;">Enter Your Account Information</h4>
+                <div class="input-field">
+                    <i class="material-icons prefix">person_outline</i>
+                    <input asp-for="Email" id="Email" placeholder="Username" class="validate" required type="text" style="width:85%" />
+                    <label for="Email">Username</label>
+                    <p><span asp-validation-for="Email" class="validate"></span></p>
+                </div>
+                <div class="input-field" style="margin-top: 30px;">
+                    <i class="material-icons prefix">lock_outline</i>
+                    <input asp-for="Password" id="Password" placeholder="Password" class="validate" required type="password" style="width:85%"/>
+                    <label for="Password">Password</label>
+                    <p><span asp-validation-for="Password"></span></p>
                 </div>
                 <div>
-                    <label class="textGrey" asp-for="Password"></label>
-                    <input asp-for="Password" style="color:#cfd8dc" />
-                    <span asp-validation-for="Password"></span>
+                    <div><p style="color: #D50000;">@ViewBag.Error</p></div>
+                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="fas fa-sign-in-alt"></span> log in</button>
+                </div>
+                <div style="margin-top: 70px;">
+                    <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="ForgotPassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> forgot password</a>
+                    <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" style="margin: 1px;"><i class="fas fa-user-plus" style="font-size: 15px;"></i> register</a>
+                    <a class="waves-effect waves-light btn sharpCorners black-btn" onclick="window.history.go(-1)" style="margin: 1px;"><i class="fas fa-backward" style="font-size: 15px;"></i> return</a>
                 </div>
                 @Html.Hidden("AppType", appType)
-                <div>
-                    <div><p style="color: #D50000;">@error</p></div>
-                    <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="fas fa-sign-in-alt"></span> Log in</button>
-                </div>
-                <div>
-                    <p style="margin-top: 45px;"><a class="hover-underline" asp-action="ForgotPassword">Forgot your password?</a></p>
-                    <p><a class="hover-underline" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">Register as a new user?</a></p>
-                </div>
             </form>
-            <div style="margin-top: 10px;">
-                <a class="hover-underline" onclick="window.history.go(-1)">Cancel</a>
-            </div>
         </section>
     </div>
 </div>
-
-<div style="height:300px;"></div>
-
-

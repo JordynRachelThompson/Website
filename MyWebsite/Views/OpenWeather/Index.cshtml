@@ -465,13 +465,11 @@
 
     //Get current alerts email
     function GetAlertsEmail() {
-        alert('get alerts email()');
         var url = '/api/WeatherAlerts/GetAlertsEmail/';
         $.ajax({
             url: url,
             type: 'GET',
             success: function (data) {
-                alert(data);
                 $('#alertEmail').attr("placeholder", data);
             },
             error: function (result) {
