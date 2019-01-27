@@ -62,7 +62,7 @@ namespace MyWebsite.Controllers
 
             var model = new IndexViewModel
             {
-                Username = user.UserName,
+                Username = user.Email,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
                 IsEmailConfirmed = user.EmailConfirmed,
@@ -112,14 +112,12 @@ namespace MyWebsite.Controllers
                 var setUserNameResult = await _userManager.SetUserNameAsync(user, model.Email);
                 if (!setUserNameResult.Succeeded || !setEmailResult.Succeeded)
                 {
-                    throw new ApplicationException($"Unexpected error occurred setting email for user with ID '{user.Id}'.");
+                    ViewBag.Error = "Unable to change username to this email";
+                    return View(model);
                 }
             }
 
-
-
             ViewBag.Updated = "Your account has been updated!";
-
             return View(model);
         }
 
@@ -162,15 +160,15 @@ namespace MyWebsite.Controllers
             var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             if (!changePasswordResult.Succeeded)
             {
+                ViewBag.Error = "Incorrect password";
                 AddErrors(changePasswordResult);
                 return View(model);
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            ViewBag.Updated = "Password successfully update";
 
-            return RedirectToAction(nameof(ChangePassword));
+            return View(model);
         }
 
         [HttpGet]

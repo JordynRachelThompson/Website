@@ -9,15 +9,16 @@
 {
     <div style="margin-right: 100px; padding-bottom: 10px;">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
-            <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage"><span class="fas fa-user-cog"></span> @User.Identity.Name</a></button>
-            <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-out-alt"></span> Sign out</button>
+            <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><i class="fas fa-user-cog" style="color: #cfd8dc; font-size: 13px !important;">@Html.ActionLink( User.Identity.Name, "Index", "Manage", new { AppType = Model }, new { @style = "font-family: 'Arial' !important; font-weight: 400; margin-left: 5px;" })</i></button>
+            <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><i class="fas fa-sign-out-alt" style="color: #cfd8dc; font-size: 13px !important;"></i> sign out</button>
         </form>
     </div>
 }
 else
 {
     <div style="margin-right: 100px; padding-bottom: 10px;">
-        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="far fa-user"></span><a asp-area="" asp-controller="Account" asp-action="Register"> Register</a></button>
-        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-in-alt"></span>@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model }, null)</button>
+        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="far fa-user" style="color: #cfd8dc">@Html.ActionLink(" Register", "Register", "Account", new { AppType = Model }, new { @style = "font-family: 'Arial' !important;" })</span></button>
+        <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-in-alt" style="color: #cfd8dc">@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model }, new{@style="font-family: 'Arial' !important; font-weight: 400;"})</span></button>
     </div>
 }
+

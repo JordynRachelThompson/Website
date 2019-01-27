@@ -18,14 +18,14 @@ namespace MyWebsite.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public ActionResult Index(bool success)
+        public ActionResult Index()
         {
             var user = User.Identity.Name;
-            if (success)
-                ViewBag.SuccessLimitsUpdated = "Budget limits successfully updated!";
+            ViewBag.SuccessLimitsUpdated = TempData["budgetUpdatedSuccess"];
+            ViewBag.ErrorUpdatingLimits = TempData["budgetLimitError"];
 
             ViewBag.HasPastBudget = _unitOfWork.BudgetRepository.BudgetExistsByUser(user);
-            ViewBag.NoCurrentBudget = !(_unitOfWork.BudgetRepository.CurrentBudgetExistsByUser(user, DateTime.Now.Month));
+            ViewBag.NoCurrentBudget = !_unitOfWork.BudgetRepository.CurrentBudgetExistsByUser(user, DateTime.Now.Month);
             if (ViewBag.NoCurrentBudget) return View();
 
             var currentBudget = _unitOfWork.BudgetRepository.GetCurrentBudget(user, DateTime.Now.Month);
@@ -44,13 +44,15 @@ namespace MyWebsite.Controllers
         public ActionResult Index(Budget budget, bool usePastBudgetLimit)
         {
             if (!ModelState.IsValid)
-                ViewBag.BudgetLimitError = "Please choose a value for each budget limit or enter 0.";
+                TempData["budgetLimitError"] = "Please type a value for each budget limit or enter 0";
+
             else
             {
                 if (ModelState.IsValid && usePastBudgetLimit)
                     _unitOfWork.BudgetRepository.SetBudgetLimitToPastLimit(budget);
                 else
                     _unitOfWork.BudgetRepository.SetNewBudgetLimits(budget);
+                TempData["budgetUpdatedSuccess"] = "Budget limits successfully updated!";
             }
 
             return RedirectToAction("Index");
@@ -116,29 +118,25 @@ namespace MyWebsite.Controllers
             return View(_unitOfWork.BudgetItemsRepository.ReturnBudgetItemsListForUser(User.Identity.Name));
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
-                return NotFound();
-
-            var budget = _unitOfWork.BudgetRepository.GetBudgetById(Convert.ToInt32(id));
-
-            if (budget == null)
-                return NotFound();
-
-            TempData["userId"] = id;
-
-            return View(budget);
+            return View(_unitOfWork.BudgetRepository.GetCurrentBudget(User.Identity.Name, DateTime.Now.Month));
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit(Budget budget)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.ErrorUpdatingLimits = "Please type a value for each budget limit or enter 0";
+                return View(_unitOfWork.BudgetRepository.GetCurrentBudget(User.Identity.Name, DateTime.Now.Month));
+            }
+
             _unitOfWork.BudgetRepository.EditBudgetLimits(budget);
             _unitOfWork.Complete();
+            TempData["budgetUpdatedSuccess"] = "Budget limits successfully updated!";
 
-            return RedirectToAction("Index", new { userName = User.Identity.Name, success = true });
+            return RedirectToAction("Index");
         }
 
         //Delete Specific Transaction
@@ -173,7 +171,7 @@ namespace MyWebsite.Controllers
             };
 
             var budgetInsightsWithCategoryInsights = CalculateCategoryInsights(budgetInsights, User.Identity.Name);
-            
+
             if (budgetInsightsWithCategoryInsights.BudgetInsightsByCategoryList.Count == 0)
             {
                 ViewBag.HasCategoryInsights = false;
@@ -242,7 +240,7 @@ namespace MyWebsite.Controllers
         public FileContentResult ExportToExcel(int month)
         {
             var title = month > 12 ? "Budget Data" : "Budget Data for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
-           var exportToExcelViewModel =_unitOfWork.BudgetItemsRepository.GenerateExportToExcelViewModel(User.Identity.Name, month);
+            var exportToExcelViewModel = _unitOfWork.BudgetItemsRepository.GenerateExportToExcelViewModel(User.Identity.Name, month);
             List<TransactionData> transactionDataList = exportToExcelViewModel.TransactionDataList;
             //string[] columns = { "Budget Month", "Budget Category", "Description", "Price", "Date"};
             byte[] fileContent = ExportToExcelHelper.ExportExcel(transactionDataList, title, true);

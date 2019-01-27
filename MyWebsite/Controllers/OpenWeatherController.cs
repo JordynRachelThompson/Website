@@ -22,10 +22,6 @@ namespace MyWebsite.Controllers
 
             ViewBag.City = userCity ?? "False";
 
-            var alertsEmail = _unitOfWork.WeatherRepository.ReturnAlertsEmail(User.Identity.Name);
-
-            ViewBag.AlertsEmail = alertsEmail ?? ""; 
-
            return View();
         }
     }

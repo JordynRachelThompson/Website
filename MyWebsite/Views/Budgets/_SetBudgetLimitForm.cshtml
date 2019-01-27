@@ -1,57 +1,68 @@
 ﻿@*Set Budget Limit Form*@
+
 @{ var currentMonth = DateTime.Now.ToString("MMMM");}
-<form method="post" style="margin-bottom: 20px;" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = false })">
-    <div style="margin-top:35px; text-align:center;">
-        <button class="waves-effect waves-light underline-hover btn-large grey darken-4" type="submit" name="Save">
-            <i class="fas fa-comment-dollar"></i> Set Budget Limits for @currentMonth
-        </button>
+
+<form method="post" style="margin-bottom: 20px;" action="@Url.Action("Index", "Budgets", new {usePastBudgetLimit = false})">
+    <div style="margin-top: 55px; margin-bottom: 25px; text-align: center;">
+        <h4 class="flow-text" style="margin-bottom: 30px;"><i class="fas fa-sliders-h"></i> Set Budget Limits for @currentMonth</h4>
+        <button class="waves-effect waves-light btn greenBudgetBtn" type="submit" name="Save"><i class="fas fa-check"></i> Save Limits</button>
+        <p id="updateLimitError" style="margin-left: 15px; color: #d32f2f; display: inline">@ViewBag.ErrorUpdatingLimits</p>
     </div>
-    <div class="row" style="margin-top:20px; margin-left:200px; margin-right:200px;">
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">local_dining</i> Groceries | Restaurant</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="GroceryLimit" placeholder="0" style="color: #cfd8dc !important; margin-top: 25px;" class="validate editTag">
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">home</i> Mortgage | Rent</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="HousingLimit" placeholder="0" style="margin-top: 25px; color: #cfd8dc !important;" class="validate editTag">
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">local_activity</i> Entertainment</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="EntLimit" placeholder="0" style="margin-top: 25px; color: #cfd8dc !important;" class="validate editTag">
+
+    <div class="row" style="margin-bottom: 0">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e; margin-top: 20px;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">local_dining</i> Groceries | Restaurant</h5>
+            <div class="center input-field">
+                <input name="GroceryLimit"  class="budgetLimitInput" placeholder="$0.00">
             </div>
         </div>
     </div>
-    <div class="row" style="margin-top:80px; margin-left:200px; margin-right:200px;">
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">monetization_on</i> Bills | Payments</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="BillsLimit" placeholder="0" style="margin-top: 25px; color: #cfd8dc !important;" class="validate editTag">
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">drive_eta</i> Gas | Auto</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="GasLimit" placeholder="0" style="margin-top: 25px; color: #cfd8dc !important;" class="validate editTag">
-            </div>
-        </div>
-        <div class="col s12 m12 l4">
-            <h5 style="margin-top:77px; font-weight:bold;"><i class="material-icons left">gesture</i> Miscellaneous Expenses</h5>
-            <div class="input-field">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798;">attach_money</i>
-                <input name="MiscLimit" placeholder="0" style="margin-top: 25px; color: #cfd8dc !important;" class="validate editTag">
+    <div class="row" style="margin-bottom: 0">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">home</i> Mortgage | Rent</h5>
+
+            <div class="center input-field">
+                <input name="HousingLimit"  class="budgetLimitInput" placeholder="$0.00">
             </div>
         </div>
     </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">local_activity</i> Entertainment</h5>
+
+            <div class="center input-field">
+                <input name="EntLimit"  class="budgetLimitInput" placeholder="$0.00">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">monetization_on</i> Bills | Recurring Payments</h5>
+
+            <div class="center input-field">
+                <input name="BillsLimit"  class="budgetLimitInput" placeholder="$0.00">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">drive_eta</i> Gas | Auto</h5>
+
+            <div class="center input-field">
+                <input name="GasLimit"  class="budgetLimitInput" placeholder="$0.00" style="width: 10%; font-weight: bold">
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">gesture</i> Miscellaneous Expenses</h5>
+
+            <div class="center input-field">
+                <input name="MiscLimit" class="budgetLimitInput" placeholder="$0.00" style="width: 10%; font-weight: bold">
+            </div>
+        </div>
+    </div>
+
     @Html.Hidden("Email", User.Identity.Name)
     @Html.Hidden("GroceryLimit", "GroceryLimit")
     @Html.Hidden("HousingLimit", "HousingLimit")
@@ -62,3 +73,7 @@
     @Html.Hidden("Month", DateTime.Now.Month)
 </form>
   
+
+<script>
+    setTimeout("$('#updateLimitError').hide().html(data).fadeIn('slow');", 4000);
+</script>

@@ -1,21 +1,23 @@
 ﻿@*Project Directory*@
 
-<div style="margin: 50px;">
-    <h3 class="underlineTitle">PROJECTS</h3>
-    <p style="text-align: center"><a class="tooltipped" data-tooltip="View the code for this website" data-position="right" href="https://github.com/JordynRachelThompson/website" target="_blank"><i id="gitHubIcon" style="color: #525e78; font-size: 50px;" class="fab fa-github z-depth-5"></i></a></p>
+<div style="margin: 80px;">
+    <h3 class="underlineTitle flow-text">Projects <i class="fas fa-code"></i></h3>
     <div class="container center-div z-depth-5 darkBox">
+        <a class="tooltipped" data-tooltip="View website on GitHub" data-position="right" href="https://github.com/JordynRachelThompson/website" target="_blank"><i id="gitHubIcon" class="fab fa-github z-depth-5"></i></a>
         <ul>
-            <li><a href='@Url.Action("Index", "Budgets")'; class="purple-hover">The Painless Budget</a></li>
-            <li><a href='@Url.Action("Index", "OpenWeather")'; class="purple-hover">Weather App (in progress)</a></li>
+            <li><a href='@Url.Action("Index", "Budgets")'; class="purple-hover flow-text">The Painless Budget</a></li>
+            <li><a href='@Url.Action("Index", "OpenWeather")'; class="purple-hover flow-text">Weather App</a></li>
         </ul>
     </div>
 </div>
+
 <style>
     .material-tooltip {
-        background-color: #080C10 !important;
+        background-color: #020305 !important;
         color: #525e78 !important;
     }
 </style>
+
 <script>
     $(document).ready(function(){
         $('.tooltipped').tooltip();

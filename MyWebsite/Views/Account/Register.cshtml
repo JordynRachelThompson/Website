@@ -25,9 +25,13 @@
                     <i class="material-icons prefix">check</i>
                     <input asp-for="ConfirmPassword" id="ConfirmPassword" placeholder="Confirm Password" class="validate" required type="password" style="width:85%" />
                     <label for="ConfirmPassword">Confirm Password</label>
-                    <p><span asp-validation-for="Password"></span></p>
+                    <p><span asp-validation-for="ConfirmPassword"></span></p>
                 </div>
-                <button type="submit" class=" waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-user"></span> Register</button>
+                <div><p style="color: #D50000;">@ViewBag.Error</p></div>
+                <button id="registerBtn" type="submit" class=" waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-user"></span> Register</button>
+                <div class="progress" style="display: none;">
+                    <div class="indeterminate"></div>
+                </div>
             </form>
             <div style="margin-top: 70px;">
                 <a class="waves-effect waves-light btn sharpCorners black-btn" onclick="window.history.go(-1)" style="margin: 1px;"><i class="fas fa-backward" style="font-size: 15px;"></i> return</a>
@@ -37,5 +41,13 @@
 </div>
 
 
-
+<script>
+    $('#registerBtn').click(function () {
+        var emailRegex = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
+        var valid = emailRegex.test($('#Email').val());
+        if ($('#Email').val() !== "" && $('#Password').val() !== "" && $('#ConfirmPassword').val() !== "" && (valid)) {
+            if ($('#Password').val() == $('#ConfirmPassword').val())
+                $('.progress').show();}
+    });
+</script>
 

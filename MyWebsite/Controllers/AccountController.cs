@@ -133,6 +133,8 @@ namespace MyWebsite.Controllers
                     _logger.LogInformation("User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
+
+                ViewBag.Error = "This email is already registered";
                 AddErrors(result);
             }
 
@@ -276,7 +278,6 @@ namespace MyWebsite.Controllers
                 return RedirectToAction(nameof(ForgotPasswordConfirmation));
             }
 
-            // If we got this far, something failed, redisplay form
             return View(model);
         }
 

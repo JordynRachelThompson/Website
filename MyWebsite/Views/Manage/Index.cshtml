@@ -2,36 +2,46 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 
-@{
-    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
-    //ViewData.AddActivePage(ManageNavPages.Index);
-}
+@{ var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any(); }
 
-
-<h3 style="text-align:center; margin-top:150px; margin-bottom: 30px; font-weight:200; letter-spacing:1.5px;">MANAGE YOUR ACCOUNT</h3>
-<div><p style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.Updated</p></div>
-<div style="margin:50px 100px;">
-    <div class="row">
-        <div class="col s6">
-            <form method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label class="textGrey">Change Email</label>
-                    <input asp-for="Email" class="form-control" style="color:#cfd8dc" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <button style="margin-top:10px;" type="submit" class="waves-effect waves-light btn sharpCorners black-btn">Save Changes</button>
-            </form>
-            <div style="margin-top: 10px;">
-                <p><a class="hover-underline" asp-action="ChangePassword">Change Password</a></p>
-                <p><a class="hover-underline" onclick="window.history.go(-1)">Cancel</a></p>
-                @*@await Html.PartialAsync("_ManageNav")*@
+<h3 class="centerAccountText" style="margin-top:150px;">MANAGE YOUR ACCOUNT</h3>
+<div><h5 style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.Updated</h5></div>
+<div class="row" style=" margin-top:50px;">
+    <div class="accountBox col l6 offset-l3 m10 offset-m1 s12 z-depth-4">
+        <form id="acctForm" method="post">
+            <h4 class="centerAccountText flow-text" style="margin-top:30px; margin-bottom: 30px;">Change Your Email</h4>
+            <div class="input-field">
+                <i class="material-icons prefix">person_outline</i>
+                <input asp-for="Email" id="Email" placeholder="Email" class="validate" required type="text" style="width:85%" />
+                <label for="Email">Email</label>
+                <p><span asp-validation-for="Email" class="validate"></span></p>
             </div>
-        </div>
+            <div><p style="color: #D50000;">@ViewBag.Error</p></div>
+            <button id="saveChanges" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-save"></span> save changes</button>
+            <div class="progress" style="display: none;">
+                <div class="indeterminate"></div>
+            </div>
+            <div style="margin-top: 70px;">
+                <a class="waves-effect waves-light btn sharpCorners black-btn" id="changePassword" asp-action="ChangePassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> change password</a>
+            </div>
+        </form>
     </div>
 </div>
 
-<div style="height:300px;"></div>
+<script>
+    $('#saveChanges').click(function () {
+        var emailRegex = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
+        var valid = emailRegex.test($('#Email').val());
+        if ($('#Email').val() !== "" && (valid)) {
+            $('.progress').show();
+        }
+    });
+
+    $('#changePassword').click(function() {
+        $('.progress').show();
+    });
+
+</script>
 
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")

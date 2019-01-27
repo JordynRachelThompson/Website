@@ -1,0 +1,46 @@
+﻿@*Set Budget Limit Form for User with Past Budget(s)*@
+
+@{
+    var user = User.Identity.Name;
+    var currentMonth = DateTime.Now.ToString("MMMM");
+}
+
+<h5 style="text-align: center; color: #c5e1a5; margin-top: 55px; margin-bottom: 25px;">A budget has not yet been created for the month of @currentMonth</h5>
+<div>
+    <div class="row">
+        <div class="col l12 m12 s12" align="center">
+            @*Use past budget limit for this month?*@
+            <form method="post" action="@Url.Action("Index", "Budgets", new { usePastBudgetLimit = ViewBag.HasPastBudget })">
+                <button class="waves-effect waves-light btn-large greyBudgetBtn" type="submit" name="Save"><i class="material-icons left">replay</i>Use Last Month's Budget Limits for @currentMonth?</button>
+                @Html.Hidden("Email", user)
+                @Html.Hidden("Month", DateTime.Now.Month)
+            </form>
+            <button id="unhide-set-budget-form" class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;">
+                <i class="material-icons left">add_circle_outline</i>Create New Budget Limits</button>
+            <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
+            <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
+            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="far fa-file-excel" style="margin-right: 5px;"></i> Export Budget Data to Excel</a>
+        </div>
+    </div>
+    <p id="updateLimitErrorPastBudget" style="text-align: center; color: #d32f2f;">@ViewBag.ErrorUpdatingLimits</p>
+</div>
+
+<div id="hidden-set-budget-form" style="display: none; margin-bottom: 20px;">
+    @Html.Partial("_SetBudgetLimitForm")
+</div>
+
+<script>
+    setTimeout("$('#updateLimitErrorPastBudget').hide().html(data).fadeIn('slow');", 4000);
+
+    var clickedSetBudget = true;
+
+    $('#unhide-set-budget-form').click(function () {
+        if (clickedSetBudget) {
+            $(this).css("cssText", "background-color: #37474f !important; margin-top:30px");
+            clickedSetBudget = false;
+        } else {
+            $(this).css("cssText", "background-color: #263238 !important; margin-top:30px");
+            clickedSetBudget = true;
+        }
+    });
+</script>

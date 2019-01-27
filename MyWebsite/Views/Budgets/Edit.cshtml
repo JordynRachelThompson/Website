@@ -1,98 +1,102 @@
 ﻿@model MyWebsite.Models.BudgetApp.Budget
 
-@{ var user = User.Identity.Name; }
+@{
+    var currentMonth = DateTime.Now.ToString("MMMM");
+    var user = User.Identity.Name;
+}
 
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 
-<h3 class="painlessBudgetTitle">The Painless Budget</h3>
+<h4 class="painlessBudgetTitle">The Painless Budget</h4>
 
-<div class="container center-div" style="margin-bottom:100px;">
-    <form asp-action="Edit">
-        <div class="row">
-            <div class="col l12 m12 s12" align="center" style="margin-top:25px;">
-                <a href='@Url.Action("Index", "Budgets", new {userName = user})' class="waves-effect waves-light underline-hover btn-large grey darken-4" style="margin-top: 10px;">
-                    <i class="material-icons left">arrow_back</i>Return to Budget
-                </a>
-                <button class="waves-effect waves-light btn-large underline-hover grey darken-4" style="margin-top:10px;" type="submit" name="Save">
-                    <i class="material-icons left">save</i>Save Budget Limits
-                </button>
-            </div>
-        </div>
-
-        <h4 class="grnEditBtn">Edit Your Budget's Limits</h4>
-
-        <div class="row" align="center">
-            <div class="col m12 s12">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="Email" />
-                <input type="hidden" asp-for="Month" />
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class="col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">local_dining</i> Grocery | Restaurant </label>
-                        <input asp-for="GroceryLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class=" col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">home</i> Mortgage | Rent </label>
-                        <input asp-for="HousingLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class="col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">local_activity</i> Entertainment </label>
-                        <input asp-for="EntLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class="col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">monetization_on</i> Bills | Payments </label>
-                        <input asp-for="BillsLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class="col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">drive_eta</i> Gas | Auto </label>
-                        <input asp-for="GasLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-                <div class="row">
-                    <div class="col l4 m4"></div>
-                    <div class="col l6 m5 s12">
-                        <label class="editBudgetLimitLabel"><i style="margin-top: 8px;" class="material-icons left">gesture</i> Miscellaneous </label>
-                        <input asp-for="MiscLimit" class="editTag" />
-                    </div>
-                    <div class="col l5 m4"></div>
-                </div>
-
-            </div>
-        </div>
-    </form>
+<div class="row">
+    <div class="col l12 m12 s12" align="center" style="margin-top:15px;">
+        <a href='@Url.Action("Index", "Budgets", new {userName = user})' class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top: 10px;">
+            <i class="far fa-arrow-alt-circle-left" style="margin-right: 5px;"></i> Return to Budget
+        </a>
+    </div>
 </div>
 
-<style>
-    /*.field-validation-error {
-        display: none !important;
-    }*/
+<form method="POST" id="editForm" style="margin-bottom: 20px;" action="@Url.Action("Edit", "Budgets")">
+    <div style="margin-top: 55px; margin-bottom: 25px; text-align: center;">
+        <h4 class="flow-text" style="margin-bottom: 30px;"><i class="fas fa-sliders-h"></i> Edit Your Budget Limits for @currentMonth</h4>
+        <button class="waves-effect waves-light btn greenBudgetBtn" type="submit" name="Save"><i class="fas fa-check"></i> Save Limits</button>
+        <p id="updateLimitError" style="margin-left: 15px; color: #d32f2f; display: inline">@ViewBag.ErrorUpdatingLimits</p>
+    </div>
 
-    input[type=text]:not(.browser-default) {
-        background-color: #080C10 !important;
+    <div class="row" style="margin-bottom: 0">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e; margin-top: 20px;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">local_dining</i> Groceries | Restaurant</h5>
+            <div class="center input-field">
+                <input name="GroceryLimit" class="budgetLimitInput" placeholder=$@Model.GroceryLimit>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">home</i> Mortgage | Rent</h5>
+
+            <div class="center input-field">
+                <input name="HousingLimit" class="budgetLimitInput" placeholder=$@Model.HousingLimit>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">local_activity</i> Entertainment</h5>
+
+            <div class="center input-field">
+                <input name="EntLimit" class="budgetLimitInput" placeholder=$@Model.EntLimit>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">monetization_on</i> Bills | Recurring Payments</h5>
+
+            <div class="center input-field">
+                <input name="BillsLimit" class="budgetLimitInput" placeholder=$@Model.BillsLimit>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">drive_eta</i> Gas | Auto</h5>
+
+            <div class="center input-field">
+                <input name="GasLimit" class="budgetLimitInput" placeholder=$@Model.GasLimit>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 0;">
+        <div class="card col l6 offset-l3 col m10 offset-m1 s12 z-depth-5" style="background-color: #10171e;">
+            <h5 class="flow-text" style="font-weight: bold; text-align: center"><i class="material-icons left light-green-text text-lighten-3">gesture</i> Miscellaneous Expenses</h5>
+
+            <div class="center input-field">
+                <input name="MiscLimit" class="budgetLimitInput" placeholder=$@Model.MiscLimit>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("Email", User.Identity.Name)
+    @Html.Hidden("GroceryLimit", "GroceryLimit")
+    @Html.Hidden("HousingLimit", "HousingLimit")
+    @Html.Hidden("EntLimit", "EntLimit")
+    @Html.Hidden("BillsLimit", "BillsLimit")
+    @Html.Hidden("GasLimit", "GasLimit")
+    @Html.Hidden("MiscLimit", "MiscLimit")
+    @Html.Hidden("Month", DateTime.Now.Month)
+</form>
+
+<style>
+    #editForm input {
+        -webkit-text-stroke-width: thin !important;
+        -webkit-text-fill-color: #a8a8a8 !important;
     }
 </style>
+
+<script>
+    setTimeout("$('#updateLimitError').hide().html(data).fadeIn('slow');", 4000);
+</script>
+
+
+
