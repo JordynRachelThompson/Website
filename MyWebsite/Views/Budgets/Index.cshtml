@@ -210,6 +210,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({pattern:'$###,###'} );
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
@@ -241,6 +243,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
@@ -272,6 +276,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
@@ -303,6 +309,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
@@ -334,6 +342,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
@@ -365,6 +375,8 @@ else
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
             var data = google.visualization.arrayToDataTable(budgetData);
+            var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+            formatter.format(data, 1);
             var options = {
                 titleTextStyle: {
                     color: '#cfd8dc',
