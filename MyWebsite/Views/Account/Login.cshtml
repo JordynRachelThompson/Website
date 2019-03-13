@@ -3,40 +3,45 @@
 
 @{var appType = Convert.ToInt32(ViewData["AppType"]);}
 
-<h3 class="centerAccountText" style="margin-top:150px;">LOGIN</h3>
-<div class="row" style=" margin-top:50px;">
-    <div class="accountBox col l6 offset-l3 m10 offset-m1 s12 z-depth-4">
-        <section>
-            <form id="acctForm" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
-                <h4 class="centerAccountText flow-text" style="margin-top:30px; margin-bottom: 30px;">Enter Your Account Information</h4>
-                <div class="input-field">
-                    <i class="material-icons prefix">person_outline</i>
-                    <input asp-for="Email" id="Email" placeholder="Email" class="validate" required type="text" style="width:85%" />
-                    <label for="Email">Email</label>
-                    <p><span asp-validation-for="Email" class="validate"></span></p>
-                </div>
-                <div class="input-field" style="margin-top: 30px;">
-                    <i class="material-icons prefix">lock_outline</i>
-                    <input asp-for="Password" id="Password" placeholder="Password" class="validate" required type="password" style="width:85%"/>
-                    <label for="Password">Password</label>
-                    <p><span asp-validation-for="Password"></span></p>
-                </div>
-                <div>
-                    <div><p style="color: #D50000;">@ViewBag.Error</p></div>
-                    <button id="loginBtn" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="fas fa-sign-in-alt"></span> log in</button>
-                </div>
-                <div class="progress" style="display: none;">
-                    <div class="indeterminate"></div>
-                </div>
-                <div style="margin-top: 70px;">
-                    <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="ForgotPassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> forgot password</a>
-                    <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" style="margin: 1px;"><i class="fas fa-user-plus" style="font-size: 15px;"></i> register</a>
-                    <a class="waves-effect waves-light btn sharpCorners black-btn" onclick="window.history.go(-1)" style="margin: 1px;"><i class="fas fa-backward" style="font-size: 15px;"></i> return</a>
-                </div>
-                @Html.Hidden("AppType", appType)
-            </form>
-        </section>
+<div class="container">
+    <h3 class="centerAccountText" style="margin-top:150px;">Login</h3>
+    <div class="row" style=" margin: 75px 0px 50px;">
+        <div id="loginImage" class="col l12 s12 z-depth-5">
+            <div class="accountBox col l12 s12 z-depth-4">
+                <section>
+                    <form class="acctForm" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                        <h4 class="thinBlackHeading flow-text" style="margin-top:30px; margin-bottom: 30px;">Enter Your Account Information</h4>
+                        <div class="input-field">
+                            <i class="material-icons prefix">person_outline</i>
+                            <input asp-for="Email" id="Email" placeholder="Email" class="validate" required pattern=".*@@.*\..*" message="Please enter a valid email address." type="text" />
+                            <label for="Email">Email</label>
+                            <p><span asp-validation-for="Email" class="validate"></span></p>
+                        </div>
+                        <div class="input-field" style="margin-top: 30px;">
+                            <i class="material-icons prefix">lock_outline</i>
+                            <input asp-for="Password" id="Password" placeholder="Password" class="validate" required type="password" style="width: 85%" />
+                            <label for="Password">Password</label>
+                            <p><span asp-validation-for="Password"></span></p>
+                        </div>
+                        <div>
+                            <div><p style="color: #D50000;">@ViewBag.Error</p></div>
+                            <button id="loginBtn" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="fas fa-sign-in-alt"></span> log in</button>
+                        </div>
+                        <div class="progress" style="display: none;">
+                            <div class="indeterminate"></div>
+                        </div>
+                        <div style="margin-top: 70px;">
+                            <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="ForgotPassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> forgot password</a>
+                            <a class="waves-effect waves-light btn sharpCorners black-btn" asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]" style="margin: 1px;"><i class="fas fa-user-plus" style="font-size: 15px;"></i> register</a>
+                            <a class="waves-effect waves-light btn sharpCorners black-btn" onclick="window.history.go(-1)" style="margin: 1px;"><i class="fas fa-backward" style="font-size: 15px;"></i> return</a>
+                        </div>
+                        @Html.Hidden("AppType", appType)
+                    </form>
+                </section>
+            </div>
+        </div>
     </div>
+
 </div>
 
 <script>
@@ -45,6 +50,6 @@
         var valid = emailRegex.test($('#Email').val());
         if ($('#Email').val() !== "" && $('#Password').val() !== "" && (valid)) {
             $('.progress').show();
-        } 
+        }
     });
 </script>

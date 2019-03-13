@@ -2,12 +2,12 @@
 $('.typeButton').click(function () {
     var typeId = $(this).attr('id');
     if ($("#" + typeId).hasClass('clickedContent')) {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         $("#" + typeId).removeClass("clickedContent");
     }
     else
     {
-        $(this).css("cssText", "color: #525e78 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         $("#" + typeId).addClass("clickedContent");
     }
 });
@@ -381,120 +381,120 @@ var clickedDec = true;
 //Add green txt to clicked month buttons
 $('#January').click(function () {
     if (clickedJan) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important;  margin-top:10px;");
         clickedJan = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedJan = true;
     }
 });
 
 $('#February').click(function () {
     if (clickedFeb) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedFeb = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important;  margin-top:10px;");
         clickedFeb = true;
     }
 });
 
 $('#March').click(function () {
     if (clickedMarch) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedMarch = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedMarch = true;
     }
 });
 
 $('#April').click(function () {
     if (clickedApr) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedApr = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedApr = true;
     }
 });
 
 $('#May').click(function () {
     if (clickedMay) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedMay = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedMay = true;
     }
 });
 
 $('#June').click(function () {
     if (clickedJune) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedJune = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedJune = true;
     }
 });
 
 $('#July').click(function () {
     if (clickedJuly) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedJuly = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedJuly = true;
     }
 });
 
 $('#August').click(function () {
     if (clickedAug) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedAug = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedAug = true;
     }
 });
 
 $('#September').click(function () {
     if (clickedSept) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold;font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedSept = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedSept = true;
     }
 });
 
 $('#October').click(function () {
     if (clickedOct) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedOct = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedOct = true;
     }
 });
 
 $('#November').click(function () {
     if (clickedNov) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
         clickedNov = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
         clickedNov = true;
     }
 });
 
 $('#December').click(function () {
     if (clickedDec) {
-        $(this).css("cssText", "color: #81cac4 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #81cac4 !important; margin-top:10px;");
         clickedDec = false;
     } else {
-        $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+        $(this).css("cssText", "color: #cfd8dc !important;  margin-top:10px;");
         clickedDec = true;
     }
 });
@@ -510,6 +510,8 @@ function donutChartTotal1() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -517,7 +519,7 @@ function donutChartTotal1() {
                 fontName: 'arial'
             }
             , 
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -543,6 +545,8 @@ function donutChartTotal2() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -550,7 +554,7 @@ function donutChartTotal2() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -576,6 +580,8 @@ function donutChartTotal3() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -583,7 +589,7 @@ function donutChartTotal3() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -609,6 +615,8 @@ function donutChartTotal4() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -616,7 +624,7 @@ function donutChartTotal4() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -642,6 +650,8 @@ function donutChartTotal5() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -649,7 +659,7 @@ function donutChartTotal5() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -675,6 +685,8 @@ function donutChartTotal6() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -682,7 +694,7 @@ function donutChartTotal6() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -708,6 +720,8 @@ function donutChartTotal7() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -715,7 +729,7 @@ function donutChartTotal7() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -741,6 +755,8 @@ function donutChartTotal8() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -748,7 +764,7 @@ function donutChartTotal8() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -774,6 +790,8 @@ function donutChartTotal9() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -781,7 +799,7 @@ function donutChartTotal9() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -808,6 +826,8 @@ function donutChartTotal10() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -815,7 +835,7 @@ function donutChartTotal10() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -841,6 +861,8 @@ function donutChartTotal11() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -848,7 +870,7 @@ function donutChartTotal11() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',
@@ -874,6 +896,8 @@ function donutChartTotal12() {
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
         var data = google.visualization.arrayToDataTable(budgetData);
+        var formatter = new google.visualization.NumberFormat({ pattern: '$###,###' });
+        formatter.format(data, 1);
         var options = {
             titleTextStyle: {
                 color: '#cfd8dc',
@@ -881,7 +905,7 @@ function donutChartTotal12() {
                 fontName: 'arial'
             }
             ,
-            colors: ['#e6c5c4', '#54b798'],
+            colors: ['#d32f2f', '#aed581'],
             pieHole: 0.5,
             backgroundColor: '#080C10',
             color: '#cfd8dc',

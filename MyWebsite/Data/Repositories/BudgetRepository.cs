@@ -129,7 +129,5 @@ namespace MyWebsite.Data.Repositories
             originalBudget.HousingLimit = budget.HousingLimit;
             originalBudget.MiscLimit = budget.MiscLimit;
         }
-
-       
     }
 }

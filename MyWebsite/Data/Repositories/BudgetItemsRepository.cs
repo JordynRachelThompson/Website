@@ -250,7 +250,7 @@ namespace MyWebsite.Data.Repositories
             {
                 foreach (var purchase in GetBudgetItemsListByMonth(user, month))
                 {
-                    purchasePrices = purchase.Cost;
+                    purchasePrices += purchase.Cost;
                     numberOfPurchases += 1;
                 }
             }

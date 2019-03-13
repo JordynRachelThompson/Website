@@ -3,10 +3,10 @@
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 <div style="margin-top: 25px; text-align: center;">
-    <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large underline-hover grey darken-4" style="font-weight: bold; font-size: 20px;"><i class="material-icons left">arrow_back</i>Return to Budget</a>
+    <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large greyBudgetBtn"><i class="material-icons left">arrow_back</i>Return to Budget</a>
 </div>
 
-<h4 style="margin-top:55px; margin-bottom:25px; font-weight:bold; text-align:center">Budget Insights</h4>
+<h4 style="margin: 50px; text-align:center"><i class="far fa-chart-bar"></i> Budget Insights</h4>
 
 <div class="row" style="padding: 60px;">
     <div class="col s12">
@@ -23,8 +23,8 @@
             @*TAB ONE*@
             <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab1" class="col s12 white-text flow-text waves-ripple">
                 <div class="row">
-                    <div class="col s12 m5">
-                        <div class="card-panel z-depth-5 teal">
+                    <div class="col l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span>
                                 <i style="margin-right: 10px;" class="fas fa-money-check-alt"></i>Average Monthly Spending
                             </span>
@@ -42,8 +42,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m5">
-                        <div class="card-panel teal z-depth-5">
+                    <div class="col l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span>
                                 <i class="fas fa-long-arrow-alt-up"></i> <i class="fas fa-long-arrow-alt-down" style="margin-right: 10px;"></i>Total Amount Over | Under Budget
                             </span>
@@ -54,19 +54,15 @@
                                 }
                                 @if (Model.AmtOverOrUnder < 0)
                                 {
-                                    @Math.Abs(Model.AmtOverOrUnder)<span style="color:#D50000 !important;"> over</span>
-                                }
-                                else if(Model.AmtOverOrUnder == 0)
-                                {
-                                    <i class="fas fa-exclamation-circle"></i><text> No information</text>
+                                    @Math.Abs(Model.AmtOverOrUnder)<span style="color:#d32f2f !important;"> over</span>
                                 }
                             </span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m5">
-                        <div class="card-panel z-depth-5 teal">
+                    <div class="col l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span>
                                 <i style="margin-right: 10px;" class="fas fa-credit-card"></i>Most Common Purchase
                             </span>
@@ -87,8 +83,8 @@
             @*TAB TWO*@
             <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab2" class="col s12 white-text flow-text waves-ripple">
                 <div class="row">
-                    <div class="col s12 m5 offset-m4">
-                        <div class="card-panel z-depth-5 teal">
+                    <div class="col l4 offset-l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span>
                                 <i style="margin-right: 10px;" class="far fa-calendar-alt"></i>Number of Months Under Budget
                             </span>
@@ -106,8 +102,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m5 offset-m4">
-                        <div class="card-panel teal z-depth-5">
+                    <div class="col l4 offset-l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span>
                                 <i style="margin-right: 10px;" class="fas fa-balance-scale"></i>Compare Last Two Months
                             </span>
@@ -126,8 +122,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m5 offset-m4">
-                        <div class="card-panel z-depth-5 teal">
+                    <div class="col l4 offset-l4 m12">
+                        <div class="card-panel z-depth-5" style="background-color: #37474f">
                             <span class="white-text">
                                 <i style="margin-right: 10px;" class="fas fa-piggy-bank"></i>Category with Highest Savings
                             </span>
@@ -147,15 +143,16 @@
             </div>
             @*TAB THREE*@
             <div style="margin-top: 20px; background-color: #080C10; font-size: 20px;" id="tab3" class="col s12 white-text flow-text waves-ripple">
-                <div class="row">
-                    <div class="col s12 m8" style="float: right">
-                        <button id="food" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
-                        <button id="housing" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
-                        <button id="bills" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
-                        <button id="entertainment" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
-                        <button id="gas" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
-                        <button id="misc" class="waves-effect waves-light btn-large underline-hover teal budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
+                <div class="row" style="float:right !important">
+                    <div class="col l12">
+                        <button id="food" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">local_dining</i>Food</button>
+                        <button id="housing" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">home</i>Housing</button>
+                        <button id="bills" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">monetization_on</i>Bills | Payments</button>
+                        <button id="entertainment" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">local_activity</i>Entertainment</button>
+                        <button id="gas" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">drive_eta</i>Gas | Auto</button>
+                        <button id="misc" class="waves-effect waves-light btn-large greyBudgetBtn budgetCatBtns"><i class="material-icons left">gesture</i>Misc</button>
                     </div>
+                </div>
                     @foreach (var dataItem in Model.BudgetInsightsByCategoryList)
                     {
                         var hiddenContainerId = "budgetInsights" + dataItem.CategoryType;
@@ -172,7 +169,7 @@
                                     <td style="text-align: center;">@String.Format("{0:C}", dataItem.AvgSpentPerMonth)</td>
                                     @if (dataItem.AvgOverUnderPerCategory > 0) //Under Budget
                                     {
-                                        <td style="color: #76c5ac !important; text-align:center">@String.Format("{0:C}", dataItem.AvgOverUnderPerCategory) Under</td>
+                                        <td style="color: #c5e1a5 !important; text-align:center">@String.Format("{0:C}", dataItem.AvgOverUnderPerCategory) Under</td>
                                     }
                                     @if (dataItem.AvgOverUnderPerCategory == 0)
                                     {
@@ -180,7 +177,7 @@
                                     }
                                     else if(dataItem.AvgOverUnderPerCategory != 0 && dataItem.AvgOverUnderPerCategory < 0) //Over Budget
                                     {
-                                        <td style="color:#D50000 !important; text-align:center">@String.Format("{0:C}", Math.Abs(dataItem.AvgOverUnderPerCategory)) Over</td>
+                                        <td style="color:#d32f2f !important; text-align:center">@String.Format("{0:C}", Math.Abs(dataItem.AvgOverUnderPerCategory)) Over</td>
                                     }
                                     @if (dataItem.NumMonthsUnderBudgetPerCat == 1)
                                     {
@@ -195,7 +192,7 @@
                             </table>
                         </div>
                     }
-                </div>
+               
             </div>
         </div>
     }
@@ -205,14 +202,14 @@
 
 <style>
     .tabs .tab a {
-        background-color: #54b798 !important;
+        background-color: #bfe892 !important;
         color: black !important;
         font-weight: bold;
         font-size: medium;
     }
 
         .tabs .tab a.active {
-            background-color: #76c5ac !important;
+            background-color: #c5e1a5 !important;
         }
 
     .tabs .indicator {
@@ -235,10 +232,10 @@
 
     $('#food').on('click', function () {
         if (clickedFood) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedFood = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedFood = true;
         }
         $('#budgetInsights1').toggle();
@@ -246,10 +243,10 @@
 
     $('#housing').on('click', function () {
         if (clickedHousing) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedHousing = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedHousing = true;
         }
         $('#budgetInsights2').toggle();
@@ -257,10 +254,10 @@
 
     $('#bills').on('click', function () {
         if (clickedBills) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedBills = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedBills = true;
         }
         $('#budgetInsights3').toggle();
@@ -268,10 +265,10 @@
 
     $('#entertainment').on('click', function () {
         if (clickedEnt) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedEnt = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedEnt = true;
         }
         $('#budgetInsights4').toggle();
@@ -279,10 +276,10 @@
 
     $('#gas').on('click', function () {
         if (clickedGas) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedGas = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedGas = true;
         }
         $('#budgetInsights5').toggle();
@@ -290,10 +287,10 @@
 
     $('#misc').on('click', function () {
         if (clickedMisc) {
-            $(this).css("cssText", "background-color: #76c5ac !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #37474f !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedMisc = false;
         } else {
-            $(this).css("cssText", "background-color: #009688 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "background-color: #263238 !important; font-weight:bold; font-size:20px; margin-top:10px;");
             clickedMisc = true;
         }
         $('#budgetInsights6').toggle();

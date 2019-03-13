@@ -1,59 +1,56 @@
 ﻿@model IEnumerable<MyWebsite.Models.BudgetApp.BudgetItems>
 
-
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h4 class="painlessBudgetTitle">The Painless Budget</h4>
 
 <div class="container">
     <div style="margin-top: 35px; text-align: center;">
-        <h6 class="greenCenterTxt">@ViewBag.Deleted</h6>
-        <a href='@Url.Action("Index", "Budgets")'; class="waves-effect waves-light btn-large greyBudgetBtn"><i class="far fa-arrow-alt-circle-left" style="margin-right: 5px;"></i> Return to Budget</a>
+        <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large greyBudgetBtn"><i class="far fa-arrow-alt-circle-left" style="margin-right: 5px;"></i> Return to Budget</a>
     </div>
-
-    <h4 style="margin: 40px; text-align:center"><i class="fas fa-plus"  style="margin-right: 5px;"></i> Add Transaction</h4>
-
-    @*Validation Errors*@
-    <div class="container" style="margin-top:20px;">
-        <h6 style="font-weight:bold; color:#D50000; text-align:center">@ViewBag.Error</h6>
+    <h4 style="margin: 50px; text-align:center"><i class="fas fa-plus-circle"></i> Add a Transaction</h4>
+    <div class="container" style="margin-top: 20px;">
+        <h6 class="greenCenterTxt">@ViewBag.Deleted</h6>
+        <h6 class="redCenterTxt">@ViewBag.Error</h6>
         <h6 class="greenCenterTxt">@ViewBag.SuccessTransactionAdded</h6>
     </div>
-
     <div class="row">
-        <div class="col s12 m12 l4"></div>
-        <form asp-action="AddTransaction" class="col s12 m12 l4 center z-depth-5">
-            <div class="input-field">
-                <select name="TypeOfBudget">
-                    <option value="0" disabled selected>1. Select a Category</option>
-                    <option value="1">Grocery</option>
-                    <option value="2">Housing</option>
-                    <option value="3">Entertainment</option>
-                    <option value="4">Bills</option>
-                    <option value="5">Gas</option>
-                    <option value="6">Miscellaneous</option>
-                </select>
-            </div>
-            <h5><b>2. Description</b></h5>
-            <div class="input-field">
-                <input name="Description" placeholder=" ..." id="purchase-item" style="margin-top: 25px; background-color: #080C10!important;" type="text" class="validate">
-            </div>
-            <h5 style="margin-top:25px;"><b>3. Price</b></h5>
-            <div class="input-field" style="margin-bottom: 10px;">
-                <i class="material-icons prefix" style="margin-top:30px; color:#54b798">attach_money</i>
-                <input name="Cost" placeholder="0" id="budget-limit-amount" style="margin-top: 25px;" type="number" step="0.01" class="validate">
-                @Html.Hidden("Description", "Description")
-                @Html.Hidden("Cost", "Cost")
-                @Html.Hidden("TypeOfBudget", "TypeOfBudget")
-                <div style="margin-top:23px;"><h5><b>4. Save</b></h5> <button type="submit" class="btn-floating btn-large waves-effect waves-light blue-grey lighten-4"><i id="saveBtn" class="far fa-save" style="font-weight:bold; color: #212121 !important;"></i></button></div>
-            </div>
-        </form>
-        <div class="col s12 m12 l4"></div>
+        <div class="col l4 m6 s12 offset-m3 offset-l4 z-depth-5" id="addTransactionContainer">
+            <form asp-action="AddTransaction">
+                <div class="input-field">
+                    <select name="TypeOfBudget" id="categoryDropdown">
+                        <option value="0" disabled selected="selected">Select a Category</option>
+                        <option value="1">Grocery</option>
+                        <option value="2">Housing</option>
+                        <option value="3">Entertainment</option>
+                        <option value="4">Bills</option>
+                        <option value="5">Gas</option>
+                        <option value="6">Miscellaneous</option>
+                    </select>
+                </div>                
+                <div class="input-field">
+                    <i class="fas fa-pencil-alt" style="color: #c5e1a5"></i>
+                    <input name="Description" placeholder="Enter a Description" id="purchase-item" type="text">
+                </div>
+                <i class="material-icons prefix" style="color: #c5e1a5">attach_money</i>
+                <div class="input-field" style="margin-top: -10px;">
+                    <input name="Cost" placeholder="Enter the Price" id="budget-limit-amount" type="number" step="0.01">
+                </div>
+                <button type="submit" class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-bottom: 10px;">
+                    Save Transaction
+                </button>
+                @Html.Hidden("Description")
+                @Html.Hidden("Cost")
+                @Html.Hidden("TypeOfBudget")
+            </form>
+        </div>
     </div>
 </div>
 
-@*View Transactions*@
-<div class="container center" style="margin-top:35px; margin-bottom:250px;">
-    <h4 style="margin-top:55px; margin-bottom:25px; text-align:center"><i class="fas fa-money-check-alt" style="margin-right: 5px;"></i> View Past Transactions</h4>
-    <a class="waves-effect waves-light underline-hover btn-large grey darken-4" id="transaction-btnG" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
+
+@*View Past Transactions*@
+<div class="container center" style="margin-top:50px; margin-bottom:250px;">
+    <h5 style="text-align:center"><i class="far fa-clock"></i> View or Delete Past Transactions</h5>
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnG" style="margin-top:10px;"><i class="material-icons left">local_dining</i>Grocery</a>
     <table class="table" id="transactionsG" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -61,25 +58,20 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int count = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 1).OrderBy(x => x.Date))
         {
-            count += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
                 <td>$@item.Cost</td>
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
-            </tr>            
-        }
-        @if (count == 0)
-        {
-            <tr>
-                <th>No Transactions...</th>
             </tr>
         }
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 1) == 0)
+        {
+            <tr><th>No Transactions...</th></tr>}
     </table>
-    <a class="waves-effect waves-light underline-hover btn-large grey darken-4" id="transaction-btnH" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">home</i>Housing</a>
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnH" style="margin-top:10px;"><i class="material-icons left">home</i>Housing</a>
     <table class="table" id="transactionsH" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -87,10 +79,8 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countH = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 2).OrderBy(x => x.Date))
-        {          
-            countH += 1;
+        {
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
@@ -98,15 +88,12 @@
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countH == 0)
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 2) == 0)
         {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
+            <tr><th>No Transactions...</th></tr>}
     </table>
 
-    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnE" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">local_activity</i>Entertainment</a>
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnE" style="margin-top:10px;"><i class="material-icons left">local_activity</i>Entertainment</a>
     <table class="table" id="transactionsE" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -114,10 +101,8 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countE = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 3).OrderBy(x => x.Date))
-        {           
-            countE += 1;
+        {
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
@@ -125,15 +110,12 @@
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countE == 0)
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 3) == 0)
         {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
+            <tr><th>No Transactions...</th></tr>}
     </table>
-    
-    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnB" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">monetization_on</i>Bills</a>
+
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnB" style="margin-top:10px;"><i class="material-icons left">monetization_on</i>Bills</a>
     <table class="table" id="transactionsB" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -141,10 +123,8 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countB = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 4).OrderBy(x => x.Date))
         {
-            countB += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
@@ -152,15 +132,12 @@
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countB == 0)
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 4) == 0)
         {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
+            <tr><th>No Transactions...</th></tr>}
     </table>
 
-    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnGas" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">drive_eta</i>Gas</a>
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnGas" style="margin-top:10px;"><i class="material-icons left">drive_eta</i>Gas</a>
     <table class="table" id="transactionsGas" align="center" style="display:none; width:25%; margin-bottom:25px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -168,10 +145,8 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countGas = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 5).OrderBy(x => x.Date))
         {
-            countGas += 1;
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
@@ -179,15 +154,12 @@
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countGas == 0)
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 5) == 0)
         {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
+            <tr><th>No Transactions...</th></tr>}
     </table>
 
-    <a class="waves-effect waves-light btn-large underline-hover grey darken-4" id="transaction-btnM" style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
+    <a class="waves-effect waves-light btn-large greyBudgetBtn" id="transaction-btnM" style="margin-top:10px;"><i class="material-icons left">gesture</i>Miscellaneous</a>
     <table class="table" id="transactionsM" align="center" style="display:none; width:25%; margin-bottom:15px;">
         <tr style="border-bottom: 1px dotted #cfd8dc">
             <th>Date</th>
@@ -195,10 +167,8 @@
             <th>Price</th>
             <th></th>
         </tr>
-        @{ int countM = 0;}
         @foreach (var item in Model.Where(x => Convert.ToInt32(x.TypeOfBudget) == 6).OrderBy(x => x.Date))
-        {            
-            countM += 1;
+        {
             <tr style="border-bottom: 1px dotted #cfd8dc">
                 <td>@item.Date.ToString("MM/dd/yyyy")</td>
                 <td>@item.Description</td>
@@ -206,56 +176,11 @@
                 <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "AddTransaction" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
             </tr>
         }
-        @if (countM == 0)
+        @if (Model.Count(x => Convert.ToInt32(x.TypeOfBudget) == 6) == 0)
         {
-            <tr>
-                <th>No Transactions...</th>
-            </tr>
-        }
+            <tr><th>No Transactions...</th></tr>}
     </table>
 </div>
-
-
-<style>
-    .dropdown-content li > a, .dropdown-content li > span {
-        color: #cfd8dc !important;
-        font-size: 20px !important;
-        font-weight: bold;
-        text-align: center;
-        background-color: #020305 !important;
-    }
-
-    .dropdown-content li > a, .dropdown-content li > span:hover {
-        background-color: #cfd8dc !important;
-        color: #263238 !important;
-    }
-
-    .select-dropdown li.disabled, .select-dropdown li.disabled > span, .select-dropdown li.optgroup {
-        color: #080C10 !important;
-        font-weight: bold;
-        text-align: center;
-    }
-
-    .select-wrapper input.select-dropdown {
-        border-bottom: none !important;
-    }
-
-    .select-wrapper input.select-dropdown {
-        background-color: #37474f !important;
-        font-weight: 600 !important;
-        font-size: 25px !important;
-        text-align: center;
-        padding-top: 5px !important;
-        border-radius: 0 !important;
-        color: #cfd8dc !important;
-    }
-
-    .select-wrapper input.select-dropdown:hover {
-        background-color: #020305 !important;
-        color: #cfd8dc !important;
-        text-decoration: underline #54b798;
-    }
-</style>
 
 <script>
     $(document).ready(function () {
@@ -263,7 +188,6 @@
         Transactions();
     });
 
-    //Show/Hide transactions based on category
     function Transactions() {
         $('#transaction-btnG').on('click', function () {
             $('#transactionsG').toggle();
@@ -276,17 +200,17 @@
         $('#transaction-btnB').on('click', function () {
             $('#transactionsB').toggle();
         });
-    
+
         $('#transaction-btnE').on('click', function () {
-           $('#transactionsE').toggle();
+            $('#transactionsE').toggle();
         });
-    
+
         $('#transaction-btnGas').on('click', function () {
-           $('#transactionsGas').toggle();
+            $('#transactionsGas').toggle();
         });
-    
+
         $('#transaction-btnM').on('click', function () {
-           $('#transactionsM').toggle();
+            $('#transactionsM').toggle();
         });
     }
 
@@ -298,66 +222,65 @@
     var clickedM = true;
 
 
-   $('#transaction-btnG').click(function () {
+    $('#transaction-btnG').click(function () {
         if (clickedG) {
-            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
             clickedG = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
             clickedG = true;
         }
     });
-   
+
     $('#transaction-btnH').click(function () {
-            if (clickedH) {
-                $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
-                clickedH = false;
-            } else {
-                $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
-                clickedH = true;
-            }
-        });
+        if (clickedH) {
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
+            clickedH = false;
+        } else {
+            $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
+            clickedH = true;
+        }
+    });
 
     $('#transaction-btnB').click(function () {
         if (clickedB) {
-            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
             clickedB = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
             clickedB = true;
         }
     });
 
     $('#transaction-btnE').click(function () {
         if (clickedE) {
-            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
             clickedE = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #cfd8dc !important;  margin-top:10px;");
             clickedE = true;
         }
     });
 
     $('#transaction-btnGas').click(function () {
         if (clickedGas) {
-            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
             clickedGas = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
             clickedGas = true;
         }
     });
 
     $('#transaction-btnM').click(function () {
         if (clickedM) {
-            $(this).css("cssText", "color: #54b798 !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #c5e1a5 !important; margin-top:10px;");
             clickedM = false;
         } else {
-            $(this).css("cssText", "color: #cfd8dc !important; font-weight:bold; font-size:20px; margin-top:10px;");
+            $(this).css("cssText", "color: #cfd8dc !important; margin-top:10px;");
             clickedM = true;
         }
     });
-    
 </script>
 
 

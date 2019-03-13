@@ -2,21 +2,12 @@
 @model IEnumerable<MyWebsite.Models.BudgetApp.BudgetItems>
 
 @{
-    var budgetType = new Dictionary<int, string>();
-    budgetType.Add(1, "Grocery");
-    budgetType.Add(2, "Housing");
-    budgetType.Add(3, "Bills");
-    budgetType.Add(4, "Entertainment");
-    budgetType.Add(5, "Gas");
-    budgetType.Add(6, "Miscellaneous");
+    var budgetType = new Dictionary<int, string>
+    {
+        {1, "Grocery" }, {2, "Housing"}, {3, "Bills"}, {4, "Entertainment"}, {5, "Gas"}, {6, "Miscellaneous"}
+    };
 
-    var iconSymbolType = new List<string>();
-    iconSymbolType.Add("local_dining");
-    iconSymbolType.Add("home");
-    iconSymbolType.Add("monetization_on");
-    iconSymbolType.Add("local_activity");
-    iconSymbolType.Add("drive_eta");
-    iconSymbolType.Add("gesture");
+    var iconSymbolType = new List<string> {"local_dining", "home", "monetization_on", "local_activity", "drive_eta", "gesture"};
 
     for (var month = 1; month < 13; month++)
     {
@@ -26,7 +17,7 @@
         var donutId = "donutchartTotal" + month;
 
         <div class="container center" id=@containerId style="margin-top:35px; margin-bottom:70px; display:none;">
-            <h5 style="margin-top:55px; margin-bottom:35px; font-weight:bold; color:#cfd8dc; text-align:center">@monthName Transactions</h5>
+            <h5 style="margin-top:55px; margin-bottom:35px; text-align:center">@monthName Transactions</h5>
             
             @foreach (var type in budgetType)
             {
@@ -34,7 +25,7 @@
                 var transactionsId = "transactions" + type.Key + month;
                 var count = 0;
 
-                <a class="waves-effect waves-light underline-hover btn-large grey darken-4 typeButton" id=@transactionId style="font-weight:bold; font-size:20px; margin-top:10px;"><i class="material-icons left">@iconSymbolType[iconCount]</i>@type.Value</a>
+                <a class="waves-effect waves-light btn-large greyBudgetBtn typeButton" id=@transactionId style="margin-top:10px;"><i class="material-icons left">@iconSymbolType[iconCount]</i>@type.Value</a>
                 <table class="table" id=@transactionsId align="center" style="display:none; width:25%; margin-bottom:25px;">
                     <tr style="border-bottom: 1px dotted #cfd8dc">
                         <th>Date</th>
@@ -50,16 +41,11 @@
                             <td>@item.Date.ToString("MM/dd/yyyy")</td>
                             <td>@item.Description</td>
                             <td>$@item.Cost</td>
-                            <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "PastBudgets" })'><i class="material-icons left purple-trashcan">delete</i></a></td>
+                            <td><a href='@Url.Action("DeleteTransaction", "Budgets", new { id = item.TransactionId, returnTo = "PastBudgets" })'><i class="material-icons left trashcan-icon">delete</i></a></td>
                         </tr>
                     }
 
-                    @if (count == 0)
-                    {
-                        <tr>
-                            <td>No Transactions...</td>
-                        </tr>
-                    }
+                    @if (count == 0){<tr><td>No Transactions...</td></tr>}
                 </table>
                 iconCount++;
             }

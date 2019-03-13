@@ -12,19 +12,7 @@ namespace MyWebsite.Controllers
     {
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            return View();
-        }
-
-
-        public IActionResult Experience()
-        {
-            ViewData["Message"] = "Your contact page.";
-
+            ViewBag.UseHomePageLinks = true;
             return View();
         }
 

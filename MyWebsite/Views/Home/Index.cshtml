@@ -1,157 +1,133 @@
-﻿@*HOME PAGE*@
-
-<div id="particles-js"></div>
-@*<div>
-        <p style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.LoggedOut</p>
-    </div>*@
-<div style="padding: 50px;">
-    <h3 class="thinHeading" id="websiteTitle">TITLE</h3>
-    <div id="skillsContainer" class="container center-div z-depth-5">
-        <h4 class="thinHeading flow-text" style="margin: 40px;">Recently Used Technologies</h4>
-        <ul id="tech-used" class="techBoxes">
-            <li>C#</li>
-            <li>ASP.NET MVC 5</li>
-            <li>ASP.NET Core</li>
-            <li>Web API</li>
-            <li>LINQ</li>
-            <li>Entity Framework</li>
-            <li>MS Visual Studio 2017</li>
-            <li>Microsoft SQL Server</li>
-            <li>Bootstrap</li>
-            <li>Materialize</li>
-            <li>Kendo UI</li>
-            <li>JavaScript</li>
-            <li>jQuery</li>
-            <li>JSON</li>
-            <li>Ajax</li>
-            <li>HTML/CSS</li>
-            <li>Git</li>
-            <li>Azure</li>
-        </ul>
+﻿<div class="container">
+    <h3 class="thinHeading" id="websiteTitle">Title</h3>
+    <div class="row" style="margin-top: 100px;">
+        <div id="homeImage" class="col l12 s12 z-depth-5">
+            <div class="darkContainer col l12 s12 z-depth-4">
+                <h4 class="thinBlackHeading flow-text">Currently Working With</h4>
+                <ul id="tech-used" class="techBoxes">
+                    <li>C#</li>
+                    <li>ASP.NET MVC 5</li>
+                    <li>ASP.NET Core</li>
+                    <li>ASP.NET Web API</li>
+                    <li>LINQ</li>
+                    <li>Entity Framework</li>
+                    <li>RESTful Web Services</li>
+                    <li>MS Visual Studio 2017</li>
+                    <li>Microsoft SQL Server</li>
+                    <li>T-SQL</li>
+                    <li>Bootstrap</li>
+                    <li>Materialize</li>
+                    <li>Kendo UI</li>
+                    <li>JavaScript</li>
+                    <li>jQuery</li>
+                    <li>JSON</li>
+                    <li>Ajax</li>
+                    <li>XML</li>
+                    <li>HTML/CSS</li>
+                    <li>Git</li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    @*Apps*@
+    <h3 id="Apps" class="thinHeading">Applications</h3>
+    <div class="row" style="margin-top: 100px;">
+        <div id="appsImage" class="col l12 z-depth-5">
+            <div class="darkContainer col l12 z-depth-4">
+                <div class="appBoxes z-depth-4">
+                    <h4>The Painless Budget</h4>
+                    <a href='@Url.Action("Index", "Budgets")'  class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-desktop"></i> View App</a>
+                    <a href='#'  class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-code"></i> View GitHub</a>
+
+                    <p>Text here about what the app does. Here are some more sentences. Some more descriptions about the app. More text is here and here.</p>
+                </div>
+                <div class="appBoxes">
+                    <h4>Weather Alerts</h4>
+                    <a href='@Url.Action("Index", "OpenWeather")'  class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-desktop"></i> View App</a>
+                    <a href='#' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-code"></i> View GitHub</a>
+                    <p>Text here about what the app does. Here are some more sentences. Some more descriptions about the app. More text is here and here.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*Experience - still needed id="Experience"*@
+
+    @*Contact*@
+    <h3 id="Contact" name="Contact" class="thinHeading">Contact</h3>
+    <div class="row" style="margin: 100px 0px 100px">
+        <div id="contactImage" class="col l12 s12 z-depth-5">
+            <div class="accountBox col l12 s12 z-depth-4">
+                <section>
+                    <form class="acctForm" asp-route-returnurl="" method="post">
+                        <h4 class="thinBlackHeading flow-text">Send a Message</h4>
+                        <i class="far fa-user contactFormIcons"></i>
+                        <div class="input-field">
+                            <input id="Name" placeholder="Name" class="validate appBoxes" required type="text" style="width:92%" />
+                            <label for="Name">Name</label>
+                        </div>
+                        <i class="fas fa-at contactFormIcons"></i>
+                        <div class="input-field">
+                            <input id="Email" placeholder="Email" class="validate appBoxes" required pattern=".*@@.*\..*" message="Please enter a valid email address." type="text" style="width:92%" />
+                            <label for="Email">Email</label>
+                        </div>
+                        <i class="fas fa-comments contactFormIcons"></i>
+                        <div class="input-field" style="margin-top: 30px;">
+                            <textarea id="Message" placeholder="Message..." required type="text" class="validate appBoxes"></textarea>
+                        </div>
+                        <div>
+                            @*<div><p style="color: #D50000;">@ViewBag.Error</p></div>*@
+                            <button id="sendMsgBtn" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><i class="far fa-paper-plane"></i> Send</button>
+                        </div>
+                        <div class="progress" style="display: none;">
+                            <div class="indeterminate"></div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+
 </div>
 
-
 <style>
+
+    .acctForm input + label {
+        color: none !important;
+    }
+
+    .acctForm input:focus + label {
+        color: #020305 !important;
+        font-size: 25px !important;
+        margin-top: 2px;
+    }
+
+    .acctForm input[type=text]:not(.browser-default) {
+        border: 1px solid white;
+        background-color: #020305 !important;
+        padding: 5px;
+        margin: 15px;
+        border-radius: 4px;
+        font-size: 20px !important;
+        border-bottom: 1px solid #9e9e9e !important;
+        width: 100%;
+    }
+
     body {
         background-color: #020305 !important;
     }
 </style>
 
-<script src="~/js/particles.js"></script>
+<script>
 
-<script type="text/javascript">
-    particlesJS("particles-js",
-        {
-            "particles": {
-                "number": {
-                    "value": 80,
-                    "density": {
-                        "enable": true,
-                        "value_area": 1104.8066982851817
-                    }
-                },
-                "color": {
-                    "value": "#040405"
-                },
-                "shape": {
-                    "type": "circle",
-                    "stroke": {
-                        "width": 0,
-                        "color": "#000000"
-                    },
-                    "polygon": {
-                        "nb_sides": 5
-                    },
-                    "image": {
-                        "src": "img/github.svg",
-                        "width": 100,
-                        "height": 100
-                    }
-                },
-                "opacity": {
-                    "value": 0.14993805191013182,
-                    "random": false,
-                    "anim": {
-                        "enable": false,
-                        "speed": 1,
-                        "opacity_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "size": {
-                    "value": 3,
-                    "random": true,
-                    "anim": {
-                        "enable": false,
-                        "speed": 40,
-                        "size_min": 0.1,
-                        "sync": false
-                    }
-                },
-                "line_linked": {
-                    "enable": true,
-                    "distance": 150,
-                    "color": "#cfd8dc",
-                    "opacity": 1,
-                    "width": 2
-                },
-                "move": {
-                    "enable": true,
-                    "speed": 1,
-                    "direction": "bottom",
-                    "random": false,
-                    "straight": false,
-                    "out_mode": "bounce",
-                    "bounce": false,
-                    "attract": {
-                        "enable": false,
-                        "rotateX": 600,
-                        "rotateY": 1200
-                    }
-                }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
-                    },
-                    "onclick": {
-                        "enable": true,
-                        "mode": "push"
-                    },
-                    "resize": true
-                },
-                "modes": {
-                    "grab": {
-                        "distance": 400,
-                        "line_linked": {
-                            "opacity": 1
-                        }
-                    },
-                    "bubble": {
-                        "distance": 400,
-                        "size": 40,
-                        "duration": 2,
-                        "opacity": 8,
-                        "speed": 3
-                    },
-                    "repulse": {
-                        "distance": 200,
-                        "duration": 0.4
-                    },
-                    "push": {
-                        "particles_nb": 4
-                    },
-                    "remove": {
-                        "particles_nb": 2
-                    }
-                }
-            },
-            "retina_detect": true
+    $('#sendMsgBtn').click(function () {
+        var emailRegex = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
+        var valid = emailRegex.test($('#Email').val());
+        if ($('#Email').val() !== "" && $('#Message').val() !== "" && (valid)) {
+            $('.progress').show();
         }
+    });
 
-    );
 </script>
+

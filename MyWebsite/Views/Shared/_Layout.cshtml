@@ -21,45 +21,60 @@
     <div class="navbar-fixed hide-on-med-and-down">
         <nav class="black mainNav">
             <div class="nav-wrapper" style="margin-left: 100px; margin-right: 100px;">
-                <a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="material-icons">view_module</i></a>
-                <ul class="right">
-                    <li><a asp-area="" asp-controller="Projects" asp-action="Index">PROJECTS</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Experience">EXPERIENCE</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">CONTACT</a></li>
-                </ul>
+                <a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="far fa-square"></i></a>
+                @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
+                {
+                    <ul class="right">
+                        <li class="z-depth-5"><a href="#Apps">Apps</a></li>
+                        <li class="z-depth-5"><a href="#Experience">Experience</a></li>
+                        <li class="z-depth-5"><a href="#Contact">Contact</a></li>
+                    </ul>
+                }
+                else
+                {
+                    <ul class="right">
+                        <li class="z-depth-5"><a>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</a></li>
+                        <li class="z-depth-5"><a>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</a></li>
+                        <li class="z-depth-5"><a>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</a></li>
+                    </ul>
+                }
             </div>
         </nav>
     </div>
     @*MOBILE NAVBAR*@
-    <div class="navbar-right hide-on-med-and-up show-on-medium-and-down">
-        <ul id="dropdown1" class="dropdown-content">
-            <li style="text-align:center"><a id="mobileHomeIcon" href="@Url.Action("Index", "Home")"><i class="material-icons">home</i></a></li>
-            <li><a asp-area="" asp-controller="Projects" asp-action="Index">Projects</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Experience">Experience</a></li>
-            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-        </ul>
-        <nav id="mobileNav" class="mobileNav" style="background-color: #020305 !important;">
-            <div class="nav-wrapper">
-                <ul class="right">
-                    <!-- Dropdown Trigger -->
-                    <li style="text-align: center;"><a class="dropdown-trigger" href="#!" data-target="dropdown1" style="border: none !important;">MENU<i class="material-icons right" style="font-size: 35px;">arrow_drop_down</i></a></li>
+    <div class="navbar-fixed-top hide-on-med-and-up show-on-medium-and-down">
+        <nav class="black mobileNav">
+            @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
+            {
+                <ul class="flow-text center">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="#Apps">Apps</a></li>
+                    <li><a href="#Experience">Experience</a></li>
+                    <li><a href="#Contact">Contact</a></li>
                 </ul>
-            </div>
+            }
+            else
+            {
+                <ul class="flow-text center">
+                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</a></li>
+                    <li><a>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</a></li>
+                    <li><a>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</a></li>
+                </ul>
+            }
         </nav>
     </div>
     @RenderBody()
     @RenderSection("Scripts", required: false)
     <script>
-        $(document).ready(function() {
-
-            $(".dropdown-trigger").dropdown();
+        $(document).ready(function () {
 
             $('#navHomeIcon').mouseenter(
-                function() {
+                function () {
                     $(this).animate({ marginLeft: '10px' }, 'slow');
                 });
             $('#navHomeIcon').mouseleave(
-                function() {
+                function () {
                     $(this).animate({ marginLeft: '0px' }, 'slow');
                 });
         });
@@ -69,100 +84,13 @@
             <ul id="horizontal-list" style="list-style: none;" class="center">
                 <li id="copyright"> © 2018 Jordyn Thompson</li>
                 <li><a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon"></i></a></li>
-                <li><a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon"></i></a></listyle="z-index:>
+                <li><a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon"></i></a></li>
                 <li><a href="mailto:jordyn@virtualzero.net" id="emailAddress">jordyn@virtualzero.net</a></li>
             </ul>
         </div>
     </footer>
 </body>
 </html>
-
-<style>
-
-    .mobileNav {
-        height: 140px !important;
-        padding-top:40px;
-        padding-bottom:40px;
-    }
-
-    #navHomeIcon {
-        font-size: 30px;
-    }
-
-    #navHomeIcon:hover {
-        color: #525e78 !important;
-        background-color: #020305 !important;
-    }
-
-    .mobileNav .dropdown-trigger {
-        font-size: 23px !important;
-        margin: 10px !important;
-        letter-spacing: 2.5px !important;
-        color: #cfd8dc !important;
-    }
-
-    .mobileNav i:hover {
-        color: #525e78 !important;
-        background-color: #020305 !important;
-    }
-
-    #dropdown1 a {
-        background-color: #11141c !important;
-        display: inline-block !important;
-        color: #cfd8dc !important;
-        font-size: 20px !important;
-        letter-spacing: 1px !important;
-        font-weight: 400;
-    }
-
-        #dropdown1 a:hover {
-            color: #525e78 !important;
-            background-color: #11141c !important;
-            opacity: 0.9;
-        }
-
-    #emailAddress:hover {
-        color: #525e78 !important;
-    }
-
-    #dropdown1 li:hover {
-        background-color: #11141c !important;
-        opacity: 0.9;
-    }
-
-    #dropdown1 li {
-        text-align: center;
-    }
-
-    #mobileHomeIcon {
-        background-color: #11141c !important;
-        color: #cfd8dc !important;
-        font-size: 15px;
-        margin-left: 13px;
-    }
-
-        #mobileHomeIcon:hover {
-            background-color: #11141c !important;
-        }
-
-    #mobileHomeIcon i:hover {
-        color: #525e78 !important;
-        background-color: #11141c !important;
-    }
-
-    #dropdown1 {
-        background-color: #11141c !important;
-        opacity: 0.9;
-        z-index: 2;
-        border: 1px #020305 solid;
-    }
-
-    .dropdown-trigger:hover {
-        color: #525e78 !important;
-    }
-
-</style>
-
 
 <environment>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

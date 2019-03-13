@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyWebsite.Services;
 
 namespace MyWebsite.Controllers
@@ -63,7 +64,10 @@ namespace MyWebsite.Controllers
             if (deleted)
                 ViewBag.Deleted = ($"Transaction titled {description.ToUpper()} was successfully deleted!");
 
-            return View(_unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month));
+            var transactions =
+                _unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month);
+
+            return View(transactions);
         }
 
         [HttpPost]
@@ -91,9 +95,13 @@ namespace MyWebsite.Controllers
                 _unitOfWork.BudgetItemsRepository.Add(budgetItems);
                 _unitOfWork.Complete();
                 ViewBag.SuccessTransactionAdded = ($"Transaction Added! {budgetItems.Description}: ${budgetItems.Cost}");
+                budgetItems.TypeOfBudget = 0;
             }
 
-            return View(_unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month));
+            var transactions =
+                _unitOfWork.BudgetItemsRepository.GetBudgetItemsListByMonth(User.Identity.Name, DateTime.Now.Month);
+
+            return View(transactions);
         }
 
         public ActionResult PastBudgets(bool deleted, string description)
@@ -242,17 +250,9 @@ namespace MyWebsite.Controllers
             var title = month > 12 ? "Budget Data" : "Budget Data for " + CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month);
             var exportToExcelViewModel = _unitOfWork.BudgetItemsRepository.GenerateExportToExcelViewModel(User.Identity.Name, month);
             List<TransactionData> transactionDataList = exportToExcelViewModel.TransactionDataList;
-            //string[] columns = { "Budget Month", "Budget Category", "Description", "Price", "Date"};
             byte[] fileContent = ExportToExcelHelper.ExportExcel(transactionDataList, title, true);
             return File(fileContent, ExportToExcelHelper.ExcelContentType, "BudgetData.xlsx");
         }
-
-        //[HttpPost]
-        //public IActionResult ExportExcel(string month)
-        //{
-
-        //    return View();
-        //}
     }
 
 }
