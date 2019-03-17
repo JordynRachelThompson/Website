@@ -43,7 +43,17 @@ else
             @Html.Partial("_PastBudgetSetBudgetLimitForm")
         }
         else //Has Never Had Budget - New Set Budget Limits Form
-        {
+        { 
+    <div>
+        <h4 class="thinHeading container" style="text-align:center; padding: 20px">
+            <i class="fas fa-info-circle"></i><br/>
+            Please first set you budget limits for @currentMonth. After saving you budget limits you will be brought
+            to your budget dashboard where you can add and edit your transactions, change
+            your limits, and view past budget data. Next month, you will be prompted to set new budget limits
+            for @DateTime.Now.AddMonths(1).ToString("MMMM") or use your previous limit settings and you will have access to the 
+            budget dashboard even if a new budget is not created.
+        </h4>
+    </div>
             @Html.Partial("_SetBudgetLimitForm")
         }
     }

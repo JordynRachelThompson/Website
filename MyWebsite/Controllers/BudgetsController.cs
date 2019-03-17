@@ -38,6 +38,8 @@ namespace MyWebsite.Controllers
 
             ViewBag.BudgetTotals = budgetTotals;
 
+          
+
             return View(currentBudget);
         }
 
@@ -177,6 +179,14 @@ namespace MyWebsite.Controllers
                 HighSaveCat = highestSavings.Key,
                 HighSaveAmt = highestSavings.Value
             };
+
+            if(budgetInsights.AmtOverOrUnder == 0)
+            {
+                ViewBag.NotEnoughInfoMsg = "If multiple insights are showing a 'No Information' message, " +
+                    "there may not be enough budget data to calculate budget insights. This often happens when a new " +
+                    "budget has just been created or if a budget does not have any transactions added.";
+
+            }
 
             var budgetInsightsWithCategoryInsights = CalculateCategoryInsights(budgetInsights, User.Identity.Name);
 

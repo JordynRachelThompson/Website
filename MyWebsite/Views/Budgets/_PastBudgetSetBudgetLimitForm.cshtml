@@ -19,7 +19,7 @@
                 <i class="material-icons left">add_circle_outline</i>Create New Budget Limits</button>
             <a href='@Url.Action("PastBudgets", "Budgets")' class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="material-icons left">date_range</i>View Past Budgets</a>
             <a href='@Url.Action("BudgetInsights", "Budgets")' class="waves-effect underline-hover waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="material-icons left">trending_up</i>Budget Insights</a>
-            <a href='@Url.Action("AddTransaction", "Budgets")' class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="far fa-file-excel" style="margin-right: 5px;"></i> Export Budget Data to Excel</a>
+            <a href='@Url.Action("ExportExcel", "Budgets")'  class="waves-effect waves-light btn-large greyBudgetBtn" style="margin-top:30px;"><i class="far fa-file-excel" style="margin-right: 5px;"></i> Export Budget Data to Excel</a>
         </div>
     </div>
     <p id="updateLimitErrorPastBudget" style="text-align: center; color: #d32f2f;">@ViewBag.ErrorUpdatingLimits</p>

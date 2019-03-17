@@ -4,29 +4,32 @@
 
 @{ var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any(); }
 
-<h3 class="centerAccountText" style="margin-top:150px;">MANAGE YOUR ACCOUNT</h3>
-<div><h5 style="text-align: center; margin-top: 10px; color: #81cac4;">@ViewBag.Updated</h5></div>
-<div class="row" style=" margin-top:50px;">
-    <div class="accountBox col l6 offset-l3 m10 offset-m1 s12 z-depth-4">
-        <form id="acctForm" method="post">
-            <h4 class="centerAccountText flow-text" style="margin-top:30px; margin-bottom: 30px;">Change Your Email</h4>
-            <div class="input-field">
-                <i class="material-icons prefix">person_outline</i>
-                <input asp-for="Email" id="Email" placeholder="Email" class="validate" required type="text" style="width:85%" />
-                <label for="Email">Email</label>
-                <p><span asp-validation-for="Email" class="validate"></span></p>
-            </div>
-            <div><p style="color: #D50000;">@ViewBag.Error</p></div>
-            <button id="saveChanges" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-save"></span> save changes</button>
-            <div class="progress" style="display: none;">
-                <div class="indeterminate"></div>
-            </div>
-            <div style="margin-top: 70px;">
-                <a class="waves-effect waves-light btn sharpCorners black-btn" id="changePassword" asp-action="ChangePassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> change password</a>
-            </div>
-        </form>
+<div class="container">
+    <h3 class="centerAccountText" style="margin-top:150px;">Manage Your Account</h3>
+    <div><h5 style="text-align: center; margin-top: 10px; color: #c5e1a5">@ViewBag.Updated</h5></div>
+    <div class="row" style=" margin: 75px 0px 50px;">
+        <div class="accountBox col l12 s12 z-depth-4">
+            <form class="acctForm" method="post">
+                <h4 class="thinBlackHeading flow-text" style="margin-top:30px; margin-bottom: 30px;">Change Your Email</h4>
+                <div class="input-field">
+                    <i class="material-icons prefix">person_outline</i>
+                    <input asp-for="Email" id="Email" placeholder="Email" class="validate" required pattern=".*@@.*\..*" type="text" style="width:85%" />
+                    <label for="Email">Email</label>
+                    <p><span asp-validation-for="Email" class="validate"></span></p>
+                </div>
+                <div><p style="color: #D50000;">@ViewBag.Error</p></div>
+                <button id="saveChanges" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><span class="far fa-save"></span> save changes</button>
+                <div class="progress" style="display: none;">
+                    <div class="indeterminate"></div>
+                </div>
+                <div style="margin-top: 70px;">
+                    <a class="waves-effect waves-light btn sharpCorners black-btn" id="changePassword" asp-action="ChangePassword" style="margin: 1px;"><i class="fas fa-unlock-alt" style="font-size: 15px;"></i> change password</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
+
 
 <script>
     $('#saveChanges').click(function () {

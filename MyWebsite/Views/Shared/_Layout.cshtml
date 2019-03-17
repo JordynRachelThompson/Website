@@ -20,8 +20,8 @@
     @*NAVBAR*@
     <div class="navbar-fixed hide-on-med-and-down">
         <nav class="black mainNav">
-            <div class="nav-wrapper" style="margin-left: 100px; margin-right: 100px;">
-                <a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="far fa-square"></i></a>
+            <div class="nav-wrapper" style="margin-right: 50px;">
+                @*<a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="far fa-square"></i></a>*@
                 @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
                 {
                     <ul class="right">
@@ -47,7 +47,6 @@
             @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
             {
                 <ul class="flow-text center">
-                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                     <li><a href="#Apps">Apps</a></li>
                     <li><a href="#Experience">Experience</a></li>
                     <li><a href="#Contact">Contact</a></li>
@@ -66,23 +65,11 @@
     </div>
     @RenderBody()
     @RenderSection("Scripts", required: false)
-    <script>
-        $(document).ready(function () {
 
-            $('#navHomeIcon').mouseenter(
-                function () {
-                    $(this).animate({ marginLeft: '10px' }, 'slow');
-                });
-            $('#navHomeIcon').mouseleave(
-                function () {
-                    $(this).animate({ marginLeft: '0px' }, 'slow');
-                });
-        });
-    </script>
     <footer style="z-index: 5">
         <div class="footer-copyright black z-depth-5">
             <ul id="horizontal-list" style="list-style: none;" class="center">
-                <li id="copyright"> © 2018 Jordyn Thompson</li>
+                <li id="copyright"> © @DateTime.Now.Year Jordyn Thompson</li>
                 <li><a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon"></i></a></li>
                 <li><a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon"></i></a></li>
                 <li><a href="mailto:jordyn@virtualzero.net" id="emailAddress">jordyn@virtualzero.net</a></li>

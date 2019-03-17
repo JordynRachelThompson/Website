@@ -1,17 +1,27 @@
 ﻿@using System.Globalization
+@{ 
+    int budgetNumber = ViewBag.MonthsWithBudgetList.Count;
+}
 <div class="partialLoginText"><p>@Html.Partial("_LoginPartial", 1)</p></div>
 <h3 class="painlessBudgetTitle">The Painless Budget</h3>
 
 <div class="container">
     <div style="margin-top: 25px; text-align: center;">
         <h6 class="greenCenterTxt">@ViewBag.Deleted</h6>
-        <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large greyBudgetBtn"><i class="material-icons left">arrow_back</i> Return to Budget</a>
+        <a href='@Url.Action("Index", "Budgets")' ; class="waves-effect waves-light btn-large greyBudgetBtn"><i class="material-icons left">arrow_back</i> Return to Budget Dashboard</a>
     </div>
 
     <h4 style="margin-top:55px; margin-bottom:25px; text-align:center">Export to Excel</h4>
     
     <div align="center">
-        <a href='@Url.Action("ExportToExcel", "Budgets", new {month = 13})'; class="waves-effect waves-light btn-large greyBudgetBtn" style="margin: 30px;"><i class="far fa-calendar-plus"></i> Export all Months to Excel</a>
+        @if ( budgetNumber != 0 && budgetNumber > 1)
+        {
+            <a href='@Url.Action("ExportToExcel", "Budgets", new {month = 13})' ; class="waves-effect waves-light btn-large greyBudgetBtn" style="margin: 30px;"><i class="far fa-calendar-plus"></i> Export all @budgetNumber Months to Excel</a>
+        }
+        else
+        {
+            <h4 class="thinHeading">Please add some transactions to your budget to export to Excel. <br/> A budget must have at least one transaction to view in Excel.</h4>
+        }
     </div>
 
     <div align="center">
