@@ -78,16 +78,25 @@
                 </div>
             </div>
             <div class="appBoxes">
-                <h4>Weather Alerts</h4>
+                <h4>Open WeatherMap Element Tracker</h4>
                 <a href='@Url.Action("Index", "OpenWeather")' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-desktop"></i> View App</a>
                 <a href='#' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-code"></i> View GitHub</a>
-                <h4 class="flow-text">Text here about what the app does. Here are some more sentences. Some more descriptions about the app. More text is here and here.</h4>
-                <div class="carousel">
-                    <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-                    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-                    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-                    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-                    <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.WeatherAppDescr</h4>         
+                    <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only">
+                    <ul class="collapsible" style="margin: 5px 5px 40px;">
+                        <li>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="far fa-window-minimize"></i> Element Tracker Features</div>
+                            <div class="collapsible-body"><span>View 5 day, hourly forecast from Open WeatherMap for any city</span></div>
+                            <div class="collapsible-body"><span>Option to view forecasts without registering or logging in</span></div>
+                            <div class="collapsible-body"><span>Registered users can save their city and manage element alerts</span></div>
+                            <div class="collapsible-body"><span>Users can turn on/off individual element alerts and change which email they want alerted</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="carousel grabbing">
+                    <a class="carousel-item"><img src="~/images/weather/weather1.png" /></a>
+                    <a class="carousel-item"><img src="~/images/weather/weather2.png" /></a>
+                    <a class="carousel-item"><img src="~/images/weather/weather3.png" /></a>
                 </div>
             </div>
         </div>
@@ -101,7 +110,7 @@
         <div id="contactImage" class="col l12 s12 z-depth-5">
             <div class="accountBox col l12 s12 z-depth-4">
                 <section>
-                    <form class="acctForm" asp-route-returnurl="" method="post">
+                    <div class="acctForm">
                         <i class="far fa-user contactFormIcons"></i> 
                         <div class="input-field">
                             <input id="Name" placeholder="Name" class="validate appBoxes" required type="text" style="width:100%;" />
@@ -114,16 +123,16 @@
                         </div>
                         <i class="fas fa-comments contactFormIcons"></i>
                         <div class="input-field" style="margin-top: 30px;">
-                            <textarea id="Message" placeholder="Message..." required type="text" class="validate appBoxes"></textarea>
+                            <textarea id="Message" style="color: white" placeholder="Message..." required type="text" class="validate appBoxes"></textarea>
                         </div>
                         <div>
                             @*<div><p style="color: #D50000;">@ViewBag.Error</p></div>*@
-                            <button id="sendMsgBtn" type="submit" class="waves-effect waves-light btn sharpCorners black-btn"><i class="far fa-paper-plane"></i> Send</button>
+                            <button id="sendMsgBtn" class="waves-effect waves-light btn sharpCorners black-btn"><i class="far fa-paper-plane"></i> Send</button>
                         </div>
                         <div class="progress" style="display: none;">
                             <div class="indeterminate"></div>
                         </div>
-                    </form>
+                    </div>
                 </section>
             </div>
         </div>
@@ -139,7 +148,7 @@
 
     .collapsible-body {
         border-bottom: 1px dashed #020305 !important;
-        background-color: #cfd8dc !important;
+        background-color: #a8b3c4 !important;
         color: black !important;
     }
 
@@ -198,7 +207,43 @@
         var valid = emailRegex.test($('#Email').val());
         if ($('#Email').val() !== "" && $('#Message').val() !== "" && (valid)) {
             $('.progress').show();
+            sendContactMessage();
         }
     });
+
+    
+    function sendContactMessage() {
+
+        var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImJpcnRjaHVtQHZpcnR1YWx6ZXJvLm5ldCIsInVuaXF1ZV9pZCI6IllFaU5LekJVIiwiZXhwIjoxOTgxMDc5NjUwfQ.mZ8cr495fht6VXZ7Rr4E0ep3SVjk2f0B8ghFrdqiLPU";
+
+
+        $.ajax({
+            type: "POST",
+            headers: { "x-api-key": apiKey, 'Access-Control-Allow-Origin': "https://mailapi.virtualzero.tech/mail/sendmail"},  
+            url: "https://mailapi.virtualzero.tech/mail/sendmail",
+            data:
+            {
+                "recipients": ["jordyn@virtualzero.net"],
+                "subject": "Test Subject",
+                "message": "Text Message"
+            },
+            contentType: 'json',
+            crossDomain: true,
+            dataType: 'jsonp',
+            success: function (data) {
+                console.log('SUCCESS: ', data);
+            },
+            error: function (data) {
+                console.log('ERROR: ', data);
+                alert("error " + data);
+                $('.progress').hide();
+            },
+            coplete: function () {
+                $('.progress').hide();
+            }
+        })
+    }
+
+
 </script>
 
