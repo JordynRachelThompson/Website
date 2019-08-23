@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <h3 class="thinHeading" id="websiteTitle">Title</h3>
+    <h3 class="thinHeading" id="websiteTitle">Jordyn Thompson - Web Developer - Tampa, FL</h3>
     <div class="row" style="margin-top: 100px;">
         <div id="homeImage" class="col l12 s12 z-depth-5">
             <div class="darkContainer col l12 s12 z-depth-4">
@@ -7,15 +7,18 @@
                 <ul id="tech-used" class="techBoxes">
                     <li>C#</li>
                     <li>ASP.NET Core</li>
-                    <li>ASP.NET MVC 5</li>
+                    <li>ASP.NET 4.5</li>
+                    <li>MVC 5</li>
                     <li>ASP.NET Web API 2</li>
                     <li>LINQ</li>
                     <li>Entity Framework</li>
                     <li>RESTful Web Services</li>
                     <li>MS Visual Studio 2017</li>
-                    <li>Microsoft SQL Server</li>
+                    <li>MS SQL Server 2012</li>
+                    <li>SSMS</li>
                     <li>T-SQL</li>
-                    <li>Bootstrap 4</li>
+                    <li>Bootstrap</li>
+                    <li>Razor Pages</li>
                     <li>Materialize</li>
                     <li>Kendo UI</li>
                     <li>HTML/CSS</li>
@@ -26,6 +29,7 @@
                     <li>XML</li>
                     <li>Fiddler</li>
                     <li>Postman</li>
+                    <li>SOAP UI</li>
                     <li>Git</li>
                 </ul>
             </div>
@@ -36,28 +40,61 @@
     <h3 id="Apps" class="thinHeading">Applications</h3>
     <div class="row" style="margin-top: 100px;">
         <div class="darkContainer col l12 z-depth-5">
+            @*Space API*@
             <div class="appBoxes z-depth-4" style="padding: 10px;">
-                <h4 style="font-weight: 200;">The Painless Budget</h4>
-                <a href='@Url.Action("Index", "Budgets")' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-desktop"></i> View App</a>
-                <a href='#' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-code"></i> View GitHub</a>
-                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.BudgetAppDescr</h4>
-                <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only">
-                    <ul class="collapsible" style="margin: 5px 5px 40px;">
+                <div style="margin: 50px;">
+                    <a href='https://givemespaceapi.azurewebsites.net'  target="_blank" class="projectBtnSpace">Give Me Space API <i class="fas fa-hand-pointer"></i></a>
+                </div>
+                <a href='https://github.com/JordynRachelThompson/GiveMeSpaceApi' target="blank" class="waves-effect waves-light gitHubIconBtn3"><i class="fab fa-github"></i></a>
+                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.SpaceApiDescr</h4>
+                <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
+                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px">
                         <li>
-                            <div class="collapsible-header flow-text z-depth-3"><i class="far fa-window-minimize"></i> Painless Budget Features</div>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Technologies Used</div>
+                            <div class="collapsible-body"><span>ASP.NET Core, C#, JSON, HTML/CSS, XML, Swagger, RESTful, Postman, Git, NASA Open APIs</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="carousel grabbing" style="margin-top: 50px;">
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic1.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic2.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic3.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic4.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic5.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic6.png" /></a>
+                    <a class="carousel-item"><img src="~/images/spaceApi/gmsapiPic7.png" /></a>
+
+                </div>
+            </div>
+
+            @*Budget App*@
+            <div class="appBoxes z-depth-4" style="padding: 10px;">
+                <div style="margin: 50px;">
+                    <a href='@Url.Action("Index", "Budgets")' class="projectBtnBudget">The Painless Budget <i class="fas fa-hand-pointer"></i></a>
+                </div>
+                <a href='https://github.com/JordynRachelThompson/Website/blob/master/MyWebsite/Controllers/BudgetsController.cs' target="_blank" class="waves-effect waves-light gitHubIconBtn1"><i class="fab fa-github"></i></a>
+                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.BudgetAppDescr</h4>
+                <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
+                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px">
+                        <li>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Technologies Used</div>
+                            <div class="collapsible-body"><span>ASP.NET Core, C#, EF 6, LINQ, SQL Server, SSMS, HTML/CSS, Materialize UI, jQuery, Google Charts, Office Open XML</span></div>
+                        </li>
+                        <li>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Painless Budget Features</div>
                             <div class="collapsible-body"><span>Create and save monthly budgets</span></div>
                             <div class="collapsible-body"><span>Option to re-use past budget settings for next month</span></div>
                             <div class="collapsible-body"><span>Add transactions by spending category</span></div>
                             <div class="collapsible-body"><span>Easy to view pie charts display current budget spending by category</span></div>
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="far fa-window-minimize"></i>  Painless Budget Analytics</div>
+                            <div class="collapsible-header"><i class="fas fa-plus centerIcon"></i>  Painless Budget Analytics</div>
                             <div class="collapsible-body"><span>View average monthly spending, most frequent transaction category, average amount over or under budget, average savings, and category with the highest average savings.</span></div>
-                            <div class="collapsible-body"><span>View budget analytics by spending category to track which categories have the highest savings and are consistently over or under budget.</span></div>
+                            <div class="collapsible-body"><span>View budget analytics by spending category to track which categories have the highest savings or are consistently over or under budget.</span></div>
 
                         </li>
                         <li>
-                            <div class="collapsible-header"><i class="far fa-window-minimize"></i> Painless Budget Tracking</div>
+                            <div class="collapsible-header"><i class="fas fa-plus centerIcon"></i> Painless Budget Tracking</div>
                             <div class="collapsible-body"><span>Add, edit, and remove transactions</span></div>
                             <div class="collapsible-body"><span>Export a single budget or all past budgets to Excel</span></div>
                             <div class="collapsible-body"><span>View and edit transactions from previous budget months</span></div>
@@ -77,15 +114,17 @@
                     <a class="carousel-item"><img src="~/images/painlessBudget/budget9.png" /></a>
                 </div>
             </div>
-            <div class="appBoxes">
-                <h4>Open WeatherMap Element Tracker</h4>
-                <a href='@Url.Action("Index", "OpenWeather")' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-desktop"></i> View App</a>
-                <a href='#' class="waves-effect waves-light btn sharpCorners black-btn"><i class="fas fa-code"></i> View GitHub</a>
-                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.WeatherAppDescr</h4>         
-                    <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only">
-                    <ul class="collapsible" style="margin: 5px 5px 40px;">
+            @*Weather App*@
+            <div class="appBoxes" style="margin-top: 50px;">
+                <div style="margin: 50px;">
+                    <a href='@Url.Action("Index", "OpenWeather")' class="projectBtnWeather">Element Tracker <i class="fas fa-hand-pointer"></i></a>
+                </div>
+                <a href='https://github.com/JordynRachelThompson/Website/blob/master/MyWebsite/Controllers/OpenWeatherController.cs' target="_blank" class="waves-effect waves-light gitHubIconBtn2"><i class="fab fa-github"></i></a>
+                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.WeatherAppDescr</h4>
+                <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
+                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px;">
                         <li>
-                            <div class="collapsible-header flow-text z-depth-3"><i class="far fa-window-minimize"></i> Element Tracker Features</div>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Element Tracker Features</div>
                             <div class="collapsible-body"><span>View 5 day, hourly forecast from Open WeatherMap for any city</span></div>
                             <div class="collapsible-body"><span>Option to view forecasts without registering or logging in</span></div>
                             <div class="collapsible-body"><span>Registered users can save their city and manage element alerts</span></div>
@@ -102,32 +141,45 @@
         </div>
     </div>
 
-    @*Experience - still needed id="Experience"*@
+
+    @*About*@
+    <h3 id="About" name="About" class="thinHeading">About</h3>
+    <div class="row" style="margin-top: 100px;">
+        <div class="darkContainer col l12 s12 z-depth-5">
+            <div class="appBoxes z-depth-4" style="padding: 10px;">
+                
+                <div style="margin: 50px;">
+                    <a href='#' class="resumeBtn">Resume <i class="fas fa-file-pdf"></i></a>
+                </div>
+                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.AboutSecionText</h4>
+            </div>
+        </div>
+    </div>
 
     @*Contact*@
     <h3 id="Contact" name="Contact" class="thinHeading">Contact</h3>
     <div class="row" style="margin: 100px 0px 100px">
-        <div id="contactImage" class="col l12 s12 z-depth-5">
+        <div id="homeImage" class="col l12 s12 z-depth-5">
             <div class="accountBox col l12 s12 z-depth-4">
                 <section>
-                    <div class="acctForm">
-                        <i class="far fa-user contactFormIcons"></i> 
+                    <div class="acctForm" align="center">
                         <div class="input-field">
+                            <i class="far fa-user contactFormIcons"></i>
+
                             <input id="Name" placeholder="Name" class="validate appBoxes" required type="text" style="width:100%;" />
                             <label for="Name">Name</label>
                         </div>
-                        <i class="fas fa-at contactFormIcons"></i>
                         <div class="input-field">
+                            <i class="fas fa-at contactFormIcons"></i>
                             <input id="Email" placeholder="Email" class="validate appBoxes" required pattern=".*@@.*\..*" message="Please enter a valid email address." type="text" style="width:100%" />
                             <label for="Email">Email</label>
                         </div>
-                        <i class="fas fa-comments contactFormIcons"></i>
                         <div class="input-field" style="margin-top: 30px;">
                             <textarea id="Message" style="color: white" placeholder="Message..." required type="text" class="validate appBoxes"></textarea>
                         </div>
-                        <div>
+                        <div align="center">
                             @*<div><p style="color: #D50000;">@ViewBag.Error</p></div>*@
-                            <button id="sendMsgBtn" class="waves-effect waves-light btn sharpCorners black-btn"><i class="far fa-paper-plane"></i> Send</button>
+                            <button id="sendMsgBtn" class="waves-effect waves-light btn sharpCorners black-btn" style="width: 30% !important;"><i class="far fa-paper-plane"></i> Send</button>
                         </div>
                         <div class="progress" style="display: none;">
                             <div class="indeterminate"></div>
@@ -141,6 +193,16 @@
 </div>
 
 <style>
+    .collapsible li.active i {
+        -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+
+    .centerIcon {
+        margin-top: 8px;
+    }
+
     /*Materialize overrides*/
     .collapsible li {
         margin: 7px !important;
@@ -194,7 +256,6 @@
     body {
         background-color: #020305;
     }
-
 </style>
 
 <script>
@@ -211,7 +272,7 @@
         }
     });
 
-    
+
     function sendContactMessage() {
 
         var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImJpcnRjaHVtQHZpcnR1YWx6ZXJvLm5ldCIsInVuaXF1ZV9pZCI6IllFaU5LekJVIiwiZXhwIjoxOTgxMDc5NjUwfQ.mZ8cr495fht6VXZ7Rr4E0ep3SVjk2f0B8ghFrdqiLPU";
@@ -219,7 +280,7 @@
 
         $.ajax({
             type: "POST",
-            headers: { "x-api-key": apiKey, 'Access-Control-Allow-Origin': "https://mailapi.virtualzero.tech/mail/sendmail"},  
+            headers: { "x-api-key": apiKey, 'Access-Control-Allow-Origin': "https://mailapi.virtualzero.tech/mail/sendmail" },
             url: "https://mailapi.virtualzero.tech/mail/sendmail",
             data:
             {
@@ -243,7 +304,5 @@
             }
         })
     }
-
-
 </script>
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 using System.Collections.Generic;
 
-namespace MyWebsite.Migrations
+namespace PortfolioWebsite.Migrations
 {
     public partial class InitialAddedKey : Migration
     {

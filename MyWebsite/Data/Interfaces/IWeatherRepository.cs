@@ -4,7 +4,7 @@ using System.Drawing.Text;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyWebsite.Data.Interfaces
+namespace PortfolioWebsite.Data.Interfaces
 {
     public interface IWeatherRepository
     {

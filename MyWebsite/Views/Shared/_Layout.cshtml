@@ -24,19 +24,23 @@
                 @*<a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="far fa-square"></i></a>*@
                 @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
                 {
-                    <ul class="right">
-                        <li class="z-depth-5"><a href="#Apps">Apps</a></li>
-                        <li class="z-depth-5"><a href="#Experience">Experience</a></li>
-                        <li class="z-depth-5"><a href="#Contact">Contact</a></li>
-                    </ul>
+                <ul class="right">
+                    <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="z-depth-5"><a href="#Apps">Apps</a></li>
+                    <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
+                    @*<li class="z-depth-5"><a href="#Experience">Experience</a></li>*@
+                    <li class="z-depth-5"><a href="#Contact">Contact</a></li>
+                </ul>
                 }
                 else
                 {
-                    <ul class="right">
-                        <li class="z-depth-5"><a>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</a></li>
-                        <li class="z-depth-5"><a>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</a></li>
-                        <li class="z-depth-5"><a>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</a></li>
-                    </ul>
+                <ul class="right">
+                    <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li class="z-depth-5">@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</li>
+                    <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
+                    @*<li class="z-depth-5">@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</li>*@
+                    <li class="z-depth-5">@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
+                </ul>
                 }
             </div>
         </nav>
@@ -46,20 +50,23 @@
         <nav class="black mobileNav">
             @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
             {
-                <ul class="flow-text center">
-                    <li><a href="#Apps">Apps</a></li>
-                    <li><a href="#Experience">Experience</a></li>
-                    <li><a href="#Contact">Contact</a></li>
-                </ul>
+            <ul class="flow-text center">
+                <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
+                <li><a href="#Apps">Apps</a></li>
+                <li><a href="#About">About</a></li>
+                @*<li><a href="#Experience">Experience</a></li>*@
+                <li><a href="#Contact">Contact</a></li>
+            </ul>
             }
             else
             {
-                <ul class="flow-text center">
-                    <li><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</a></li>
-                    <li><a>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</a></li>
-                    <li><a>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</a></li>
-                </ul>
+            <ul class="flow-text center">
+                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                <li>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</li>
+                <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
+                @*<li>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</li>*@
+                <li>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
+            </ul>
             }
         </nav>
     </div>
@@ -72,7 +79,7 @@
                 <li id="copyright"> © @DateTime.Now.Year Jordyn Thompson</li>
                 <li><a href="https://www.linkedin.com/in/jordynrachelthompson/" target="_blank"><i class="fab fa-linkedin footer-icon"></i></a></li>
                 <li><a href="https://github.com/JordynRachelThompson/" target="_blank"><i class="fab fa-github-square footer-icon"></i></a></li>
-                <li><a href="mailto:jordyn@virtualzero.net" id="emailAddress">jordyn@virtualzero.net</a></li>
+                <li><a href="mailto:jordynrachelthompson@gmail.com" id="emailAddress">jordynrachelthompson@gmail.com</a></li>
             </ul>
         </div>
     </footer>

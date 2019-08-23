@@ -10,11 +10,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MyWebsite.Models;
-using MyWebsite.Models.AccountViewModels;
-using MyWebsite.Services;
+using PortfolioWebsite.Models;
+using PortfolioWebsite.Models.AccountViewModels;
+using PortfolioWebsite.Services;
 
-namespace MyWebsite.Controllers
+namespace PortfolioWebsite.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]

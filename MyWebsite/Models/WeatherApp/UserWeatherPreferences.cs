@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyWebsite.Models.WeatherApp
+namespace PortfolioWebsite.Models.WeatherApp
 {
     public class UserWeatherPreferences
     {

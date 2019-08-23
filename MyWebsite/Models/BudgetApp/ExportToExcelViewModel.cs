@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MyWebsite.Models.BudgetApp
+namespace PortfolioWebsite.Models.BudgetApp
 {
     public class ExportToExcelViewModel
     {

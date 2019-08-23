@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyWebsite.Models.BudgetApp
+namespace PortfolioWebsite.Models.BudgetApp
 {
     public class BudgetInsightsViewModel
     {

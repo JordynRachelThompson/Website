@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MyWebsite.Models.BudgetApp;
+using PortfolioWebsite.Models.BudgetApp;
 
-namespace MyWebsite.Data.Interfaces
+namespace PortfolioWebsite.Data.Interfaces
 {
     public interface IBudgetItemsRepository
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyWebsite.Data.Interfaces;
+using PortfolioWebsite.Data.Interfaces;
 
-namespace MyWebsite.Api
+namespace PortfolioWebsite.Api
 {
     [Route("api/[controller]")]
     public class WeatherAlertsController : Controller

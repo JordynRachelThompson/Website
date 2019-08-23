@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using MyWebsite.Data;
-using MyWebsite.Models.BudgetApp;
+using PortfolioWebsite.Data;
+using PortfolioWebsite.Models.BudgetApp;
 using System;
 
-namespace MyWebsite.Migrations
+namespace PortfolioWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20180926224451_change")]
@@ -130,7 +130,7 @@ namespace MyWebsite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.ApplicationUser", b =>
+            modelBuilder.Entity("PortfolioWebsite.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -181,7 +181,7 @@ namespace MyWebsite.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetProject.Budget", b =>
+            modelBuilder.Entity("PortfolioWebsite.Models.BudgetProject.Budget", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -205,7 +205,7 @@ namespace MyWebsite.Migrations
                     b.ToTable("Budget");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.BudgetProject.BudgetItems", b =>
+            modelBuilder.Entity("PortfolioWebsite.Models.BudgetProject.BudgetItems", b =>
                 {
                     b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd();
@@ -233,7 +233,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -241,7 +241,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -254,7 +254,7 @@ namespace MyWebsite.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -262,7 +262,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

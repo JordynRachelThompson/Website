@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.BudgetApp;
+using PortfolioWebsite.Data.Interfaces;
+using PortfolioWebsite.Models.BudgetApp;
 
-namespace MyWebsite.Data.Repositories
+namespace PortfolioWebsite.Data.Repositories
 {
     public class BudgetRepository : IBudgetRepository
     {

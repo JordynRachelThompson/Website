@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace MyWebsite.Models.WeatherApp
+namespace PortfolioWebsite.Models.WeatherApp
 {
     public class OpenWeatherResponse
     {

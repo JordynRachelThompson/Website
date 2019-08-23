@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.BudgetApp;
+using PortfolioWebsite.Data.Interfaces;
+using PortfolioWebsite.Models.BudgetApp;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using MyWebsite.Services;
+using PortfolioWebsite.Services;
 
-namespace MyWebsite.Controllers
+namespace PortfolioWebsite.Controllers
 {
     public class BudgetsController : Controller
     {

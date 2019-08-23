@@ -8,14 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyWebsite.Data;
-using MyWebsite.Data.Interfaces;
-using MyWebsite.Data.Repositories;
-using MyWebsite.Models;
-using MyWebsite.Services;
+using PortfolioWebsite.Data;
+using PortfolioWebsite.Data.Interfaces;
+using PortfolioWebsite.Data.Repositories;
+using PortfolioWebsite.Models;
+using PortfolioWebsite.Services;
 using Newtonsoft.Json.Serialization;
 
-namespace MyWebsite
+namespace PortfolioWebsite
 {
     public class Startup
     {

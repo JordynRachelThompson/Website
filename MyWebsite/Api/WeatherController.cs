@@ -5,12 +5,12 @@ using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyWebsite.Data.Interfaces;
-using MyWebsite.Models.WeatherApp;
+using PortfolioWebsite.Data.Interfaces;
+using PortfolioWebsite.Models.WeatherApp;
 using Newtonsoft.Json;
 using OfficeOpenXml.FormulaParsing.Utilities;
 
-namespace MyWebsite.Api
+namespace PortfolioWebsite.Api
 {
     [Route("api/[controller]")]
     public class WeatherController : Controller

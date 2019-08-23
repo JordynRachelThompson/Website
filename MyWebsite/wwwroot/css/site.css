@@ -213,6 +213,128 @@ a {
         border: none !important;
     }
 
+.gitHubIconBtn1 {
+    background-color: #020305;
+    color: #c5e1a5 !important;
+    font-size: 45px;
+}
+
+    .gitHubIconBtn1:hover {
+        color: #d32f2f !important;
+    }
+
+.gitHubIconBtn3 {
+    background-color: #020305;
+    color: #53bd88 !important;
+    font-size: 45px;
+}
+
+    .gitHubIconBtn3:hover {
+        color: #48705c !important;
+    }
+
+.projectBtnBudget {
+    color: #c5e1a5 !important;
+    background-color: #020305;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    margin: 10px;
+    padding: 25px;
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    border: 2px solid #c5e1a5;
+}
+
+    .projectBtnBudget:hover {
+        border: none;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-image: url('../images/projectBtn1.jpg');
+        border: 2px solid #c5e1a5;
+    }
+
+.projectBtnWeather {
+    color: #ff7733 !important;
+    background-color: #020305;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    margin: 10px;
+    padding: 25px;
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    border: 2px solid #ff7733;
+}
+
+    .projectBtnWeather:hover {
+        border: none;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-image: url('../images/projectBtn2.jpg');
+        border: 2px solid #ff7733;
+    }
+
+
+.projectBtnSpace {
+    color: #53bd88 !important;
+    background-color: #020305;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    margin: 10px;
+    padding: 25px;
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    border: 2px solid #53bd88;
+}
+
+    .projectBtnSpace:hover {
+        border: none;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-image: url('../images/moons.jpg');
+        border: 2px solid #53bd88;
+    }
+
+.resumeBtn {
+    color: #cfd8dc !important;
+    background-color: #020305;
+    text-decoration: none !important;
+    text-transform: capitalize;
+    margin: 10px;
+    padding: 25px;
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    border-radius: 100px;
+    font-weight: 700 !important;
+    border: 2px solid #cfd8dc;
+}
+
+    .resumeBtn:hover {
+        border: none;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-image: url('../images/resumeBtn.jpg');
+        border: 2px solid #cfd8dc;
+    }
+
+.gitHubIconBtn2 {
+    color: #ff7733 !important;
+    font-size: 45px;
+}
+
+    .gitHubIconBtn2:hover {
+        color: #c3cce0 !important;
+    }
+
 .greyBudgetBtn {
     font-weight: 600;
     background-color: #263238 !important;
@@ -518,10 +640,8 @@ a {
 #Message {
     border-bottom: none !important;
     color: white !important;
-    margin-top: -15px;
     height: 100px;
     font-size: 20px;
-    width: 94%;
 }
 
 /*Login*/

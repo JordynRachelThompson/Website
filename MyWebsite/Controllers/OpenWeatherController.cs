@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyWebsite.Data.Interfaces;
+using PortfolioWebsite.Data.Interfaces;
 
-namespace MyWebsite.Controllers
+namespace PortfolioWebsite.Controllers
 {
     public class OpenWeatherController : Controller
     {

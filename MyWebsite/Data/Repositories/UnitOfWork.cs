@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MyWebsite.Data.Interfaces;
+using PortfolioWebsite.Data.Interfaces;
 
-namespace MyWebsite.Data.Repositories
+namespace PortfolioWebsite.Data.Repositories
 {
     public class UnitOfWork : IUnitOfWork   /*IUnitOfWork<T> where T : class*/
     {

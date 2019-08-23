@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyWebsite.Models.BudgetApp
+namespace PortfolioWebsite.Models.BudgetApp
 {
     public class Budget
     {

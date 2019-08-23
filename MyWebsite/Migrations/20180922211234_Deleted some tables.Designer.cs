@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using MyWebsite.Data;
+using PortfolioWebsite.Data;
 using System;
 
-namespace MyWebsite.Migrations
+namespace PortfolioWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20180922211234_Deleted some tables")]
@@ -129,7 +129,7 @@ namespace MyWebsite.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MyWebsite.Models.ApplicationUser", b =>
+            modelBuilder.Entity("PortfolioWebsite.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -190,7 +190,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -198,7 +198,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -211,7 +211,7 @@ namespace MyWebsite.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -219,7 +219,7 @@ namespace MyWebsite.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("MyWebsite.Models.ApplicationUser")
+                    b.HasOne("PortfolioWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

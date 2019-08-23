@@ -11,12 +11,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.ExpressionTranslators.Internal;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using MyWebsite.Data;
-using MyWebsite.Models;
-using MyWebsite.Models.ManageViewModels;
-using MyWebsite.Services;
+using PortfolioWebsite.Data;
+using PortfolioWebsite.Models;
+using PortfolioWebsite.Models.ManageViewModels;
+using PortfolioWebsite.Services;
 
-namespace MyWebsite.Controllers
+namespace PortfolioWebsite.Controllers
 {
     [Authorize]
     [Route("[controller]/[action]")]
@@ -329,7 +329,7 @@ namespace MyWebsite.Controllers
         {
             return string.Format(
                 AuthenticatorUriFormat,
-                _urlEncoder.Encode("MyWebsite"),
+                _urlEncoder.Encode("PortfolioWebsite"),
                 _urlEncoder.Encode(email),
                 unformattedKey);
         }
