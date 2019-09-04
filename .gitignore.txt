@@ -1,4 +1,0 @@
-.vs/
-appsettings.json
-appsettings.Development.json
-**/azurekeyvault.json
