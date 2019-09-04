@@ -1,5 +1,18 @@
-﻿<div class="container">
-    <h3 class="thinHeading" id="websiteTitle">Jordyn Thompson - Web Developer - Tampa, FL</h3>
+﻿@model PortfolioWebsite.Services.EmailMessage
+
+
+<div class="container">
+    <h3 class="thinHeading" id="websiteTitle">Jordyn Thompson</h3>
+    <h4 class="thinHeading flow-text" style="margin-top: 10px !important">Web Developer in Tampa, FL</h4>
+    <h4 class="thinHeading flow-text" style="margin-top: 9px !important;">
+        Currently working at a local .NET shop building web based applications using C#, ASP.NET, MVC 5, Web API 2.0, LINQ, JavaScript, jQuery, AJAX, HTML/CSS, Razor, Kendo UI, Bootstrap, SQL Server, Entity Framework 6, and Web Services.
+    </h4>
+    @if (ViewBag.EmailMessage != null)
+    {
+        <h4 id="sentEmailMsg" class="thinHeading" style="margin:5px !important; color: #ff7733 !important;">
+            <i class="fas fa-paper-plane"></i> @ViewBag.EmailMessage
+        </h4>
+    }
     <div class="row" style="margin-top: 100px;">
         <div id="homeImage" class="col l12 s12 z-depth-5">
             <div class="darkContainer col l12 s12 z-depth-4">
@@ -27,6 +40,8 @@
                     <li>JSON</li>
                     <li>Ajax</li>
                     <li>XML</li>
+                    <li>WSDL</li>
+                    <li>Azure</li>
                     <li>Fiddler</li>
                     <li>Postman</li>
                     <li>SOAP UI</li>
@@ -43,12 +58,12 @@
             @*Space API*@
             <div class="appBoxes z-depth-4" style="padding: 10px;">
                 <div style="margin: 50px;">
-                    <a href='https://givemespaceapi.azurewebsites.net'  target="_blank" class="projectBtnSpace">Give Me Space API <i class="fas fa-hand-pointer"></i></a>
+                    <a href='https://givemespaceapi.azurewebsites.net' target="_blank" class="projectBtnSpace">Give Me Space API <i class="fas fa-hand-pointer"></i></a>
                 </div>
                 <a href='https://github.com/JordynRachelThompson/GiveMeSpaceApi' target="blank" class="waves-effect waves-light gitHubIconBtn3"><i class="fab fa-github"></i></a>
                 <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.SpaceApiDescr</h4>
                 <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
-                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px">
+                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px;">
                         <li>
                             <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Technologies Used</div>
                             <div class="collapsible-body"><span>ASP.NET Core, C#, JSON, HTML/CSS, XML, Swagger, RESTful, Postman, Git, NASA Open APIs</span></div>
@@ -75,7 +90,7 @@
                 <a href='https://github.com/JordynRachelThompson/Website/blob/master/MyWebsite/Controllers/BudgetsController.cs' target="_blank" class="waves-effect waves-light gitHubIconBtn1"><i class="fab fa-github"></i></a>
                 <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.BudgetAppDescr</h4>
                 <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
-                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px">
+                    <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px;">
                         <li>
                             <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Technologies Used</div>
                             <div class="collapsible-body"><span>ASP.NET Core, C#, EF 6, LINQ, SQL Server, SSMS, HTML/CSS, Materialize UI, jQuery, Google Charts, Office Open XML</span></div>
@@ -124,6 +139,10 @@
                 <div class="col l10 offset-l4 col m12 offset-m3 hide-on-small-only" style="margin-top: 10px; margin-bottom: 10px;">
                     <ul class="collapsible" style="margin: 5px 5px 40px; padding: 10px;">
                         <li>
+                            <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Technologies Used</div>
+                            <div class="collapsible-body"><span>ASP.NET Core, C#, EF 6, LINQ, SQL Server, SSMS, HTML/CSS, Materialize UI, jQuery, AJAX, Open Weather API</span></div>
+                        </li>
+                        <li>
                             <div class="collapsible-header flow-text z-depth-3"><i class="fas fa-plus centerIcon"></i> Element Tracker Features</div>
                             <div class="collapsible-body"><span>View 5 day, hourly forecast from Open WeatherMap for any city</span></div>
                             <div class="collapsible-body"><span>Option to view forecasts without registering or logging in</span></div>
@@ -140,52 +159,42 @@
             </div>
         </div>
     </div>
-
-
-    @*About*@
-    <h3 id="About" name="About" class="thinHeading">About</h3>
-    <div class="row" style="margin-top: 100px;">
-        <div class="darkContainer col l12 s12 z-depth-5">
-            <div class="appBoxes z-depth-4" style="padding: 10px;">
-                
-                <div style="margin: 50px;">
-                    <a href='#' class="resumeBtn">Resume <i class="fas fa-file-pdf"></i></a>
-                </div>
-                <h4 class="flow-text" style="padding: 10px; font-weight: 200;">@ViewBag.AboutSecionText</h4>
-            </div>
-        </div>
-    </div>
-
+    
     @*Contact*@
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <h3 id="Contact" name="Contact" class="thinHeading">Contact</h3>
     <div class="row" style="margin: 100px 0px 100px">
-        <div id="homeImage" class="col l12 s12 z-depth-5">
+        <div id="contactImage" class="col l12 s12 z-depth-5">
             <div class="accountBox col l12 s12 z-depth-4">
-                <section>
-                    <div class="acctForm" align="center">
-                        <div class="input-field">
-                            <i class="far fa-user contactFormIcons"></i>
-
-                            <input id="Name" placeholder="Name" class="validate appBoxes" required type="text" style="width:100%;" />
-                            <label for="Name">Name</label>
+                <form method="post" id="contactForm">
+                    <section>
+                        <div class="acctForm" align="center">
+                            <div class="input-field">
+                                <i class="far fa-user contactFormIcons"></i>
+                                <input asp-for="Name" placeholder="Name" class="validate appBoxes" required type="text" style="width:100%;" />
+                                <label for="Name">Name</label>
+                            </div>
+                            <div class="input-field">
+                                <i class="fas fa-at contactFormIcons"></i>
+                                <input asp-for="FromAddresses" placeholder="Email" class="validate appBoxes" required type="text" pattern=".*@@.*\..*" message="Please enter a valid email address." style="width:100%;" />
+                                <label for="Email">Email</label>
+                            </div>
+                            <div class="input-field" style="margin-top: 30px;">
+                                <textarea asp-for="Content" placeholder="Message..." required type="text" class="validate appBoxes" style="color: white"></textarea>
+                            </div>
+                            <div class="form-group recaptcha-div" align="center">
+                                <div id="recaptcha" data-theme="dark" class="g-recaptcha" data-type="image" data-sitekey="6Ld7pLUUAAAAAHhiPDZfDsoumHxHuUXg_1jg7DrX" data-callback="reCaptchaCallback"></div>
+                            </div>
+                            <div id="reCaptchaMessage"></div>
+                            <div align="center" style="margin-top: 10px;">
+                                <button @*type="submit" *@ id="sendMsgBtn" onclick="submitForm()" class="waves-effect waves-light btn sharpCorners black-btn" style="width: 30% !important;"><i class="far fa-paper-plane"></i> Send</button>
+                            </div>
+                            <div class="progress" style="display: none;">
+                                <div class="indeterminate"></div>
+                            </div>
                         </div>
-                        <div class="input-field">
-                            <i class="fas fa-at contactFormIcons"></i>
-                            <input id="Email" placeholder="Email" class="validate appBoxes" required pattern=".*@@.*\..*" message="Please enter a valid email address." type="text" style="width:100%" />
-                            <label for="Email">Email</label>
-                        </div>
-                        <div class="input-field" style="margin-top: 30px;">
-                            <textarea id="Message" style="color: white" placeholder="Message..." required type="text" class="validate appBoxes"></textarea>
-                        </div>
-                        <div align="center">
-                            @*<div><p style="color: #D50000;">@ViewBag.Error</p></div>*@
-                            <button id="sendMsgBtn" class="waves-effect waves-light btn sharpCorners black-btn" style="width: 30% !important;"><i class="far fa-paper-plane"></i> Send</button>
-                        </div>
-                        <div class="progress" style="display: none;">
-                            <div class="indeterminate"></div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
+                </form>
             </div>
         </div>
     </div>
@@ -263,46 +272,70 @@
         $('.carousel').carousel();
         $('.collapsible').collapsible();
     });
-    $('#sendMsgBtn').click(function () {
+
+    //reCaptcha
+    var your_site_key = '@ViewBag.ReCaptchaKey';
+    var recaptchaResponse = '';
+    var reCaptchaCallback = function (response) {
+        recaptchaResponse = response;
+        if (response !== '') {
+            $('#reCaptchaMessage').css('color', 'lime').html('Success');
+        }
+    };
+
+    $('#sendMsgBtn').on('click', function (e) {
+
         var emailRegex = /^[a-zA-Z0-9_.-]+@@[a-zA-Z0-9]+[a-zA-Z0-9.-]+[a-zA-Z0-9]+.[a-z]{0,4}$/;
-        var valid = emailRegex.test($('#Email').val());
-        if ($('#Email').val() !== "" && $('#Message').val() !== "" && (valid)) {
-            $('.progress').show();
-            sendContactMessage();
+        var valid = emailRegex.test($('#FromAddresses').val());
+        if ($('#FromAddresses').val() !== "" && $('#Content').val() !== "" && (valid)) {
+             //ReCaptcha
+            var message = 'Please checck the checkbox';
+            if (recaptchaResponse != 'undefined') {
+                (recaptchaResponse.length === 0) ? (message = 'Captcha verification failed') : (message = 'Success!');
+            }
+            $('#reCaptchaMessage').text(message);
+            $('#reCaptchaMessage').css('color', (message.toLowerCase() == 'success!') ? "lime" : "red");
+            $('.progress').show().delay(3000).fadeOut();
+            if (recaptchaResponse.length === 0 || recaptchaResponse == 'undefined') {
+                e.preventDefault();
+            }
+            else {
+                $("#contactForm").submit();
+            }           
         }
     });
 
 
-    function sendContactMessage() {
+    //function sendContactMessage() {
 
-        var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImJpcnRjaHVtQHZpcnR1YWx6ZXJvLm5ldCIsInVuaXF1ZV9pZCI6IllFaU5LekJVIiwiZXhwIjoxOTgxMDc5NjUwfQ.mZ8cr495fht6VXZ7Rr4E0ep3SVjk2f0B8ghFrdqiLPU";
+        //var apiKey = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImJpcnRjaHVtQHZpcnR1YWx6ZXJvLm5ldCIsInVuaXF1ZV9pZCI6IllFaU5LekJVIiwiZXhwIjoxOTgxMDc5NjUwfQ.mZ8cr495fht6VXZ7Rr4E0ep3SVjk2f0B8ghFrdqiLPU";
 
 
-        $.ajax({
-            type: "POST",
-            headers: { "x-api-key": apiKey, 'Access-Control-Allow-Origin': "https://mailapi.virtualzero.tech/mail/sendmail" },
-            url: "https://mailapi.virtualzero.tech/mail/sendmail",
-            data:
-            {
-                "recipients": ["jordyn@virtualzero.net"],
-                "subject": "Test Subject",
-                "message": "Text Message"
-            },
-            contentType: 'json',
-            crossDomain: true,
-            dataType: 'jsonp',
-            success: function (data) {
-                console.log('SUCCESS: ', data);
-            },
-            error: function (data) {
-                console.log('ERROR: ', data);
-                alert("error " + data);
-                $('.progress').hide();
-            },
-            coplete: function () {
-                $('.progress').hide();
-            }
-        })
-    }
+        //$.ajax({
+        //    type: "POST",
+        //    headers: { "x-api-key": apiKey, 'Access-Control-Allow-Origin': "https://mailapi.virtualzero.tech/mail/sendmail" },
+        //    url: "https://mailapi.virtualzero.tech/mail/sendmail",
+        //    data:
+        //    {
+        //        "recipients": ["jordyn@virtualzero.net"],
+        //        "subject": "Test Subject",
+        //        "message": "Text Message"
+        //    },
+        //    contentType: 'json',
+        //    crossDomain: true,
+        //    dataType: 'jsonp',
+        //    success: function (data) {
+        //        console.log('SUCCESS: ', data);
+        //    },
+        //    error: function (data) {
+        //        console.log('ERROR: ', data);
+        //        alert("error " + data);
+        //        $('.progress').hide();
+        //    },
+        //    coplete: function () {
+        //        $('.progress').hide();
+        //    }
+        //})
+    //}
 </script>
 

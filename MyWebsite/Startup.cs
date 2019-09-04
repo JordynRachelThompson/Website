@@ -19,8 +19,33 @@ namespace PortfolioWebsite
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public IHostingEnvironment environment { get; set; }
+
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder()
+            .SetBasePath(env.ContentRootPath)
+            .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+            .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+            .AddJsonFile("azurekeyvault.json", optional: false, reloadOnChange: true)
+            .AddEnvironmentVariables();
+
+            // add this file name to your .gitignore file
+            // so you can create it and use on your local dev machine
+            // remember last config source added wins if it has the same settings
+            //builder.AddEnvironmentVariables();
+
+            var config = builder.Build();
+
+            builder.AddAzureKeyVault(
+                $"https://{config["azureKeyVault:vault"]}.vault.azure.net/",
+                config["azureKeyVault:clientId"],
+                config["azureKeyVault:clientSecret"]
+            );
+
+            //Configuration = builder.Build();
+
+            environment = env;
             Configuration = configuration;
         }
 
@@ -29,25 +54,35 @@ namespace PortfolioWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            if (environment.IsDevelopment())
+            {             
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("PortfolioConnection")));
 
+            }
+            else if (environment.IsProduction())
+            {
+                var connectionString = Configuration.GetConnectionString("DefaultConnection");
+
+                services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(connectionString));
+            }
+            services.AddSingleton(Configuration);
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<StorageOptions>(Configuration.GetSection("GoogleReCaptcha"));
+            services.Configure<StorageOptions>(Configuration.GetSection("EmailConfiguration"));
+            services.AddSingleton<IEmailConfiguration>(Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>());
+            services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<IBudgetRepository, BudgetRepository>();
             services.AddScoped<IBudgetItemsRepository, BudgetItemsRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            // Add application services.
-            services.AddTransient<IEmailSender, EmailSender>();
-
+            
             services.AddMvc()
             .AddJsonOptions(options =>
-            options.SerializerSettings.ContractResolver = new DefaultContractResolver());
-
-            
+            options.SerializerSettings.ContractResolver = new DefaultContractResolver());            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,15 +90,16 @@ namespace PortfolioWebsite
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                //app.UseDeveloperExceptionPage();
+                //app.UseDatabaseErrorPage();
             }
-
+            app.UseBrowserLink();
             app.UseStaticFiles();
 
             app.UseAuthentication();

@@ -233,11 +233,23 @@ namespace PortfolioWebsite.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AlertsEmail");
+
+                    b.Property<bool>("BookWeatherDay");
+
                     b.Property<string>("City");
 
                     b.Property<string>("Email");
 
+                    b.Property<bool>("GoodWeatherDay");
+
                     b.Property<bool>("IsSubscribed");
+
+                    b.Property<bool>("RainyDay");
+
+                    b.Property<bool>("SevereWeatherDay");
+
+                    b.Property<bool>("SnowyDay");
 
                     b.HasKey("Id");
 

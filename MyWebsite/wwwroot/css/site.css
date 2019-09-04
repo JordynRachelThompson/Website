@@ -243,9 +243,8 @@ a {
     text-align: center;
     font-size: 25px;
     margin: 20px;
-    border-radius: 100px;
     font-weight: 700 !important;
-    border: 2px solid #c5e1a5;
+    border: 1px solid #c5e1a5;
 }
 
     .projectBtnBudget:hover {
@@ -266,9 +265,8 @@ a {
     text-align: center;
     font-size: 25px;
     margin: 20px;
-    border-radius: 100px;
     font-weight: 700 !important;
-    border: 2px solid #ff7733;
+    border: 1px solid #ff7733;
 }
 
     .projectBtnWeather:hover {
@@ -290,9 +288,8 @@ a {
     text-align: center;
     font-size: 25px;
     margin: 20px;
-    border-radius: 100px;
     font-weight: 700 !important;
-    border: 2px solid #53bd88;
+    border: 1px solid #53bd88;
 }
 
     .projectBtnSpace:hover {
@@ -390,19 +387,19 @@ a {
 }
 
 #contactImage {
-    background-image: url('../images/nebula.png');
+    background-image: url('../images/homeMoons.jpg');
     border-radius: 4px;
     background-size: cover;
     background-position: 50% 50%;
-    padding: 60px;
+    padding: 90px;
 }
 
 #homeImage {
-    background-image: url('../images/darkStars.jpg');
+    background-image: url('../images/homeMoons.jpg');
     border-radius: 4px;
     background-size: cover;
     background-position: 50% 50%;
-    padding: 60px;
+    padding: 90px;
 }
 
 #appsImage {
@@ -444,11 +441,11 @@ a {
 
 .darkContainer {
     background-color: rgb(168, 179, 196);
-    /*background-color: #a8b3c4;*/
     text-align: center;
-    opacity: 0.7;
+    opacity: 0.75;
     border-radius: 4px;
     height: 100%;
+    padding: 60px;
 }
 
 
@@ -720,7 +717,7 @@ a {
     background-color: #a8b3c4;
     padding: 50px !important;
     border-radius: 4px;
-    opacity: 0.55;
+    opacity: 0.7;
 }
 
 
@@ -895,15 +892,58 @@ input.budgetLimitInput {
 /*MOBILE*/
 @media only screen and (max-width: 750px) {
     /*Homepage*/
+
+    .rc-anchor-normal {
+        width: 27px !important;
+    }
+
+    .projectBtnBudget {
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+        font-size: 13px;
+        margin: 10px;
+        font-weight: 600 !important;
+    }
+
+    .projectBtnWeather {
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+        font-size: 13px;
+        margin: 10px;
+        font-weight: 600 !important;
+    }
+
+    .projectBtnSpace {
+        margin: 10px;
+        padding: 15px;
+        text-align: center;
+        font-size: 13px;
+        margin: 10px;
+        font-weight: 600 !important;
+    }
+
     #tech-used {
         -webkit-column-count: 1;
         -moz-column-count: 1;
         column-count: 1;
         font-size: 19px;
-        width: 60%;
+        width: 80%;
         margin: auto;
     }
 
+    #homeImage{
+        padding: 10px !important;
+    }
+
+    #contactImage{
+        padding: 10px !important;
+    }
+
+    .carousel .carousel-item > img {
+        width: 80% !important;
+    }
         #tech-used li {
             margin: 15px;
         }

@@ -7,13 +7,20 @@
 
     <environment include="Development">
         <link href="~/css/site.css" rel="stylesheet" />
+        <link href="~/css/materialize.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/js/moment.js"></script>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="~/css/materialize.css" />
     </environment>
-    <environment exclude="Development"></environment>
+    <environment include="Production">
+        <link href="~/css/site.min.css" rel="stylesheet" />
+        <link href="~/css/materialize.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/js/moment.js"></script>
+    </environment>
 </head>
 
 <body>
@@ -21,14 +28,11 @@
     <div class="navbar-fixed hide-on-med-and-down">
         <nav class="black mainNav">
             <div class="nav-wrapper" style="margin-right: 50px;">
-                @*<a href="@Url.Action("Index", "Home")" class="brand-logo"><i id="navHomeIcon" class="far fa-square"></i></a>*@
                 @if (ViewBag.UseHomePageLinks != null && ViewBag.UseHomePageLinks == true)
                 {
                 <ul class="right">
                     <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="z-depth-5"><a href="#Apps">Apps</a></li>
-                    <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
-                    @*<li class="z-depth-5"><a href="#Experience">Experience</a></li>*@
                     <li class="z-depth-5"><a href="#Contact">Contact</a></li>
                 </ul>
                 }
@@ -37,8 +41,6 @@
                 <ul class="right">
                     <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="z-depth-5">@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</li>
-                    <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
-                    @*<li class="z-depth-5">@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</li>*@
                     <li class="z-depth-5">@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
                 </ul>
                 }
@@ -53,8 +55,6 @@
             <ul class="flow-text center">
                 <li class="z-depth-5">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li><a href="#Apps">Apps</a></li>
-                <li><a href="#About">About</a></li>
-                @*<li><a href="#Experience">Experience</a></li>*@
                 <li><a href="#Contact">Contact</a></li>
             </ul>
             }
@@ -63,8 +63,6 @@
             <ul class="flow-text center">
                 <li><a href="@Url.Action("Index", "Home")">Home</a></li>
                 <li>@Html.ActionLink("Apps", "Index", "Home", null, null, "Apps", null, null)</li>
-                <li>@Html.ActionLink("About", "Index", "Home", null, null, "About", null, null)</li>
-                @*<li>@Html.ActionLink("Experience", "Index", "Home", null, null, "Experience", null, null)</li>*@
                 <li>@Html.ActionLink("Contact", "Index", "Home", null, null, "Contact", null, null)</li>
             </ul>
             }
@@ -85,11 +83,15 @@
     </footer>
 </body>
 </html>
-
-<environment>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+<environment include="Development">
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
     <script src="~/js/materialize.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+</environment>
+<environment include="Production">
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>*@
+    <script src="~/js/materialize.min.js"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
 </environment>
 
 

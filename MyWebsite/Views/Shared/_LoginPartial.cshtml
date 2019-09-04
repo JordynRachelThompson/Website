@@ -7,7 +7,7 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div style="margin-right: 100px; padding-bottom: 10px;">
+    <div style="margin-right: 100px; margin-left: 5px; padding-bottom: 10px;">
         <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
             <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><i class="fas fa-user-cog" style="font-size: 17px !important;">@Html.ActionLink( User.Identity.Name, "Index", "Manage", new { AppType = Model }, new { @style = "font-family: 'Arial' !important; font-weight: 400; margin-left: 5px;" })</i></button>
             <button type="submit" class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><i class="fas fa-sign-out-alt" style="font-size: 17px !important;"></i> sign out</button>
@@ -16,7 +16,7 @@
 }
 else
 {
-    <div style="margin-right: 100px; padding-bottom: 10px;">
+    <div style="margin-right: 100px; margin-left: 5px; padding-bottom: 10px;">
         <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3" style="font-size: 20px;"><span class="far fa-user"></span>@Html.ActionLink(" Register", "Register", "Account")</button>
         <button class="waves-effect waves-light btn sharpCorners black-btn accountButtons z-depth-3"><span class="fas fa-sign-in-alt"></span>@Html.ActionLink(" Log in", "Login", "Account", new { AppType = Model })</button>
     </div>
