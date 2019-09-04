@@ -1,7 +1,0 @@
-{
-  "AzureKeyVault": {
-    "Vault": "https://PortfolioWebsiteKeyVault.vault.azure.net/",
-    "ClientId": "",
-    "ClientSecret": ""
-  }
-}
